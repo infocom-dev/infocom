@@ -1,0 +1,14 @@
+FROM node:11.11.0-stretch
+COPY . /app
+WORKDIR /app
+EXPOSE 8000
+
+RUN npm install -g npm
+RUN npm install vuex --save
+RUN npm install axios
+RUN npm install node-sass
+RUN npm install sass-loader sass webpack --save-dev
+RUN npm uninstall webpack
+RUN npm install webpack@^4.0.0 --save-dev
+RUN npm install -g json-server
+RUN npm install
