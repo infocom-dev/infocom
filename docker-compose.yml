@@ -4,10 +4,10 @@ services:
   db:
     image: postgres
     container_name: db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: example
-      POSTGRES_DB: postgres
+    env_file:
+      - ./.env.db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
     restart: unless-stopped
     ports:
       - "5432:5432"
@@ -16,10 +16,8 @@ services:
       context: .
       dockerfile: docker/DockerfileBackend
     container_name: backend
-    environment:
-      POSTGRES_NAME: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: example
+    env_file:
+      - ./.env
     volumes:
       - .:/app
     ports:
@@ -38,3 +36,7 @@ services:
 #      - "8082:8080"
 #    depends_on:
 #      - django
+
+volumes:
+  postgres_data:
+
