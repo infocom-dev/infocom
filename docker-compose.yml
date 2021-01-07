@@ -4,10 +4,10 @@ services:
   db:
     image: postgres
     container_name: db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: example
-      POSTGRES_DB: postgres
+    env_file:
+      - ./.env.db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
     restart: unless-stopped
     ports:
       - "5432:5432"
@@ -16,25 +16,44 @@ services:
       context: .
       dockerfile: docker/DockerfileBackend
     container_name: backend
-    environment:
-      POSTGRES_NAME: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: example
+    env_file:
+      - ./.env
+    volumes:
+      - .:/app
+      - ./static_volume:/app/static
+      - ./media_volume:/app/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  vue:
+    build:
+      context: .
+      dockerfile: docker/DockerfileFrontend
+    container_name: frontend
+#    command: ./docker/frontend_setup.sh
     volumes:
       - .:/app
     ports:
-      - "8002:8000"
+      - "8084:8080"
     depends_on:
-      - db
-#  vue:
-#    build:
-#      context: .
-#      dockerfile: docker/DockerfileFrontend
-#    container_name: frontend
-#    command: ./docker/frontend_setup.sh
-#    volumes:
-#      - .:/app
-#    ports:
-#      - "8082:8080"
-#    depends_on:
-#      - django
+      - django
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./static_volume:/app/django/static
+      - ./media_volume:/app/django/media
+      - ./dist:/app/dist
+    depends_on:
+      - django
+      - vue
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
+  dist:
+

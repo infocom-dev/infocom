@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from backend.api import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/hello/', views.api_gretting, name='api_gretting'),
 ]

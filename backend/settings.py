@@ -16,21 +16,21 @@ import os
 import sys
 
 
-SETTINGS_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = os.path.dirname(SETTINGS_DIR)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'sxfn+7##8)ps)gi(lp*ys*%-m%z-b1l$rag(li80)+vu^w%#7e'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.environ.get("DEBUG", default=1)))
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+# ALLOWED_HOSTS=['172.24.0.1']
 
 # Application definition
 
@@ -42,19 +42,37 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'backend.api'
+    'backend.api',
+    # 'corsheaders',
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    #'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:8082",
+#     "http://localhost:8002",
+#     "http://localhost:8082",
+#     "http://localhost",
+#
+# # ]
+# CORS_ORIGIN_ALLOW_ALL = False
+# CORS_ALLOW_METHODS = (
+#     'GET',
+#     'POST',
+#     'PUT',
+#     'PATCH',
+#     'DELETE',
+#     'OPTIONS'
+# )
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -81,13 +99,13 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'example',
-        'HOST': 'db',
-        'PORT': 5432,
+    "default": {
+        "ENGINE": os.environ.get("SQL_ENGINE"),
+        "NAME": os.environ.get("SQL_DATABASE"),
+        "USER": os.environ.get("SQL_USER"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD"),
+        "HOST": os.environ.get("SQL_HOST"),
+        "PORT": os.environ.get("SQL_PORT"),
     }
 }
 
@@ -128,4 +146,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
