@@ -20,5 +20,5 @@ from backend.api import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api_gretting/', views.api_gretting, name='api_gretting'),
+    path('api/hello/', views.api_gretting, name='api_gretting'),
 ]

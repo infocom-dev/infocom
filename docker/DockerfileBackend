@@ -1,5 +1,6 @@
 FROM python:3
-ENV   PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 RUN mkdir /app
 COPY backend/requirements.txt /app/
 RUN pip install -r app/requirements.txt
@@ -7,5 +8,8 @@ COPY . /app
 WORKDIR /app
 EXPOSE 8000
 RUN ["chmod", "+x", "./docker/backend_setup.sh"]
+RUN mkdir -p /app/static
+RUN mkdir -p /app/media
+
 CMD ["./docker/backend_setup.sh"]
-# Command to run the executable
+
