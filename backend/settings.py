@@ -58,38 +58,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# CORS_ALLOW_CREDENTIALS=True
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:80/",
-#     "http://localhost:8000/",
-#     "http://localhost:8080/",
-#     "http://localhost/",
-# ]
 CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ALLOW_METHODS = (
-#     'GET',
-#     'POST',
-#     'PUT',
-#     'PATCH',
-#     'DELETE',
-#     'OPTIONS'
-# )
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:8082",
-#     "http://localhost:8002",
-#     "http://localhost:8082",
-#     "http://localhost",
-#
-# # ]
-# CORS_ORIGIN_ALLOW_ALL = False
-# CORS_ALLOW_METHODS = (
-#     'GET',
-#     'POST',
-#     'PUT',
-#     'PATCH',
-#     'DELETE',
-#     'OPTIONS'
-# )
+
 
 ROOT_URLCONF = 'backend.urls'
 
