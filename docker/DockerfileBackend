@@ -6,7 +6,6 @@ COPY backend/requirements.txt /app/
 RUN pip install -r app/requirements.txt
 COPY . /app
 WORKDIR /app
-EXPOSE 8000
 RUN ["chmod", "+x", "./docker/backend_setup.sh"]
 RUN mkdir -p /app/static
 RUN mkdir -p /app/media

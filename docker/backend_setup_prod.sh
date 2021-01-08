@@ -5,4 +5,4 @@ yes | python manage.py migrate
 yes | python manage.py loaddata categories
 yes | python manage.py collectstatic
 sleep 5;
-python manage.py runserver 0.0.0.0:80
+python manage.py runserver 0.0.0.0:8000
