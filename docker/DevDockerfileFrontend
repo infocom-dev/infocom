@@ -5,5 +5,4 @@ COPY package.json /app/package.json
 RUN npm install --silent
 RUN npm install -g @vue/cli
 COPY . /app
-#CMD npm run serve
-RUN npm run build
+CMD npm run serve
