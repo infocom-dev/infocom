@@ -1,0 +1,58 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres
+    container_name: db
+    env_file:
+      - ./.env.db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+  django:
+    build:
+      context: .
+      dockerfile: ./docker/ProdDockerfileBackend
+    container_name: backend
+    env_file:
+      - ./.env
+    volumes:
+      - .:/app
+      - ./static_volume:/app/static
+      - ./media_volume:/app/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  vue:
+    build:
+      context: .
+      dockerfile: ./docker/ProdDockerfileFrontend
+    container_name: frontend
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - django
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./static_volume:/app/django/static
+      - ./media_volume:/app/django/media
+      - ./dist:/app/dist
+    depends_on:
+      - django
+      - vue
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
+  dist:
+
