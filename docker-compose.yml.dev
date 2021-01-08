@@ -32,7 +32,7 @@ services:
       dockerfile: ./docker/DevDockerfileFrontend
     container_name: frontend
     volumes:
-      - .:/app- 
+      - .:/app
     ports:
       - "8080:8080"
     depends_on:

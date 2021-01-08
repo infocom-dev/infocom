@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <p>helRRGGGGGRRRfffflo</p>
-  <!-- <v-question/> -->
+    <p>helfffflddddo</p>
+  <v-question/>
   <!-- <label id="fruitLabel">Choose a fruit: </label>
     <combobox :items="[ 'Apple', 'Banana', 'Orange', 'Mango', 'Pear', 'Peach', 'Grape', 'Tangerine', 'Pineapple']" aria-labelled-by="fruitLabel" />
 
@@ -14,12 +14,12 @@
 </template>
 
 <script>
-// import vQuestion from './components/v-question.vue'
+import vQuestion from './components/v-question.vue'
 // import combobox from './components/combobox.vue'
 export default {
   name: 'App',
   components: {
-    // vQuestion
+    vQuestion
     // combobox
   },
   data(){
