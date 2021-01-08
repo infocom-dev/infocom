@@ -1,5 +1,4 @@
 .DS_Store
-node_modules
 /dist
 /static_volume
 /media_volume
