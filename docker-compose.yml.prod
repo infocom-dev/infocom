@@ -14,7 +14,7 @@ services:
   django:
     build:
       context: .
-      dockerfile: docker/DockerfileBackend
+      dockerfile: ./docker/ProdDockerfileBackend
     container_name: backend
     env_file:
       - ./.env
@@ -23,13 +23,13 @@ services:
       - ./static_volume:/app/static
       - ./media_volume:/app/media
     ports:
-      - "80:80"
+      - "8000:8000"
     depends_on:
       - db
   vue:
     build:
       context: .
-      dockerfile: ./docker/DevDockerfileFrontend
+      dockerfile: ./docker/ProdDockerfileFrontend
     container_name: frontend
     volumes:
       - .:/app
@@ -37,9 +37,22 @@ services:
       - "8080:8080"
     depends_on:
       - django
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./static_volume:/app/django/static
+      - ./media_volume:/app/django/media
+      - ./dist:/app/dist
+    depends_on:
+      - django
+      - vue
 
 volumes:
   postgres_data:
   static_volume:
   media_volume:
   dist:
+

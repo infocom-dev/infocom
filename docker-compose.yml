@@ -23,37 +23,23 @@ services:
       - ./static_volume:/app/static
       - ./media_volume:/app/media
     ports:
-      - "8000:8000"
+      - "80:80"
     depends_on:
       - db
   vue:
     build:
       context: .
-      dockerfile:
+      dockerfile: docker/DockerfileFrontend
     container_name: frontend
-#    command: ./docker/frontend_setup.sh
     volumes:
       - .:/app
     ports:
       - "8080:8080"
     depends_on:
       - django
-  nginx:
-    build: ./nginx
-    container_name: nginx
-    ports:
-      - 80:80
-    volumes:
-      - ./static_volume:/app/django/static
-      - ./media_volume:/app/django/media
-      - ./dist:/app/dist
-    depends_on:
-      - django
-      - vue
 
 volumes:
   postgres_data:
   static_volume:
   media_volume:
   dist:
-
