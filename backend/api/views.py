@@ -14,44 +14,67 @@ def api_gretting(request):
     return Response([
   {
     "id": "1",
-    "text": "what is your name",
-    "type": "selected",
+    "text": "Какие задачи должен решать чат-бот?",
+    "type": "checkbox",
     "answers": [
       {
         "id": 1,
-        "value": "Egor"
+        "value": "обработка типовых сообщений "
       },
       {
         "id": 2,
-        "value": "Tanya"
+        "value": "рассылка подписчикам"
       },
       {
         "id": 3,
-        "value": "Vitya"
+        "value": "фильтрация поступающих заявок"
       },
       {
         "id": 4,
-        "value": "Zhenya"
+        "value": "мгновенная реакция на сообщения "
       }
     ]
   },
   {
     "id": "2",
-    "text": "how are you",
-    "type": "radio",
+    "text": "Где  должен размещаться чат-бот?",
+    "type": "selected",
     "answers": [
       {
         "id": 1,
-        "value": "ok"
+        "value": "сайт"
       },
       {
         "id": 2,
-        "value": "not ok"
+        "value": "мессенджеры"
+      },
+      {
+        "id": 3,
+        "value": "личный кабинет"
+      },
+      {
+        "id": 4,
+        "value": "мессенджеры"
+      },
+      {
+        "id": 5,
+        "value": "мобильное  приложение"
+      },
+      {
+        "id": 6,
+        "value": "гаджет"
       }
+
     ]
   },
   {
     "id": "3",
+    "text": "Укажите минимальное и максимальное кол-во посетителей приложения, в котором планируется использование чат-бота (для каждого канала)?",
+    "type": "range",
+    "answers": []
+  },
+  {
+    "id": "4",
     "text": "any questions",
     "type": "message",
     "answers": []
