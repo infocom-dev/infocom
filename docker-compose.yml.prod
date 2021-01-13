@@ -24,6 +24,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    command: sh /app/docker/backend_setup_prod.sh
   vue:
     image: ghcr.io/infocom-dev/infocom_front:latest
     container_name: frontend
@@ -33,7 +34,6 @@ services:
       - "8080:8080"
     depends_on:
       - django
-    command: sh /app/docker/backend_setup_prod.sh
   nginx:
     image: ghcr.io/infocom-dev/infocom_nginx:latest
     container_name: nginx
