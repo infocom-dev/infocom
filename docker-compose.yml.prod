@@ -12,9 +12,7 @@ services:
     ports:
       - "5432:5432"
   django:
-    build:
-      context: .
-      dockerfile: ./docker/ProdDockerfileBackend
+    image: ghcr.io/infocom-dev/infocom_back:latest
     container_name: backend
     env_file:
       - ./.env
@@ -27,9 +25,7 @@ services:
     depends_on:
       - db
   vue:
-    build:
-      context: .
-      dockerfile: ./docker/ProdDockerfileFrontend
+    image: ghcr.io/infocom-dev/infocom_front:latest
     container_name: frontend
     volumes:
       - dist_volume:/app/dist
@@ -38,7 +34,7 @@ services:
     depends_on:
       - django
   nginx:
-    build: ./nginx
+    image: ghcr.io/infocom-dev/infocom_nginx:latest
     container_name: nginx
     ports:
       - 80:80
