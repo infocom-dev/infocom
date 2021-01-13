@@ -2,6 +2,7 @@
 /dist
 /static_volume
 /media_volume
+/node_modules
 
 # local env files
 .env.local
