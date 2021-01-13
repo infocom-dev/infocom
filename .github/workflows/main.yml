@@ -72,7 +72,8 @@ jobs:
           ssh-add "$HOME/.ssh/id_rsa"
           echo "Add known hossts"
           sudo printf '%s %s\n' "${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}" "${{ secrets.SSH_PUBLIC_KEY }}" > sudo /etc/ssh/ssh_known_hosts
-          scp  -i "$HOME/.ssh/id_rsa" -o StrictHostKeyChecking=no -r ./.env ./docker-compose.yml.prod ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/infocom
+          scp  -i "$HOME/.ssh/id_rsa" -o StrictHostKeyChecking=no -r ./.env ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/infocom/.env
+          scp  -i "$HOME/.ssh/id_rsa" -o StrictHostKeyChecking=no -r ./docker-compose.yml.prod ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/infocom/docker-compose.yml.prod
           ssh -q -t -i "$HOME/.ssh/id_rsa" \
               -o UserKnownHostsFile=/dev/null \
               -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
