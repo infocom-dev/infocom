@@ -75,6 +75,9 @@ jobs:
           mkdir infocom || true
           scp  -i "$HOME/.ssh/id_rsa" -o StrictHostKeyChecking=no -r ./.env ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/infocom/.env
           scp  -i "$HOME/.ssh/id_rsa" -o StrictHostKeyChecking=no -r ./docker-compose.yml.prod ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/infocom/docker-compose.yml.prod
+          mkdir infocom/docker || true
+          scp  -i "$HOME/.ssh/id_rsa" -o StrictHostKeyChecking=no -r ./docker/backend_setup_prod.sh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/infocom/docker/backend_setup_prod.sh
+          chmod +x ./docker/backend_setup.sh
           ssh -q -t -i "$HOME/.ssh/id_rsa" \
               -o UserKnownHostsFile=/dev/null \
               -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
