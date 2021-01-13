@@ -44,7 +44,8 @@ services:
     depends_on:
       - django
   nginx:
-    build: ./nginx
+    build:
+      context: ./nginx
       cache_from:
         - ghcr.io/infocom-dev/infocom_nginx:latest
     image: ghcr.io/infocom-dev/infocom_nginx:latest
