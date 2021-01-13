@@ -1,7 +1,6 @@
 
 <template >
-
-  <div class="filter-price">      
+  <div class="">   
 
   </div>
 </template>
