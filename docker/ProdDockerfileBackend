@@ -9,5 +9,3 @@ WORKDIR /app
 RUN ["chmod", "+x", "./docker/backend_setup_prod.sh"]
 RUN mkdir -p /app/static
 RUN mkdir -p /app/media
-
-CMD ["./docker/backend_setup_prod.sh"]
