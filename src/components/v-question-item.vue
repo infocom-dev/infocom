@@ -26,13 +26,25 @@
           :interval="10"
           v-model="value"
           :marks="marks"
-          :process-style="{ backgroundColor: 'pink' }"
-      :tooltip-style="{ backgroundColor: 'pink', borderColor: 'pink' }"
+          :tooltip="'none'"
+          :process-style="{ backgroundColor: 'blue' }"
+      :tooltip-style="{ backgroundColor: 'blue', borderColor: 'blue' }"
     >
       <div :class="['custom-dot', { focus }]"></div>
       <template v-slot:step="{ label, active }">
         <div :class="['custom-step', { active }]"></div>
       </template>
+      <template v-slot:process="{ start, end, style, index }">
+          <div class="vue-slider-process" :style="style">
+            <div :class="[
+              'merge-tooltip',
+              'vue-slider-dot-tooltip-inner',
+              'vue-slider-dot-tooltip-inner-top',
+            ]">
+              {{ value[index] }} - {{ value[index + 1] }}
+            </div>
+          </div>
+        </template>
       </vue-slider>
 
 
@@ -50,7 +62,6 @@ export default {
   components: {
     RadioSet,
     VueSlider
-
   },
   props:{
         question_data:{
@@ -70,6 +81,12 @@ export default {
 }
 </script>
 <style lang="scss">
+.merge-tooltip {
+      position: absolute;
+      left: 50%;
+      bottom: 100%;
+      transform: translate(-50%, -15px);
+    }
 .custom-step {
     width: 100%;
     height: 100%;
@@ -80,12 +97,6 @@ export default {
   .custom-step.active {
     box-shadow: 0 0 0 3px #3498db;
     background-color: #3498db;
-  }
-.custom-tooltip {
-    transform: translateY(5px);
-  }
-  .custom-tooltip.focus {
-    font-weight: bold;
   }
  .custom-dot {
     width: 100%;
