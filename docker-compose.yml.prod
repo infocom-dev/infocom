@@ -32,7 +32,7 @@ services:
       dockerfile: ./docker/ProdDockerfileFrontend
     container_name: frontend
     volumes:
-      - .:/app
+      - dist_volume:/app/dist
     ports:
       - "8080:8080"
     depends_on:
@@ -45,7 +45,7 @@ services:
     volumes:
       - ./static_volume:/app/django/static
       - ./media_volume:/app/django/media
-      - ./dist:/app/dist
+      - dist_volume:/app/dist
     depends_on:
       - django
       - vue
@@ -54,5 +54,5 @@ volumes:
   postgres_data:
   static_volume:
   media_volume:
-  dist:
+  dist_volume:
 
