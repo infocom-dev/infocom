@@ -1,0 +1,86 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build Docker Images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Add environment variables to .env!
+        run: |
+          echo DEBUG=0 >> .env
+          echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env
+          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
+          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
+          echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env
+          echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env
+          echo DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }} >> .env
+          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
+          echo SERVER_HOST=${{ secrets.SERVER_HOST }} >> .env
+          echo BACKEND_IMG=${{ secrets.BACKEND_IMG }} >> .env
+          echo FRONTEND_IMG=${{ secrets.FRONTEND_IMG }} >> .env
+          echo NGINX_IMG=${{ secrets.NGINX_IMG }} >> .env
+
+      - name: Log in to GitHub Packages
+        run: docker login ghcr.io -u infocom-dev -p ${{ secrets.PAT }}
+      - name: Pull images
+        run: |
+          sudo docker pull ${{ secrets.BACKEND_IMG }} || true
+          sudo docker pull ${{ secrets.FRONTEND_IMG }} || true
+          sudo docker pull ${{ secrets.NGINX_IMG }} || true
+      - name: Build images
+        run: docker-compose -f docker-compose-ci.yml.prod build
+      - name: Push images
+        run: |
+          sudo docker push ${{ secrets.BACKEND_IMG }}
+          sudo docker push ${{ secrets.FRONTEND_IMG }}
+          sudo docker push ${{ secrets.NGINX_IMG }}
+
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v1
+      - name: Add environment variables to .env!
+        run: |
+          echo DEBUG=0 >> .env
+          echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env
+          echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
+          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
+          echo POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} >> .env
+          echo POSTGRES_PORT=${{ secrets.POSTGRES_PORT }} >> .env
+          echo DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }} >> .env
+          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
+          echo SERVER_HOST=${{ secrets.SERVER_HOST }} >> .env
+          echo BACKEND_IMG=${{ secrets.BACKEND_IMG }} >> .env
+          echo FRONTEND_IMG=${{ secrets.FRONTEND_IMG }} >> .env
+          echo NGINX_IMG=${{ secrets.NGINX_IMG }} >> .env
+      - name: "deploy"
+        run: |
+          mkdir -p "$HOME/.ssh"
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > "$HOME/.ssh/id_rsa"
+          chmod 600 "$HOME/.ssh/id_rsa"
+          eval $(ssh-agent)
+          ssh-add "$HOME/.ssh/id_rsa"
+          echo "Add known hossts"
+          sudo printf '%s %s\n' "${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}" "${{ secrets.SSH_PUBLIC_KEY }}" > sudo /etc/ssh/ssh_known_hosts
+          scp  -i "$HOME/.ssh/id_rsa" -o StrictHostKeyChecking=no -r ./.env ./docker-compose.yml.prod ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/infocom/
+          ssh -q -t -i "$HOME/.ssh/id_rsa" \
+              -o UserKnownHostsFile=/dev/null \
+              -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
+          cd /home/${{ secrets.SERVER_USER }}/infocom/
+          echo ${{ secrets.SERVER_PASS }} | sudo -S docker login ghcr.io -u infocom-dev -p ${{ secrets.PAT }}
+          sudo docker pull ${{ secrets.BACKEND_IMG }}
+          sudo docker pull ${{ secrets.FRONTEND_IMG }}
+          sudo docker pull ${{ secrets.NGINX_IMG }}
+          sudo docker-compose -f docker-compose.yml.prod up -d
+          sudo docker rmi $(sudo docker images -f dangling=true -q)|| true
+          ENDSSH

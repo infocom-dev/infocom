@@ -5,7 +5,7 @@ services:
     image: postgres
     container_name: db
     env_file:
-      - ./.env.db
+      - ./.env
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     restart: unless-stopped
