@@ -28,9 +28,6 @@ services:
   vue:
     image: ghcr.io/infocom-dev/infocom_front:latest
     container_name: frontend
-    command: ./docker/frontend_setup.sh
-    volumes:
-      - ./dist_volume:/app/dist
     ports:
       - "8080:8080"
     depends_on:
@@ -43,7 +40,6 @@ services:
     volumes:
       - ./static_volume:/app/django/static
       - ./media_volume:/app/django/media
-      - ./dist_volume:/app/dist
     depends_on:
       - django
       - vue
@@ -52,5 +48,4 @@ volumes:
   postgres_data:
   static_volume:
   media_volume:
-  dist_volume:
 
