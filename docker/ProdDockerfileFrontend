@@ -6,4 +6,4 @@ RUN npm install --silent
 RUN npm install -g @vue/cli
 COPY . /app
 RUN ["chmod", "+x", "./docker/frontend_setup.sh"]
-RUN npm run build
+CMD npm run build
