@@ -1,5 +1,5 @@
 #!/bin/sh
-rm -rf /app/dist
 cd src/
 npm install
+npm cache verify
 npm run build
