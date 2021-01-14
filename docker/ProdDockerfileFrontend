@@ -5,6 +5,5 @@ COPY package.json /app/package.json
 RUN npm install --silent
 RUN npm install -g @vue/cli
 COPY . /app
-RUN npm run build
-EXPOSE 8080
-CMD [ "http-server", "dist" ]
+RUN ["chmod", "+x", "./docker/frontend_setup.sh"]
+#RUN npm run build

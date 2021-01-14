@@ -28,6 +28,7 @@ services:
   vue:
     image: ghcr.io/infocom-dev/infocom_front:latest
     container_name: frontend
+    command: ./docker/frontend_setup.sh
     volumes:
       - ./dist_volume:/app/dist
     ports:
