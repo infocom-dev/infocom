@@ -1,6 +1,5 @@
 #!/bin/sh
+rm -rf /app/dist
 cd src/
 npm install
-# yarn install
-# yarn serve --host 0.0.0.0
 npm run build
