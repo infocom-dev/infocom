@@ -7,7 +7,7 @@ services:
     env_file:
       - ./.env
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql/data/
     restart: unless-stopped
     ports:
       - "5432:5432"
@@ -22,46 +22,30 @@ services:
     env_file:
       - ./.env
     volumes:
-#      - .:/app
+      #      - .:/app
       - ./static_volume:/app/static
       - ./media_volume:/app/media
     ports:
       - "8000:8000"
     depends_on:
       - db
-  vue:
+  nginx_vue:
     build:
       context: .
       dockerfile: ./docker/ProdDockerfileFrontend
       cache_from:
         - ghcr.io/infocom-dev/infocom_front:latest
     image: ghcr.io/infocom-dev/infocom_front:latest
-    container_name: frontend
-    volumes:
-      - dist_volume:/app/dist
-    ports:
-      - "8080:8080"
-    depends_on:
-      - django
-  nginx:
-    build:
-      context: ./nginx
-      cache_from:
-        - ghcr.io/infocom-dev/infocom_nginx:latest
-    image: ghcr.io/infocom-dev/infocom_nginx:latest
-    container_name: nginx
+    container_name: nginx_vue
     ports:
       - 80:80
     volumes:
       - ./static_volume:/app/django/static
       - ./media_volume:/app/django/media
-      - dist_volume:/app/dist
     depends_on:
       - django
-      - vue
-
 volumes:
   postgres_data:
   static_volume:
   media_volume:
-  dist_volume:
+
