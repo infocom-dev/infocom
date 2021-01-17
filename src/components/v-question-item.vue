@@ -1,15 +1,10 @@
 <template>
     <div class= 'v-question-item'>
-      <!-- <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p> -->
       <div v-if="question_data.type === 'selected' ">
         <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
-          <select v-model="selectedAnswers">
-            <option v-for="answer in question_data.answers" 
-                    v-bind:key="answer.id"
-                    v-bind:value="answer.value"
-                    >{{answer.value}}</option>
-          </select>
-          <span>Answer: {{selectedAnswers}}</span>
+          <div>
+           <multiselect v-model="selectedAnswers" tag-placeholder="Add this as new tag" placeholder="Search" label="value" track-by="id" :options="question_data.answers" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
+      </div>
       </div>
       <div v-if="question_data.type === 'checkbox' " >
         <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
@@ -65,6 +60,7 @@
     </p-check>
       </div>
       
+   
       
     </div>
 </template>
@@ -73,12 +69,14 @@
 import RadioSet from "./v-radio-set.vue";
 import VueSlider from 'vue-slider-component'
 import 'vue-slider-component/theme/default.css'
+import Multiselect from 'vue-multiselect'
 
 export default {
   name: 'v-question-item',
   components: {
     RadioSet,
     VueSlider,
+    Multiselect
   },
   props:{
         question_data:{
@@ -88,15 +86,27 @@ export default {
             }
         }
     },
-  data(){ return {
+  data(){ 
+    return {
       value:[0,50],
       marks: val => val % 20 === 0,
       selectedAnswers:""
+    }
+  },
+  methods: {
+    addTag (newTag) {
+      const tag = {
+        value: newTag,
+        id: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
+      }
+      this.question_data.push(tag)
+      this.value.push(tag)
+    }
   }
 } 
     
-}
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss">
 
 .set-range {

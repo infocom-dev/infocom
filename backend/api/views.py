@@ -15,7 +15,7 @@ def api_gretting(request):
   {
     "id": "1",
     "text": "Какие задачи должен решать чат-бот?",
-    "type": "checkbox",
+    "type": "selected",
     "answers": [
       {
         "id": 1,
