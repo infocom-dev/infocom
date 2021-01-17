@@ -4,13 +4,17 @@
         <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
           <div>
            <multiselect v-model="selectedAnswers" tag-placeholder="Add this as new tag" placeholder="Search" label="value" track-by="id" :options="question_data.answers" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
-      </div>
+          </div>
       </div>
       <div v-if="question_data.type === 'checkbox' " >
         <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
-        <radio-set label-name="checkbox" v-model="selectedAnswers" :options="question_data.answers"></radio-set>
-        <span>Answer: {{ selectedAnswers }}</span>
-      </div>
+        <label v-for="val in question_data.answers" :key="val.id">
+          <p-check class="p-icon p-round p-pulse" color="success">
+             <i slot="extra" class="icon mdi mdi-check"></i>
+               {{val.value}}
+          </p-check>
+        </label>
+       </div>
       <div v-if="question_data.type === 'message' " >
         <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
         <input v-model="selectedAnswers" placeholder="write you useless opinion ">
@@ -66,7 +70,7 @@
 </template>
 
 <script>
-import RadioSet from "./v-radio-set.vue";
+
 import VueSlider from 'vue-slider-component'
 import 'vue-slider-component/theme/default.css'
 import Multiselect from 'vue-multiselect'
@@ -74,7 +78,6 @@ import Multiselect from 'vue-multiselect'
 export default {
   name: 'v-question-item',
   components: {
-    RadioSet,
     VueSlider,
     Multiselect
   },

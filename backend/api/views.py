@@ -38,7 +38,7 @@ def api_gretting(request):
   {
     "id": "2",
     "text": "Где  должен размещаться чат-бот?",
-    "type": "selected",
+    "type": "checkbox",
     "answers": [
       {
         "id": 1,
