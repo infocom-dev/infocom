@@ -1,7 +1,8 @@
 <template>
     <div class= 'v-question-item'>
-      <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
+      <!-- <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p> -->
       <div v-if="question_data.type === 'selected' ">
+        <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
           <select v-model="selectedAnswers">
             <option v-for="answer in question_data.answers" 
                     v-bind:key="answer.id"
@@ -11,16 +12,18 @@
           <span>Answer: {{selectedAnswers}}</span>
       </div>
       <div v-if="question_data.type === 'checkbox' " >
+        <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
         <radio-set label-name="checkbox" v-model="selectedAnswers" :options="question_data.answers"></radio-set>
         <span>Answer: {{ selectedAnswers }}</span>
       </div>
       <div v-if="question_data.type === 'message' " >
+        <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
         <input v-model="selectedAnswers" placeholder="write you useless opinion ">
         <p>Answer: {{ selectedAnswers }}</p>
       </div>
       <div v-if="question_data.type === 'range' ">
-      <vue-range-slider ref="slider" v-model="value"></vue-range-slider>
-      <div>Посетители: {{ value[0]}} - {{value[1]}}</div>
+        <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
+      <!-- <vue-range-slider ref="slider" v-model="value"></vue-range-slider> -->
       <vue-slider :min="question_data.answers[0]"
           :max="question_data.answers[1]"
           :interval="10"
@@ -44,11 +47,25 @@
               {{ value[index] }} - {{ value[index + 1] }}
             </div>
           </div>
-        </template>
+      </template>
       </vue-slider>
-
-
+      <br>
+      <div class="set-range">
+      <label></label>
+    <input type="text" v-model="value[0]" placeholder="От" class="form-control" /><br>
+    <label></label>
+    <input type="text" v-model="value[1]"  placeholder="До" class="form-control" /><br>
+    
       </div>
+      </div>
+      <div v-if="question_data.type === 'fill-checkbox' " >
+        <p-check class="p-icon p-round p-smooth" color="success">
+        <i slot="extra" class="icon mdi mdi-check"></i>
+        Tuesday
+    </p-check>
+      </div>
+      
+      
     </div>
 </template>
 
@@ -61,7 +78,7 @@ export default {
   name: 'v-question-item',
   components: {
     RadioSet,
-    VueSlider
+    VueSlider,
   },
   props:{
         question_data:{
@@ -81,6 +98,26 @@ export default {
 }
 </script>
 <style lang="scss">
+
+.set-range {
+        flex: 0 0 auto;
+
+        display: flex;
+
+        padding: 20px;
+
+        input {
+          width: 100%;
+          padding: (20px / 2) 20px;
+          border: 2px solid rgb(100, 100, 100);
+          border-radius: 100px;
+          transition: border-color .2s ease-out;
+
+          &:hover, &:focus {
+            border-color: rgb(30, 30, 30);
+          }
+        }
+      }
 .merge-tooltip {
       position: absolute;
       left: 50%;
