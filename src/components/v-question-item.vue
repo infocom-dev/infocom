@@ -6,6 +6,7 @@
            <multiselect v-model="selectedAnswers" tag-placeholder="Add this as new tag" placeholder="Search" label="value" track-by="id" :options="question_data.answers" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
           </div>
       </div>
+
       <div v-if="question_data.type === 'checkbox' " >
         <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
         <label v-for="val in question_data.answers" :key="val.id">
@@ -15,53 +16,48 @@
           </p-check>
         </label>
        </div>
+
       <div v-if="question_data.type === 'message' " >
         <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
-        <input v-model="selectedAnswers" placeholder="write you useless opinion ">
+        <input v-model="selectedAnswers" placeholder="Type here">
         <p>Answer: {{ selectedAnswers }}</p>
       </div>
+
       <div v-if="question_data.type === 'range' ">
         <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
-      <!-- <vue-range-slider ref="slider" v-model="value"></vue-range-slider> -->
-      <vue-slider :min="question_data.answers[0]"
-          :max="question_data.answers[1]"
-          :interval="10"
-          v-model="value"
-          :marks="marks"
-          :tooltip="'none'"
-          :process-style="{ backgroundColor: 'blue' }"
-      :tooltip-style="{ backgroundColor: 'blue', borderColor: 'blue' }"
-    >
-      <div :class="['custom-dot', { focus }]"></div>
-      <template v-slot:step="{ label, active }">
-        <div :class="['custom-step', { active }]"></div>
-      </template>
-      <template v-slot:process="{ start, end, style, index }">
-          <div class="vue-slider-process" :style="style">
-            <div :class="[
-              'merge-tooltip',
-              'vue-slider-dot-tooltip-inner',
-              'vue-slider-dot-tooltip-inner-top',
-            ]">
-              {{ value[index] }} - {{ value[index + 1] }}
+        <vue-slider :min="question_data.answers[0]"
+                    :max="question_data.answers[1]"
+                    :interval="10"
+                    v-model="value"
+                    :marks="marks"
+                    :tooltip="'none'"
+                    :process-style="{ backgroundColor: 'blue' }"
+                    :tooltip-style="{ backgroundColor: 'blue', borderColor: 'blue' }"
+        >
+          <div :class="['custom-dot', { focus }]"></div>
+            <template v-slot:step="{ label, active }">
+              <div :class="['custom-step', { active }]"></div>
+            </template>
+          <template v-slot:process="{ start, end, style, index }">
+            <div class="vue-slider-process" :style="style">
+              <div :class="[
+                'merge-tooltip',
+                'vue-slider-dot-tooltip-inner',
+                'vue-slider-dot-tooltip-inner-top',
+              ]">
+               {{ value[index] }} - {{ value[index + 1] }}
+              </div>
             </div>
-          </div>
-      </template>
-      </vue-slider>
-      <br>
-      <div class="set-range">
-      <label></label>
-    <input type="text" v-model="value[0]" placeholder="От" class="form-control" /><br>
-    <label></label>
-    <input type="text" v-model="value[1]"  placeholder="До" class="form-control" /><br>
-    
-      </div>
+          </template>
+        </vue-slider>
+        <br>
+        <div class="set-range">
+         <input type="text" v-model="value[0]" placeholder="От" class="form-control" /><br>
+         <input type="text" v-model="value[1]"  placeholder="До" class="form-control" /><br>
+        </div>
       </div>
       <div v-if="question_data.type === 'fill-checkbox' " >
-        <p-check class="p-icon p-round p-smooth" color="success">
-        <i slot="extra" class="icon mdi mdi-check"></i>
-        Tuesday
-    </p-check>
+          <p-check class="p-switch" color="primary">{{question_data.text}}</p-check>
       </div>
       
    
