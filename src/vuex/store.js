@@ -15,7 +15,7 @@ let store = new Vuex.Store({
     },
     actions:{
         GET_QUESTIONS_FROM_API({commit}) {
-            return axios('http://localhost/api/hello/', {
+            return axios('http://45.90.216.173/api/hello/', {
                 method:"GET"
             })
             .then((questions)=>{

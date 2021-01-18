@@ -14,32 +14,38 @@ services:
   django:
     build:
       context: .
-      dockerfile: docker/DockerfileBackend
+      dockerfile: ./docker/ProdDockerfileBackend
+      cache_from:
+        - ghcr.io/infocom-dev/infocom_back:latest
+    image: ghcr.io/infocom-dev/infocom_back:latest
     container_name: backend
     env_file:
       - ./.env
     volumes:
-      - .:/app
+      #      - .:/app
       - ./static_volume:/app/static
       - ./media_volume:/app/media
     ports:
-      - "80:80"
+      - "8000:8000"
     depends_on:
       - db
-  vue:
+  nginx_vue:
     build:
       context: .
-      dockerfile: docker/DockerfileFrontend
-    container_name: frontend
-    volumes:
-      - .:/app
-      - /app/node_modules
+      dockerfile: ./docker/ProdDockerfileFrontend
+      cache_from:
+        - ghcr.io/infocom-dev/infocom_front:latest
+    image: ghcr.io/infocom-dev/infocom_front:latest
+    container_name: nginx_vue
     ports:
-      - "8080:8080"
+      - 80:80
+    volumes:
+      - ./static_volume:/app/django/static
+      - ./media_volume:/app/django/media
     depends_on:
       - django
-
 volumes:
   postgres_data:
   static_volume:
   media_volume:
+

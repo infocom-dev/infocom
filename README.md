@@ -1,24 +1,13 @@
 # infocom
 
-## Project setup
+## Launch development version
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+docker-compose up --build
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Launch production version
 
-### Lints and fixes files
-```
-npm run lint
-```
+Push to origin/main.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+The production version will automatically go up to the server.
+

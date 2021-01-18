@@ -29,8 +29,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(os.environ.get("DEBUG", default=1)))
 
-#ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
-ALLOWED_HOSTS=['localhost:8080','localhost']
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+#ALLOWED_HOSTS=['127.0.0.1','localhost','45.90.216.173']
 
 # Application definition
 
@@ -59,6 +59,23 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = [
+#     "http://localhost:8080",
+#     "http://localhost:8081",
+#     "http://127.0.0.1:8000",
+#     "http://localhost:80",
+#     "http://45.90.216.173:80",
+# # ]
+# CORS_ORIGIN_WHITELIST = [
+#     "http://localhost:8080",
+#     "http://localhost:8081",
+#     "http://127.0.0.1:8000",
+#     "http://127.0.0.1:1313",
+#     "http://localhost:1313",
+#     "http://45.90.216.173",
+# ]
+
+
 
 
 ROOT_URLCONF = 'backend.urls'
@@ -87,12 +104,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": os.environ.get("SQL_ENGINE"),
-        "NAME": os.environ.get("SQL_DATABASE"),
-        "USER": os.environ.get("SQL_USER"),
-        "PASSWORD": os.environ.get("SQL_PASSWORD"),
-        "HOST": os.environ.get("SQL_HOST"),
-        "PORT": os.environ.get("SQL_PORT"),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("POSTGRES_DB"),
+        "USER": os.environ.get("POSTGRES_USER"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
+        "HOST": os.environ.get("POSTGRES_HOST"),
+        "PORT": os.environ.get("POSTGRES_PORT"),
     }
 }
 
