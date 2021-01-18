@@ -56,10 +56,22 @@
          <input type="text" v-model="value[1]"  placeholder="До" class="form-control" /><br>
         </div>
       </div>
-      <div v-if="question_data.type === 'fill-checkbox' " >
+      <div v-if="question_data.type === 'switch' " >
           <p-check class="p-switch" color="primary">{{question_data.text}}</p-check>
       </div>
-      
+      <div v-if="question_data.type === 'datapicker' " >
+        <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
+        <date-picker  v-model="selectedAnswers"
+                      value-type="format"
+                      format="DD.MM.YYYY"
+                      range
+                      placeholder="tip range"
+                      confirm
+                      range-separator=" - "
+                      >
+        </date-picker>
+>
+      </div>
    
       
     </div>
@@ -70,12 +82,17 @@
 import VueSlider from 'vue-slider-component'
 import 'vue-slider-component/theme/default.css'
 import Multiselect from 'vue-multiselect'
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
+
+
 
 export default {
   name: 'v-question-item',
   components: {
     VueSlider,
-    Multiselect
+    Multiselect,
+    DatePicker
   },
   props:{
         question_data:{

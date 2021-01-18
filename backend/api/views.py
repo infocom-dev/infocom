@@ -95,7 +95,7 @@ def api_gretting(request):
     ]
   },
   {
-    "id": "5",
+    "id": "6",
     "text": "На каких языках должен вести диалог чат-бот?",
     "type": "selected",
     "answers": [
@@ -110,31 +110,31 @@ def api_gretting(request):
     ]
   },
   { 
-    "id": "6",
-    "text": "Добавить встроенную платёжную систёма",
-    "type": "fill-checkbox",
-    "answers": []
-  },
-  { 
     "id": "7",
-    "text": "Добавить безопасную сделку",
-    "type": "fill-checkbox",
+    "text": "Добавить встроенную платёжную систёма",
+    "type": "switch",
     "answers": []
   },
   { 
     "id": "8",
-    "text": "Добавить работу с геолокацией",
-    "type": "fill-checkbox",
+    "text": "Добавить безопасную сделку",
+    "type": "switch",
     "answers": []
   },
   { 
     "id": "9",
-    "text": "Добавить переключение диалога на оператора онлайн-чата по запросу  пользователя",
-    "type": "fill-checkbox",
+    "text": "Добавить работу с геолокацией",
+    "type": "switch",
     "answers": []
   },
   { 
     "id": "10",
+    "text": "Добавить переключение диалога на оператора онлайн-чата по запросу  пользователя",
+    "type": "switch",
+    "answers": []
+  },
+  { 
+    "id": "11",
     "text": "Должен ли чат-бот взаимодействовать с другими ботами, сайтами?",
     "type": "checkbox",
     "answers": [
@@ -149,7 +149,7 @@ def api_gretting(request):
     ]
   },
   { 
-    "id": "11",
+    "id": "12",
     "text": "Есть ли у этих систем API? ",
     "type": "checkbox",
     "answers": [
@@ -164,7 +164,7 @@ def api_gretting(request):
     ]
   },
   {
-    "id": "12",
+    "id": "13",
     "text": "Способ  поставки продукта:",
     "type": "selected",
     "answers": [
@@ -183,26 +183,21 @@ def api_gretting(request):
     ]
   },
   { 
-    "id": "13",
+    "id": "14",
     "text": "Сроки выполнения проекта",
-    "type": "datatip",
+    "type": "datapicker",
     "answers": []
   },
    {
-    "id": "14",
+    "id": "15",
     "text": "Укажите бюджет проекта (диапазон):",
     "type": "range",
     "answers": [0,1000]
   },
   {
-    "id": "15",
+    "id": "16",
     "text": "Ваши примечания, пожелания, которые не вошли в Бриф:",
     "type": "textarea",
     "answers": []
   },
-
-
- 
-
-
 ])
