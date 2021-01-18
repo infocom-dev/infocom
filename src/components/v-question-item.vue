@@ -1,6 +1,7 @@
 <template>
+
     <div class= 'v-question-item'>
-      <div v-if="question_data.type === 'selected' ">
+      <div clsass="selected" v-if="question_data.type === 'selected' ">
         <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
           <div>
            <multiselect v-model="selectedAnswers" tag-placeholder="Add this as new tag" placeholder="Search" label="value" track-by="id" :options="question_data.answers" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
@@ -31,6 +32,7 @@
                     v-model="value"
                     :marks="marks"
                     :tooltip="'none'"
+                    :process="process"
                     :process-style="{ backgroundColor: 'blue' }"
                     :tooltip-style="{ backgroundColor: 'blue', borderColor: 'blue' }"
         >
@@ -53,7 +55,7 @@
         <br>
         <div class="set-range">
          <input type="text" v-model="value[0]" placeholder="От" class="form-control" /><br>
-         <input type="text" v-model="value[1]"  placeholder="До" class="form-control" /><br>
+         <input type="text" v-model="value[1]" placeholder="До" class="form-control" /><br>
         </div>
       </div>
       <div v-if="question_data.type === 'switch' " >
@@ -105,7 +107,7 @@ export default {
   data(){ 
     return {
       value:[0,50],
-      marks: val => val % 20 === 0,
+      marks: val =>  val % ((this.question_data.answers[1]-this.question_data.answers[0]) /10) === 0,
       selectedAnswers:""
     }
   },
@@ -124,7 +126,52 @@ export default {
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss">
+.v-question-item{
+  position: relative;
+  padding: 10px;
+  background: #bfe6f8; 
+  text-align: left;
+  color:rgb(1, 1, 112)
+}
 
+.multiselect__tags{
+  min-height: 32px;
+  display: block;
+  padding: 3px 40px 0 8px;
+  border-radius: 10px;
+  border: 1px solid #0329ff;
+  background: rgb(255, 255, 255);
+  font-size: 14px;
+}
+// .multiselect__wrapper-dropdown{
+//   position: relative;
+//  width: 200px;
+//  padding: 10px;
+//  margin: 0 auto;
+
+//  /*Общие стили */
+//  background: #9bc7de;
+//  color: #fff;
+//  outline: none;
+//  cursor: pointer;
+
+//  /* Настройки шрифтов */
+//  font-weight: bold;
+// }
+.wrapper-dropdown-1 .dropdown {
+ /* размер и позиция */
+ position: absolute;
+ top: 100%;
+ left: 0; /* Size */
+ right: 0; /* Size */
+
+ /* Стили */
+ background: #fff;
+ font-weight: normal;
+
+ opacity: 0;
+ pointer-events: none;
+}
 .set-range {
         flex: 0 0 auto;
 
@@ -136,7 +183,7 @@ export default {
           width: 100%;
           padding: (20px / 2) 20px;
           border: 2px solid rgb(100, 100, 100);
-          border-radius: 100px;
+          border-radius: 5px;
           transition: border-color .2s ease-out;
 
           &:hover, &:focus {
