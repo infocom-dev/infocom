@@ -89,12 +89,14 @@ import 'vue2-datepicker/index.css';
 
 
 
+
 export default {
   name: 'v-question-item',
   components: {
     VueSlider,
     Multiselect,
-    DatePicker
+    DatePicker,
+
   },
   props:{
         question_data:{
@@ -133,45 +135,67 @@ export default {
   text-align: left;
   color:rgb(1, 1, 112)
 }
+.multiselect{
+  //box-sizing: content-box;
+  width: 450px; /* Ширина блока */
+  //padding: 10px; /* Поля */
+  //margin-top: 5px; /* Отступ сверху */
+  //-moz-box-sizing: border-box; /* Для Firefox */  
+}
 
-.multiselect__tags{
-  min-height: 32px;
+.multiselect__input::placeholder {
+    color : red;
+}
+.multiselect__placeholder {
+  color : rgb(255, 163, 163);
+  border-radius: 50px;
+}
+
+.multiselect__content-wrapper {
+  position: absolute;
   display: block;
-  padding: 3px 40px 0 8px;
-  border-radius: 10px;
-  border: 1px solid #0329ff;
-  background: rgb(255, 255, 255);
-  font-size: 14px;
+  background: rgb(191, 191, 255);
+  //transition: 1000ms;
+  width: 450px;
+  max-height: 240px;
+  overflow: auto;
+  //border:  blue solid ;
+  border-top: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  z-index: 50;
+  -webkit-overflow-scrolling: touch;
 }
-// .multiselect__wrapper-dropdown{
-//   position: relative;
-//  width: 200px;
-//  padding: 10px;
-//  margin: 0 auto;
-
-//  /*Общие стили */
-//  background: #9bc7de;
-//  color: #fff;
-//  outline: none;
-//  cursor: pointer;
-
-//  /* Настройки шрифтов */
-//  font-weight: bold;
-// }
-.wrapper-dropdown-1 .dropdown {
- /* размер и позиция */
- position: absolute;
- top: 100%;
- left: 0; /* Size */
- right: 0; /* Size */
-
- /* Стили */
- background: #fff;
- font-weight: normal;
-
- opacity: 0;
- pointer-events: none;
+.multiselect__tag {
+    position      : relative;
+    display       : inline-block;
+    border-radius : 10px;
+    background    : rgb(152, 152, 255);
+    white-space   : nowrap;
+    overflow      : hidden;
+    max-width     : 100%;
+    text-overflow : ellipsis;
 }
+.multiselect__tag-icon:after {
+    content   : "×";
+    color     : blue;
+    font-size : 220%;
+}
+.multiselect__tag-icon:focus,
+.multiselect__tag-icon:hover {
+    background : rgb(102, 91, 255);
+
+}
+.multiselect__option--highlight {
+    background : rgb(102, 91, 255);
+    color      : white;
+}
+.multiselect__option--highlight:after {
+    content    : attr(data-select);
+    background : blue;
+}
+
+
 .set-range {
         flex: 0 0 auto;
 
