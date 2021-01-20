@@ -1,7 +1,7 @@
 <template>
     <div class = "v-question">
       <v-question-item
-        v-for="question in this.$store.state.questions"
+        v-for="question in questions"
         :key="question.id"
          v-bind:question_data="question"
          v-model="checkedValue">
@@ -13,7 +13,8 @@
 
 <script>
 import vQuestionItem from './v-question-item'
-import {mapActions} from 'vuex'
+import axios from 'axios'
+
 export default {
   name: 'v-question',
   props: {},
@@ -22,15 +23,15 @@ export default {
   },
   data(){
     return {
+      questions:[]
     }
   },
-  methods:{
-   ...mapActions([
-     'GET_QUESTIONS_FROM_API'
-   ]),
-  },
-  mounted(){
-    this.GET_QUESTIONS_FROM_API()
+  mounted () {
+    axios
+    .get('/hello/')
+    .then(response => {
+      this.questions = response.data;
+    })
   }
 
 }
