@@ -1,21 +1,17 @@
 <template>
   <div id="app">
-    <v-home-page></v-home-page>
-  <!-- <v-question/> -->
-
-
+    <v-main-wrapper/>
   </div>
 </template>
 
 <script>
-// import vQuestion from './components/v-question.vue'
-import vHomePage from './components/v-home-page'
+
+import vMainWrapper from './components/v-main-wrapper'
+
 export default {
   name: 'App',
   components: {
-    // vQuestion
-    vHomePage
-
+    vMainWrapper
   },
   data(){
     return {

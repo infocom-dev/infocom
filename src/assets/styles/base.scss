@@ -1,0 +1,16 @@
+$red:red;
+$white:white;
+
+
+h1,h3 {
+    color:$white;
+    font-size: 40px;
+}
+h1 span{
+    color: $red;
+    font-size: 30px;
+}
+p{
+    color:$white;
+    font-size:30px;
+}

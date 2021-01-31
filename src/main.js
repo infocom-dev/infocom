@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-
 import axios from 'axios'
+import router from "./router/router";
 
 import PrettyCheckbox from 'pretty-checkbox-vue';
 import 'vue-slider-component/theme/default.css'
@@ -14,6 +14,10 @@ Vue.config.productionTip = false
 Vue.use(PrettyCheckbox);
 axios.defaults.baseURL = process.env.VUE_APP_URL;
 
+// require('@/assets/styles/fonts.scss')
+
+
 new Vue({
-  render: h => h(App)
+  render: h => h(App),
+  router
 }).$mount('#app')
