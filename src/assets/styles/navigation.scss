@@ -6,6 +6,7 @@
     align-items: center;
     width: 100%;
     top: 0%;
+    left:0;
     color: $white;
     
 }
@@ -26,6 +27,10 @@
 }
 .logo{
   padding: 0 100px;
+  img {
+    width: 210px;
+    height: 60px;
+}
 }
 .logo span {
 	font-weight: 700;

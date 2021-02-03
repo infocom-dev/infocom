@@ -2,7 +2,7 @@
 
     <div class= 'v-question-item'>
       <div clsass="selected" v-if="question_data.type === 'selected' ">
-        <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
+        <p class="v-question-item__text">{{question_data.text}} </p>
           <div>
            <multiselect v-model="selectedAnswers" tag-placeholder="Add this as new tag" placeholder="Search" label="value" track-by="id" :options="question_data.answers" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
           </div>
@@ -81,11 +81,11 @@
 
 <script>
 
-import VueSlider from 'vue-slider-component'
-import 'vue-slider-component/theme/default.css'
-import Multiselect from 'vue-multiselect'
-import DatePicker from 'vue2-datepicker';
-import 'vue2-datepicker/index.css';
+ import VueSlider from 'vue-slider-component'
+ import 'vue-slider-component/theme/default.css'
+ import Multiselect from 'vue-multiselect'
+ import DatePicker from 'vue2-datepicker';
+ import 'vue2-datepicker/index.css';
 
 
 
@@ -93,9 +93,9 @@ import 'vue2-datepicker/index.css';
 export default {
   name: 'v-question-item',
   components: {
-    VueSlider,
-    Multiselect,
-    DatePicker,
+     VueSlider,
+     Multiselect,
+     DatePicker,
 
   },
   props:{
@@ -108,6 +108,8 @@ export default {
     },
   data(){ 
     return {
+      activeStep: 0,
+      animation: 'animate-in',
       value:[0,50],
       marks: val =>  val % ((this.question_data.answers[1]-this.question_data.answers[0]) /10) === 0,
       selectedAnswers:""
@@ -128,49 +130,55 @@ export default {
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss">
-.v-question-item{
-  position: relative;
-  padding: 10px;
-  background: #bfe6f8; 
-  text-align: left;
-  color:rgb(1, 1, 112)
+
+
+.v-question-item__text{
+  color:white;
+  text-align: center;
+  font-weight: normal;
+
 }
+
 .multiselect{
   //box-sizing: content-box;
-  width: 450px; /* Ширина блока */
+  width: 550px;
+  margin:0 auto;
+   /* Ширина блока */
   //padding: 10px; /* Поля */
   //margin-top: 5px; /* Отступ сверху */
   //-moz-box-sizing: border-box; /* Для Firefox */  
 }
 
 .multiselect__input::placeholder {
-    color : red;
+    color : #555;
+    
 }
 .multiselect__placeholder {
-  color : rgb(255, 163, 163);
-  border-radius: 50px;
+  color : red;
+  border-radius: 0px;
 }
 
 .multiselect__content-wrapper {
   position: absolute;
   display: block;
-  background: rgb(191, 191, 255);
+  background: #ccc ;
+  color:black;
   //transition: 1000ms;
-  width: 450px;
+  width: 550px;
   max-height: 240px;
   overflow: auto;
   //border:  blue solid ;
   border-top: none;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   z-index: 50;
   -webkit-overflow-scrolling: touch;
 }
 .multiselect__tag {
     position      : relative;
     display       : inline-block;
-    border-radius : 10px;
-    background    : rgb(152, 152, 255);
+    border-radius : px;
+    background    : black;
     white-space   : nowrap;
     overflow      : hidden;
     max-width     : 100%;
@@ -178,22 +186,24 @@ export default {
 }
 .multiselect__tag-icon:after {
     content   : "×";
-    color     : blue;
+    color     : red;
     font-size : 220%;
 }
 .multiselect__tag-icon:focus,
 .multiselect__tag-icon:hover {
-    background : rgb(102, 91, 255);
+    background : none;
 
 }
 .multiselect__option--highlight {
-    background : rgb(102, 91, 255);
+    background : #555;
     color      : white;
 }
 .multiselect__option--highlight:after {
     content    : attr(data-select);
-    background : blue;
+    background : black;
 }
+
+
 
 
 .set-range {

@@ -1,18 +1,6 @@
 <template>
-  <div class="v-home-page">
-      <div class = "navigation">
-          <div class = "logo">
-              <h1>INFO<span>COM</span></h1>
-          </div>
-           <div class="menu">
-                <ul class="nav">
-                   <li class="link">HOME</li>
-                   <li class="link">SERVICE</li>
-                   <li class="link">TEAM</li>
-                   <li class="link">CONTACT</li>
-                </ul>
-            </div>
-      </div>      
+  <div class="v-home-page"> 
+    <v-navigation-wrapper></v-navigation-wrapper>  
       <div class="carousel">
         <slider autoplay="false" animation="fade"  width="1200px" height="500px"  >
   <slider-item 
@@ -28,7 +16,7 @@
       <h1>Need a <span>chat bot</span>?</h1>
       <div class="button">
         <router-link :to="{name : 'anketa'}">
-            <a class="button">Click here</a>
+            <button>Click here</button>
         </router-link>
       </div>
       <p>Fill out the form and find out the price!</p>
@@ -42,11 +30,16 @@
 <script>
 
 import { Slider, SliderItem } from 'vue-easy-slider'
+import vNavigationWrapper from './v-navigation-wrapper'
+import VNavigationWrapper from './v-navigation-wrapper.vue'
+
 export default {
   name: 'v-home-page',
   components: {
     Slider,
     SliderItem,
+    vNavigationWrapper,
+    VNavigationWrapper
   },
   data(){
     return {  

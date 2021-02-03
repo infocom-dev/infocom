@@ -2,7 +2,7 @@
 <div class="v-navigation-wrapper">
     <div class = "navigation">
           <div class = "logo">
-              <h1>INFO<span>COM</span></h1>
+              <img src="../assets/images/logo.png" >
           </div>
            <div class="menu">
                 <ul class="nav">

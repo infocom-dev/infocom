@@ -1,4 +1,4 @@
-a.button{
+button{
     color:$red;
     padding: 20px 30px;
     width:200px;
@@ -6,14 +6,17 @@ a.button{
     text-align:center;
     margin:0 auto;
     display: block;
+    text-transform: capitalize;
+    background-color: rgba(32, 26, 26, 0.8);
     background-image: linear-gradient(to left,transparent,transparent 50%,red 50%,red);
     background-position: 100% 0;
     background-size: 200% 100%;
     transition: all .25s ease-in;
-    font: 400 18px tahoma;
-    border: 1px solid $red;
+    font: 700 20px tahoma;
+    border: 3px solid $red;
+    cursor: pointer;
    }
-   a.button:hover {
+   button:hover {
    background-position: 0 0;
    color: $white;
    }

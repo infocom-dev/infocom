@@ -1,29 +1,62 @@
 <template>
     <div class = "v-question">
-      <v-question-item
+      <v-navigation-wrapper></v-navigation-wrapper>
+      <div class="container">
+        <article>
+          <header>
+            <div class="progress">
+          <div class="progress-step"
+          :class='{
+            "active": index === activeStep
+            }'
+          v-for="(step, index) in questions"
+          :key="'step'+index">
+            {{ index + 1 }}
+          </div>
+        </div>
+          </header>
+          <section :class="animation">
+            <h2><v-question-item v-bind:question_data="questions[activeStep]"
+                                 v-model="checkedValue">
+              </v-question-item></h2>
+            <div class="actions">
+              <button v-if="activeStep + 1 < questions.length - 1" @click="nextStep"> next</button>
+              <button v-if="activeStep + 1 === questions.length -1">done</button>
+            </div>
+          </section>
+        </article>
+        <!-- <v-question-item
         v-for="question in questions"
         :key="question.id"
          v-bind:question_data="question"
          v-model="checkedValue">
-      </v-question-item>
+      </v-question-item> -->
+      </div>
+      
     
 
     </div>
 </template>
 
 <script>
-import vQuestionItem from './v-question-item'
+import vNavigationWrapper from './v-navigation-wrapper'
+//import vQuestionItem from './v-question-item'
 import axios from 'axios'
+import VQuestionItem from './v-question-item.vue'
 
 export default {
   name: 'v-question',
   props: {},
   components:{
-    vQuestionItem
+    //vQuestionItem,
+    vNavigationWrapper,
+    VQuestionItem
   },
   data(){
     return {
-      questions:[]
+      questions:[],
+      activeStep :0,
+      animation: 'animate-in',
     }
   },
   mounted () {
@@ -32,25 +65,136 @@ export default {
     .then(response => {
       this.questions = response.data;
     })
+  },
+  methods:{
+    nextStep(){
+      this.animation = 'animate-out';
+      setTimeout(() => {
+        this.animation = 'animate-in';
+        this.activeStep +=1;
+      },550)
+    }
   }
 
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
+<style lang='scss'>
+@import '../assets/styles/base.scss';
+@import '../assets/styles/fonts.scss';
+@import '../assets/styles/navigation.scss';
+@import '../assets/styles/button.scss';
+@mixin flexbox(){
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.v-question{
+  @include flexbox();
+  
+  position: relative;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Lato', sans-serif;
+  background: linear-gradient(rgba(32, 32, 32, 0.8),rgba(0, 1, 37, 0.4)),url('../assets/images/background.jpeg') no-repeat center center;;
+  
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.container{
+  align-items: center;
+
 }
-a {
-  color: #42b983;
+article{
+  //align-items: center;
+  display: flex;
+  width: 1000px;
+  margin: 10px;
+  width: calc(100% - 20 px);
+  max-width: 800px;
+  min-height: 480px;
+  perspective: 1000px;
+
+  header{
+    
+    @include flexbox();
+    right: 100px;
+    //align-items: center;
+    margin: 0 auto;
+    width: 60px;
+    height: 500px;
+    align-items: center;
+    text-align: center;
+    background-color:  rgba(32, 26, 26, 0.8);
+    border-right: 2px dotted $red;
+    box-shadow: 0 15px 30px rgba(0,0,0,.2),
+                0 15px 10px rgba(0,0,0,.2);
+  }
+  .progress-step{
+    @include flexbox();
+    
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    color: $white;
+    background-color: black;
+    font-weight: bold;
+    &.active {
+      background-color:$red;
+    
+      ~ .progress-step {
+        color: black;
+        background-color: #ccc;
+      }
+      ~ .progress-step::before {
+        background-color: #ccc;
+      }
+    
+    }
+  }
+    section{
+      @include flexbox();
+      flex-direction: column;
+      width:100%;
+      background:  rgba(32, 26, 26, 0.8);
+      box-shadow: 0 15px 30px rgba(0,0,0,.2),
+                  0 15px 10px rgba(0,0,0,.2);
+    .actions{
+      margin: 0;
+      button{
+        padding:5px 20px;
+        margin: 0;
+        
+      }
+    }
+    
+  }
 }
+.animate-in{
+  transform-origin: left;
+  animation: in .6s ease-in-out ;
+}
+.animate-out{
+  transform-origin: bottom left;
+  animation: out .6s ease-in-out ;
+}
+@keyframes in {
+  0% {
+    opacity: 0;
+    transform: rotateY(-90deg);
+  }
+  100%{
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+}
+@keyframes out {
+  0% {transform: translateY(0px) rotate(0deg);}
+  60% {transform: rotate(10deg);}
+  100% {transform: translateY(1000px);}
+}
+
 </style>
