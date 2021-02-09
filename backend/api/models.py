@@ -11,8 +11,11 @@ class QuestionType(models.Model):
         Question,
         on_delete=models.CASCADE,
         primary_key=True,
+        related_name='type'
     )
+    def __str__(self):
+        return f"{self.name}"
 
 class Answer(models.Model):
     value=models.TextField("Значение вопроса")
-    question=models.ForeignKey(Question, on_delete=models.CASCADE)
+    question=models.ForeignKey(Question, on_delete=models.CASCADE,related_name='answer')
