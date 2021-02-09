@@ -2,4 +2,3 @@ django==3.0.5
 djangorestframework
 psycopg2-binary
 django-cors-headers
-gunicorn
