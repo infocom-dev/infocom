@@ -14,22 +14,20 @@
             {{ index + 1 }}
           </div>
         </div>
+
           </header>
+          
           <section :class="animation">
-            <h2><v-question-item v-bind:question_data="questions[activeStep]"
+            <h2 ><v-question-item v-bind:question_data="questions[activeStep]"
                                  v-bind:questions_len="questions.length"
                                  v-model="checkedValue"
                                  v-on:send-answer="userAnswers"
                                  >
               </v-question-item></h2>
+              
           </section>
+          
         </article>
-        <!-- <v-question-item
-        v-for="question in questions"
-        :key="question.id"
-         v-bind:question_data="question"
-         v-model="checkedValue">
-      </v-question-item> -->
       </div>
       
     
@@ -39,7 +37,6 @@
 
 <script>
 import vNavigationWrapper from './v-navigation-wrapper'
-//import vQuestionItem from './v-question-item'
 import axios from 'axios'
 import VQuestionItem from './v-question-item.vue'
 
@@ -47,7 +44,6 @@ export default {
   name: 'v-question',
   props: {},
   components:{
-    //vQuestionItem,
     vNavigationWrapper,
     VQuestionItem
   },
@@ -55,7 +51,6 @@ export default {
     return {
       questions:[],
       activeStep :0,
-      animation: 'animate-in',
     }
   },
   mounted () {
@@ -65,18 +60,16 @@ export default {
       this.questions = response.data;
     })
   },
+ 
   methods:{
-    userAnswers(answers,step){
-      console.log(step);
-      this.animation = 'animate-out';
-      setTimeout(() => {
-        this.animation = 'animate-in';
+    userAnswers(answers,step){    
         if(this.activeStep > step){
         this.activeStep -=1;
       } else {
         this.activeStep +=1;
       }
-      },550)
+
+      
     },
     checkFields(){
       
@@ -99,15 +92,14 @@ export default {
 }
 .v-question{
   @include flexbox();
-  
   position: relative;
   flex-direction: column;
   margin: 0 auto;
   width: 100%;
   min-height: 100vh;
   font-family: 'Lato', sans-serif;
-  background: linear-gradient(rgba(32, 32, 32, 0.8),rgba(0, 1, 37, 0.4)),url('../assets/images/background.jpeg') no-repeat center center;;
-  
+  background: linear-gradient(rgba(32, 32, 32, 0.8),rgba(0, 1, 37, 0.4)),url('../assets/images/background.jpeg') no-repeat center center;
+
 }
 .container{
   align-items: center;
@@ -116,6 +108,7 @@ export default {
 article{
   //align-items: center;
   display: flex;
+  
   width: 1000px;
   margin: 10px;
   width: calc(100% - 20 px);
@@ -165,35 +158,11 @@ article{
     section{
       @include flexbox();
       // flex-direction: column;
-      width:100%;
+      width:1200px;
       background:  rgba(32, 26, 26, 0.8);
       box-shadow: 0 15px 30px rgba(0,0,0,.2),
                   0 15px 10px rgba(0,0,0,.2);
     
   }
 }
-.animate-in{
-  transform-origin: left;
-  animation: in .6s ease-in-out ;
-}
-.animate-out{
-  transform-origin: bottom left;
-  animation: out .6s ease-in-out ;
-}
-@keyframes in {
-  0% {
-    opacity: 0;
-    transform: rotateY(-90deg);
-  }
-  100%{
-    opacity: 1;
-    transform: rotateY(0deg);
-  }
-}
-@keyframes out {
-  0% {transform: translateY(0px) rotate(0deg);}
-  60% {transform: rotate(10deg);}
-  100% {transform: translateY(1000px);}
-}
-
 </style>

@@ -15,7 +15,6 @@
 
                         ></multiselect>
                         <h1></h1>
-                        <!-- <p>{{selectedAnswers[0]["value"]}}</p> -->
           </div>
 
       </div>
@@ -74,6 +73,7 @@
         <br>
         
       </div>
+
       <div class="switch ex1" v-if="question_data.type === 'switch' " >
           <p class="v-question-item__text">{{question_data.text}} </p>
           <div class="labels">
@@ -85,7 +85,6 @@
          v-model="selectedAnswers"/><span>{{answer.value}}</span>
          </label></div>
       </div>
-
 
       <div v-if="question_data.type === 'datapicker' " >
         <p class="v-question-item__text">{{question_data.text}} </p>
@@ -102,6 +101,12 @@
 
       </div>
       
+      <div v-if="question_data.type === 'textarea'">
+        <div class="message">
+        <p class="v-question-item__text">{{question_data.text}} </p>
+        <textarea v-model="selectedAnswers" placeholder="Type here"></textarea>
+        </div>
+      </div>
       <div class="actions">
               <button v-if="activeStep  < questions_len - 1 && activeStep + 1 >= 2" @click="prevStep">back</button>
               <button v-if="activeStep  < questions_len - 1" @click="nextStep"> next</button>
@@ -345,14 +350,14 @@ export default {
 
 .message{
   margin: 0 auto;
-  input{
+  input,textarea{
   margin: 0 0 32px 0;
   width: 100%; 
   height: 50px;
   border-radius: 0px; 
   box-shadow: 0 4px 16px $red; 
   border: none;  
-  font-size: 20xp;
+  font-size: 35xp;
   color :#fff ; 
   background-color: $bg; 
   outline: none; 
