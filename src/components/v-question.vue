@@ -17,12 +17,11 @@
           </header>
           <section :class="animation">
             <h2><v-question-item v-bind:question_data="questions[activeStep]"
-                                 v-model="checkedValue">
+                                 v-bind:questions_len="questions.length"
+                                 v-model="checkedValue"
+                                 v-on:send-answer="userAnswers"
+                                 >
               </v-question-item></h2>
-            <div class="actions">
-              <button v-if="activeStep + 1 < questions.length - 1" @click="nextStep"> next</button>
-              <button v-if="activeStep + 1 === questions.length -1">done</button>
-            </div>
           </section>
         </article>
         <!-- <v-question-item
@@ -67,12 +66,20 @@ export default {
     })
   },
   methods:{
-    nextStep(){
+    userAnswers(answers,step){
+      console.log(step);
       this.animation = 'animate-out';
       setTimeout(() => {
         this.animation = 'animate-in';
+        if(this.activeStep > step){
+        this.activeStep -=1;
+      } else {
         this.activeStep +=1;
+      }
       },550)
+    },
+    checkFields(){
+      
     }
   }
 
@@ -157,19 +164,11 @@ article{
   }
     section{
       @include flexbox();
-      flex-direction: column;
+      // flex-direction: column;
       width:100%;
       background:  rgba(32, 26, 26, 0.8);
       box-shadow: 0 15px 30px rgba(0,0,0,.2),
                   0 15px 10px rgba(0,0,0,.2);
-    .actions{
-      margin: 0;
-      button{
-        padding:5px 20px;
-        margin: 0;
-        
-      }
-    }
     
   }
 }

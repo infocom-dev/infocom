@@ -4,7 +4,7 @@ import axios from 'axios'
 import router from "./router/router";
 
 import PrettyCheckbox from 'pretty-checkbox-vue';
-import 'vue-slider-component/theme/default.css'
+// import 'vue-slider-component/theme/default.css'
 import 'pretty-checkbox/src/pretty-checkbox.scss';
 
 

@@ -88,6 +88,11 @@ export default {
   }
 
 }
+.button{
+  button{
+    width: 200px;
+  }
+}
 
 
 

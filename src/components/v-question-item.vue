@@ -4,14 +4,26 @@
       <div clsass="selected" v-if="question_data.type === 'selected' ">
         <p class="v-question-item__text">{{question_data.text}} </p>
           <div>
-           <multiselect v-model="selectedAnswers" tag-placeholder="Add this as new tag" placeholder="Search" label="value" track-by="id" :options="question_data.answers" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
+           <multiselect v-model="selectedAnswers" 
+
+                        placeholder="Search" 
+                        label="value" track-by="id" 
+                        :options="question_data.answers" 
+                        :multiple="true" 
+                        :taggable="true" 
+                        @tag="addTag"
+
+                        ></multiselect>
+                        <h1></h1>
+                        <!-- <p>{{selectedAnswers[0]["value"]}}</p> -->
           </div>
+
       </div>
 
       <div v-if="question_data.type === 'checkbox' " >
-        <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
+        <p class="v-question-item__text">{{question_data.text}} </p>
         <label v-for="val in question_data.answers" :key="val.id">
-          <p-check class="p-icon p-round p-pulse" color="success">
+          <p-check class="p-icon p-round p-pulse" >
              <i slot="extra" class="icon mdi mdi-check"></i>
                {{val.value}}
           </p-check>
@@ -19,13 +31,20 @@
        </div>
 
       <div v-if="question_data.type === 'message' " >
-        <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
+        <div class="message">
+        <p class="v-question-item__text">{{question_data.text}} </p>
         <input v-model="selectedAnswers" placeholder="Type here">
-        <p>Answer: {{ selectedAnswers }}</p>
+        </div>
       </div>
 
       <div v-if="question_data.type === 'range' ">
-        <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
+        <p class="v-question-item__text">{{question_data.text}} </p>
+        <!-- <div class="set-range">
+         <input type="text" v-model="value[0]" placeholder="От" class="form-control" /><br>
+         <input type="text" v-model="value[1]" placeholder="До" class="form-control" /><br>
+        </div>
+        <br> -->
+        
         <vue-slider :min="question_data.answers[0]"
                     :max="question_data.answers[1]"
                     :interval="10"
@@ -33,7 +52,7 @@
                     :marks="marks"
                     :tooltip="'none'"
                     :process="process"
-                    :process-style="{ backgroundColor: 'blue' }"
+                    :process-style="{ backgroundColor: 'red' }"
                     :tooltip-style="{ backgroundColor: 'blue', borderColor: 'blue' }"
         >
           <div :class="['custom-dot', { focus }]"></div>
@@ -53,16 +72,23 @@
           </template>
         </vue-slider>
         <br>
-        <div class="set-range">
-         <input type="text" v-model="value[0]" placeholder="От" class="form-control" /><br>
-         <input type="text" v-model="value[1]" placeholder="До" class="form-control" /><br>
-        </div>
+        
       </div>
-      <div v-if="question_data.type === 'switch' " >
-          <p-check class="p-switch" color="primary">{{question_data.text}}</p-check>
+      <div class="switch ex1" v-if="question_data.type === 'switch' " >
+          <p class="v-question-item__text">{{question_data.text}} </p>
+          <div class="labels">
+          <label class="radio red" v-for="answer in question_data.answers"
+          :key="answer.id">
+          <input type="radio"
+          name="selectedAnswers"
+        :value="answer.value"
+         v-model="selectedAnswers"/><span>{{answer.value}}</span>
+         </label></div>
       </div>
+
+
       <div v-if="question_data.type === 'datapicker' " >
-        <p class="v-catalog-item__text">{{question_data.id}}.{{question_data.text}} </p>
+        <p class="v-question-item__text">{{question_data.text}} </p>
         <date-picker  v-model="selectedAnswers"
                       value-type="format"
                       format="DD.MM.YYYY"
@@ -72,10 +98,15 @@
                       range-separator=" - "
                       >
         </date-picker>
->
+
+
       </div>
-   
       
+      <div class="actions">
+              <button v-if="activeStep  < questions_len - 1 && activeStep + 1 >= 2" @click="prevStep">back</button>
+              <button v-if="activeStep  < questions_len - 1" @click="nextStep"> next</button>
+              <button v-if="activeStep  === questions_len - 1">done</button>
+      </div>
     </div>
 </template>
 
@@ -86,6 +117,9 @@
  import Multiselect from 'vue-multiselect'
  import DatePicker from 'vue2-datepicker';
  import 'vue2-datepicker/index.css';
+//import PrettyCheckbox from 'pretty-checkbox-vue';
+import 'vue-slider-component/theme/default.css'
+// import 'pretty-checkbox/src/pretty-checkbox.scss';
 
 
 
@@ -96,7 +130,7 @@ export default {
      VueSlider,
      Multiselect,
      DatePicker,
-
+     //PrettyCheckbox
   },
   props:{
         question_data:{
@@ -104,12 +138,14 @@ export default {
             default(){
                 return{}
             }
+        },
+        questions_len:{
+            type:Number,
         }
     },
   data(){ 
     return {
       activeStep: 0,
-      animation: 'animate-in',
       value:[0,50],
       marks: val =>  val % ((this.question_data.answers[1]-this.question_data.answers[0]) /10) === 0,
       selectedAnswers:""
@@ -123,30 +159,55 @@ export default {
       }
       this.question_data.push(tag)
       this.value.push(tag)
-    }
+    },
+    nextStep(){
+      console.log(this.selectedAnswers)
+      this.$emit('send-answer',this.selectedAnswers,this.activeStep + 1)
+      this.activeStep += 1;
+      this.selectedAnswers="";
+    },
+    prevStep(){
+      console.log(this.selectedAnswers)
+      this.$emit('send-answer',this.selectedAnswers,this.activeStep - 1)
+      this.activeStep -= 1;
+      this.selectedAnswers="";
+    },
   }
 } 
     
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss">
-
+@import '../assets/styles/base.scss';
+.v-question-item{
+  margin:0 auto;
+  // display: flex;
+  align-items: center;
+  padding:20px 30px;
+}
 
 .v-question-item__text{
   color:white;
   text-align: center;
   font-weight: normal;
-
+  
 }
-
+.actions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+      button{
+        width: 200px;
+        margin: 5% 10% 5% 10%;
+        padding: 5px 20px;
+        display:inline;
+        justify-content: space-between;
+      }
+  }
 .multiselect{
-  //box-sizing: content-box;
   width: 550px;
-  margin:0 auto;
-   /* Ширина блока */
-  //padding: 10px; /* Поля */
-  //margin-top: 5px; /* Отступ сверху */
-  //-moz-box-sizing: border-box; /* Для Firefox */  
+  margin:0 auto; 
 }
 
 .multiselect__input::placeholder {
@@ -163,11 +224,9 @@ export default {
   display: block;
   background: #ccc ;
   color:black;
-  //transition: 1000ms;
   width: 550px;
   max-height: 240px;
   overflow: auto;
-  //border:  blue solid ;
   border-top: none;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -207,21 +266,26 @@ export default {
 
 
 .set-range {
+  
         flex: 0 0 auto;
 
         display: flex;
 
         padding: 20px;
-
         input {
-          width: 100%;
-          padding: (20px / 2) 20px;
-          border: 2px solid rgb(100, 100, 100);
-          border-radius: 5px;
-          transition: border-color .2s ease-out;
-
+          width: 300px;
+          height: 40px;
+          color: white;
+          text-decoration: none;
+          text-align: center;
+          text-transform: capitalize;
+          background-color: $bg;
+          font: 700 20px tahoma;
+          border: none;
+          margin: 0 10px ;
+          box-shadow: 0 4px 16px $red; 
           &:hover, &:focus {
-            border-color: rgb(30, 30, 30);
+            border-color: $red;
           }
         }
       }
@@ -239,8 +303,8 @@ export default {
     background-color: #fff;
   }
   .custom-step.active {
-    box-shadow: 0 0 0 3px #3498db;
-    background-color: #3498db;
+    box-shadow: 0 0 0 3px red;
+    background-color: red;
   }
  .custom-dot {
     width: 100%;
@@ -252,4 +316,147 @@ export default {
   .custom-dot.focus {
     border-radius: 25%;
   }
+.custom-step{
+  color:red;
+}
+.vue-slider{
+  padding:17px 20px;
+}
+.vue-slider-dot-tooltip-inner {
+  border-color: $red;
+  background-color: red;
+}
+.vue-slider-marks{
+  color:red;
+}
+
+.p-icon {
+  color: white;
+  align-items: center;
+  columns: 60px 4;
+  column-gap: 30px;
+  margin: 0 auto;
+  //left:5%;
+}
+.pretty.p-icon .state .icon{
+  background-color: $red;
+  margin: 0 auto;
+}
+
+.message{
+  margin: 0 auto;
+  input{
+  margin: 0 0 32px 0;
+  width: 100%; 
+  height: 50px;
+  border-radius: 0px; 
+  box-shadow: 0 4px 16px $red; 
+  border: none;  
+  font-size: 20xp;
+  color :#fff ; 
+  background-color: $bg; 
+  outline: none; 
+  cursor: pointer; 
+
+  }
+}
+.pretty{
+  color:white;
+}
+
+
+.switch input {
+  display: none;
+  
+}
+.switch label {
+  display:inline;
+  justify-content: space-between;
+  display: inline-block;
+  cursor: pointer;
+  color:white;
+}
+
+.ex1 span {
+  display: block;
+  padding: 5px 10px 5px 25px;
+  border: 2px solid white; 
+  border-radius: 5px;
+  position: relative;
+  transition: all 0.25s linear;
+}
+.ex1 span:before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  -webkit-transform: translatey(-50%);
+          transform: translatey(-50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #ddd;
+  transition: all 0.25s linear;
+}
+.ex1 input:checked + span {
+  background-color: #fff;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
+}
+.ex1 .red input:checked + span {
+  color: red;
+  border-color: red;
+}
+.ex1 .red input:checked + span:before {
+  background-color: red;
+}
+.labels{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+      label{
+        margin: 5% 10% 5% 10%;
+        padding: 5px 20px;
+        display:inline;
+        justify-content: space-between;
+      }
+}
+.mx-datepicker-range {
+    width: 550px;
+}
+.mx-calendar-content .cell.active {
+    color: #fff;
+    background-color: red;
+}
+.mx-calendar-content .cell.in-range {
+    color: white;
+    background-color:#555;
+}
+.mx-datepicker-main {
+    color: black;
+}
+.mx-btn {
+  color:black;
+  background-color:transparent;
+  // width:320px;
+  background-image:none;
+  display: initial;
+  &:hover{
+    color:red;
+    border-color: red;
+  }
+}
+.mx-table-date .today {
+    color: red;
+}
+
+.mx-btn-text {
+  border: 0;
+  padding: 0 4px;
+  text-align: left;
+  line-height: inherit;
+  &:hover{
+    color:red;
+  }
+}
 </style>
