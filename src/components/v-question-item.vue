@@ -110,7 +110,7 @@
       <div class="actions">
               <button v-if="activeStep  < questions_len - 1 && activeStep + 1 >= 2" @click="prevStep">back</button>
               <button v-if="activeStep  < questions_len - 1" @click="nextStep"> next</button>
-              <button v-if="activeStep  === questions_len - 1">done</button>
+              <button v-if="activeStep  === questions_len - 1" @click="done">done</button>
       </div>
     </div>
 </template>
@@ -177,6 +177,11 @@ export default {
       this.activeStep -= 1;
       this.selectedAnswers="";
     },
+    done(){
+      this.$emit('send-answer',this.selectedAnswers,this.questions_len)
+      // this.activeStep = this.questions_len;
+      this.selectedAnswers="";
+    }
   }
 } 
     

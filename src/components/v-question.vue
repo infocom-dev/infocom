@@ -18,12 +18,19 @@
           </header>
           
           <section :class="animation">
-            <h2 ><v-question-item v-bind:question_data="questions[activeStep]"
+            <div v-if="done" class="done_page">
+              <h1>Thank you</h1>
+            </div>
+            <div v-else-if="!start" class="start_page">
+              <h1>Welcome to our form</h1>
+              <button @click="startForm">Start</button>
+            </div>
+            <h2 v-else-if="start"><v-question-item v-bind:question_data="questions[activeStep]"
                                  v-bind:questions_len="questions.length"
                                  v-model="checkedValue"
                                  v-on:send-answer="userAnswers"
                                  >
-              </v-question-item></h2>
+            </v-question-item></h2>
               
           </section>
           
@@ -49,6 +56,8 @@ export default {
   },
   data(){
     return {
+      start:false,
+      done:false,
       questions:[],
       activeStep :0,
     }
@@ -63,16 +72,22 @@ export default {
  
   methods:{
     userAnswers(answers,step){    
-        if(this.activeStep > step){
+      if(this.activeStep > step){
         this.activeStep -=1;
+      } else if (step === this.questions.length) {
+        this.start = !this.start;
+        this.done = !this.done;
       } else {
         this.activeStep +=1;
-      }
+      } 
 
       
     },
     checkFields(){
       
+    },
+    startForm(){
+      this.start = !this.start;
     }
   }
 
@@ -162,7 +177,11 @@ article{
       background:  rgba(32, 26, 26, 0.8);
       box-shadow: 0 15px 30px rgba(0,0,0,.2),
                   0 15px 10px rgba(0,0,0,.2);
-    
+  }
+}
+.start_page {
+  button{
+    width:  200px;
   }
 }
 </style>
