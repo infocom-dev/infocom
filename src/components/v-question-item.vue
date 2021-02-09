@@ -43,9 +43,8 @@
          <input type="text" v-model="value[1]" placeholder="До" class="form-control" /><br>
         </div>
         <br> -->
-        
-        <vue-slider :min="question_data.answers[0]"
-                    :max="question_data.answers[1]"
+        <vue-slider :min="question_data.answers[0].value"
+                    :max="question_data.answers[1].value"
                     :interval="10"
                     v-model="value"
                     :marks="marks"
@@ -126,9 +125,6 @@
 import 'vue-slider-component/theme/default.css'
 // import 'pretty-checkbox/src/pretty-checkbox.scss';
 
-
-
-
 export default {
   name: 'v-question-item',
   components: {
@@ -152,7 +148,7 @@ export default {
     return {
       activeStep: 0,
       value:[0,50],
-      marks: val =>  val % ((this.question_data.answers[1]-this.question_data.answers[0]) /10) === 0,
+      marks: val =>  val % ((this.question_data.answers[1].value-this.question_data.answers[0].value) /10) === 0,
       selectedAnswers:""
     }
   },
