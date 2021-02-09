@@ -64,7 +64,7 @@ export default {
   },
   mounted () {
     axios
-    .get('/hello/')
+    .get('hello/')
     .then(response => {
       this.questions = response.data;
     })

@@ -18,4 +18,4 @@ class QuestionType(models.Model):
 
 class Answer(models.Model):
     value=models.TextField("Значение вопроса")
-    question=models.ForeignKey(Question, on_delete=models.CASCADE,related_name='answer')
+    question=models.ForeignKey(Question, on_delete=models.CASCADE,related_name='answers')

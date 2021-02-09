@@ -1,7 +1,15 @@
 from rest_framework import serializers
 
 from backend.api.models import QuestionType, Answer, Question
+from rest_framework.fields import IntegerField
 
+class StringArrayField(IntegerField):
+    """
+    String representation of an array field.
+    """
+
+    def to_representation(self, value):
+        return str(value)
 
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,7 +23,8 @@ class QuestionTypeSerializer(serializers.ModelSerializer):
 
 class QuestionSerializer(serializers.ModelSerializer):
     type = serializers.StringRelatedField()
-    answer=AnswerSerializer(many=True)
+    answers         =AnswerSerializer(many=True)
+    id=StringArrayField()
 
     class Meta:
         model = Question
