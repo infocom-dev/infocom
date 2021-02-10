@@ -1,7 +1,6 @@
 FROM node:12.2.0 as build
 WORKDIR /app
-RUN npm install --silent
-RUN npm install -g @vue/cli
+RUN npm install
 COPY . /app
 RUN npm run build
 
