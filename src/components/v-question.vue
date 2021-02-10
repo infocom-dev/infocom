@@ -25,7 +25,7 @@
               <h1>Welcome to our form</h1>
               <button @click="startForm">Start</button>
             </div>
-            <h2 v-else-if="start"><v-question-item v-bind:question_data="questions[2]"
+            <h2 v-else-if="start"><v-question-item v-bind:question_data="questions[activeStep]"
                                  v-bind:questions_len="questions.length"
                                  v-model="checkedValue"
                                  v-on:send-answer="userAnswers"

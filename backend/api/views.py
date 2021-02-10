@@ -7,4 +7,3 @@ from backend.api.serializer import QuestionSerializer
 class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
-    serializers_fieldsets={str:('id')}
