@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from backend.api.models import *
+
+
+@admin.register(Question, QuestionType, Answer)
+class PersonAdmin(admin.ModelAdmin):
+    pass

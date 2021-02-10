@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Add environment variables to .env!
+      - name: Add environment variables to ..env!
         run: |
           echo DEBUG=0 >> .env
           echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env
@@ -49,7 +49,7 @@ jobs:
     steps:
       - name: Checkout master
         uses: actions/checkout@v1
-      - name: Add environment variables to .env!
+      - name: Add environment variables to ..env!
         run: |
           echo DEBUG=0 >> .env
           echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env

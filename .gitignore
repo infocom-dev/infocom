@@ -4,7 +4,7 @@
 /media_volume
 /node_modules
 /postgres_data
-# local env files
+# local .env files
 .env.local
 .env.*.local
 
