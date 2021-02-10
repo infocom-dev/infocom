@@ -25,6 +25,8 @@ jobs:
           echo BACKEND_IMG=${{ secrets.BACKEND_IMG }} >> .env
           echo FRONTEND_IMG=${{ secrets.FRONTEND_IMG }} >> .env
           echo NGINX_IMG=${{ secrets.NGINX_IMG }} >> .env
+          echo VUE_APP_URL=${{ secrets.VUE_APP_URL }} >> .env
+
 
       - name: Log in to GitHub Packages
         run: docker login ghcr.io -u infocom-dev -p ${{ secrets.PAT }}
@@ -63,6 +65,7 @@ jobs:
           echo BACKEND_IMG=${{ secrets.BACKEND_IMG }} >> .env
           echo FRONTEND_IMG=${{ secrets.FRONTEND_IMG }} >> .env
           echo NGINX_IMG=${{ secrets.NGINX_IMG }} >> .env
+          echo VUE_APP_URL=${{ secrets.VUE_APP_URL }} >> .env
       - name: "deploy"
         run: |
           mkdir -p "$HOME/.ssh"
