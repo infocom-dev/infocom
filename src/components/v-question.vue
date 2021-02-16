@@ -113,7 +113,7 @@ export default {
   width: 100%;
   min-height: 100vh;
   font-family: 'Lato', sans-serif;
-  background: linear-gradient(rgba(32, 32, 32, 0.8),rgba(0, 1, 37, 0.4)),url('../assets/images/background.jpeg') no-repeat center center;
+  // background: linear-gradient(rgba(32, 32, 32, 0.8),rgba(0, 1, 37, 0.4)),url('../assets/images/background.jpeg') no-repeat center center;
 
 }
 .container{
