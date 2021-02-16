@@ -126,7 +126,7 @@ article{
   
   width: 1000px;
   margin: 10px;
-  width: calc(100% - 20 px);
+  // width: calc(100% - 20 px);
   max-width: 800px;
   min-height: 480px;
   perspective: 1000px;
