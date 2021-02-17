@@ -1,77 +1,80 @@
-
-.v-navigation-wrapper{  
-;
+.v-navigation-wrapper{
+  height: 70px;
+   background-color: $bg;
+   padding: 10px 0;
 }
-.navigation{
-    background: rgba(166, 158, 148, 0.65) !important;
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    top: 0%;
-    left:0;
-    color: $white;
-    
-}
-.menu{
+.menu-wrap {
   display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  position:fixed;
+  width: 100%;
+  button{
+    padding: 0 0;
+    margin: 0 0;
+    border-color: transparent;
+    background-image:none;
+    background-color: transparent;
+    border-radius: 5px;
+  }
 }
-.nav{
-  display: flex;
-  list-style: none;
+.menu-icon {
+  font-size: 2.4em;
+  color: $white;
+  line-height: 50px;
 }
-.nav li{
-  color: $red;
-  text-decoration: none;
+nav {
+  position: absolute;
+  background-color: #3D4852;
+  top:70px;
+  left:0;
+  width: 100%;
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 20px;
   font-weight: bold;
-  min-height: 0 30px 0 0;
-  font-size: 30px;
-  padding: 28px 15px;
-  margin: 0 50px 0 0;
 }
-.logo{
-  padding: 0 100px;
-  h1{
-    font-size: 50px;
-    font-weight: bold;
-    letter-spacing:2px
-  }
-  span{
-    font-size: 40px;
-  }
-  // img {
-  //   width: 210px;
-  //   height: 60px;
-//}
+nav ul {
+  list-style-type: none;
 }
-.logo span {
-	font-weight: 700;
+nav ul li {
+  padding: 0 15px;
+}
+nav ul li a {
+  display: inline-block;
+  padding: 12px;
+  /* Добавьте ниже свои пользовательские стили, чтобы изменить отображение ссылок */
+  color: $white;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+}
+nav ul li a:hover, nav ul li a:focus {
+  color: $red;
 }
 
-.nav li {
-    display: inline-block;
-    line-height: 1;
-    text-decoration: none;
-    cursor: pointer;
+@media (min-width: 768px) {
+  .menu-icon {
+     display: none;
+  }
+button{
+  display: none;
+}
+}
+@media (min-width: 768px) {
+  nav {
     position: relative;
-}
-.nav li:after {
-    display: block;
-    content: "";
-    background-color: $red;
-    height: 1px;
-    width: 0%;
-    left: 50%;
-    position: absolute;
-    -webkit-transition: width .3s ease-in-out;
-    -moz--transition: width .3s ease-in-out;
-    transition: width .3s ease-in-out;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    transform: translateX(-50%);
-}
-.nav li:hover:after,
-.nav li:focus:after {
-    width: 100%;
+    top:-10px;
+    background-color: transparent;
+    
+  }
+  nav ul {
+    max-height: 70px;
+    padding: 15px 0;
+    text-align: right;
+  }
+  nav ul li {
+    display: inline-flex;
+    padding-left: 20px;
+  }
 }

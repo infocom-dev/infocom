@@ -7,7 +7,8 @@ import PrettyCheckbox from 'pretty-checkbox-vue';
 // import 'vue-slider-component/theme/default.css'
 import 'pretty-checkbox/src/pretty-checkbox.scss';
 
-
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@fortawesome/fontawesome-free/js/all.js'
 
 
 Vue.config.productionTip = false
