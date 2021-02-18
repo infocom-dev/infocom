@@ -347,7 +347,8 @@ iframe {
   font-size: 80px;
   color: $red;
   line-height: 50px;
-  // padding:10px;
+
+  padding:10px;
 }
 @media only screen and (min-width: 400px) {
   .container-adapt {
