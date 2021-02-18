@@ -4,6 +4,7 @@
 .menu-wrap {
   top:0;
   left:0;
+  z-index:1;
   align-items: center;
   // overflow:visible;
   padding: 10px 0;
@@ -29,8 +30,9 @@
   line-height: 50px;
 }
 nav {
+  align-items: center;
   position: absolute;
-  background-color: #3D4852;
+  background-color: #ECEDEB;
   top:70px;
   left:0;
   width: 100%;
@@ -67,11 +69,14 @@ nav ul li a:hover, nav ul li a:focus {
 }
 }
 @media (min-width: 768px) {
+  .menu-wrap{
+    min-height: 120px;
+  }
   nav {
     position: relative;
     top:-10px;
     background-color: transparent;
-    
+
   }
   nav ul {
     max-height: 70px;
