@@ -1,6 +1,5 @@
 <template>
   <div class="v-home-page">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <section class="home">
       <v-navigation-wrapper></v-navigation-wrapper>
       <div class="container">
@@ -49,13 +48,34 @@
       </div>
       <div class="container-adapt">
         <div class="service-item">
-          <i class="fa fa-calculator chart-icon" aria-hidden="true"></i>
-          <hr />
-          <h4>Calculate</h4>
-          <p>Calculate current cost of your own project</p>
-          <button>more</button>
+          <div class="row">
+            <div class="text">
+
+            </div>
+            <div class=
+          </div>
+          <div class="text-container">
+            <i class="fa fa-calculator chart-icon" aria-hidden="true"> </i>
+            <h4>Calculate</h4>
+            <p>Calculate current cost of your own project</p>
+          </div>
+          <div class="text-container">
+            <i class="fa fa-laptop laptop-icon"></i>
+            <h4>web development</h4>
+            <p>lalaaa lalalffffal laalalal alalaalal lalall</p>
+          </div>
+          <div class="text-container">
+            <i class="fa fa-comments chat-icon" aria-hidden="true"></i>
+            <h4>chat-bot</h4>
+            <p>Telegram and vk bot development vvfff</p>
+          </div>
         </div>
         <div class="service-item">
+          <figure class="image is-fullwidth">
+            <img src="../assets/images/home.svg" />
+          </figure>
+        </div>
+        <!-- <div class="service-item">
           <i class="fa fa-laptop laptop-icon"></i>
           <hr />
           <h4>web development</h4>
@@ -68,7 +88,7 @@
           <h4>chat-bot</h4>
           <p>Telegram and vk bot development vvfff</p>
           <button>more</button>
-        </div>
+        </div> -->
 
         <!-- <div class="service-item">
           <i class="fa fa-database data-icon" aria-hidden="true"></i>
@@ -159,25 +179,29 @@ export default {
   position: relative;
   flex-direction: column;
   height: 700px;
+  font-size: 1rem;
 }
+
 .container {
   -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
   padding-top: 150px;
   padding-bottom: 150px;
-  display: block;
   text-align: center;
   box-sizing: border-box;
   padding-right: 15px;
   padding-left: 15px;
   h3 {
-    font-weight: 300;
-    font-size: 1.4vw;
+    font-size: 1.714em;
+    line-height: 2.5rem;
+    color: black;
   }
   h1 {
-    font-size: 5vw;
+    font-size: 5.143rem;
     line-height: 5.5rem;
+    color: #fff;
     letter-spacing: 0.4rem;
   }
   .separator {
@@ -224,9 +248,18 @@ export default {
     max-width: 60%;
     margin: 0 auto;
     padding-bottom: 30px;
-    font-size: 1.5vw;
+    font-size: 1.125rem;
+    line-height: 2rem;
   }
-  
+}
+@media (max-width: 991px) {
+  html {
+    font-size: 70%;
+  }
+  // .service {
+  //   padding-right: 150px;
+  //   padding-left: 150px;
+  // }
 }
 
 // .slider-container {
@@ -393,13 +426,21 @@ export default {
 }
 
 .service {
-  background-color: #ebeeee;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  background: white;
+  background-size: auto;
+  background-size: cover;
+  min-height: 100%;
+  // background-color: url(../assets/images/10.jpg);
   color: #fff;
   // height: 400px;
   margin: 0 auto;
   align-content: center;
-  padding-right: 50px;
-  padding-left: 50px;
+  // margin-bottom: 1px;
+  // padding-right: 50px;
+  // padding-left: 50px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -410,9 +451,11 @@ export default {
 }
 
 .container-adapt {
+  // display: flex;
+
   margin: 1.5em 0;
   padding: 0;
-  column-gap: 1.5em; /* Общее расстояние между колонками */
+  column-gap: 0em; /* Общее расстояние между колонками */
   font-size: 0.85em;
   -moz-column-gap: 1.5em; /* Расстояние между колонками для Firefox */
   -webkit-column-gap: 1.5em; /* Расстояние между колонками  для Safari, Chrome и iOS */
@@ -422,6 +465,7 @@ export default {
 /* Элементы в виде плиток с содержанием */
 .service-item {
   display: inline-block;
+  height: 600vh;
   padding: 1em;
   margin: 0 0 1.5em;
   width: 100%;
@@ -430,9 +474,10 @@ export default {
   -webkit-box-sizing: border-box; /* Для Safari, Chrome, iOS иAndroid */
   box-shadow: 2px 2px 4px 0 #ccc; /* Внешняя тень плиток */
   border: 2px solid $red;
+  height: 100%;
   // margin-top: 50px;
   transition: all 0.6s;
-  text-align: center;
+  text-align: right;
   background-color: #fff;
   p {
     line-height: 24px;
@@ -442,22 +487,24 @@ export default {
     margin: 0 0 10px;
   }
   h4 {
+    // .service {
+    //   padding-left: 150px;
+    //   padding-right: 150px;
+    // }
+    // .skills {
+    //   padding-right: 150px;
+    //   padding-left: 150px;
+    // }
     font-size: 18px;
     color: $white;
     padding-bottom: 10px;
     margin-top: 10px;
     text-transform: uppercase;
   }
-  button {
-    padding: 6px 10px 0;
-    border-radius: 0;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
 }
 img,
 iframe {
-  max-width: 100%;
+  width: 70%;
   height: auto;
   display: block;
 }
@@ -465,27 +512,38 @@ iframe {
 .data-icon,
 .chart-icon,
 .chat-icon {
-  font-size: 80px;
+  font-size: 50px;
   color: $red;
   line-height: 50px;
 
   padding: 10px;
 }
-// @media only screen and (min-width: 600px) {
-//   .container-adapt {
-//     -moz-column-count: 2;
-//     -webkit-column-count: 2;
-//     column-count: 2;
-//   }
-// }
-
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 900px) {
   .container-adapt {
-    -moz-column-count: 3;
-    -webkit-column-count: 3;
-    column-count: 3;
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+    display:flex;
+    justify-content: center;
+    align-items: center;
   }
 }
+
+// @media only screen and (min-width: 700px) {
+//   .container-adapt {
+//     -moz-column-count: 3;
+//     -webkit-column-count: 3;
+//     column-count: 3;
+//   }
+// .service {
+//   padding-left: 150px;
+//   padding-right: 150px;
+// }
+// .skills {
+//   padding-right: 150px;
+//   padding-left: 150px;
+// }
+//}
 
 // @media only screen and (min-width: 850px) {
 //   .container-adapt {
@@ -505,7 +563,7 @@ iframe {
   position: relative;
   z-index: 1;
   box-sizing: border-box;
-  background: url(../assets/images/02.jpg) center center no-repeat fixed;
+  background: url(../assets/images/05.jpg) center center no-repeat fixed;
   background-size: auto;
   background-size: cover;
   min-height: 100%;
@@ -539,21 +597,28 @@ iframe {
   border-radius: $radius;
 }
 .skills {
-  background-color: #ebeeee;
-  color: #fff;
-  // height: 400px;
+  // background-color: #fff;
+  // color: #fff;
+  // //height: 400px;
   margin: 0 auto;
   align-content: center;
   padding-right: 50px;
   padding-left: 50px;
-  margin-right: auto;
-  margin-left: auto;
+  // margin-right: auto;
+  // margin-left: auto;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  background: url(../assets/images/03.jpg) center center no-repeat fixed;
+  background-size: auto;
+  background-size: cover;
+  min-height: 100%;
 }
 .box {
   // width: 800px;
   padding: 40px;
-  margin: 50px auto;
-  background: #f3f3f3;
+  // margin: 50px auto;
+  background: #2d3e73;
   box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.1);
 }
 
