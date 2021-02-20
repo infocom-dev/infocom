@@ -25,20 +25,20 @@
       </div>
       <div class="container-adapt">
         <div class="service-item">
-          <figure class="image is-fullwidth">
+          <figure class="image">
             <img class="animated-img" src="../assets/images/home.svg" />
           </figure>
         </div>
         <div class="service-item">
           <div v-for="service in services" :key="service">
-          <div class="content-container">
-            <div class="row">
+            <div class="content-container">
+              <div class="row">
                 <div class="icon">
-                  <i :class='service.icon'></i>
+                  <i :class="service.icon"></i>
                 </div>
                 <div class="text">
-                  <h4>{{service.title}}</h4>
-                  <p>{{service.text}}</p>
+                  <h4>{{ service.title }}</h4>
+                  <p>{{ service.text }}</p>
                 </div>
               </div>
             </div>
@@ -63,17 +63,20 @@
       </div>
       <div class="container-adapt">
         <div class="service-item">
-          <figure class="image is-fullwidth">
+          <figure class="image">
             <img class="animated-fhoto" src="../assets/images/team1.jpg" />
           </figure>
+          <div class="cover">
+            <p>slslsls</p>
+          </div>
         </div>
         <div class="service-item">
-          <figure class="image is-fullwidth">
+          <figure class="image">
             <img class="animated-fhoto" src="../assets/images/team2.jpg" />
           </figure>
         </div>
         <div class="service-item">
-          <figure class="image is-fullwidth">
+          <figure class="image">
             <img class="animated-fhoto" src="../assets/images/team3.jpg" />
           </figure>
         </div>
@@ -124,11 +127,26 @@ export default {
         { lang: "MYSQL", percent: 76, color: "#FFD037" },
         { lang: "JAVASCRIPT", percent: 84, color: "#FFD037" },
       ],
-      services:[
-        {title:"calculate",text:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever." , icon:"fa fa-calculator chart-icon"},
-        {title:"web development",text:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",icon:"fa fa-laptop laptop-icon"},
-        {title:"chat-bot",text:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",icon:"fa fa-comments chat-icon"},
-      ]
+      services: [
+        {
+          title: "calculate",
+          text:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
+          icon: "fa fa-calculator chart-icon",
+        },
+        {
+          title: "web development",
+          text:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
+          icon: "fa fa-laptop laptop-icon",
+        },
+        {
+          title: "chat-bot",
+          text:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
+          icon: "fa fa-comments chat-icon",
+        },
+      ],
     };
   },
   methods: {},
@@ -489,5 +507,23 @@ ul li {
   font-weight: 600;
   height: 30px;
   line-height: 30px;
+}
+.skills {
+  .service-item {
+    position: relative;
+  }
+  .cover {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    display: none;
+  }
+
+  .service-item:hover .cover {
+    display: block;
+  }
 }
 </style>
