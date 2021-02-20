@@ -78,7 +78,7 @@
         </div>
       </div>
     </section>
-    <section class="promo-banner">
+    <!-- <section class="promo-banner">
       <div class="promo-container">
         <h2>Displaying the Result</h2>
         <p class="promo-banner-text">
@@ -88,7 +88,7 @@
           aliquip ex ea commodo.
         </p>
       </div>
-    </section>
+    </section> -->
     <section class="skills">
       <div class="header-section">
         <h1>SKILLS<span></span></h1>
@@ -346,7 +346,12 @@ iframe {
   color: $blu;
   line-height: 50px;
   padding: 10px;
+  &:hover{
+    color:$ylw;
+    animation: up-down 1s ease-in-out infinite alternate-reverse both;
+  }
 }
+
 .animated-img {
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
