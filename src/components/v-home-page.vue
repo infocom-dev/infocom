@@ -1,19 +1,21 @@
 <template>
   <div class="v-home-page">
     <section class="home">
-      <v-navigation-wrapper></v-navigation-wrapper>
-      <div class="container">
-        <h3>Our Clients Are Our First Priority</h3>
-        <h1>WELCOME TO BINO</h1>
-        <div class="separator"></div>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
-        </p>
-        <div class="home_btn">
-          <button>GET STARTED NOW</button>
+      <div class="home-skew-border">
+        <v-navigation-wrapper></v-navigation-wrapper>
+        <div class="container">
+          <h3>Our Clients Are Our First Priority</h3>
+          <h1>WELCOME TO BINO</h1>
+          <div class="separator"></div>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book.
+          </p>
+          <div class="home_btn">
+            <button>GET STARTED NOW</button>
+          </div>
         </div>
       </div>
       <!-- <div class="slider-container">
@@ -48,31 +50,55 @@
       </div>
       <div class="container-adapt">
         <div class="service-item">
-          <div class="row">
-            <div class="text">
-
+          <div class="content-container">
+            <div class="row">
+              <div class="text">
+                <h4>Calculate</h4>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ip sum has been the industry's
+                  standard dummy text ever.
+                </p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-calculator chart-icon"> </i>
+              </div>
             </div>
-            <div class=
           </div>
-          <div class="text-container">
-            <i class="fa fa-calculator chart-icon" aria-hidden="true"> </i>
-            <h4>Calculate</h4>
-            <p>Calculate current cost of your own project</p>
+          <div class="content-container">
+            <div class="row">
+              <div class="text">
+                <h4>web development</h4>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ip sum has been the industry's
+                  standard dummy text ever.
+                </p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-laptop laptop-icon"></i>
+              </div>
+            </div>
           </div>
-          <div class="text-container">
-            <i class="fa fa-laptop laptop-icon"></i>
-            <h4>web development</h4>
-            <p>lalaaa lalalffffal laalalal alalaalal lalall</p>
-          </div>
-          <div class="text-container">
-            <i class="fa fa-comments chat-icon" aria-hidden="true"></i>
-            <h4>chat-bot</h4>
-            <p>Telegram and vk bot development vvfff</p>
+          <div class="content-container">
+            <div class="row">
+              <div class="text">
+                <h4>chat-bot</h4>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ip sum has been the industry's
+                  standard dummy text ever.
+                </p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-comments chat-icon"></i>
+              </div>
+            </div>
           </div>
         </div>
         <div class="service-item">
           <figure class="image is-fullwidth">
-            <img src="../assets/images/home.svg" />
+            <img class="animated-img" src="../assets/images/home.svg" />
           </figure>
         </div>
         <!-- <div class="service-item">
@@ -174,12 +200,37 @@ export default {
   font-family: "Lato", sans-serif;
 }
 .home {
-  background: url("../assets/images/10.jpg") no-repeat center center;
+  background: url("../assets/images/06.jpg") no-repeat center center;
   background-size: cover;
   position: relative;
   flex-direction: column;
-  height: 700px;
+  height: 770px;
   font-size: 1rem;
+}
+.home-skew-border{
+    // position: relative;
+
+}
+.home-skew-border:after{
+    position: absolute;
+    left:0;
+    bottom:0;
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: 86px solid #fff;
+    border-right: 680px solid transparent;
+
+}
+.home-skew-border:before{
+    position: absolute;
+    right:0;
+    bottom:0;
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: 86px solid #fff;
+    border-left: 680px solid transparent;
 }
 
 .container {
@@ -187,8 +238,8 @@ export default {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 
-  padding-top: 150px;
-  padding-bottom: 150px;
+  padding-top: 170px;
+  padding-bottom: 1500px;
   text-align: center;
   box-sizing: border-box;
   padding-right: 15px;
@@ -196,19 +247,19 @@ export default {
   h3 {
     font-size: 1.714em;
     line-height: 2.5rem;
-    color: black;
+    color: $blu;
   }
   h1 {
     font-size: 5.143rem;
     line-height: 5.5rem;
-    color: #fff;
+    color: $ylw;
     letter-spacing: 0.4rem;
   }
   .separator {
     width: 10px;
     height: 10px;
     margin: 20px auto;
-    background: #e74c3c;
+    background: $rs;
     position: relative;
     display: inline-block;
     border-radius: 50%;
@@ -244,7 +295,7 @@ export default {
     margin-left: 20px;
   }
   p {
-    color: #fff;
+    color: $wht;
     max-width: 60%;
     margin: 0 auto;
     padding-bottom: 30px;
@@ -261,7 +312,6 @@ export default {
   //   padding-left: 150px;
   // }
 }
-
 // .slider-container {
 //   width: 100vw;
 //   height: 50vh;
@@ -271,14 +321,11 @@ export default {
 //     width: 300%;
 //     height: 100%;
 //     position: absolute;
-
 //     transform: translateX(0);
 //     animation: slide1 15s infinite;
-
 //     button {
 //       width: 200px;
 //     }
-
 //     .slide {
 //       width: 33.333333333%;
 //       height: 100%;
@@ -291,7 +338,6 @@ export default {
 //       //   background: url(https://images.unsplash.com/photo-1433838552652-f9a46b332c40?q=80&fm=jpg&s=97cb7cd5e219e932365f3bcff3950eda) no-repeat center;
 //       //       background-size: cover;
 //       // }
-
 //       // &:nth-child(2){
 //       //   background: url(https://images.unsplash.com/photo-1432836431433-925d3cc0a5cd?q=80&fm=jpg&s=97a1e6c0e5adecf5dc6d53e17d6bc581) no-repeat center;
 //       //       background-size: cover;
@@ -300,13 +346,11 @@ export default {
 //       //   background: url(https://images.unsplash.com/photo-1428278953961-a8bc45e05f72?q=80&fm=jpg&s=24f29a71c4de9b922e7ee2cb5ee46f4b) no-repeat center;
 //       //       background-size: cover;
 //       // }
-
 //       img {
 //         display: block;
 //         max-width: 100%;
 //         height: auto;
 //       }
-
 //       .slide-text {
 //         text-align: center;
 //         display: inline-block;
@@ -317,7 +361,6 @@ export default {
 //         font-family: arial, Helvetica;
 //         // text-transform: uppercase;
 //         font-size: 2.5vw;
-
 //         padding: 5px;
 //         transform: translateY(-50%);
 //         // h1 {
@@ -429,12 +472,12 @@ export default {
   position: relative;
   z-index: 1;
   box-sizing: border-box;
-  background: white;
+  background: $wht;
   background-size: auto;
   background-size: cover;
   min-height: 100%;
   // background-color: url(../assets/images/10.jpg);
-  color: #fff;
+  color: $wht;
   // height: 400px;
   margin: 0 auto;
   align-content: center;
@@ -461,28 +504,41 @@ export default {
   -webkit-column-gap: 1.5em; /* Расстояние между колонками  для Safari, Chrome и iOS */
   // margin-bottom: 0;
 }
-
+.row {
+  width: 100%;
+  display: flex;
+}
+.text {
+  text-align: right;
+  width: 80%;
+  float: left;
+}
+.icon {
+  text-align: center;
+  align-self: center;
+  width: 20%;
+  float: right;
+}
 /* Элементы в виде плиток с содержанием */
 .service-item {
   display: inline-block;
-  height: 600vh;
   padding: 1em;
   margin: 0 0 1.5em;
   width: 100%;
   box-sizing: border-box; /* Изменения алгоритма расчета ширины и высоты элемента.*/
   -moz-box-sizing: border-box; /* Для Firefox */
   -webkit-box-sizing: border-box; /* Для Safari, Chrome, iOS иAndroid */
-  box-shadow: 2px 2px 4px 0 #ccc; /* Внешняя тень плиток */
-  border: 2px solid $red;
+  // box-shadow: 2px 2px 4px 0 #ccc; /* Внешняя тень плиток */
+  // border: 2px solid $red;
   height: 100%;
   // margin-top: 50px;
   transition: all 0.6s;
-  text-align: right;
-  background-color: #fff;
+  // text-align: right;
+  background-color: $wht;
   p {
     line-height: 24px;
     // padding: 10px;
-    color: #1438a6;
+    color: $blu;
     font-size: 15px;
     margin: 0 0 10px;
   }
@@ -496,7 +552,7 @@ export default {
     //   padding-left: 150px;
     // }
     font-size: 18px;
-    color: $white;
+    color: $rs;
     padding-bottom: 10px;
     margin-top: 10px;
     text-transform: uppercase;
@@ -504,26 +560,47 @@ export default {
 }
 img,
 iframe {
-  width: 70%;
+  width: 90%;
   height: auto;
   display: block;
+  text-align: center;
 }
 .laptop-icon,
 .data-icon,
 .chart-icon,
 .chat-icon {
-  font-size: 50px;
-  color: $red;
+  font-size: 70px;
+  color: $rs;
   line-height: 50px;
 
   padding: 10px;
+}
+.animated-img {
+  animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+@-webkit-keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
 }
 @media only screen and (min-width: 900px) {
   .container-adapt {
     -moz-column-count: 2;
     -webkit-column-count: 2;
     column-count: 2;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
   }
@@ -569,7 +646,7 @@ iframe {
   min-height: 100%;
   .promo-container {
     text-align: center;
-    color: $white;
+    color: $wht;
     width: 750px;
     padding-right: 15px;
     padding-left: 15px;
@@ -579,7 +656,7 @@ iframe {
     padding-bottom: 100px;
     h2 {
       font-weight: 700;
-      color: #fff;
+      color: $wht;
       margin: 0 0 15px;
     }
     p {

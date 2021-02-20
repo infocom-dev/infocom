@@ -26,13 +26,13 @@
 }
 .menu-icon {
   font-size: 2.4em;
-  color: $white;
+  color: $blu;
   line-height: 50px;
 }
 nav {
   align-items: center;
   position: absolute;
-  background-color: #ECEDEB;
+  background-color: $ylw;
   top:70px;
   left:0;
   width: 100%;
@@ -51,13 +51,13 @@ nav ul li a {
   display: inline-block;
   padding: 12px;
   /* Добавьте ниже свои пользовательские стили, чтобы изменить отображение ссылок */
-  color: $white;
+  color: $rs;
   text-decoration: none;
   letter-spacing: 0.05em;
   text-transform: capitalize;
 }
 nav ul li a:hover, nav ul li a:focus {
-  color: $red;
+  color: $ylw;
 }
 
 @media (min-width: 768px) {
