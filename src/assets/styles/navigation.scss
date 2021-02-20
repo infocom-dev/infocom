@@ -32,7 +32,7 @@
 nav {
   align-items: center;
   position: absolute;
-  background-color: $ylw;
+  background-color: grey;
   top:70px;
   left:0;
   width: 100%;
@@ -51,13 +51,13 @@ nav ul li a {
   display: inline-block;
   padding: 12px;
   /* Добавьте ниже свои пользовательские стили, чтобы изменить отображение ссылок */
-  color: $rs;
+  color: $ylw;
   text-decoration: none;
   letter-spacing: 0.05em;
   text-transform: capitalize;
 }
 nav ul li a:hover, nav ul li a:focus {
-  color: $ylw;
+  color: $rs;
 }
 
 @media (min-width: 768px) {
