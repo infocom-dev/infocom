@@ -62,23 +62,22 @@
         <h1>our<span>team</span></h1>
       </div>
       <div class="container-adapt">
-        <div class="service-item">
-          <figure class="image">
-            <img class="animated-fhoto" src="../assets/images/team1.jpg" />
-          </figure>
-          <div class="cover">
-            <p>slslsls</p>
+        <div v-for="mate in team" :key="mate.name">
+          <div class="service-item">
+            <figure class="image">
+              <img :src="mate.url" />
+            </figure>
+            <div class="cover">
+              <h1>{{ mate.name }}</h1>
+              <h4>{{ mate.prof }}</h4>
+              <p>{{ mate.info }}</p>
+              <div class="link">
+                <div v-for="icon in mate.link" :key="icon">
+                  <i :class="icon"></i>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="service-item">
-          <figure class="image">
-            <img class="animated-fhoto" src="../assets/images/team2.jpg" />
-          </figure>
-        </div>
-        <div class="service-item">
-          <figure class="image">
-            <img class="animated-fhoto" src="../assets/images/team3.jpg" />
-          </figure>
         </div>
       </div>
       <div class="header-section">
@@ -147,6 +146,32 @@ export default {
           icon: "fa fa-comments chat-icon",
         },
       ],
+      team: [
+        {
+          name: "Vasily Pupkin",
+          prof: "Web Designer",
+          info:
+            "text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever",
+          link: ["fab fa-instagram insta-icon", "fab fa-vk vk-icon"],
+          url: require("../assets/images/team2.jpg"),
+        },
+        {
+          name: "Vasily Pupkin",
+          prof: "Web Designer",
+          info:
+            "text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever",
+          link: ["fab fa-instagram insta-icon", "fab fa-vk vk-icon"],
+          url: require("../assets/images/team2.jpg"),
+        },
+        {
+          name: "Vasily Pupkin",
+          prof: "Web Designer",
+          info:
+            "text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever",
+          link: ["fa fa-envelope mail-icon", "fab fa-vk vk-icon"],
+          url: require("../assets/images/team2.jpg"),
+        },
+      ],
     };
   },
   methods: {},
@@ -206,6 +231,9 @@ export default {
   padding-right: 15px;
   padding-left: 15px;
   h3 {
+    -webkit-text-stroke-width: 1px;
+
+    -webkit-text-stroke-color: black;
     font-size: 1.714em;
     line-height: 2.5rem;
     color: $blu;
@@ -267,6 +295,10 @@ export default {
 @media (max-width: 991px) {
   html {
     font-size: 70%;
+    .skills {
+      padding-right: 50px;
+      padding-left: 50px;
+    }
   }
 }
 .service {
@@ -290,15 +322,13 @@ export default {
 }
 
 .container-adapt {
-  // display: flex;
-
   margin: 1.5em 0;
   padding: 0;
   column-gap: 0em; /* Общее расстояние между колонками */
   font-size: 0.85em;
   -moz-column-gap: 1.5em; /* Расстояние между колонками для Firefox */
   -webkit-column-gap: 1.5em; /* Расстояние между колонками  для Safari, Chrome и iOS */
-  // margin-bottom: 0;
+  margin-bottom: 0;
 }
 .row {
   width: 100%;
@@ -449,7 +479,7 @@ iframe {
   // margin-right: auto;
   // margin-left: auto;
   position: relative;
-  z-index: 1;
+  // z-index: 1;
   box-sizing: border-box;
   background: url(../assets/images/03.jpg) center center no-repeat fixed;
   background-size: auto;
@@ -509,6 +539,26 @@ ul li {
   line-height: 30px;
 }
 .skills {
+  .insta-icon,
+  .vk-icon,
+  .mail-icon {
+    font-size: 70px;
+    color: $blu;
+    line-height: 50px;
+    padding: 10px;
+    &:hover {
+      color: $ylw;
+    }
+  }
+  .link {
+    display: flex;
+    justify-content: center;
+  }
+  img {
+    width: 100%;
+    height: auto;
+    // display: block;
+  }
   .service-item {
     position: relative;
   }
