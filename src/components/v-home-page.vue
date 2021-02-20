@@ -30,48 +30,16 @@
           </figure>
         </div>
         <div class="service-item">
+          <div v-for="service in services" :key="service">
           <div class="content-container">
             <div class="row">
-              <div class="icon">
-                <i class="fa fa-calculator chart-icon"> </i>
-              </div>
-              <div class="text">
-                <h4>Calculate</h4>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ip sum has been the industry's
-                  standard dummy text ever.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="content-container">
-            <div class="row">
-              <div class="icon">
-                <i class="fa fa-laptop laptop-icon"></i>
-              </div>
-              <div class="text">
-                <h4>web development</h4>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ip sum has been the industry's
-                  standard dummy text ever.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="content-container">
-            <div class="row">
-              <div class="icon">
-                <i class="fa fa-comments chat-icon"></i>
-              </div>
-              <div class="text">
-                <h4>chat-bot</h4>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ip sum has been the industry's
-                  standard dummy text ever.
-                </p>
+                <div class="icon">
+                  <i :class='service.icon'></i>
+                </div>
+                <div class="text">
+                  <h4>{{service.title}}</h4>
+                  <p>{{service.text}}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -90,6 +58,26 @@
       </div>
     </section> -->
     <section class="skills">
+      <div class="header-section">
+        <h1>our<span>team</span></h1>
+      </div>
+      <div class="container-adapt">
+        <div class="service-item">
+          <figure class="image is-fullwidth">
+            <img class="animated-fhoto" src="../assets/images/team1.jpg" />
+          </figure>
+        </div>
+        <div class="service-item">
+          <figure class="image is-fullwidth">
+            <img class="animated-fhoto" src="../assets/images/team2.jpg" />
+          </figure>
+        </div>
+        <div class="service-item">
+          <figure class="image is-fullwidth">
+            <img class="animated-fhoto" src="../assets/images/team3.jpg" />
+          </figure>
+        </div>
+      </div>
       <div class="header-section">
         <h1>SKILLS<span></span></h1>
       </div>
@@ -132,10 +120,15 @@ export default {
   data() {
     return {
       skills: [
-        { lang: "PYTHON", percent: 90, color: "#ec407a" },
-        { lang: "MYSQL", percent: 76, color: "#f4511e" },
-        { lang: "JAVASCRIPT", percent: 84, color: "#512da8" },
+        { lang: "PYTHON", percent: 90, color: "#FFD037" },
+        { lang: "MYSQL", percent: 76, color: "#FFD037" },
+        { lang: "JAVASCRIPT", percent: 84, color: "#FFD037" },
       ],
+      services:[
+        {title:"calculate",text:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever." , icon:"fa fa-calculator chart-icon"},
+        {title:"web development",text:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",icon:"fa fa-laptop laptop-icon"},
+        {title:"chat-bot",text:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",icon:"fa fa-comments chat-icon"},
+      ]
     };
   },
   methods: {},
@@ -152,7 +145,7 @@ export default {
   font-family: "Lato", sans-serif;
 }
 .home {
-  background: url("../assets/images/06.jpg") no-repeat center center;
+  background: url("../assets/images/09.jpg") no-repeat center center;
   background-size: cover;
   position: relative;
   flex-direction: column;
@@ -346,8 +339,8 @@ iframe {
   color: $blu;
   line-height: 50px;
   padding: 10px;
-  &:hover{
-    color:$ylw;
+  &:hover {
+    color: $ylw;
     animation: up-down 1s ease-in-out infinite alternate-reverse both;
   }
 }
@@ -383,30 +376,6 @@ iframe {
   }
 }
 
-// @media only screen and (min-width: 700px) {
-//   .container-adapt {
-//     -moz-column-count: 3;
-//     -webkit-column-count: 3;
-//     column-count: 3;
-//   }
-// .service {
-//   padding-left: 150px;
-//   padding-right: 150px;
-// }
-// .skills {
-//   padding-right: 150px;
-//   padding-left: 150px;
-// }
-//}
-
-// @media only screen and (min-width: 850px) {
-//   .container-adapt {
-//     -moz-column-count: 4;
-//     -webkit-column-count: 4;
-//     column-count: 4;
-//   }
-// }
-
 @media only screen and (min-width: 1280px) {
   .service {
     width: 100%;
@@ -417,7 +386,7 @@ iframe {
   position: relative;
   z-index: 1;
   box-sizing: border-box;
-  background: url(../assets/images/05.jpg) center center no-repeat fixed;
+  // background: url(../assets/images/05.jpg) center center no-repeat fixed;
   background-size: auto;
   background-size: cover;
   min-height: 100%;
@@ -455,9 +424,10 @@ iframe {
   // color: #fff;
   // //height: 400px;
   margin: 0 auto;
+  padding-bottom: 70px;
   align-content: center;
-  padding-right: 50px;
-  padding-left: 50px;
+  padding-right: 150px;
+  padding-left: 150px;
   // margin-right: auto;
   // margin-left: auto;
   position: relative;
@@ -467,12 +437,13 @@ iframe {
   background-size: auto;
   background-size: cover;
   min-height: 100%;
+  color: $wht;
 }
 .box {
   // width: 800px;
   padding: 40px;
   // margin: 50px auto;
-  background: #2d3e73;
+  background: $blu;
   box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -487,7 +458,7 @@ ul li {
 }
 
 .bar {
-  background: #555;
+  background: $wht;
   position: relative;
   width: 100%;
   height: 5px;
