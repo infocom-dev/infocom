@@ -24,12 +24,12 @@
         <h1>our<span>services</span></h1>
       </div>
       <div class="container-adapt">
-        <div class="service-item">
+        <div class="container-item">
           <figure class="image">
             <img class="animated-img" src="../assets/images/home.svg" />
           </figure>
         </div>
-        <div class="service-item">
+        <div class="container-item">
           <div v-for="service in services" :key="service">
             <div class="content-container">
               <div class="row">
@@ -57,13 +57,14 @@
         </p>
       </div>
     </section> -->
-    <section class="skills">
+    <section class="team">
+      <!-- <div class="team-skew-border"> -->
       <div class="header-section">
         <h1>our<span>team</span></h1>
       </div>
       <div class="container-adapt">
         <div v-for="mate in team" :key="mate.name">
-          <div class="service-item">
+          <div class="container-item">
             <figure class="image">
               <img :src="mate.url" />
             </figure>
@@ -80,11 +81,14 @@
           </div>
         </div>
       </div>
-      <div class="header-section">
+      <!-- </div> -->
+
+      <!-- <div class="header-section">
         <h1>SKILLS<span></span></h1>
       </div>
-      <div class="box">
-        <ul>
+      <div class="box"> -->
+
+      <!-- <ul>
           <li v-for="skill in skills" :key="skill">
             <div class="lang">{{ skill.lang }}</div>
             <div class="bar">
@@ -100,23 +104,47 @@
               <span class="percent">{{ skill.percent }}%</span>
             </div>
           </li>
-        </ul>
+        </ul> -->
+      <!-- </div> -->
+    </section>
+    <section class="skills">
+      <div class="header-section">
+        <h1>STACK<span>skills</span></h1>
+      </div>
+      <div class="poligon">
+      <!-- <div class="container-adapt">
+        <div class="container-item">
+          <h1>
+            We support challenges on all the latest stacks. Console, web or
+            mobile.
+          </h1>
+        </div>
+        <div class="container-item"> -->
+          <v-skills></v-skills></div>
+          <!-- <figure class="image">
+            <img class="animated-img" src="../assets/images/skills.jpg" />
+          </figure> -->
+        <!-- </div> -->
+      <!-- </div> -->
+    </section>
+    <section class="contact-us">
+      <div class="box">
+        <div class="header-section">
+          <h1>contact<span>us</span></h1>
+        </div>
       </div>
     </section>
   </div>
 </template>
 
 <script>
-// import { Slider, SliderItem } from 'vue-easy-slider'
-import vNavigationWrapper from "./v-navigation-wrapper";
+import VSkills from './v-skills.vue'
 import VNavigationWrapper from "./v-navigation-wrapper.vue";
 
 export default {
   name: "v-home-page",
   components: {
-    // Slider,
-    // SliderItem,
-    vNavigationWrapper,
+    VSkills,
     VNavigationWrapper,
   },
   data() {
@@ -216,7 +244,7 @@ export default {
   width: 0;
   height: 0;
   border-bottom: 86px solid $wht;
-  border-left: 680px solid transparent;
+  border-left: 580px solid transparent;
 }
 
 .container {
@@ -295,13 +323,15 @@ export default {
 @media (max-width: 991px) {
   html {
     font-size: 70%;
+    .team,
     .skills {
       padding-right: 50px;
       padding-left: 50px;
     }
   }
 }
-.service {
+.service,
+.skills {
   position: relative;
   z-index: 1;
   box-sizing: border-box;
@@ -346,7 +376,7 @@ export default {
   float: right;
 }
 /* Элементы в виде плиток с содержанием */
-.service-item {
+.container-item {
   display: inline-block;
   padding: 1em;
   margin: 0 0 1.5em;
@@ -413,23 +443,15 @@ iframe {
     transform: translateY(-10px);
   }
 }
-@media only screen and (min-width: 900px) {
-  .container-adapt {
-    -moz-column-count: 2;
-    -webkit-column-count: 2;
-    column-count: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.skew-border {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 200px 98.77vw;
+  border-color: transparent transparent #f0f0f0 transparent;
+  margin-bottom: -10px;
 }
-
-@media only screen and (min-width: 1280px) {
-  .service {
-    width: 100%;
-  }
-}
-
 .promo-banner {
   position: relative;
   z-index: 1;
@@ -467,10 +489,8 @@ iframe {
   -ms-border-radius: $radius;
   border-radius: $radius;
 }
-.skills {
-  // background-color: #fff;
-  // color: #fff;
-  // //height: 400px;
+.team {
+
   margin: 0 auto;
   padding-bottom: 70px;
   align-content: center;
@@ -487,11 +507,15 @@ iframe {
   min-height: 100%;
   color: $wht;
 }
+.contact-us {
+  background: $blu;
+  
+}
 .box {
   // width: 800px;
   padding: 40px;
   // margin: 50px auto;
-  background: $blu;
+
   box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -519,7 +543,6 @@ ul li {
   width: 0%;
   height: 100%;
   @include border-radius(5px);
-
   -webkit-animation-duration: 2s;
   animation-duration: 2s;
   -webkit-animation-timing-function: ease-out;
@@ -532,13 +555,14 @@ ul li {
     width: 0%;
   }
 }
+
 .percent {
   float: right;
   font-weight: 600;
   height: 30px;
   line-height: 30px;
 }
-.skills {
+.team {
   .insta-icon,
   .vk-icon,
   .mail-icon {
@@ -559,7 +583,7 @@ ul li {
     height: auto;
     // display: block;
   }
-  .service-item {
+  .container-item {
     position: relative;
   }
   .cover {
@@ -572,8 +596,33 @@ ul li {
     display: none;
   }
 
-  .service-item:hover .cover {
+  .container-item:hover .cover {
     display: block;
+  }
+}
+.skills {
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+@media only screen and (min-width: 900px) {
+  .container-adapt {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.poligon{
+  width: 100%;
+  height: 400px;
+}
+@media only screen and (min-width: 1280px) {
+  .service,
+  .skills {
+    width: 100%;
   }
 }
 </style>
