@@ -2,31 +2,21 @@
   <div class="v-skills">
     <div class="wrap">
       <div class="clip-block">
-        <a href="#" class="clip-tagline">balance</a>
-      </div>
-      <div class="clip-block">
-        <a href="#" class="clip-each clip-gradient">
-          <div class="clip-caption">work</div>
-        </a>
-        <a href="#" class="clip-each clip-border">
-          <div class="clip-caption">life</div>
-        </a>
-      </div>
-      <!-- /clip-block -->
-
-      <div class="clip-block">
         <div class="clip-each clip-solid">
-          <div class="social-share-block">
-            <span class="social-each"><strong>10</strong> </span>
-            <span>&hearts;</span>
-          </div>
+          <!-- <div class="social-share-block"> -->
+          <!-- <img src="../assets/images/02.jpg" /> -->
+          <!-- </div> -->
         </div>
       </div>
       <!-- /clip-block -->
 
       <div class="clip-block">
         <a href="#" class="clip-each clip-gradient">
-          <div class="clip-caption">work</div>
+          <div class="clip-caption">
+            <i class="fa fa-database" aria-hidden="true"></i>
+
+            mysql
+            </div>
         </a>
         <a href="#" class="clip-each clip-border">
           <div class="clip-caption">life</div>
@@ -34,9 +24,9 @@
       </div>
       <!-- /clip-block -->
 
-      <div class="clip-block">
+      <!-- <div class="clip-block">
         <a href="#" class="clip-tagline">balance</a>
-      </div>
+      </div> -->
       <!-- /clip-block -->
       <svg class="clip-svg">
         <defs>
@@ -124,11 +114,13 @@ a.clip-each:hover {
 .clip-solid {
   width: 300px;
   height: 300px;
-  background-image: url("http://karenmenezes.com/shapes-polygon/clip-demo-img.jpg");
+  background: url("../assets/images/skills.png") no-repeat center center;
+  //   background-image: url(../assets/images/skills.jpg) cover;
   background-repeat: no-repeat;
   background-size: contain;
   background-color: $rs;
-  background-blend-mode: hard-light;
+//   background-color: $rs;
+//   background-blend-mode: hard-light;
   -webkit-transition: all 2.5s linear;
   transition: all 2.5s linear;
 }
@@ -143,7 +135,7 @@ a.clip-each:hover {
   clip-path: polygon(100% 3%, 17% 100%, 100% 100%);
   -webkit-clip-path: url("#triangle-clip");
   clip-path: url("#triangle-clip");
-  background: #9e566e;
+//   background: #9e566e;
   z-index: 1;
   width: 100%;
   height: 155px;
@@ -164,6 +156,11 @@ a.clip-each:hover {
 }
 
 .social-share-block {
+  img {
+    width: 100%;
+    background-position: top;
+    text-align: center;
+  }
   position: absolute;
   bottom: 20px;
   right: 75px;
@@ -228,15 +225,6 @@ a.clip-each:hover {
 }
 
 @media only screen and (min-width: 550px) {
-    .wrap {
-    display: table;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translateY(-50%) translateX(-50%);
-    -webkit-transform: translateY(-50%) translateX(-50%);
-    transform: translateY(-50%) translateX(-50%);
-  }
   .clip-block {
     display: table-cell;
     vertical-align: middle;

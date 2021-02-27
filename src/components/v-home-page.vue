@@ -81,69 +81,46 @@
           </div>
         </div>
       </div>
-      <!-- </div> -->
-
-      <!-- <div class="header-section">
-        <h1>SKILLS<span></span></h1>
-      </div>
-      <div class="box"> -->
-
-      <!-- <ul>
-          <li v-for="skill in skills" :key="skill">
-            <div class="lang">{{ skill.lang }}</div>
-            <div class="bar">
-              <div
-                class="progress"
-                v-bind:style="{
-                  background: skill.color,
-                  width: skill.percent + '%',
-                  'animation-name': 'progress',
-                  'animation-delay': '0.7s',
-                }"
-              ></div>
-              <span class="percent">{{ skill.percent }}%</span>
-            </div>
-          </li>
-        </ul> -->
-      <!-- </div> -->
     </section>
     <section class="skills">
       <div class="header-section">
         <h1>STACK<span>skills</span></h1>
       </div>
-      <div class="poligon">
-      <!-- <div class="container-adapt">
+      <div class="container-adapt">
+        <div class="container-item">
+          <v-skills></v-skills>
+          <!-- <figure class="image">
+            <img class="animated-img" src="../assets/images/skills.jpg" />
+          </figure> -->
+        </div>
         <div class="container-item">
           <h1>
             We support challenges on all the latest stacks. Console, web or
             mobile.
           </h1>
         </div>
-        <div class="container-item"> -->
-          <v-skills></v-skills></div>
-          <!-- <figure class="image">
-            <img class="animated-img" src="../assets/images/skills.jpg" />
-          </figure> -->
-        <!-- </div> -->
-      <!-- </div> -->
+      </div>
     </section>
     <section class="contact-us">
+      <div class="header-section">
+        <h1>contact<span>us</span></h1>
+      </div>
       <div class="box">
-        <div class="header-section">
-          <h1>contact<span>us</span></h1>
-        </div>
+        <v-contact-us></v-contact-us>
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import VSkills from './v-skills.vue'
+import VSkills from "./v-skills.vue";
 import VNavigationWrapper from "./v-navigation-wrapper.vue";
+import VContactUs from "./v-contact-us-form.vue";
 
 export default {
   name: "v-home-page",
   components: {
+    VContactUs,
     VSkills,
     VNavigationWrapper,
   },
@@ -324,7 +301,8 @@ export default {
   html {
     font-size: 70%;
     .team,
-    .skills {
+    .skills,
+    .contact-us {
       padding-right: 50px;
       padding-left: 50px;
     }
@@ -340,6 +318,7 @@ export default {
   background-size: cover;
   min-height: 100%;
   color: $wht;
+  
   margin: 0 auto;
   align-content: center;
   margin-right: auto;
@@ -490,7 +469,6 @@ iframe {
   border-radius: $radius;
 }
 .team {
-
   margin: 0 auto;
   padding-bottom: 70px;
   align-content: center;
@@ -508,14 +486,19 @@ iframe {
   color: $wht;
 }
 .contact-us {
-  background: $blu;
-  
+  background: url(../assets/images/06.jpg);
+  padding-left: 150px;
+  padding-right: 150px;
+  margin: 0 auto;
+  padding-bottom: 70px;
+  align-content: center;
+    // background-image: linear-gradient(135deg, transparent 66%, white 67%),
+    //                 linear-gradient(45deg, white 33%, gray 34%, transparent 44%);
+
 }
 .box {
   // width: 800px;
-  padding: 40px;
-  // margin: 50px auto;
-
+  // padding: 40px;
   box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -601,6 +584,7 @@ ul li {
   }
 }
 .skills {
+
   padding-left: 150px;
   padding-right: 150px;
 }
@@ -615,10 +599,7 @@ ul li {
     align-items: center;
   }
 }
-.poligon{
-  width: 100%;
-  height: 400px;
-}
+
 @media only screen and (min-width: 1280px) {
   .service,
   .skills {
