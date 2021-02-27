@@ -20,31 +20,7 @@
       </div>
     </section>
     <section class="service">
-      <div class="header-section">
-        <h1>our<span>services</span></h1>
-      </div>
-      <div class="container-adapt">
-        <div class="container-item">
-          <figure class="image">
-            <img class="animated-img" src="../assets/images/home.svg" />
-          </figure>
-        </div>
-        <div class="container-item">
-          <div v-for="service in services" :key="service">
-            <div class="content-container">
-              <div class="row">
-                <div class="icon">
-                  <i :class="service.icon"></i>
-                </div>
-                <div class="text">
-                  <h4>{{ service.title }}</h4>
-                  <p>{{ service.text }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <v-services-vue></v-services-vue>
     </section>
     <!-- <section class="promo-banner">
       <div class="promo-container">
@@ -58,48 +34,10 @@
       </div>
     </section> -->
     <section class="team">
-      <!-- <div class="team-skew-border"> -->
-      <div class="header-section">
-        <h1>our<span>team</span></h1>
-      </div>
-      <div class="container-adapt">
-        <div v-for="mate in team" :key="mate.name">
-          <div class="container-item">
-            <figure class="image">
-              <img :src="mate.url" />
-            </figure>
-            <div class="cover">
-              <h1>{{ mate.name }}</h1>
-              <h4>{{ mate.prof }}</h4>
-              <p>{{ mate.info }}</p>
-              <div class="link">
-                <div v-for="icon in mate.link" :key="icon">
-                  <i :class="icon"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <v-team></v-team>
     </section>
     <section class="skills">
-      <div class="header-section">
-        <h1>STACK<span>skills</span></h1>
-      </div>
-      <div class="container-adapt">
-        <div class="container-item">
-          <v-skills></v-skills>
-          <!-- <figure class="image">
-            <img class="animated-img" src="../assets/images/skills.jpg" />
-          </figure> -->
-        </div>
-        <div class="container-item">
-          <h1>
-            We support challenges on all the latest stacks. Console, web or
-            mobile.
-          </h1>
-        </div>
-      </div>
+      <v-skills></v-skills>
     </section>
     <section class="contact-us">
       <div class="header-section">
@@ -109,6 +47,9 @@
         <v-contact-us></v-contact-us>
       </div>
     </section>
+    <section class="links">
+      
+    </section>
   </div>
 </template>
 
@@ -116,67 +57,19 @@
 import VSkills from "./v-skills.vue";
 import VNavigationWrapper from "./v-navigation-wrapper.vue";
 import VContactUs from "./v-contact-us-form.vue";
-
+import vServicesVue from "./v-services.vue";
+import VTeam from "./v-team.vue";
 export default {
   name: "v-home-page",
   components: {
     VContactUs,
     VSkills,
     VNavigationWrapper,
+    vServicesVue,
+    VTeam,
   },
   data() {
     return {
-      skills: [
-        { lang: "PYTHON", percent: 90, color: "#FFD037" },
-        { lang: "MYSQL", percent: 76, color: "#FFD037" },
-        { lang: "JAVASCRIPT", percent: 84, color: "#FFD037" },
-      ],
-      services: [
-        {
-          title: "calculate",
-          text:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
-          icon: "fa fa-calculator chart-icon",
-        },
-        {
-          title: "web development",
-          text:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
-          icon: "fa fa-laptop laptop-icon",
-        },
-        {
-          title: "chat-bot",
-          text:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
-          icon: "fa fa-comments chat-icon",
-        },
-      ],
-      team: [
-        {
-          name: "Vasily Pupkin",
-          prof: "Web Designer",
-          info:
-            "text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever",
-          link: ["fab fa-instagram insta-icon", "fab fa-vk vk-icon"],
-          url: require("../assets/images/team2.jpg"),
-        },
-        {
-          name: "Vasily Pupkin",
-          prof: "Web Designer",
-          info:
-            "text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever",
-          link: ["fab fa-instagram insta-icon", "fab fa-vk vk-icon"],
-          url: require("../assets/images/team2.jpg"),
-        },
-        {
-          name: "Vasily Pupkin",
-          prof: "Web Designer",
-          info:
-            "text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever",
-          link: ["fa fa-envelope mail-icon", "fab fa-vk vk-icon"],
-          url: require("../assets/images/team2.jpg"),
-        },
-      ],
     };
   },
   methods: {},
@@ -318,7 +211,7 @@ export default {
   background-size: cover;
   min-height: 100%;
   color: $wht;
-  
+
   margin: 0 auto;
   align-content: center;
   margin-right: auto;
@@ -469,7 +362,6 @@ iframe {
   border-radius: $radius;
 }
 .team {
-  
   margin: 0 auto;
   padding-bottom: 70px;
   align-content: center;
@@ -486,7 +378,7 @@ iframe {
   min-height: 100%;
   color: $wht;
 }
-.team:after{
+.team:after {
   content: "";
   background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:white;" points="0.5,0.5 1,1 0,1 "/></svg>');
   background-size: 30px 30px;
@@ -496,7 +388,6 @@ iframe {
   bottom: 0px;
   right: 0;
   z-index: 2;
-
 }
 .contact-us {
   background: url(../assets/images/06.jpg);
@@ -505,11 +396,10 @@ iframe {
   margin: 0 auto;
   padding-bottom: 70px;
   align-content: center;
-    // background-image: linear-gradient(135deg, transparent 66%, white 67%),
-    //                 linear-gradient(45deg, white 33%, gray 34%, transparent 44%);
-
+  // background-image: linear-gradient(135deg, transparent 66%, white 67%),
+  //                 linear-gradient(45deg, white 33%, gray 34%, transparent 44%);
 }
-.contact-us:before{
+.contact-us:before {
   content: "";
   background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:white;" points="0.5,0.5 0,0 1,0 "/></svg>');
   background-size: 30px 30px;
@@ -608,7 +498,6 @@ ul li {
   }
 }
 .skills {
-
   padding-left: 150px;
   padding-right: 150px;
 }

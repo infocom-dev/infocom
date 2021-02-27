@@ -1,51 +1,55 @@
 <template>
   <div class="v-skills">
-    <div class="wrap">
-      <div class="clip-block">
-        <div class="clip-each clip-solid">
-          <!-- <div class="social-share-block"> -->
-          <!-- <img src="../assets/images/02.jpg" /> -->
-          <!-- </div> -->
+    <div class="header-section">
+      <h1>STACK<span>skills</span></h1>
+    </div>
+    <div class="container-adapt">
+      <div class="container-item">
+        <div class="wrap">
+          <div class="clip-block">
+            <div class="clip-each clip-solid"></div>
+          </div>
+          <!-- /clip-block -->
+          <div class="clip-block">
+            <a href="#" class="clip-each clip-gradient">
+              <div class="clip-caption">
+                <i class="fa fa-database" aria-hidden="true"></i>
+                mysql
+              </div>
+            </a>
+            <a href="#" class="clip-each clip-border">
+              <div class="clip-caption">life</div>
+            </a>
+          </div>
+          <!-- /clip-block -->
+
+          <svg class="clip-svg">
+            <defs>
+              <clipPath id="hexagon-clip" clipPathUnits="objectBoundingBox">
+                <polygon
+                  points="0.25 0.05, 0.75 0.05, 1 0.5, 0.75 0.95, 0.25 0.95, 0 0.5"
+                />
+              </clipPath>
+            </defs>
+          </svg>
+
+          <svg class="clip-svg">
+            <defs>
+              <clipPath id="triangle-clip" clipPathUnits="objectBoundingBox">
+                <polygon points="1 0.03, 0.17 1, 1 1" />
+              </clipPath>
+            </defs>
+          </svg>
         </div>
       </div>
-      <!-- /clip-block -->
-
-      <div class="clip-block">
-        <a href="#" class="clip-each clip-gradient">
-          <div class="clip-caption">
-            <i class="fa fa-database" aria-hidden="true"></i>
-
-            mysql
-            </div>
-        </a>
-        <a href="#" class="clip-each clip-border">
-          <div class="clip-caption">life</div>
-        </a>
+      <div class="container-item">
+        <h1>
+          We support challenges on all the latest stacks. Console, web or
+          mobile.
+        </h1>
       </div>
-      <!-- /clip-block -->
-
-      <!-- <div class="clip-block">
-        <a href="#" class="clip-tagline">balance</a>
-      </div> -->
-      <!-- /clip-block -->
-      <svg class="clip-svg">
-        <defs>
-          <clipPath id="hexagon-clip" clipPathUnits="objectBoundingBox">
-            <polygon
-              points="0.25 0.05, 0.75 0.05, 1 0.5, 0.75 0.95, 0.25 0.95, 0 0.5"
-            />
-          </clipPath>
-        </defs>
-      </svg>
-
-      <svg class="clip-svg">
-        <defs>
-          <clipPath id="triangle-clip" clipPathUnits="objectBoundingBox">
-            <polygon points="1 0.03, 0.17 1, 1 1" />
-          </clipPath>
-        </defs>
-      </svg>
     </div>
+
     <!-- /wrap -->
   </div>
 </template>
@@ -118,9 +122,9 @@ a.clip-each:hover {
   //   background-image: url(../assets/images/skills.jpg) cover;
   background-repeat: no-repeat;
   background-size: contain;
-  background-color: $rs;
-//   background-color: $rs;
-//   background-blend-mode: hard-light;
+  background-color: $blu;
+  //   background-color: $rs;
+  //   background-blend-mode: hard-light;
   -webkit-transition: all 2.5s linear;
   transition: all 2.5s linear;
 }
@@ -135,7 +139,7 @@ a.clip-each:hover {
   clip-path: polygon(100% 3%, 17% 100%, 100% 100%);
   -webkit-clip-path: url("#triangle-clip");
   clip-path: url("#triangle-clip");
-//   background: #9e566e;
+  //   background: #9e566e;
   z-index: 1;
   width: 100%;
   height: 155px;
@@ -174,7 +178,7 @@ a.clip-each:hover {
 }
 
 .clip-gradient {
-  background: $blu;
+  background: $rs;
   width: 160px;
   height: 160px;
 }
