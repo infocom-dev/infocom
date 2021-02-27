@@ -62,7 +62,6 @@ export default {
 @import "../assets/styles/base.scss";
 body {
   font-family: "Roboto Condensed", sans-serif;
-  line-height: 1.5;
   //   background: url("http://karenmenezes.com/shapes-polygon/bg-cubes.png");
 }
 

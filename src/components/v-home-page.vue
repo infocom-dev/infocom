@@ -48,7 +48,7 @@
       </div>
     </section>
     <section class="links">
-      
+      <v-links></v-links>
     </section>
   </div>
 </template>
@@ -59,6 +59,7 @@ import VNavigationWrapper from "./v-navigation-wrapper.vue";
 import VContactUs from "./v-contact-us-form.vue";
 import vServicesVue from "./v-services.vue";
 import VTeam from "./v-team.vue";
+import VLinks from "./v-links.vue";
 export default {
   name: "v-home-page",
   components: {
@@ -67,10 +68,10 @@ export default {
     VNavigationWrapper,
     vServicesVue,
     VTeam,
+    VLinks,
   },
   data() {
-    return {
-    };
+    return {};
   },
   methods: {},
 };
@@ -195,7 +196,8 @@ export default {
     font-size: 70%;
     .team,
     .skills,
-    .contact-us {
+    .contact-us,
+    .links {
       padding-right: 50px;
       padding-left: 50px;
     }
@@ -459,22 +461,25 @@ ul li {
   height: 30px;
   line-height: 30px;
 }
+.insta-icon,
+.vk-icon,
+.mail-icon,
+.twitter-icon,
+.facebook-icon,
+.google-icon {
+  font-size: 70px;
+  color: $blu;
+  line-height: 50px;
+  padding: 10px;
+  &:hover {
+    color: $ylw;
+  }
+}
+.link {
+  display: flex;
+  justify-content: center;
+}
 .team {
-  .insta-icon,
-  .vk-icon,
-  .mail-icon {
-    font-size: 70px;
-    color: $blu;
-    line-height: 50px;
-    padding: 10px;
-    &:hover {
-      color: $ylw;
-    }
-  }
-  .link {
-    display: flex;
-    justify-content: center;
-  }
   img {
     width: 100%;
     height: auto;
@@ -501,7 +506,31 @@ ul li {
   padding-left: 150px;
   padding-right: 150px;
 }
-
+.links {
+  text-align: center;
+  background: $blu;
+  .container-adapt{
+    margin:0 auto;
+  }
+  .container-item {
+    background: $blu;
+  }
+  span {
+    color: $wht;
+  }
+  p {
+    color: $ylw;
+  }
+  .twitter-icon,
+  .facebook-icon,
+  .google-icon,
+  .insta-icon {
+    color: $ylw;
+    &:hover{
+      color:$rs;
+    }
+  }
+}
 @media only screen and (min-width: 900px) {
   .container-adapt {
     -moz-column-count: 2;
