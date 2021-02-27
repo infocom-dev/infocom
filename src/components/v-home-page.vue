@@ -469,6 +469,7 @@ iframe {
   border-radius: $radius;
 }
 .team {
+  
   margin: 0 auto;
   padding-bottom: 70px;
   align-content: center;
@@ -485,6 +486,18 @@ iframe {
   min-height: 100%;
   color: $wht;
 }
+.team:after{
+  content: "";
+  background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:white;" points="0.5,0.5 1,1 0,1 "/></svg>');
+  background-size: 30px 30px;
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  z-index: 2;
+
+}
 .contact-us {
   background: url(../assets/images/06.jpg);
   padding-left: 150px;
@@ -495,6 +508,17 @@ iframe {
     // background-image: linear-gradient(135deg, transparent 66%, white 67%),
     //                 linear-gradient(45deg, white 33%, gray 34%, transparent 44%);
 
+}
+.contact-us:before{
+  content: "";
+  background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:white;" points="0.5,0.5 0,0 1,0 "/></svg>');
+  background-size: 30px 30px;
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  // bottom:0;
 }
 .box {
   // width: 800px;

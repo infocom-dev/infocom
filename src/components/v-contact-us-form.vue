@@ -6,7 +6,7 @@
       </div>
 
       <fieldset>
-        <legend>Vue Contact Form</legend>
+
         <div>
           <label class="label" for="name">Name</label>
           <input type="text" name="name" id="name" required="" v-model="name" />
@@ -37,7 +37,7 @@
           >
         </div>
         <div>
-          <input type="submit" value="Send Form" />
+          <input type="submit" value="Send" />
         </div>
       </fieldset>
     </form>
@@ -52,14 +52,14 @@ export default {
   name: "v-contact-us",
   data: function () {
     return {
-      name: "John Doe",
+      name: "",
       email: {
-        value: "jo@hnd.oe",
+        value: "",
         valid: true,
       },
       message: {
-        text: `Dear Mr. President,\n...`,
-        maxlength: 255,
+        text: ``,
+        maxlength: 500,
       },
       submitted: false,
     };
@@ -95,12 +95,7 @@ export default {
 </script>
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400");
-
-// *,
-// *::after,
-// *::before {
-//   box-sizing: border-box;
-// }
+@import "../assets/styles/base.scss";
 
 body {
   color: #fff;
@@ -124,7 +119,7 @@ body,
 }
 
 a {
-  color: #2c3e50;
+  color: $blu;
   text-decoration: none;
 }
 
@@ -147,16 +142,13 @@ header h1 {
   border-radius: 4px;
   margin: 50px auto;
   // width: 500px;
-  background-color: #fff;
+  background-color: $blu;
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
 }
 .vue-form fieldset {
-  margin: 24px 0 0 0;
+  // margin: 24px 0 0 0;
 }
-.vue-form legend {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ecf0f1;
-}
+
 .vue-form div {
   position: relative;
   margin: 20px 0;
@@ -165,7 +157,7 @@ header h1 {
 }
 .vue-form h4,
 .vue-form .label {
-  color: #94aab0;
+  color: $ylw;
   margin-bottom: 10px;
 }
 .vue-form .label {
@@ -174,7 +166,7 @@ header h1 {
 .vue-form input,
 .vue-form textarea,
 .vue-form label {
-  color: #2b3e51;
+  color: $blu;
 }
 .vue-form input[type="text"],
 .vue-form input[type="email"],
@@ -189,7 +181,7 @@ header h1 {
 .vue-form textarea {
   padding: 12px;
   // border: 1px solid #cfd9db;
-  background-color: #ffffff;
+  background-color: $wht;
   border-radius: 0.25em;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.08);
 }
@@ -197,8 +189,8 @@ header h1 {
 .vue-form input[type="email"]:focus,
 .vue-form textarea:focus {
   outline: none;
-  border-color: #2c3e50;
-  box-shadow: 0 0 5px rgba(44, 151, 222, 0.2);
+  border-color: $ylw;
+  box-shadow: 0 0 5px $ylw(44, 151, 222, 0.2);
 }
 .vue-form {
   position: relative;
@@ -228,10 +220,10 @@ header h1 {
 }
 .vue-form input[type="submit"] {
   border: none;
-  background: #2c3e50;
+  background: $ylw;
   border-radius: 0.25em;
   padding: 12px 20px;
-  color: #ffffff;
+  color: $blu;
   font-weight: bold;
   float: right;
   cursor: pointer;
@@ -239,12 +231,13 @@ header h1 {
   -moz-osx-font-smoothing: grayscale;
   appearance: none;
 }
-.no-touch .vue-form input[type="submit"]:hover {
-  background: #42a2e1;
-}
+// .no-touch .vue-form input[type="submit"]:hover {
+//   background: red;
+// }
 .vue-form input[type="submit"]:focus {
   outline: none;
-  background: #2b3e51;
+  background: $rs;
+  color:$blu;
 }
 .vue-form input[type="submit"]:active {
   transform: scale(0.9);
@@ -254,8 +247,8 @@ header h1 {
   margin: 0px;
 }
 .vue-form .error-message p {
-  background: #e94b35;
-  color: #ffffff;
+  background: $rs;
+  color: $wht;
   font-size: 1.4rem;
   text-align: center;
   -webkit-font-smoothing: antialiased;
@@ -267,7 +260,7 @@ header h1 {
   border-color: black !important;
 }
 .vue-form .counter {
-  background-color: #ecf0f1;
+  background-color: $rs;
   position: absolute;
   right: 0px;
   top: 0px;
