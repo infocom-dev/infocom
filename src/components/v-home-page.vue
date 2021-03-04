@@ -106,7 +106,7 @@ export default {
   width: 0;
   height: 0;
   border-bottom: 86px solid $wht;
-  border-left: 580px solid transparent;
+  border-left: 680px solid transparent;
 }
 // .container {
 //   -webkit-box-sizing: border-box;
