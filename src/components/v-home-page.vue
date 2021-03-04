@@ -2,7 +2,8 @@
   <div class="v-home-page">
     <section class="home">
       <div class="home-skew-border">
-        <v-navigation-wrapper></v-navigation-wrapper>
+        <nav-bar></nav-bar>
+        <!-- <v-navigation-wrapper></v-navigation-wrapper> -->
         <div class="container">
           <h3>Our Clients Are Our First Priority</h3>
           <h1>WELCOME TO INFOCOM</h1>
@@ -55,7 +56,8 @@
 
 <script>
 import VSkills from "./v-skills.vue";
-import VNavigationWrapper from "./v-navigation-wrapper.vue";
+import NavBar from './NavBar.vue'
+// import VNavigationWrapper from "./v-navigation-wrapper.vue";
 import VContactUs from "./v-contact-us-form.vue";
 import vServicesVue from "./v-services.vue";
 import VTeam from "./v-team.vue";
@@ -63,9 +65,10 @@ import VLinks from "./v-links.vue";
 export default {
   name: "v-home-page",
   components: {
+    NavBar,
     VContactUs,
     VSkills,
-    VNavigationWrapper,
+    // VNavigationWrapper,
     vServicesVue,
     VTeam,
     VLinks,
