@@ -1,27 +1,39 @@
 <template>
   <div class="v-team">
-    <div class="header-section">
-      <h1>our<span>team</span></h1>
-    </div>
-    <div class="container-adapt">
-      <div v-for="mate in team" :key="mate.name">
-        <div class="container-item">
-          <figure class="image">
-            <img :src="mate.url" />
-          </figure>
-          <div class="cover">
-            <h1>{{ mate.name }}</h1>
-            <h4>{{ mate.prof }}</h4>
-            <p>{{ mate.info }}</p>
-            <div class="link">
-              <div v-for="icon in mate.link" :key="icon">
-                <i :class="icon"></i>
-              </div>
-            </div>
-          </div>
-        </div>
+    <b-container >
+      <div class="mx-auto pt-3">
+        <h1 class="text-center text-uppercase font-weight-bolder">
+          our<span>team</span>
+        </h1>
       </div>
-    </div>
+
+      <b-container fluid>
+        <b-row align-v="center" class="justify-content-center">
+          <div v-for="mate in team" :key="mate.name">
+            <b-card
+              :title="mate.name"
+              :img-src="mate.url"
+              img-alt="Image"
+              img-top
+              tag="article"
+              style="max-width: 20rem"
+              class="mb-2"
+            >
+              <b-card-text>
+                <h4>{{ mate.prof }}</h4>
+                <p>{{ mate.info }}</p>
+              </b-card-text>
+              <b-row align-v="center" class="justify-content-center">
+                <div v-for="icon in mate.link" :key="icon">
+                  <i :class="icon"></i></div
+              ></b-row>
+            </b-card>
+          </div>
+        </b-row>
+      </b-container>
+      
+    </b-container>
+    <b-container fluid class="after w-100 mx-0 px-0"></b-container>
   </div>
 </template>
 <script>
@@ -59,3 +71,31 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+@import "../assets/styles/base.scss";
+.v-team {
+  background: url(../assets/images/03.jpg) center center no-repeat fixed;
+  background-size: auto;
+  background-size: cover;
+}
+.insta-icon,
+.vk-icon,
+.mail-icon,
+.twitter-icon,
+.facebook-icon,
+.google-icon {
+  font-size: 70px;
+  color: $blu;
+  line-height: 50px;
+  padding: 10px;
+  &:hover {
+    color: $ylw;
+  }
+}
+.after {
+  content: "";
+  background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:white;" points="0.5,0.5 1,1 0,1 "/></svg>');
+  background-size: 30px 30px;
+  height: 30px;
+}
+</style>

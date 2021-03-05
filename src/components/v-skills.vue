@@ -1,56 +1,58 @@
 <template>
   <div class="v-skills">
-    <div class="header-section">
-      <h1>STACK<span>skills</span></h1>
-    </div>
-    <div class="container-adapt">
-      <div class="container-item">
-        <div class="wrap">
-          <div class="clip-block">
-            <div class="clip-each clip-solid"></div>
-          </div>
-          <!-- /clip-block -->
-          <div class="clip-block">
-            <a href="#" class="clip-each clip-gradient">
-              <div class="clip-caption">
-                <i class="fa fa-database" aria-hidden="true"></i>
-                mysql
-              </div>
-            </a>
-            <a href="#" class="clip-each clip-border">
-              <div class="clip-caption">life</div>
-            </a>
-          </div>
-          <!-- /clip-block -->
-
-          <svg class="clip-svg">
-            <defs>
-              <clipPath id="hexagon-clip" clipPathUnits="objectBoundingBox">
-                <polygon
-                  points="0.25 0.05, 0.75 0.05, 1 0.5, 0.75 0.95, 0.25 0.95, 0 0.5"
-                />
-              </clipPath>
-            </defs>
-          </svg>
-
-          <svg class="clip-svg">
-            <defs>
-              <clipPath id="triangle-clip" clipPathUnits="objectBoundingBox">
-                <polygon points="1 0.03, 0.17 1, 1 1" />
-              </clipPath>
-            </defs>
-          </svg>
-        </div>
-      </div>
-      <div class="container-item">
-        <h1>
-          We support challenges on all the latest stacks. Console, web or
-          mobile.
+    <b-container>
+      <div class="mx-auto pt-3">
+        <h1 class="text-center text-uppercase font-weight-bolder">
+          STACK<span>skills</span>
         </h1>
       </div>
-    </div>
+      <b-container>
+        <b-row align-v="center" class="justify-content-center">
+          <b-col>
+            <div class="clip-block">
+              <div class="clip-each clip-solid"></div>
+            </div>
+            <!-- /clip-block -->
+            <div class="clip-block">
+              <a href="#" class="clip-each clip-gradient">
+                <div class="clip-caption">
+                  <i class="fa fa-database" aria-hidden="true"></i>
+                  mysql
+                </div>
+              </a>
+              <a href="#" class="clip-each clip-border">
+                <div class="clip-caption">life</div>
+              </a>
+            </div>
+            <!-- /clip-block -->
 
-    <!-- /wrap -->
+            <svg class="clip-svg">
+              <defs>
+                <clipPath id="hexagon-clip" clipPathUnits="objectBoundingBox">
+                  <polygon
+                    points="0.25 0.05, 0.75 0.05, 1 0.5, 0.75 0.95, 0.25 0.95, 0 0.5"
+                  />
+                </clipPath>
+              </defs>
+            </svg>
+
+            <svg class="clip-svg">
+              <defs>
+                <clipPath id="triangle-clip" clipPathUnits="objectBoundingBox">
+                  <polygon points="1 0.03, 0.17 1, 1 1" />
+                </clipPath>
+              </defs>
+            </svg>
+          </b-col>
+          <b-col>
+            <h1>
+              We support challenges on all the latest stacks. Console, web or
+              mobile.
+            </h1>
+          </b-col>
+        </b-row>
+      </b-container>
+    </b-container>
   </div>
 </template>
 <script>
@@ -69,10 +71,7 @@ p {
   margin: 0 0 10px 0;
 }
 
-.wrap {
-  color: #222;
-  font-size: 24px;
-}
+
 
 .clip-svg {
   width: 0;
