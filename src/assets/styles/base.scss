@@ -4,17 +4,25 @@ $blu:#122459;
 $ylw:#FFD037;
 $grey:#ccc;
 $bg:rgba(166, 158, 148, 0.5) !important;
+*{
+    font-family: "Lato", sans-serif;
+}
 h1,h3 {
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black; 
     color:$ylw;
-    font-size: 40px;
+    // font-size: 50px;
 }
 h1 span{
     color: $blu;
-    font-size: 30px;
+    // font-size: 40px;
+}
+h4{
+    color:$ylw;
+    &:hover{
+        color:$rs;
+    }
 }
 p{
-    color:$wht;
-    font-size:0px;
+    color:$blu;
 }

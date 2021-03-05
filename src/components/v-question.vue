@@ -98,7 +98,7 @@ export default {
 <style lang='scss'>
 @import '../assets/styles/base.scss';
 @import '../assets/styles/fonts.scss';
-@import '../assets/styles/navigation.scss';
+
 @import '../assets/styles/button.scss';
 @mixin flexbox(){
   display: flex;

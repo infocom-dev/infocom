@@ -77,6 +77,13 @@ export default {
   background: url(../assets/images/03.jpg) center center no-repeat fixed;
   background-size: auto;
   background-size: cover;
+  .after {
+  content: "";
+  background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:white;" points="0.5,0.5 1,1 0,1 "/></svg>');
+  background-size: 30px 30px;
+  height: 30px;
+  background-color:transparent;
+}
 }
 .insta-icon,
 .vk-icon,
@@ -92,10 +99,5 @@ export default {
     color: $ylw;
   }
 }
-.after {
-  content: "";
-  background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:white;" points="0.5,0.5 1,1 0,1 "/></svg>');
-  background-size: 30px 30px;
-  height: 30px;
-}
+
 </style>

@@ -3,7 +3,7 @@
     <section class="home position-relative d-flex justify-content-center">
       <div class="home-skew-border">
         <nav-bar></nav-bar>
-        <div class="w-75 mx-auto text-center ">
+        <div class="w-75 mx-auto text-center">
           <p>Our Clients Are Our First Priority</p>
           <h1 class="text-uppercase font-weight-bolder">WELCOME TO INFOCOM</h1>
           <div class="separator"></div>
@@ -13,7 +13,9 @@
             ever since the 1500s, when an unknown printer took a galley of type
             and scrambled it to make a type specimen book.
           </p>
-          <b-button size="lg" variant="outline-warning">GET STARTED NOW</b-button>
+          <b-button size="lg" variant="outline-warning"
+            >GET STARTED NOW</b-button
+          >
         </div>
       </div>
     </section>
@@ -37,16 +39,8 @@
     <section class="skills">
       <v-skills></v-skills>
     </section>
-    <section class="contact-us">
-      <div class="header-section">
-        <h1>contact<span>us</span></h1>
-      </div>
-      <div class="box">
-        <v-contact-us></v-contact-us>
-      </div>
-    </section>
     <section class="links">
-      <v-links></v-links>
+      <Footer></Footer>
     </section>
   </div>
 </template>
@@ -54,20 +48,17 @@
 <script>
 import VSkills from "./v-skills.vue";
 import NavBar from "./NavBar.vue";
-import VContactUs from "./v-contact-us-form.vue";
+import Footer from "./Footer.vue";
 import vServicesVue from "./v-services.vue";
 import VTeam from "./v-team.vue";
-import VLinks from "./v-links.vue";
 export default {
   name: "v-home-page",
   components: {
     NavBar,
-    VContactUs,
     VSkills,
-    // VNavigationWrapper,
     vServicesVue,
     VTeam,
-    VLinks,
+    Footer,
   },
   data() {
     return {};
@@ -108,434 +99,43 @@ export default {
   border-bottom: 86px solid $wht;
   border-left: 680px solid transparent;
 }
-// .container {
-//   -webkit-box-sizing: border-box;
-//   -moz-box-sizing: border-box;
-//   box-sizing: border-box;
-
-//   padding-top: 170px;
-//   padding-bottom: 1500px;
-//   text-align: center;
-//   box-sizing: border-box;
-//   padding-right: 15px;
-//   padding-left: 15px;
-  // h1 {
-  //   -webkit-text-stroke-width: 1px;
-
-  //   -webkit-text-stroke-color: black;
-  //   font-size: 1.714em;
-  //   line-height: 2.5rem;
-  //   color: $blu;
-  // }
-  // h1 {
-  //   font-size: 5.143rem;
-  //   line-height: 5.5rem;
-  //   color: $ylw;
-  //   letter-spacing: 0.4rem;
-  // }
-  .separator {
-    width: 10px;
-    height: 10px;
-    margin: 20px auto;
-    background: $ylw;
-    position: relative;
-    display: inline-block;
-    border-radius: 50%;
-  }
-  .separator::before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    direction: rtl;
-    position: absolute;
-    right: 5%;
-    bottom: 4px;
-    height: 1px;
-    width: 80px;
-    background: $wht;
-    content: "";
-    display: inline-block;
-    margin-right: 20px;
-  }
-  .separator::after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    direction: rtl;
-    position: absolute;
-    left: 5%;
-    bottom: 4px;
-    height: 1px;
-    width: 80px;
-    background: $wht;
-    content: "";
-    display: inline-block;
-    margin-left: 20px;
-  }
-//   p {
-//     color: $wht;
-//     max-width: 60%;
-//     margin: 0 auto;
-//     padding-bottom: 30px;
-//     font-size: 1.125rem;
-//     line-height: 2rem;
-//   }
-// }
-// @media (max-width: 991px) {
-//   html {
-//     font-size: 70%;
-//     .team,
-//     .skills,
-//     .contact-us,
-//     .links {
-//       padding-right: 50px;
-//       padding-left: 50px;
-//     }
-//   }
-// }
-// .service,
-// .skills {
-//   position: relative;
-//   z-index: 1;
-//   box-sizing: border-box;
-//   background: $wht;
-//   background-size: auto;
-//   background-size: cover;
-//   min-height: 100%;
-//   color: $wht;
-
-//   margin: 0 auto;
-//   align-content: center;
-//   margin-right: auto;
-//   margin-left: auto;
-// }
-// .header-section {
-//   text-transform: uppercase;
-//   text-align: center;
-//   padding: 25px;
-// }
-
-// .container-adapt {
-//   margin: 1.5em 0;
-//   padding: 0;
-//   column-gap: 0em; /* Общее расстояние между колонками */
-//   font-size: 0.85em;
-//   -moz-column-gap: 1.5em; /* Расстояние между колонками для Firefox */
-//   -webkit-column-gap: 1.5em; /* Расстояние между колонками  для Safari, Chrome и iOS */
-//   margin-bottom: 0;
-// }
-// .row {
-//   width: 100%;
-//   display: flex;
-// }
-// .text {
-//   text-align: left;
-//   width: 80%;
-//   float: left;
-// }
-// .icon {
-//   text-align: center;
-//   align-self: center;
-//   width: 20%;
-//   float: right;
-// }
-// /* Элементы в виде плиток с содержанием */
-// .container-item {
-//   display: inline-block;
-//   padding: 1em;
-//   margin: 0 0 1.5em;
-//   width: 100%;
-//   box-sizing: border-box; /* Изменения алгоритма расчета ширины и высоты элемента.*/
-//   -moz-box-sizing: border-box; /* Для Firefox */
-//   -webkit-box-sizing: border-box; /* Для Safari, Chrome, iOS иAndroid */
-//   height: 100%;
-//   transition: all 0.6s;
-//   background-color: $wht;
-//   p {
-//     line-height: 24px;
-//     color: $blu;
-//     font-size: 15px;
-//     margin: 0 0 10px;
-//   }
-//   h4 {
-//     font-size: 18px;
-//     color: $rs;
-//     padding-bottom: 10px;
-//     margin-top: 10px;
-//     text-transform: uppercase;
-//   }
-// }
-// img,
-// iframe {
-//   width: 100%;
-//   height: auto;
-//   display: block;
-//   text-align: center;
-//   align-self: center;
-// }
-// .laptop-icon,
-// .data-icon,
-// .chart-icon,
-// .chat-icon {
-//   font-size: 70px;
-//   color: $blu;
-//   line-height: 50px;
-//   padding: 10px;
-//   &:hover {
-//     color: $ylw;
-//     animation: up-down 1s ease-in-out infinite alternate-reverse both;
-//   }
-// }
-
-// .animated-img {
-//   animation: up-down 2s ease-in-out infinite alternate-reverse both;
-// }
-// @-webkit-keyframes up-down {
-//   0% {
-//     transform: translateY(10px);
-//   }
-//   100% {
-//     transform: translateY(-10px);
-//   }
-// }
-
-// @keyframes up-down {
-//   0% {
-//     transform: translateY(10px);
-//   }
-//   100% {
-//     transform: translateY(-10px);
-//   }
-// }
-// .skew-border {
-//   display: inline-block;
-//   width: 0;
-//   height: 0;
-//   border-style: solid;
-//   border-width: 0 0 200px 98.77vw;
-//   border-color: transparent transparent #f0f0f0 transparent;
-//   margin-bottom: -10px;
-// }
-// .promo-banner {
-//   position: relative;
-//   z-index: 1;
-//   box-sizing: border-box;
-//   // background: url(../assets/images/05.jpg) center center no-repeat fixed;
-//   background-size: auto;
-//   background-size: cover;
-//   min-height: 100%;
-//   .promo-container {
-//     text-align: center;
-//     color: $wht;
-//     width: 750px;
-//     padding-right: 15px;
-//     padding-left: 15px;
-//     margin-right: auto;
-//     margin-left: auto;
-//     padding-top: 100px;
-//     padding-bottom: 100px;
-//     h2 {
-//       font-weight: 700;
-//       color: $wht;
-//       margin: 0 0 15px;
-//     }
-//     p {
-//       font-size: 15px;
-//       font-weight: 400;
-//       color: #a6a7aa;
-//       margin-bottom: 15px;
-//     }
-//   }
-// }
-// @mixin border-radius($radius) {
-//   -webkit-border-radius: $radius;
-//   -moz-border-radius: $radius;
-//   -ms-border-radius: $radius;
-//   border-radius: $radius;
-// }
-// .team {
-//   margin: 0 auto;
-//   padding-bottom: 70px;
-//   align-content: center;
-//   padding-right: 150px;
-//   padding-left: 150px;
-//   // margin-right: auto;
-//   // margin-left: auto;
-//   position: relative;
-//   // z-index: 1;
-//   box-sizing: border-box;
-//   background: url(../assets/images/03.jpg) center center no-repeat fixed;
-//   background-size: auto;
-//   background-size: cover;
-//   min-height: 100%;
-//   color: $wht;
-// }
-// .team:after {
-//   content: "";
-//   background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:white;" points="0.5,0.5 1,1 0,1 "/></svg>');
-//   background-size: 30px 30px;
-//   width: 100%;
-//   height: 30px;
-//   position: absolute;
-//   bottom: 0px;
-//   right: 0;
-//   z-index: 2;
-// }
-// .contact-us {
-//   background: url(../assets/images/06.jpg);
-//   padding-left: 150px;
-//   padding-right: 150px;
-//   margin: 0 auto;
-//   padding-bottom: 70px;
-//   align-content: center;
-//   // background-image: linear-gradient(135deg, transparent 66%, white 67%),
-//   //                 linear-gradient(45deg, white 33%, gray 34%, transparent 44%);
-// }
-// .contact-us:before {
-//   content: "";
-//   background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:white;" points="0.5,0.5 0,0 1,0 "/></svg>');
-//   background-size: 30px 30px;
-//   width: 100%;
-//   height: 30px;
-//   position: absolute;
-//   right: 0;
-//   z-index: 2;
-//   // bottom:0;
-// }
-// .box {
-//   // width: 800px;
-//   // padding: 40px;
-//   box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.1);
-// }
-
-// ul li {
-//   list-style-type: none;
-//   padding: 10px;
-// }
-
-// .lang {
-//   margin: 5px;
-//   font-size: 20px;
-// }
-
-// .bar {
-//   background: $wht;
-//   position: relative;
-//   width: 100%;
-//   height: 5px;
-//   margin-top: 5px;
-//   display: block;
-//   @include border-radius(5px);
-// }
-// .progress {
-//   position: absolute;
-//   width: 0%;
-//   height: 100%;
-//   @include border-radius(5px);
-//   -webkit-animation-duration: 2s;
-//   animation-duration: 2s;
-//   -webkit-animation-timing-function: ease-out;
-//   animation-timing-function: ease-out;
-//   -webkit-animation-fill-mode: both;
-//   animation-fill-mode: both;
-// }
-// @keyframes progress {
-//   0% {
-//     width: 0%;
-//   }
-// }
-
-// .percent {
-//   float: right;
-//   font-weight: 600;
-//   height: 30px;
-//   line-height: 30px;
-// }
-// .insta-icon,
-// .vk-icon,
-// .mail-icon,
-// .twitter-icon,
-// .facebook-icon,
-// .google-icon {
-//   font-size: 70px;
-//   color: $blu;
-//   line-height: 50px;
-//   padding: 10px;
-//   &:hover {
-//     color: $ylw;
-//   }
-// }
-// .link {
-//   display: flex;
-//   justify-content: center;
-// }
-// .team {
-//   img {
-//     width: 100%;
-//     height: auto;
-//     // display: block;
-//   }
-//   .container-item {
-//     position: relative;
-//   }
-//   .cover {
-//     position: absolute;
-//     left: 0;
-//     bottom: 0;
-//     right: 0;
-//     background: rgba(255, 255, 255, 0.7);
-//     padding: 20px;
-//     display: none;
-//   }
-
-//   .container-item:hover .cover {
-//     display: block;
-//   }
-// }
-// .skills {
-//   padding-left: 150px;
-//   padding-right: 150px;
-// }
-// .links {
-//   text-align: center;
-//   background: $blu;
-//   .container-adapt {
-//     margin: 0 auto;
-//   }
-//   .container-item {
-//     background: $blu;
-//   }
-//   span {
-//     color: $wht;
-//   }
-//   p {
-//     color: $ylw;
-//   }
-//   .twitter-icon,
-//   .facebook-icon,
-//   .google-icon,
-//   .insta-icon {
-//     color: $ylw;
-//     &:hover {
-//       color: $rs;
-//     }
-//   }
-// }
-// @media only screen and (min-width: 900px) {
-//   .container-adapt {
-//     -moz-column-count: 2;
-//     -webkit-column-count: 2;
-//     column-count: 2;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//   }
-// }
-
-// @media only screen and (min-width: 1280px) {
-//   .service,
-//   .skills {
-//     width: 100%;
-//   }
-// }
+.separator {
+  width: 10px;
+  height: 10px;
+  margin: 20px auto;
+  background: $ylw;
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+}
+.separator::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  direction: rtl;
+  position: absolute;
+  right: 5%;
+  bottom: 4px;
+  height: 1px;
+  width: 80px;
+  background: $wht;
+  content: "";
+  display: inline-block;
+  margin-right: 20px;
+}
+.separator::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  direction: rtl;
+  position: absolute;
+  left: 5%;
+  bottom: 4px;
+  height: 1px;
+  width: 80px;
+  background: $wht;
+  content: "";
+  display: inline-block;
+  margin-left: 20px;
+}
 </style>
