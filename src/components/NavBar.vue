@@ -16,7 +16,9 @@
             <template #button-content>
               <i class="fa fa-user user-icon" aria-hidden="true"></i>
             </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
+            <b-dropdown-item href="#">
+              <router-link to="/auth/signin">Sign In</router-link>
+              </b-dropdown-item>
             <b-dropdown-item href="#">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>

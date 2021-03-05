@@ -1,47 +1,45 @@
 <template>
   <div class="v-home-page">
-    <section class="home position-relative d-flex justify-content-center">
-      <div class="home-skew-border">
-        <nav-bar></nav-bar>
-        <div class="w-75 mx-auto text-center">
-          <p>Our Clients Are Our First Priority</p>
-          <h1 class="text-uppercase font-weight-bolder">WELCOME TO INFOCOM</h1>
-          <div class="separator"></div>
-          <p class="font-weight-bolder">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
-          </p>
-          <b-button size="lg" variant="outline-warning"
-            >GET STARTED NOW</b-button
-          >
+    <nav-bar></nav-bar>
+    <div
+      data-spy="scroll"
+      data-target="#list-example"
+      data-offset="0"
+      class="scrollspy-example"
+    >
+      <section class="home position-relative d-flex justify-content-center">
+        <div class="home-skew-border">
+          <div class="w-75 mx-auto text-center">
+            <p>Our Clients Are Our First Priority</p>
+            <h1 class="text-uppercase font-weight-bolder">
+              WELCOME TO INFOCOM
+            </h1>
+            <div class="separator"></div>
+            <p class="font-weight-bolder">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book.
+            </p>
+            <b-button size="lg" variant="outline-warning"
+              >GET STARTED NOW</b-button
+            >
+          </div>
         </div>
-      </div>
-    </section>
-    <section class="service">
-      <v-services-vue></v-services-vue>
-    </section>
-    <!-- <section class="promo-banner">
-      <div class="promo-container">
-        <h2>Displaying the Result</h2>
-        <p class="promo-banner-text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo.
-        </p>
-      </div>
-    </section> -->
-    <section class="team">
-      <v-team></v-team>
-    </section>
-    <section class="skills">
-      <v-skills></v-skills>
-    </section>
-    <section class="links">
-      <Footer></Footer>
-    </section>
+      </section>
+      <section class="service">
+        <v-services-vue></v-services-vue>
+      </section>
+      <section class="team">
+        <v-team></v-team>
+      </section>
+      <section class="skills">
+        <v-skills></v-skills>
+      </section>
+      <section class="links">
+        <Footer></Footer>
+      </section>
+    </div>
   </div>
 </template>
 
