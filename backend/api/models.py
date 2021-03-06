@@ -26,7 +26,7 @@ class Customer(CustomUser):
 
 
 class Developer(CustomUser):
-    stack = models.ManyToManyField("AnswersOption", on_delete=models.CASCADE)
+    stack = models.ManyToManyField("AnswersOption")
     experience = models.TextField()
     respect = models.IntegerField(default=0)
 
@@ -68,7 +68,7 @@ class CustomerAnswer(models.Model):
 class AnswersOption(models.Model):
     value = models.TextField("Значение варианта ответа в виде текста")
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers_option')
-    customer_answer = models.ManyToManyField(CustomerAnswer, on_delete=models.CASCADE, related_name="selected_answers_option")
+    customer_answer = models.ManyToManyField(CustomerAnswer, related_name="selected_answers_option")
 
 
 # x = {
