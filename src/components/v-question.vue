@@ -1,6 +1,6 @@
 <template>
     <div class = "v-question">
-      <v-navigation-wrapper></v-navigation-wrapper>
+      <!-- <v-navigation-wrapper></v-navigation-wrapper>
       <div class="container">
         <article>
           <header>
@@ -35,7 +35,7 @@
           </section>
           
         </article>
-      </div>
+      </div> -->
       
     
 
@@ -43,16 +43,16 @@
 </template>
 
 <script>
-import vNavigationWrapper from './v-navigation-wrapper'
+// import vNavigationWrapper from './v-navigation-wrapper'
 import axios from 'axios'
-import VQuestionItem from './v-question-item.vue'
+// import VQuestionItem from './v-question-item.vue'
 
 export default {
   name: 'v-question',
   props: {},
   components:{
-    vNavigationWrapper,
-    VQuestionItem
+    // vNavigationWrapper,
+    // VQuestionItem
   },
   data(){
     return {
@@ -98,7 +98,7 @@ export default {
 <style lang='scss'>
 @import '../assets/styles/base.scss';
 @import '../assets/styles/fonts.scss';
-@import '../assets/styles/navigation.scss';
+
 @import '../assets/styles/button.scss';
 @mixin flexbox(){
   display: flex;
@@ -113,7 +113,7 @@ export default {
   width: 100%;
   min-height: 100vh;
   font-family: 'Lato', sans-serif;
-  background: linear-gradient(rgba(32, 32, 32, 0.8),rgba(0, 1, 37, 0.4)),url('../assets/images/background.jpeg') no-repeat center center;
+  // background: linear-gradient(rgba(32, 32, 32, 0.8),rgba(0, 1, 37, 0.4)),url('../assets/images/background.jpeg') no-repeat center center;
 
 }
 .container{
@@ -126,7 +126,7 @@ article{
   
   width: 1000px;
   margin: 10px;
-  //width: calc(100% - 20 px);
+  // width: calc(100% - 20 px);
   max-width: 800px;
   min-height: 480px;
   perspective: 1000px;
@@ -142,7 +142,7 @@ article{
     align-items: center;
     text-align: center;
     background-color:  rgba(32, 26, 26, 0.8);
-    border-right: 2px dotted $red;
+    border-right: 2px dotted $blu;
     box-shadow: 0 15px 30px rgba(0,0,0,.2),
                 0 15px 10px rgba(0,0,0,.2);
   }
@@ -154,11 +154,11 @@ article{
     height: 20px;
     border-radius: 50%;
     margin-bottom: 10px;
-    color: $white;
+    color: $wht;
     background-color: black;
     font-weight: bold;
     &.active {
-      background-color:$red;
+      background-color:$blu;
     
       ~ .progress-step {
         color: black;

@@ -3,6 +3,8 @@ from rest_framework import serializers
 from backend.api.models import QuestionType, Answer, Question
 from rest_framework.fields import IntegerField
 
+# from django.contrib.auth.models import User
+
 
 # class StringArrayField(IntegerField):
 #     """
@@ -31,3 +33,5 @@ class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
         fields=('id','text','type','answers')
+
+

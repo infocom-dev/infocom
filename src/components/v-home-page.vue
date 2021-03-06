@@ -1,99 +1,139 @@
 <template>
-  <div class="v-home-page"> 
-    <v-navigation-wrapper></v-navigation-wrapper>  
-      <div class="carousel">
-        <slider autoplay="false" animation="fade"  width="1200px" height="500px"  >
-  <slider-item 
-   >
-   <div class="carousel-content">
-     <h1>INFO<span>COM</span></h1>
-     <h3>WEB DEVELOPMENT SOLUTIONS</h3>
-     <p></p>
-   </div>
-  </slider-item>
-  <slider-item >
-    <div class="carousel-content-second">
-      <h1>Need a <span>chat bot</span>?</h1>
-      <div class="button">
-        <router-link :to="{name : 'anketa'}">
-            <button>Click here</button>
-        </router-link>
-      </div>
-      <p>Fill out the form and find out the price!</p>
-   </div>
-  </slider-item>
-</slider>
-      </div>  
+  <div class="v-home-page">
+    <nav-bar></nav-bar>
+    <div
+      data-spy="scroll"
+      data-target="#list-example"
+      data-offset="0"
+      class="scrollspy-example"
+    >
+      <section class="home position-relative d-flex justify-content-center">
+        <div class="home-skew-border">
+          <div class="w-75 mx-auto text-center">
+            <p>Our Clients Are Our First Priority</p>
+            <h1 class="text-uppercase font-weight-bolder">
+              WELCOME TO INFOCOM
+            </h1>
+            <div class="separator"></div>
+            <p class="font-weight-bolder">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book.
+            </p>
+            <b-button size="lg" variant="outline-warning"
+              >GET STARTED NOW</b-button
+            >
+          </div>
+        </div>
+      </section>
+      <section class="service">
+        <v-services-vue></v-services-vue>
+      </section>
+      <section class="team">
+        <v-team></v-team>
+      </section>
+      <section class="skills">
+        <v-skills></v-skills>
+      </section>
+      <section class="links">
+        <Footer></Footer>
+      </section>
+    </div>
   </div>
 </template>
 
 <script>
-
-import { Slider, SliderItem } from 'vue-easy-slider'
-import vNavigationWrapper from './v-navigation-wrapper'
-import VNavigationWrapper from './v-navigation-wrapper.vue'
-
+import VSkills from "./v-skills.vue";
+import NavBar from "./NavBar.vue";
+import Footer from "./Footer.vue";
+import vServicesVue from "./v-services.vue";
+import VTeam from "./v-team.vue";
 export default {
-  name: 'v-home-page',
+  name: "v-home-page",
   components: {
-    Slider,
-    SliderItem,
-    vNavigationWrapper,
-    VNavigationWrapper
+    NavBar,
+    VSkills,
+    vServicesVue,
+    VTeam,
+    Footer,
   },
-  data(){
-    return {  
-    }
+  data() {
+    return {};
   },
-  methods:{
-  },
-
-}
+  methods: {},
+};
 </script>
 
 <style lang="scss" >
-
-
-@import '../assets/styles/base.scss';
-@import '../assets/styles/button.scss';
-@import '../assets/styles/fonts.scss';
-@import '../assets/styles/navigation.scss';
-.v-home-page{
-  margin: 0;
-  font-family: 'Lato', sans-serif;
-  background: linear-gradient(rgba(32, 32, 32, 0.8),rgba(0, 1, 37, 0.4)),url('../assets/images/background.jpeg') no-repeat center center;;
+@import "../assets/styles/base.scss";
+@import "../assets/styles/button.scss";
+@import "../assets/styles/fonts.scss";
+.home {
+  background: url("../assets/images/09.jpg") no-repeat center center;
   background-size: cover;
-  position: relative;
-  justify-content: center;
+  // position: relative;
   flex-direction: column;
-  display: flex;
-  height: 700px;
+  height: 770px;
+  font-size: 1rem;
 }
-.slider{
-  margin:0 auto; 
+.home-skew-border:after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  content: "";
+  width: 0;
+  height: 0;
+  border-bottom: 86px solid $wht;
+  border-right: 680px solid transparent;
 }
-.slider-item{
-  display: flex;
-  justify-content: center;
-  margin:60px auto;
-  text-align: center;
-  background: rgba(32, 26, 26, 0.6);
-  padding-top: 20px;
-  h1{
-    font-size: 100px;
-    letter-spacing:5px
-  }
-  span{
-    font-size: 80px;
-  }
-
+.home-skew-border:before {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  content: "";
+  width: 0;
+  height: 0;
+  border-bottom: 86px solid $wht;
+  border-left: 680px solid transparent;
 }
-.button{
-  button{
-    width: 200px;
-  }
+.separator {
+  width: 10px;
+  height: 10px;
+  margin: 20px auto;
+  background: $ylw;
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
 }
-
-
-
+.separator::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  direction: rtl;
+  position: absolute;
+  right: 5%;
+  bottom: 4px;
+  height: 1px;
+  width: 80px;
+  background: $wht;
+  content: "";
+  display: inline-block;
+  margin-right: 20px;
+}
+.separator::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  direction: rtl;
+  position: absolute;
+  left: 5%;
+  bottom: 4px;
+  height: 1px;
+  width: 80px;
+  background: $wht;
+  content: "";
+  display: inline-block;
+  margin-left: 20px;
+}
 </style>

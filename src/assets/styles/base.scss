@@ -1,15 +1,28 @@
-$red:rgb(230, 0, 0);
-$white:white;
-$bg:rgba(32, 26, 26, 0.8);
+$wht:#fff;
+$rs:#F2668B;
+$blu:#122459;
+$ylw:#FFD037;
+$grey:#ccc;
+$bg:rgba(166, 158, 148, 0.5) !important;
+*{
+    font-family: "Lato", sans-serif;
+}
 h1,h3 {
-    color:$white;
-    font-size: 40px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black; 
+    color:$ylw;
+    // font-size: 50px;
 }
 h1 span{
-    color: $red;
-    font-size: 30px;
+    color: $blu;
+    // font-size: 40px;
+}
+h4{
+    color:$ylw;
+    &:hover{
+        color:$rs;
+    }
 }
 p{
-    color:$white;
-    font-size:30px;
+    color:$blu;
 }

@@ -1,5 +1,5 @@
 button{
-    color:$red;
+    color:$ylw;
     padding: 20px 30px;
     // width:200px;
     text-decoration:none;
@@ -7,16 +7,11 @@ button{
     margin:0 auto;
     display: block;
     text-transform: capitalize;
-    background-color: rgba(32, 26, 26, 0.8);
-    background-image: linear-gradient(to left,transparent,transparent 50%,red 50%,red);
-    background-position: 100% 0;
-    background-size: 200% 100%;
-    transition: all .25s ease-in;
-    font: 700 20px tahoma;
-    border: 3px solid $red;
+    background-color: $blu;
+    border: 3px solid $blu;
     cursor: pointer;
    }
    button:hover {
    background-position: 0 0;
-   color: $white;
+   color: $wht;
    }
