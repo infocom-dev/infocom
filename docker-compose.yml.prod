@@ -33,7 +33,6 @@ services:
     volumes:
       - ./static_volume:/app/django/static
       - ./media_volume:/app/django/media
-      - /app/node_modules
     depends_on:
       - django
 
