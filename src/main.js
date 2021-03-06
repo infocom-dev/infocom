@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import axios from 'axios'
 import router from "./router/router";
+import store from './store/store'
 
 import PrettyCheckbox from 'pretty-checkbox-vue';
 // import 'vue-slider-component/theme/default.css'
@@ -30,5 +31,6 @@ Vue.use(VueAxios,axios)
 new Vue({
   render: h => h(App),
   router,
+  store,
   axios
 }).$mount('#app')

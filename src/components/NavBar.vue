@@ -43,6 +43,8 @@ export default {
   background: $bg;
   .user-icon, .navbar-toggler-icon, .navbar-light .nav-link .navbar-nav{
     color: $ylw;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black; 
   }
 }
 </style>

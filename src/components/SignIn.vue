@@ -1,10 +1,13 @@
 <template>
   <div class="login">
     <nav-bar></nav-bar>
+  
     <b-container
       fluid
       class="login position-relative d-flex justify-content-center"
-    >
+    >  <p v-if="incorrectAuth">
+      Incorrect username or password entered - please try again
+    </p>
       <b-form class="w-50 mx-auto" @submit.prevent="login">
         <div class="form-group">
           <label for="username">Логин:</label>
@@ -24,7 +27,9 @@
             placeholder="Пароль..."
           ></b-input>
         </div>
-        <b-button size="lg" variant="outline-warning" type="submit">Войти</b-button>
+        <b-button size="lg" variant="outline-warning" type="submit"
+          >Войти</b-button
+        >
         <p class="mt-3">
           Ещё не зарегистрированы?
           <router-link to="/auth/signup"><h4>Регистрация</h4></router-link>
@@ -49,28 +54,25 @@ export default {
       form: {
         username: "",
         password: "",
-      },
+        
+      },incorrectAuth: false,
     };
   },
   mixins: [authRequest],
   methods: {
-    async login() {
-      // логика авторизации
-      try {
-        const response = await this.authRequest(
-          "api/auth/token/login",
-          this.form
-        );
-        // авторизуем юзера
-        this.setLogined(response.data.token);
-      } catch (error) {
-        console.error("AN API ERROR:", error);
-      }
-    },
-    setLogined(token) {
-      // сохраняем токен
-      console.log(token);
-      localStorage.setItem("token", token);
+    login() {
+      this.$store
+        .dispatch("userLogin", {
+          username: this.form.username,
+          password: this.form.password,
+        })
+        .then(() => {
+          this.$router.push({ name: "home" });
+        })
+        .catch((err) => {
+          console.log(err);
+          this.incorrectAuth = true;
+        });
     },
   },
 };
