@@ -7,8 +7,9 @@ from backend.api.models import *
 class PersonAdmin(admin.ModelAdmin):
     pass
 
+
 class AnswerInline(admin.TabularInline):
-    model = Answer
+    model = AnswersOption
 
 
 @admin.register(Question)
@@ -16,3 +17,8 @@ class QuestionAdmin(admin.ModelAdmin):
     inlines = [
         AnswerInline,
     ]
+
+
+@admin.register(CustomerAnswer, Project, Customer, Developer, CustomUser)
+class AdminModels(admin.ModelAdmin):
+    pass
