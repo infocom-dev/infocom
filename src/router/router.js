@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import SignIn from '../components/SignIn';
-import SignUp from '../components/SignUp';
+import login from '../components/Login'
+import register from '../components/Register'
+import logout from '../components/Logout'
 import vQuestion from '../components/v-question.vue'
 import vHomePage from '../components/v-home-page.vue'
 Vue.use(Router);
@@ -23,16 +24,30 @@ let router = new Router({
             props: true
         },
         {
-            path: '/auth/signin',
-            name: 'SignIn',
-            component: SignIn,
+            path: '/login',
+            name: 'login',
+            component: login,
+            meta: {
+                requiresLogged: true
+            }
         },
         {
-            path: '/auth/signup',
-            name: 'SignUp',
-            component: SignUp,
+            path: '/register',
+            name: 'register',
+            component: register,
+            meta: {
+                requiresLogged: true
+            }
         },
+        {
+            path: '/logout',
+            name: 'logout',
+            component: logout,
+            meta: {
+                requiresAuth: true
+            }
+        }
     ]
 })
 
-export default router; 
+export default router;

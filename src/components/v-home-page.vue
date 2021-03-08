@@ -18,7 +18,7 @@
               ever since the 1500s, when an unknown printer took a galley of
               type and scrambled it to make a type specimen book.
             </p>
-            <router-link to="/anketa"><b-button size="lg" variant="outline-warning"
+            <router-link to="register"><b-button size="lg" variant="outline-warning"
               >GET STARTED NOW</b-button
             ></router-link>
           </div>

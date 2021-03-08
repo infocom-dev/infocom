@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'backend.api',
     'corsheaders',
 
-    'djoser',
-    'rest_framework.authtoken'
+    'rest_framework_simplejwt.token_blacklist',
+    'backend'
+
 ]
 
 MIDDLEWARE = [
@@ -157,7 +158,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }

@@ -35,3 +35,15 @@
 #         fields=('id','text','type','answers')
 #
 #
+
+
+from rest_framework import serializers
+from backend.api.models import Mods
+
+
+# output serializer class for  'Mods' model
+class ModSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Mods
+        fields = '__all__'
+
