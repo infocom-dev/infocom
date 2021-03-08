@@ -6,8 +6,7 @@ from rest_framework_simplejwt.views import (TokenObtainPairView,TokenRefreshView
 
 urlpatterns = ([
 
+
     path('auth/', include('djoser.urls.authtoken')),
 
-    
-    
 ])

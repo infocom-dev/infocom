@@ -1,6 +1,6 @@
 <template>
   <div class="Footer">
-    <footer>
+    <!-- <footer> -->
       <b-container class="pt-3 mb-0">
         <div class="mx-auto">
           <b-row align-v="center" class="justify-content-center">
@@ -24,7 +24,7 @@
           </b-row>
         </div>
       </b-container>
-    </footer>
+    <!-- </footer> -->
   </div>
 </template>
 <style lang="scss">

@@ -43,7 +43,7 @@ export default {
     return {
       team: [
         {
-          name: "Vasily Pupkin",
+          name: "Name Surname",
           prof: "Web Designer",
           info:
             "text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever",
@@ -51,7 +51,7 @@ export default {
           url: require("../assets/images/team2.jpg"),
         },
         {
-          name: "Vasily Pupkin",
+          name: "Name Surname",
           prof: "Web Designer",
           info:
             "text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever",
@@ -59,7 +59,7 @@ export default {
           url: require("../assets/images/team2.jpg"),
         },
         {
-          name: "Vasily Pupkin",
+          name: "Name Surname",
           prof: "Web Designer",
           info:
             "text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever",
@@ -74,7 +74,9 @@ export default {
 <style lang="scss">
 @import "../assets/styles/base.scss";
 .v-team {
-  background: url(../assets/images/03.jpg) center center no-repeat fixed;
+ background: rgb(18,36,89);
+background: linear-gradient(0deg, rgba(18,36,89,1) 0%, rgba(73,108,171,1) 24%, rgba(175,189,197,1) 54%, rgba(233,242,241,1) 80%, rgba(255,255,255,1) 100%);  
+  // background: url(../assets/images/team_bg.svg) center center no-repeat fixed;
   background-size: auto;
   background-size: cover;
   .after {

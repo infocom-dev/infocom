@@ -53,7 +53,7 @@
         </b-row>
       </b-container>
     </b-container>
-    <b-container fluid class="after w-100 mx-0 px-0"></b-container>
+
   </div>
 </template>
 <script>
@@ -236,11 +236,5 @@ a.clip-each:hover {
   }
 }
 
-.after {
-  content: "";
-  background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1" preserveAspectRatio="none"><polygon style="fill:white;" points="0.5,0.5 0,0 1,0 "/></svg>');
-  background-size: 30px 30px;
-  height: 30px;
-  background-color: #122459;
-}
+
 </style>
