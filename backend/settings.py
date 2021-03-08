@@ -199,6 +199,9 @@ DJOSER = {
     'SERIALIZERS': {},
 }
 
+AUTH_USER_MODEL = "api.CustomUser"
+
+
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'tatianakonina16@gmail.com'
