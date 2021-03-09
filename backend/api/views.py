@@ -10,3 +10,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAuthenticated]
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
+    
+    
+    
+    
