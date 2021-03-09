@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from backend.api.models import AnswersOption, Question
+from backend.api.models import AnswersOption, Question, Customer, Developer, Project
 
 
 class AnswerSerializer(serializers.ModelSerializer):
@@ -22,3 +22,28 @@ class QuestionSerializer(serializers.ModelSerializer):
         for answer in answers_option_data:
             AnswersOption.objects.create(question=question, **answer)
         return question
+
+
+class CustomerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Customer
+        fields = "__all__"
+
+
+class CustomerSerializerEmail(serializers.ModelSerializer):
+    class Meta:
+        model = Customer
+        fields = "email"
+
+class DeveloperSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Developer
+        fields = "__all__"
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    # customer = CustomerSerializerEmail(many=True, read_only=True)
+
+    class Meta:
+        model = Project
+        fields = "__all__"
