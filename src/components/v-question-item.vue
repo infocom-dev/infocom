@@ -289,9 +289,9 @@ export default {
           font: 700 20px tahoma;
           border: none;
           margin: 0 10px ;
-          box-shadow: 0 4px 16px $red; 
+          box-shadow: 0 4px 16px red; 
           &:hover, &:focus {
-            border-color: $red;
+            border-color: red;
           }
         }
       }
@@ -329,7 +329,7 @@ export default {
   padding:17px 20px;
 }
 .vue-slider-dot-tooltip-inner {
-  border-color: $red;
+  border-color: red;
   background-color: red;
 }
 .vue-slider-marks{
@@ -345,7 +345,7 @@ export default {
   //left:5%;
 }
 .pretty.p-icon .state .icon{
-  background-color: $red;
+  background-color: red;
   margin: 0 auto;
 }
 
@@ -356,7 +356,7 @@ export default {
   width: 100%; 
   height: 50px;
   border-radius: 0px; 
-  box-shadow: 0 4px 16px $red; 
+  box-shadow: 0 4px 16px red; 
   border: none;  
   font-size: 35xp;
   color :#fff ; 

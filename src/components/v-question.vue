@@ -1,7 +1,8 @@
 <template>
     <div class = "v-question">
-      <!-- <v-navigation-wrapper></v-navigation-wrapper>
-      <div class="container">
+      <p v-if="incorrectAuth">log in please</p>
+      <p>{{questions}}</p>
+      <!-- <div class="container">
         <article>
           <header>
             <div class="progress">
@@ -35,40 +36,48 @@
           </section>
           
         </article>
-      </div> -->
-      
+      </div>
+       -->
     
 
     </div>
 </template>
 
 <script>
-// import vNavigationWrapper from './v-navigation-wrapper'
 import axios from 'axios'
+
 // import VQuestionItem from './v-question-item.vue'
+// import { getAPI } from '../axios-api'
+
 
 export default {
   name: 'v-question',
   props: {},
   components:{
-    // vNavigationWrapper,
     // VQuestionItem
   },
+
   data(){
     return {
       start:false,
       done:false,
       questions:[],
       activeStep :0,
+      incorrectAuth : true,
     }
   },
-  mounted () {
-    axios
-    .get('hello/')
-    .then(response => {
-      this.questions = response.data;
-    })
-  },
+   created () {
+        axios.get('/hello/', { headers: { Authorization: `Bearer ${this.$store.state.accessToken}` } })
+          .then(response => {
+            this.questions = response.data
+            if(response.data.detail == "Authentication credentials were not provided."){
+              this.incorrectAuth = false;
+            }
+          })
+          .catch(err => {
+            console.log(err)
+          })
+    },
  
   methods:{
     userAnswers(answers,step){    

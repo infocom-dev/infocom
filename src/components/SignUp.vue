@@ -233,5 +233,4 @@ export default {
 .text{
   color: black !important;
 }
-
 </style>

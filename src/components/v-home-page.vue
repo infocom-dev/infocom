@@ -1,15 +1,12 @@
 <template>
   <div class="v-home-page">
-    <nav-bar></nav-bar>
+    <nav-bar ></nav-bar>
     <div
-      data-spy="scroll"
-      data-target="#list-example"
-      data-offset="0"
-      class="scrollspy-example"
+      id="nav-scroller"
     >
-      <section class="home position-relative d-flex justify-content-center">
+      <section id="home" class="home position-relative d-flex justify-content-center">
         <div class="home-skew-border">
-          <div class="w-75 mx-auto text-center">
+          <div class="w-50 mx-auto text-center">
             <p>Our Clients Are Our First Priority</p>
             <h1 class="text-uppercase font-weight-bolder">
               WELCOME TO INFOCOM
@@ -21,20 +18,23 @@
               ever since the 1500s, when an unknown printer took a galley of
               type and scrambled it to make a type specimen book.
             </p>
-            <b-button size="lg" variant="outline-warning"
+            <router-link to="register"><b-button size="lg" variant="outline-warning"
               >GET STARTED NOW</b-button
-            >
+            ></router-link>
           </div>
         </div>
       </section>
-      <section class="service">
+      <section id="services" class="service">
         <v-services-vue></v-services-vue>
       </section>
-      <section class="team">
+      <section id="team" class="team">
         <v-team></v-team>
       </section>
-      <section class="skills">
+      <section id="skills" class="skills">
         <v-skills></v-skills>
+      </section>
+      <section id="contact-us" class="contact-us">
+        <contact-us></contact-us>
       </section>
       <section class="links">
         <Footer></Footer>
@@ -49,6 +49,7 @@ import NavBar from "./NavBar.vue";
 import Footer from "./Footer.vue";
 import vServicesVue from "./v-services.vue";
 import VTeam from "./v-team.vue";
+import ContactUs from './contact-us.vue';
 export default {
   name: "v-home-page",
   components: {
@@ -57,11 +58,12 @@ export default {
     vServicesVue,
     VTeam,
     Footer,
+    ContactUs,
+
   },
   data() {
     return {};
   },
-  methods: {},
 };
 </script>
 
