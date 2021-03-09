@@ -8,17 +8,17 @@ from backend.api.models import *
 #     pass
 
 
-# class AnswerInline(admin.TabularInline):
-#     model = AnswersOption
+class AnswerInline(admin.TabularInline):
+    model = AnswersOption
 
 
-# @admin.register(Question)
-# class QuestionAdmin(admin.ModelAdmin):
-#     inlines = [
-#         AnswerInline,
-#     ]
+@admin.register(Question)
+class QuestionAdmin(admin.ModelAdmin):
+    inlines = [
+        AnswerInline,
+    ]
 
 
-# @admin.register(CustomerAnswer, Project, Customer, Developer, CustomUser)
-# class AdminModels(admin.ModelAdmin):
-#     pass
+@admin.register(CustomerAnswer, Project, Customer, Developer, CustomUser)
+class AdminModels(admin.ModelAdmin):
+    pass

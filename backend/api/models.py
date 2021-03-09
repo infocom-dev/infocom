@@ -19,6 +19,41 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    def __str__(self):
+        return self.email
+
+
+class Customer(CustomUser):
+    business_name = models.CharField(max_length=100)
+
+
+class Developer(CustomUser):
+    stack = models.ManyToManyField("AnswersOption")
+    experience = models.TextField()
+    respect = models.IntegerField(default=0)
+
+
+class Project(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
+    # ALL PRICES IN $$$
+    predicted_price = models.IntegerField(blank=True, null=True)
+    real_price = models.IntegerField(blank=True, null=True)
+
+    start_date = models.DateField(blank=True, null=True)
+    predict_end_date = models.DateField(blank=True, null=True)
+    real_end_date = models.DateField(blank=True, null=True)
+
+
+class QuestionType(models.TextChoices):
+    SELECTED = 'selected'
+    RANGE = 'range'
+    TEXTAREA = 'textarea'
+    MESSAGE = 'message'
+    DATAPICKER = 'datapicker'
+    SWITCH = 'switch'
+
+
 class Question(models.Model):
     tag = models.CharField("Тег (Суть)", max_length=100, primary_key=True,default="имя")
     text = models.TextField("Текст вопроса")
@@ -36,3 +71,14 @@ class CustomerAnswer(models.Model):
 class AnswersOption(models.Model):
     value = models.TextField("Значение варианта ответа в виде текста")
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers_option')
+
+
+# x = {
+#     "customer_id": 1,
+#     "customer_answers": [{
+#         "text": "mera one luv <3",
+#         "question": {
+#             "tag": "project_name"
+#         }
+#     }]
+# }

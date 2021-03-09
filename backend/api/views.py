@@ -1,4 +1,3 @@
-
 from rest_framework import viewsets,permissions
 
 from backend.api.models import Question
@@ -11,3 +10,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAuthenticated]
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
+    
+    
+    
+    
