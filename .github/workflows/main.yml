@@ -30,9 +30,7 @@ jobs:
 
       - name: Log in to GitHub Packages
         run: |
-          docker login ghcr.io -u infocom-dev -p ${{ secrets.PAT }} || true
-          docker login ghcr.io -u infocom-dev -p ${{ secrets.PAT_SHARG }} || true
-          docker login ghcr.io -u infocom-dev -p ${{ secrets.PAT_KONINA }} || true
+          sudo docker login ghcr.io -u infocom-dev -p ${{ secrets.PAT }} || true
       - name: Pull images
         run: |
           sudo docker pull ${{ secrets.BACKEND_IMG }} || true
@@ -89,8 +87,6 @@ jobs:
               -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
           cd /home/${{ secrets.SERVER_USER }}/infocom/
           echo ${{ secrets.SERVER_PASS }} | sudo -S docker login ghcr.io -u infocom-dev -p ${{ secrets.PAT }} ||true
-          docker login ghcr.io -u infocom-dev -p ${{ secrets.PAT_SHARG }} || true
-          docker login ghcr.io -u infocom-dev -p ${{ secrets.PAT_KONINA }} || true
           sudo docker pull ${{ secrets.BACKEND_IMG }}
           sudo docker pull ${{ secrets.FRONTEND_IMG }}
           sudo docker pull ${{ secrets.NGINX_IMG }}
