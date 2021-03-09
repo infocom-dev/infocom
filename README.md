@@ -9,5 +9,5 @@ docker-compose up --build
 
 Push to origin/main.
 
-The production version will automatically go up to the server.
+The production version will automatically go up to the server.....
 
