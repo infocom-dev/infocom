@@ -29,7 +29,10 @@ jobs:
 
 
       - name: Log in to GitHub Packages
-        run: docker login ghcr.io -u infocom-dev -p ${{ secrets.PAT }}
+        run: |
+          docker login ghcr.io -u infocom-dev -p ${{ secrets.PAT }} || true
+          docker login ghcr.io -u infocom-dev -p ${{ secrets.PAT_SHARG }} || true
+          docker login ghcr.io -u infocom-dev -p ${{ secrets.PAT_KONINA }} || true
       - name: Pull images
         run: |
           sudo docker pull ${{ secrets.BACKEND_IMG }} || true
