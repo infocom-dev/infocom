@@ -4,5 +4,7 @@ psycopg2-binary
 django-cors-headers
 djangorestframework-simplejwt==4.4.0
 djoser
+-e git+http://github.com/NiyazNz/django-rest-framework-simplejwt@jwt_cookie#egg=djangorestframework_simplejwt
+# django-allauth
 PyJWT==1.7.1
 sqlparse==0.4.1

@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'backend.api',
     'corsheaders',
 
-    'rest_framework_simplejwt.token_blacklist',
+    'djoser',
     'backend'
 
 ]
@@ -202,3 +202,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'tatianakonina16@gmail.com'
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
+
+SIMPLE_JWT = {
+    'AUTH_COOKIE': 'Authorization',
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+}
