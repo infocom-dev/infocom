@@ -43,8 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'djoser',
-    'backend'
-
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -158,7 +157,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
@@ -197,13 +196,11 @@ DJOSER = {
     'SERIALIZERS': {},
 }
 
+AUTH_USER_MODEL = "api.CustomUser"
+
+
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'tatianakonina16@gmail.com'
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
-
-SIMPLE_JWT = {
-    'AUTH_COOKIE': 'Authorization',
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-}
