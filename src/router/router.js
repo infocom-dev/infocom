@@ -23,13 +23,13 @@ let router = new Router({
             props: true
         },
         {
-            path: '/auth/signin',
-            name: 'SignIn',
+            path: '/login',
+            name: 'login',
             component: SignIn,
         },
         {
-            path: '/auth/signup',
-            name: 'SignUp',
+            path: '/register',
+            name: 'register',
             component: SignUp,
         },
     ]
