@@ -1,6 +1,6 @@
 $wht:#fff;
 $rs:#F2668B;
-$blu:#122459;
+$blu:#274C77;
 $ylw:#FFD037;
 $grey:#ccc;
 $bg:rgba(166, 158, 148, 0.5) !important;
@@ -8,9 +8,8 @@ $bg:rgba(166, 158, 148, 0.5) !important;
     font-family: "Lato", sans-serif;
 }
 h1,h3 {
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black; 
-    color:$ylw;
+
+    color:$blu;
     // font-size: 50px;
 }
 h1 span{
@@ -18,15 +17,16 @@ h1 span{
     // font-size: 40px;
 }
 h2{
-    font-size: 50px;
+    // font-size: 50px;
     color:$ylw;
 }
 h4{
-    color:$ylw;
+    color:$wht;
     &:hover{
-        color:$rs;
+        color:#274C77;
     }
 }
 p{
     color:$blu;
 }
+
