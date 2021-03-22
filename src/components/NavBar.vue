@@ -1,7 +1,7 @@
 <template>
   <div class="NavBar">
     <b-navbar slot="header" toggleable="lg" fixed="top" class="nav justify-content-center">
-      <b-navbar-brand  class="mx-5" >
+      <b-navbar-brand  class="" >
         <h1 class="text-uppercase mx-5 font-weight-bolder my-auto">
           INFO<span>com</span>
         </h1>
@@ -34,12 +34,12 @@ export default {
           href: "#services",
         },
         {
-          id: "Team",
-          href: "#team",
+          id: "Skills",
+          href: "#skills",
         },
         {
-          id: "Contact-us",
-          href: "#contact-us",
+          id: "technology",
+          href: "#technology",
         },
       ],
     };
@@ -63,6 +63,9 @@ export default {
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1)  ; 
 	-webkit-box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1)  ; 
 	-moz-box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1)  ; 
+  span{
+    color:white;
+  }
   
 }
 
