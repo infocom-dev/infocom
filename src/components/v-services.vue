@@ -1,38 +1,32 @@
 <template>
   <div class="v-services">
-    <div class="container">
+    <b-container fluid class="w-100">
       <div class="mx-auto pt-3">
         <h1 class="text-center text-uppercase font-weight-bolder">
           our<span>services</span>
         </h1>
       </div>
-      <b-container fluid class="p-0 w-100">
+      <b-container fluid class="w-100 justify-content-center">
         <b-row align-v="center" class="justify-content-center">
-          <b-col lg >
-            <b-img center
-            
-              class="animated-img w-75"
-              :src="require('../assets/images/home.svg')"
-            />
-          </b-col>
-          <b-col lg sm>
-            <div v-for="service in services" :key="service">
-              <b-container fluid >
-                <b-row align-v="center" class="justify-content-center">
-                  <b-col cols="2" md="2"  class="text-center ">
-                    <i :class="service.icon"></i>
-                  </b-col>
-                  <b-col cols="14" md="10" >
-                    <h4 class="text-uppercase font-weight-bolder">{{ service.title }}</h4>
-                    <p>{{ service.text }}</p>
-                  </b-col>
-                </b-row>
-              </b-container>
+          <div v-for="service in services" :key="service">
+            <div
+              class="col m-5 text-center box "
+              style="width: 350px"
+              :style="service.h"
+            >
+              <i class="m-3" :class="service.icon"></i>
+              <h4 class="text-uppercase font-weight-bolder m-2">
+                {{ service.title }}
+              </h4>
+              <p>{{ service.text }}</p>
+              <div class="w-50 mx-auto">
+                <a href="#" class="btn">LEARN MORE</a>
+              </div>
             </div>
-          </b-col>
+          </div>
         </b-row>
       </b-container>
-    </div>
+    </b-container>
   </div>
 </template>
 <script>
@@ -42,22 +36,28 @@ export default {
     return {
       services: [
         {
+          // url: require("../assets/images/stat1.png"),
           title: "calculate",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
           icon: "fa fa-calculator chart-icon",
+          h: "height:300px",
         },
         {
+          // url: require("../assets/images/stat2.png"),
           title: "web development",
           text:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
+            "Lorem Ipsum is simply dummy text of the printing and typesettinCDSSbvjdin dfbidjvidbvkf sduivsivgs  svisvbskhbbvis cvsbh industry. Lorem Ip sum has been the industry's standard dummy text ever.",
           icon: "fa fa-laptop laptop-icon",
+          h: "height:350px",
         },
         {
+          // url: require("../assets/images/stat1.png"),
           title: "chat-bot",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
           icon: "fa fa-comments chat-icon",
+          h: "height:300px",
         },
       ],
     };
@@ -70,22 +70,25 @@ export default {
 .data-icon,
 .chart-icon,
 .chat-icon {
-  font-size: 4.5vw;
+  font-size: 50px;
   color: $blu;
   &:hover {
     color: $ylw;
-    animation: up-down 1s ease-in-out infinite alternate-reverse both;
   }
 }
-.animated-img {
-  animation: up-down 2s ease-in-out infinite alternate-reverse both;
-}
-@-webkit-keyframes up-down {
-  0% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(-10px);
-  }
+
+.box {
+  // background: url("../assets/images/stat.png") center;
+  background-color: #A3CEF1;
+  // border-radius: 0% 40% 10% 33% / 10% 30% 0% 33% ;
+  // border-radius: 40% 23% 61% 35% / 38% 35% 43% 20%      ;
+  border-radius: 40px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2)  ; 
+	-webkit-box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2)  ; 
+	-moz-box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2)  ; 
+  
+  
+  justify-content: center;
+  align-items: center;
 }
 </style>
