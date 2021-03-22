@@ -1,0 +1,51 @@
+<template>
+  <div class="v-tecnology p-5">
+    <b-container fluid>
+      <b-row align-v="center">
+        <b-col class="">
+          <b-img
+           style="min-width:300px"
+           fluid
+           
+            center
+            class=""
+            :src="require('../assets/images/technology.png')"
+          />
+        </b-col>
+        <b-col class="text-right mr-5">
+          <h1 class=" text-uppercase font-weight-bolder">
+            WELCOME TO INFOCOM
+          </h1>
+
+          <p class="">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book.
+          </p>
+          <div class="w-25 ml-auto">
+                <a href="#" class="btn">LEARN MORE</a>
+              </div>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
+</template>
+
+
+<script>
+export default {
+  name: "v-tecnology",
+};
+</script>
+
+
+
+
+<style lang="scss">
+.v-tecnology {
+  background: url("../assets/images/bg_technology.png") no-repeat center;
+  background-size: cover;
+  // height: 600px;
+}
+</style>
