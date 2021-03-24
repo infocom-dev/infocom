@@ -15,9 +15,10 @@
             </b-nav-item>
           </div>
         </b-navbar-nav>
+        <router-link to="login">
         <div class="mr-5 ml-3 ">
           <a href="#" class="btn">LOG IN</a>
-        </div>
+        </div></router-link>
       </b-collapse>
     </b-navbar>
   </div>
@@ -28,18 +29,18 @@ export default {
   data() {
     return {
       menu: [
-        { id: "Home", href: "#home" },
+        { id: "Home", href: "/" },
         {
           id: "Services",
-          href: "#services",
+          href: "/#services",
         },
         {
           id: "Skills",
-          href: "#skills",
+          href: "/#skills",
         },
         {
           id: "technology",
-          href: "#technology",
+          href: "/#technology",
         },
       ],
     };

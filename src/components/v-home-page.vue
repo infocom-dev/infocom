@@ -1,5 +1,5 @@
 <template>
-  <div class="v-home-page ">
+  <div class="v-home-page">
     <nav-bar></nav-bar>
     <div id="nav-scroller">
       <section
@@ -25,26 +25,27 @@
                         when an unknown printer took a galley of type and
                         scrambled it to make a type specimen book.
                       </p>
-                      <!-- <br> -->
-                      <div class="w-50">
-                        <a href="#" class="btn">LEARN MORE</a>
-                      </div>
+              
+                        <div class="w-50">
+                          <!-- <router-link to="login"> -->
+                          <a href="login" class="btn">LEARN MORE</a>
+                          <!-- </router-link> -->
+                        </div>
+                      
                     </div>
                   </b-col>
-                 
                 </b-row>
               </b-container>
             </b-col>
-             <b-col class="">
-                    <b-img
-                    style="min-width:400px"
-           fluid
-                      center
-                      class=""
-                      :src="require('../assets/images/bg.png')"
-                    />
-                  </b-col>
-            
+            <b-col class="">
+              <b-img
+                style="min-width: 400px"
+                fluid
+                center
+                class=""
+                :src="require('../assets/images/bg.png')"
+              />
+            </b-col>
           </b-row>
         </b-container>
       </section>
@@ -57,7 +58,7 @@
       <section id="technology" class="technology">
         <v-calculation></v-calculation>
       </section>
-      <section >
+      <section>
         <v-tecnology> </v-tecnology>
       </section>
 
@@ -74,11 +75,11 @@
 <script>
 import VSkills from "./v-skills.vue";
 import NavBar from "./NavBar.vue";
-import vCalculation from "./v-calculation"
+import vCalculation from "./v-calculation";
 import Footer from "./Footer.vue";
 import vServicesVue from "./v-services.vue";
 import vTecnology from "./v-tecnology";
-import VCalculation from './v-calculation.vue';
+import VCalculation from "./v-calculation.vue";
 
 // import ContactUs from "./contact-us.vue";
 export default {
@@ -113,5 +114,4 @@ export default {
   height: 770px;
   font-size: 1rem;
 }
-
 </style>

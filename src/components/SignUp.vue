@@ -1,115 +1,99 @@
 <template>
   <div class="">
     <nav-bar></nav-bar>
-    <b-container
-      fluid
-      class="signup position-relative d-flex justify-content-center"
-    >
-      <b-form class="w-50 mx-auto" @submit.prevent="register">
-        <p v-if="err">{{ err }}</p>
+    <section class="p-5 signup position-relative d-flex justify-content-center">
+      <b-container fluid class="mx-auto">
+        <div class="w-50  mx-auto">
+          <b-row>
+            <b-form class="register-box p-5 col w-50 mx-auto" @submit.prevent="register">
+              <p v-if="err">{{ err }}</p>
 
-        <div class="form-group required">
-          <label class="control-label" for="username">Логин:</label>
-          <b-input
-            v-model="form.username"
-            type="text"
-            id="username"
-            placeholder="Логин..."
-          />
+              <div class="form-group required">
+                <label class="control-label" for="username">Логин:</label>
+                <b-input
+                  v-model="form.username"
+                  type="text"
+                  id="username"
+                  placeholder="Логин..."
+                />
 
-          <p>
-            <small 
+                <p>
+                  <small>Минимальная длина логина 5 символов</small>
+                </p>
+              </div>
 
-    
-              >Минимальная длина логина 5 символов</small
-            >
-          </p>
-        </div>
+              <div class="form-group required">
+                <b-form-group
+                  id="input-group-1"
+                  label="Email address:"
+                  label-for="input-1"
+                  description="We'll never share your email with anyone else."
+                >
+                  <b-form-input
+                    id="input-1"
+                    v-model="form.email"
+                    type="email"
+                    placeholder="Enter email"
+                    required
+                  ></b-form-input>
+                </b-form-group>
+              </div>
 
-        <div class="form-group required">
-          <label class="control-label" for="phone">Номер телефона:</label>
-          <b-input
-            v-model="form.phone"
-            type="text"
-            id="phone"
-            v-imask="phoneNumberMask"
-            placeholder="+7(921)123-45-67"
-            @keypress="isNumber"
-            @accept="onAccept"
-            @complete="onComplete"
-            maxlength="16"
-          />
+             
 
-          <p>
-            <small 
-              >Введите номер в формате: +7(921)123-45-67</small
-            >
-          </p>
-        </div>
+              <div class="form-group required">
+                <label class="control-label" for="password">Пароль:</label>
+                <b-input
+                  v-model="form.password"
+                  type="password"
+                  id="password"
+                  placeholder="Пароль..."
+                ></b-input>
+                <p>
+                  <small>Минимальная длина пароля 6 символов</small>
+                </p>
+              </div>
 
-        <div class="form-group required">
-          <label class="control-label" for="customerOrExecutor"
-            >Вы заказчик или исполнитель?</label
-          >
-          <b-select
-            v-model="form.customerOrExecutor"
-            :options="customerOrExecutorOptions"
-            type="customerOrExecutor"
-            id="customerOrExecutor"
-          />
-        </div>
+              <div class="form-group required">
+                <label class="control-label" for="repeatPassword"
+                  >Повторите пароль:</label
+                >
+                <b-input
+                  v-model="form.repeatPassword"
+                  type="password"
+                  id="repeatPassword"
+                  placeholder="Повторите пароль..."
+                />
+              </div>
 
-        <div class="form-group required">
-          <label class="control-label" for="password">Пароль:</label>
-          <b-input
-            v-model="form.password"
-            type="password"
-            id="password"
-            placeholder="Пароль..."
-          ></b-input>
-          <p>
-            <small
-              >Минимальная длина пароля 6 символов</small
-            >
-          </p>
-        </div>
+              <p class="text-danger" v-if="!$v.form.password.minLength">
+                Длина пароля меньше 6 символов
+              </p>
 
-        <div class="form-group required">
-          <label class="control-label" for="repeatPassword"
-            >Повторите пароль:</label
-          >
-          <b-input
-            v-model="form.repeatPassword"
-            type="password"
-            id="repeatPassword"
-            placeholder="Повторите пароль..."
-          />
-        </div>
+              <p class="text-danger" v-if="isPasswordTheSame">
+                Введённые пароли не совпадают
+              </p>
+              <div class="">
+                <a href="#" class="btn">Регистрация</a>
+              </div>
 
-        <p class="text-danger" v-if="!$v.form.password.minLength">
-          Длина пароля меньше 6 символов
-        </p>
+              <p class="mt-2">
+                <small>
+                  Все поля отмеченные
+                  <span class="text-danger">*</span> обязательны для заполнения.
+                </small>
+              </p>
 
-        <p class="text-danger" v-if="isPasswordTheSame">
-          Введённые пароли не совпадают
-        </p>
+              <p class="mt-3">
+                Уже есть аккаунт?
+                <router-link to="login"><h2>Вход</h2></router-link>
+              </p>
 
-        <b-button size="lg" variant="outline-warning" type="submit" :disabled="formValid"
-          >Регистрация</b-button
-        >
-
-        <p class="mt-2">
-          <small >
-            Все поля отмеченные <span class="text-danger">*</span> обязательны
-            для заполнения.
-          </small>
-        </p>
-
-        <p class="mt-3">
-          Уже есть аккаунт? <router-link to="/auth/signin"><h4>Вход</h4></router-link>
-        </p>
-      </b-form>
-    </b-container>
+            </b-form>
+          
+          </b-row></div
+      ></b-container>
+    </section>
     <Footer></Footer>
   </div>
 </template>
@@ -131,19 +115,11 @@ export default {
         username: "",
         password: "",
         repeatPassword: "",
-        phone: "",
-        customerOrExecutor: "",
+        email: "",
       },
-      userPhone: "",
-      customerOrExecutorOptions: [
-        { text: "Выберите...", value: "", disabled: true, selected: true },
-        { text: "Заказчик", value: "customer" },
-        { text: "Исполнитель", value: "executor" },
-      ],
-      phoneNumberMask: {
-        mask: "+{7}(000)000-00-00",
-        lazy: true,
-      },
+      userEmail: "",
+
+
       err: "",
     };
   },
@@ -161,7 +137,7 @@ export default {
         required,
         sameAs: sameAs("password"),
       },
-      phone: {
+      email: {
         required,
       },
       customerOrExecutor: {
@@ -195,21 +171,6 @@ export default {
         this.err = e;
       }
     },
-    onAccept(e) {
-      const maskRef = e.detail;
-      this.form.phone = maskRef.value;
-    },
-    onComplete(e) {
-      const maskRef = e.detail;
-      this.userPhone = maskRef.unmaskedValue;
-    },
-    isNumber(e) {
-      const regex = /[0-9]/;
-      if (!regex.test(e.key)) {
-        e.returnValue = false;
-        if (e.preventDefault) e.preventDefault();
-      }
-    },
   },
   directives: {
     imask: IMaskDirective,
@@ -223,14 +184,21 @@ export default {
   color: red;
 }
 .signup {
-  background: url("../assets/images/09.jpg") no-repeat center center;
+  background: url("../assets/images/step.jpg") no-repeat center center;
   background-size: cover;
   // position: relative;
   flex-direction: column;
-  height: 850px;
+  height: 1100px;
   font-size: 1rem;
 }
-.text{
+.text {
   color: black !important;
+}
+.register-box {
+  background-color: white;
+  border-radius: 40px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
 }
 </style>
