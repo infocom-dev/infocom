@@ -2,6 +2,9 @@ django
 djangorestframework
 psycopg2-binary
 django-cors-headers
-djangorestframework-simplejwt==4.4.0
-djoser
+
+# email auth
+django-rest-auth
+django-allauth
+
 sqlparse==0.4.1
