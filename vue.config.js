@@ -9,3 +9,16 @@
 //       },
 //     },
 //   };
+
+
+
+
+module.exports = {
+    devServer: {
+        proxy: {
+            '/auth': {
+                "target": "http://backend:80"
+              }
+        }
+    }
+}
