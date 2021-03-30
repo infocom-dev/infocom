@@ -24,14 +24,14 @@ import VueAxios from 'vue-axios';
 Vue.config.productionTip = false
 Vue.use(PrettyCheckbox);
 axios.defaults.baseURL = process.env.VUE_APP_URL;
-
+import store from './store';
 // require('@/assets/styles/fonts.scss')
 Vue.use(VueAxios,axios)
 
 new Vue({
   render: h => h(App),
   router,
-
+  store,
   axios
 }).$mount('#app')
 
