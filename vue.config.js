@@ -13,12 +13,18 @@
 
 
 
-module.exports = {
-    devServer: {
-        proxy: {
-            '/auth': {
-                "target": "http://backend:80"
-              }
-        }
-    }
-}
+// module.exports = {
+//   devServer: {
+//     proxy: {
+//       '/auth': {
+//         "target": "http://backend:80",
+//         changeOrigin: true
+//       },
+//       // '/registration': {
+//       //   "target": "http://backend:80",
+//       // }
+//     },
+
+//   },
+
+// }
