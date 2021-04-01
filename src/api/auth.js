@@ -9,9 +9,9 @@ export default {
   logout() {
     return session.post('/auth/logout/', {});
   },
-  createAccount(username, password1, password2, email,phone) {
-    console.log(username)
-    return session.post('/registration/', { username, password1, password2, email,phone });
+  createAccount( password1, password2, email,phone) {
+    
+    return session.post('/registration/', {  password1, password2, email,phone });
   },
   changeAccountPassword(password1, password2) {
     return session.post('/auth/password/change/', { password1, password2 });

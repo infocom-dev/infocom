@@ -20,12 +20,13 @@ export default {
     registrationCompleted: false,
     registrationError: false,
     registrationLoading: false,
+    errror : "",
   },
   actions: {
-    createAccount({ commit }, { username, password1, password2, email,phone }) {
+    createAccount({ commit }, {  password1, password2, email,phone }) {
       commit(REGISTRATION_BEGIN);
       console.log("sss")
-      return auth.createAccount(username, password1, password2, email,phone)
+        return auth.createAccount( password1, password2, email,phone)
         .then(() => commit(REGISTRATION_SUCCESS))
         .catch(() => commit(REGISTRATION_FAILURE));
     },

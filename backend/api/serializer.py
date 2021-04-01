@@ -54,7 +54,7 @@ from backend.api.models import CustomUser
 
 # должны быть все поля, что и в кастомере (женя помоги написать)
 class CustomRegisterSerializer(RegisterSerializer):
-    phone = serializers.CharField(max_length=12)
+    phone = serializers.CharField(max_length=16)
     @transaction.atomic
     def save(self, request):
         user = super().save(request)
