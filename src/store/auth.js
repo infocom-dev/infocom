@@ -1,5 +1,6 @@
 import auth from '../api/auth';
 import session from '../api/session';
+import router from '../router/router'
 import {
   LOGIN_BEGIN,
   LOGIN_FAILURE,
@@ -24,12 +25,12 @@ const getters = {
 
 const actions = {
   login({ commit }, { username, password }) {
-    console.log(username)
+    
     commit(LOGIN_BEGIN);
     return auth.login(username, password)
 
       .then(({ data }) => 
-      // console.log(data.key)
+      
       commit(SET_TOKEN, data.key)
       )
       
@@ -66,6 +67,8 @@ const mutations = {
   [LOGIN_SUCCESS](state) {
     state.authenticating = false;
     state.error = false;
+
+    router.push("/");
   },
   [LOGOUT](state) {
     state.authenticating = false;
