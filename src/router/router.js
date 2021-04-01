@@ -11,8 +11,7 @@ import Login from '../components/Login';
 import Register from '../components/Register';
 import reject from '../components/reject'
 import account from '../components/v-account-page'
-import PasswordReset from '../components/PasswordReset';
-import PasswordResetConfirm from '../components/PasswordResetConfirm';
+
 
 import store from '../store';
 const requireAuthenticated = (to, from, next) => {
@@ -94,14 +93,14 @@ let router = new Router({
             name: 'logout',
             beforeEnter: redirectLogout,
         },
-        {
-            path: '/password_reset',
-            component: PasswordReset,
-        },
-        {
-            path: '/password_reset/:uid/:token',
-            component: PasswordResetConfirm,
-        },
+        // {
+        //     path: '/password_reset',
+        //     component: PasswordReset,
+        // },
+        // {
+        //     path: '/password_reset/:uid/:token',
+        //     component: PasswordResetConfirm,
+        // },
     ]
 })
 

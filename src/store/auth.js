@@ -17,6 +17,7 @@ const initialState = {
   authenticating: false,
   error: false,
   token: null,
+  on_site: false,
 };
 
 const getters = {
@@ -63,21 +64,24 @@ const mutations = {
   [LOGIN_FAILURE](state) {
     state.authenticating = false;
     state.error = true;
+    state.on_site = false;
   },
   [LOGIN_SUCCESS](state) {
     state.authenticating = false;
     state.error = false;
-
+    state.on_site = true;
     router.push("/");
   },
   [LOGOUT](state) {
     state.authenticating = false;
     state.error = false;
+    state.on_site = false;
   },
   [SET_TOKEN](state, token) {
     if (!isProduction) localStorage.setItem(TOKEN_STORAGE_KEY, token);
     session.defaults.headers.Authorization = `Token ${token}`;
     state.token = token;
+    state.on_site=true;
   },
   [REMOVE_TOKEN](state) {
     localStorage.removeItem(TOKEN_STORAGE_KEY);

@@ -55,16 +55,13 @@
       <section id="skills" class="skills">
         <v-skills></v-skills>
       </section>
-      <section id="technology" class="technology">
+      <!-- <section id="technology" class="technology">
         <v-calculation></v-calculation>
-      </section>
+      </section> -->
       <section>
         <v-tecnology> </v-tecnology>
       </section>
 
-      <!-- <section id="contact-us" class="contact-us">
-        <contact-us></contact-us>
-      </section> -->
       <section class="links">
         <Footer></Footer>
       </section>
@@ -75,11 +72,11 @@
 <script>
 import VSkills from "./v-skills.vue";
 import NavBar from "./NavBar.vue";
-import vCalculation from "./v-calculation";
+// import vCalculation from "./v-calculation";
 import Footer from "./Footer.vue";
 import vServicesVue from "./v-services.vue";
 import vTecnology from "./v-tecnology";
-import VCalculation from "./v-calculation.vue";
+// import VCalculation from "./v-calculation.vue";
 
 // import ContactUs from "./contact-us.vue";
 export default {
@@ -88,10 +85,10 @@ export default {
     NavBar,
     VSkills,
     vServicesVue,
-    vCalculation,
+    // vCalculation,
 
     vTecnology,
-    VCalculation,
+    // VCalculation,
     Footer,
     // ContactUs,
   },
@@ -106,7 +103,7 @@ export default {
 @import "../assets/styles/button.scss";
 @import "../assets/styles/fonts.scss";
 .home {
-  background: url("../assets/images/bg14.jpg");
+  background: url("../assets/images/bg_technology.png");
 
   background-size: cover;
   // position: relative;

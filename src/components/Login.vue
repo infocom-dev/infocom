@@ -47,7 +47,7 @@
               fluid
               center
               class=""
-              :src="require('../assets/images/register2.jpg')"
+              :src="require('../assets/images/login4.jpg')"
             />
           </div>
         </b-row>

@@ -20,14 +20,14 @@
             </b-nav-item>
           </div>
         </b-navbar-nav>
-        <div v-if="this.$store.getters['auth/isAuthenticated']" class="">
+        <div v-show="this.$store.dispatch('auth/initialize') && on_site" class="">
           <router-link to="account">
             <div class="mr-5 ml-3">
-              <a href="#" class="btn">account</a>
+              <a href="#" class="btn">ACCOUNT</a>
             </div>
           </router-link>
         </div>
-        <div v-else>
+        <div v-show="!on_site">
           <router-link to="login">
             <div class="mr-5 ml-3">
               <a href="#" class="btn">LOG IN</a>
@@ -39,6 +39,7 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
   name: "NavBar",
   data() {
@@ -60,11 +61,17 @@ export default {
       ],
     };
   },
+  computed:{
+    ...mapState("auth", [
+      "on_site",
+    ]),
+  }
 };
 </script>
 <style lang="scss">
 @import "../assets/styles/base.scss";
 @import "../assets/styles/button.scss";
+
 .nav {
   text-align: center;
   background: #a3cef1;
