@@ -56,9 +56,18 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    # google
+    'allauth.socialaccount.providers.google',
+    'backend.users.apps.UserConfig',
+    # 
+
+
+
     'rest_auth.registration',
     # vk
-
+    'oauth2_provider',
+	'social_django',
+	'rest_framework_social_oauth2'
     # 
 ]
 
@@ -175,8 +184,11 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
+        # google
+        'rest_framework.authentication.BasicAuthentication',
         # vk
-        
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+		'rest_framework_social_oauth2.authentication.SocialAuthentication',
         # 
     ),
 }
@@ -186,10 +198,15 @@ REST_FRAMEWORK = {
 AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
+    # vk
+    'social_core.backends.vk.VKOAuth2',
+	'rest_framework_social_oauth2.backends.DjangoOAuth2',
+	
 ]
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = '7800876'
 SOCIAL_AUTH_VK_OAUTH2_SECRET = 'NNvkO0Hynr4xRsAzMcrg'
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 # 
 AUTH_USER_MODEL = "api.CustomUser"
 

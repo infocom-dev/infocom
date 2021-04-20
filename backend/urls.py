@@ -19,6 +19,9 @@ from django.urls import path, include
 
 
 from rest_auth.registration.views import VerifyEmailView, ConfirmEmailView
+# google
+from backend.api import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('backend.api.urls')),
@@ -28,6 +31,13 @@ urlpatterns = [
     path('registration/account-confirm-email/<str:key>/',ConfirmEmailView.as_view(),),
     path('registration/',include('rest_auth.registration.urls')),
     path('registration/account-confirm-email/', VerifyEmailView.as_view(), name='account_email_verification_sent'),
-    
+    # vk
+    path('auth/', include('rest_framework_social_oauth2.urls')),
+
+    # google
+   
+
+   
+    path('google/', views.GoogleLogin.as_view(), name='google_login')
 ]
 
