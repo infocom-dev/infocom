@@ -20,7 +20,10 @@
             </b-nav-item>
           </div>
         </b-navbar-nav>
-        <div v-show="this.$store.dispatch('auth/initialize') && on_site" class="">
+        <div
+          v-show="this.$store.dispatch('auth/initialize') && on_site"
+          class=""
+        >
           <router-link to="account">
             <div class="mr-5 ml-3">
               <a href="#" class="btn">ACCOUNT</a>
@@ -61,11 +64,9 @@ export default {
       ],
     };
   },
-  computed:{
-    ...mapState("auth", [
-      "on_site",
-    ]),
-  }
+  computed: {
+    ...mapState("auth", ["on_site"]),
+  },
 };
 </script>
 <style lang="scss">

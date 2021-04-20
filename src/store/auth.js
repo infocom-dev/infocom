@@ -25,6 +25,9 @@ const getters = {
 };
 
 const actions = {
+  
+
+
   login({ commit }, { username, password }) {
     
     commit(LOGIN_BEGIN);
