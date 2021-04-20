@@ -5,7 +5,7 @@
         <a href="#" class="btn">logout</a>
       </div>
     </router-link> -->
-    <b-row class='w-100 m-0 '>
+    <b-row align-h="center" class="w-100 m-0">
       <b-container class="col-2 p-0 ml-0">
         <b-nav class="w-100 h-100" vertical align="left">
           <b-navbar-brand class="d-none d-md-block">
@@ -19,10 +19,9 @@
             :key="item"
             align="left"
           >
-            <b-nav-item >
+            <b-nav-item>
               <b-row
                 align-v="center"
-                
                 class="text-center justify-content-center p-0"
               >
                 <div class="col-4 p-0 text-center">
@@ -78,25 +77,26 @@
           <b-container fluid class="w-100 ml-0 overview">
             <h3 class="pt-3 text-center">Overview</h3>
             <b-container fluid class="w-100 justify-content-center">
-              <b-row align-v="center" class=" justify-content-center">
-                <div v-for="item in overview" :key="item"
-                  
-                    class="col m-4 text-center overview-box"
-                    style="width: 100%; max-width: 300px; min-width: 200px"
-                  >
-                    <h5 class="pt-2">{{ item.title }}</h5>
-                    <b-row align-v="center" class="ml-0">
-                      <i class="text-left m-1" :class="item.icon"></i>
-                      <h3 class="text-left pl-3 m-1">{{ item.number }}</h3>
-                    </b-row>
-                    <p class="text-left pt-2">{{ item.link }}</p>
-                  
-                  <!-- <b-col style="wigth: 300px" class="m-3 overview-box">
-                    
-                  </b-col> -->
+              <b-row align-v="center" class="justify-content-center">
+                <div
+                  v-for="item in overview"
+                  :key="item"
+                  class="col m-4 text-center overview-box"
+                  style="width: 100%; max-width: 300px; min-width: 200px"
+                >
+                  <h5 class="pt-2">{{ item.title }}</h5>
+                  <b-row align-v="center" class="ml-0">
+                    <i class="text-left m-1" :class="item.icon"></i>
+                    <h3 class="text-left pl-3 m-1">{{ item.number }}</h3>
+                  </b-row>
+                  <p class="text-left pt-2">{{ item.link }}</p>
                 </div>
               </b-row>
-            </b-container>
+            </b-container >
+            <h3 class="pt-3 text-center">Recent activity</h3>
+            <!-- <div class='m-3 pb-5'>
+              <b-table style='background-color:white' responsive striped hover :items="activity"></b-table>
+            </div> -->
           </b-container>
         </b-container>
       </b-container>
@@ -108,6 +108,20 @@ export default {
   name: "v-account",
   data() {
     return {
+      activity: [
+        {
+          Project: "name",
+          Budjet: '1 000 000',
+          Status: "in progress",
+          Date: "14/05/2001",
+        },
+        {
+          Project: "name",
+          Budjet: '1 000 000',
+          Status: "in progress",
+          Date: "14/05/2001",
+        },
+      ],
       side_nav: [
         {
           icon: "fa fa-home home-icon",
