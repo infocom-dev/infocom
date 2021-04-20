@@ -5,13 +5,13 @@
         <a href="#" class="btn">logout</a>
       </div>
     </router-link> -->
-    <b-row >
+    <b-row class='w-100 m-0 '>
       <b-container class="col-2 p-0 ml-0">
         <b-nav class="w-100 h-100" vertical align="left">
           <b-navbar-brand class="d-none d-md-block">
-            <h4 class="p-4 text-uppercase font-weight-bolder my-auto">
+            <h3 class="p-3 text-uppercase font-weight-bolder my-auto">
               INFO<span>com</span>
-            </h4>
+            </h3>
           </b-navbar-brand>
           <div
             v-for="item in side_nav"
@@ -19,12 +19,13 @@
             :key="item"
             align="left"
           >
-            <b-nav-item>
+            <b-nav-item >
               <b-row
                 align-v="center"
-                class="text-center justify-content-center p-2"
+                
+                class="text-center justify-content-center p-0"
               >
-                <div class="col-4 p-0">
+                <div class="col-4 p-0 text-center">
                   <i :class="item.icon"></i>
                 </div>
                 <div class="col text-left d-none d-md-block">
@@ -37,18 +38,18 @@
       </b-container>
 
       <b-container class="col p-0 ml-0">
-        <b-container fluid class='p-0 ml-0'>
-          <b-row align-v="center">
+        <b-container fluid class="p-0 ml-0">
+          <b-row align-v="center" class="ml-0">
             <b-col>
               <b-row
                 align-v="center"
                 class="text-center justify-content-center m-4"
               >
-                <b-col class="col-5">
+                <b-col class="col">
                   <i class="fa fa-user-circle user-icon"></i>
                 </b-col>
                 <b-col class="text-left d-none d-md-block">
-                  <h3>Hello, user!</h3>
+                  <h5>Hello, user!</h5>
                   <b-row align-v="center" class="ml-0">
                     <i class="text-center m-1 fa fa-envelope mail-icon"></i>
                     <p class="m-1">example.com</p>
@@ -56,27 +57,46 @@
                 </b-col>
               </b-row>
             </b-col>
-            <b-col class='d-none d-md-block'></b-col>
+            <b-col class="d-none d-sm-block"></b-col>
             <b-col>
-              <b-row align-v="center" class="text-left m-4">
+              <b-row align-h="center" align-v="center" class="text-left mr-3">
                 <div class="bellhold">
                   <i class="text-center fa fa-bell bell-icon"></i>
                   <span class="badgex badge-danger">6</span>
                 </div>
-                <a href="#" class="btn text-uppercase w-50 mx-auto">log out</a>
+                <a
+                  href="#"
+                  class="btn text-uppercase w-50 mx-auto d-none d-md-block"
+                  >log out</a
+                >
+                <i
+                  class="fas fa-sign-out-alt out-icon m-4 d-block d-md-none"
+                ></i>
               </b-row>
             </b-col>
           </b-row>
           <b-container fluid class="w-100 ml-0 overview">
-            <h3 class="ml-5 pt-3">Overview</h3>
-            <b-row>
-              <div v-for="item in overview" :key="item">
-                <b-col style="width: 300px" class="m-5 text-left overview-box  ">
-                  <h5 class='p-2'>{{item.title}}</h5>
-                  <i class="" :class="item.icon"></i>
-                </b-col>
-              </div>
-            </b-row>
+            <h3 class="pt-3 text-center">Overview</h3>
+            <b-container fluid class="w-100 justify-content-center">
+              <b-row align-v="center" class=" justify-content-center">
+                <div v-for="item in overview" :key="item"
+                  
+                    class="col m-4 text-center overview-box"
+                    style="width: 100%; max-width: 300px; min-width: 200px"
+                  >
+                    <h5 class="pt-2">{{ item.title }}</h5>
+                    <b-row align-v="center" class="ml-0">
+                      <i class="text-left m-1" :class="item.icon"></i>
+                      <h3 class="text-left pl-3 m-1">{{ item.number }}</h3>
+                    </b-row>
+                    <p class="text-left pt-2">{{ item.link }}</p>
+                  
+                  <!-- <b-col style="wigth: 300px" class="m-3 overview-box">
+                    
+                  </b-col> -->
+                </div>
+              </b-row>
+            </b-container>
           </b-container>
         </b-container>
       </b-container>
@@ -115,19 +135,19 @@ export default {
           icon: "fa fa-hourglass-half clock-icon",
           title: "Projects in progress",
           number: "1",
-          link: "",
+          link: "View details",
         },
         {
           icon: "fa fa-code code-icon",
           title: "Projects in analysis",
           number: "2",
-          link: "",
+          link: "View details",
         },
         {
           icon: "fa fa-check check-icon",
           title: "Finished projects",
           number: "0",
-          link: "",
+          link: "View details",
         },
       ],
     };
@@ -157,7 +177,8 @@ export default {
 .mail-icon {
   color: $blu;
 }
-.bell-icon {
+.bell-icon,
+.out-icon {
   font-size: 29px;
   color: $blu;
 }
@@ -184,11 +205,10 @@ export default {
   position: relative;
   cursor: pointer;
 }
-.overview{
-  background-color: #E7ECEF;
-
+.overview {
+  background-color: #e7ecef;
 }
 .overview-box {
-   background-color:#ffffff;
+  background-color: #ffffff;
 }
 </style>
