@@ -47,3 +47,29 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = "__all__"
+
+from rest_auth.registration.serializers import RegisterSerializer
+from django.db import transaction
+from backend.api.models import CustomUser
+
+# должны быть все поля, что и в кастомере (женя помоги написать)
+class CustomRegisterSerializer(RegisterSerializer):
+    phone = serializers.CharField(max_length=16)
+    @transaction.atomic
+    def save(self, request):
+        user = super().save(request)
+        user.phone = self.data.get('phone')
+        user.save()
+        return user
+# должны быть все поля, что и в кастомере (женя помоги написать)
+class CustomUserDetailsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CustomUser
+        fields = (
+            
+            'email',
+            'phone',
+            
+        )
+        

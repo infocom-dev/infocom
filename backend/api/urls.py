@@ -2,6 +2,7 @@ from django.urls import path, include
 
 from backend.api import views
 
+
 urlpatterns = ([
     # Questions
     path("getQuestions/", views.QuestionViewSet.as_view({'get': 'list'})),
@@ -18,10 +19,12 @@ urlpatterns = ([
     path("createProject/", views.ProjectViewSet.as_view({'post': 'create'})),
     path("getProjects/", views.ProjectViewSet.as_view({'get': 'list'})),
 
-    path('auth/', include('djoser.urls')),
-    # path("auth/token/", obtain_auth_token,name='token'),
+    # path('auth/', include('djoser.urls')),
+    # # path("auth/token/", obtain_auth_token,name='token'),
 
-    path('auth/', include('djoser.urls.authtoken')),
-    path('auth/', include('djoser.urls.jwt')),
+    # path('auth/', include('djoser.urls.authtoken')),
+    # path('auth/', include('djoser.urls.jwt')),
+    # # vk
+    # path('auth/', include('rest_framework_social_oauth2.urls')),
 
 ])

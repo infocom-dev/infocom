@@ -1,41 +1,67 @@
 <template>
   <div class="v-home-page">
-    <nav-bar ></nav-bar>
-    <div
-      id="nav-scroller"
-    >
-      <section id="home" class="home position-relative d-flex justify-content-center">
-        <div class="home-skew-border">
-          <div class="w-50 mx-auto text-center">
-            <p>Our Clients Are Our First Priority</p>
-            <h1 class="text-uppercase font-weight-bolder">
-              WELCOME TO INFOCOM
-            </h1>
-            <div class="separator"></div>
-            <p class="font-weight-bolder">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
-            </p>
-            <router-link to="register"><b-button size="lg" variant="outline-warning"
-              >GET STARTED NOW</b-button
-            ></router-link>
-          </div>
-        </div>
+    <nav-bar></nav-bar>
+    <div id="nav-scroller">
+      <section
+        id="home"
+        class="home p-5 position-relative d-flex justify-content-center"
+      >
+        <b-container fluid class="mx-auto">
+          <b-row align-v="center" align-content="center">
+            <b-col>
+              <b-container fluid>
+                <b-row class="pt-5 mx-5">
+                  <b-col class="">
+                    <div class="text-left">
+                      <p>Our Clients Are Our First Priority</p>
+                      <h1 class="mt-4 text-uppercase font-weight-bolder">
+                        WELCOME TO INFOCOM
+                      </h1>
+
+                      <p class="mt-4">
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the
+                        industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and
+                        scrambled it to make a type specimen book.
+                      </p>
+              
+                        <div class="w-50">
+                          <!-- <router-link to="login"> -->
+                          <a href="login" class="btn">LEARN MORE</a>
+                          <!-- </router-link> -->
+                        </div>
+                      
+                    </div>
+                  </b-col>
+                </b-row>
+              </b-container>
+            </b-col>
+            <b-col class="">
+              <b-img
+                style="min-width: 400px"
+                fluid
+                center
+                class=""
+                :src="require('../assets/images/bg.png')"
+              />
+            </b-col>
+          </b-row>
+        </b-container>
       </section>
       <section id="services" class="service">
         <v-services-vue></v-services-vue>
       </section>
-      <section id="team" class="team">
-        <v-team></v-team>
-      </section>
       <section id="skills" class="skills">
         <v-skills></v-skills>
       </section>
-      <section id="contact-us" class="contact-us">
-        <contact-us></contact-us>
+      <!-- <section id="technology" class="technology">
+        <v-calculation></v-calculation>
+      </section> -->
+      <section>
+        <v-tecnology> </v-tecnology>
       </section>
+
       <section class="links">
         <Footer></Footer>
       </section>
@@ -46,20 +72,25 @@
 <script>
 import VSkills from "./v-skills.vue";
 import NavBar from "./NavBar.vue";
+// import vCalculation from "./v-calculation";
 import Footer from "./Footer.vue";
 import vServicesVue from "./v-services.vue";
-import VTeam from "./v-team.vue";
-import ContactUs from './contact-us.vue';
+import vTecnology from "./v-tecnology";
+// import VCalculation from "./v-calculation.vue";
+
+// import ContactUs from "./contact-us.vue";
 export default {
   name: "v-home-page",
   components: {
     NavBar,
     VSkills,
     vServicesVue,
-    VTeam,
-    Footer,
-    ContactUs,
+    // vCalculation,
 
+    vTecnology,
+    // VCalculation,
+    Footer,
+    // ContactUs,
   },
   data() {
     return {};
@@ -72,70 +103,12 @@ export default {
 @import "../assets/styles/button.scss";
 @import "../assets/styles/fonts.scss";
 .home {
-  background: url("../assets/images/09.jpg") no-repeat center center;
+  background: url("../assets/images/bg_technology.png");
+
   background-size: cover;
   // position: relative;
   flex-direction: column;
   height: 770px;
   font-size: 1rem;
-}
-.home-skew-border:after {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  content: "";
-  width: 0;
-  height: 0;
-  border-bottom: 86px solid $wht;
-  border-right: 680px solid transparent;
-}
-.home-skew-border:before {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  content: "";
-  width: 0;
-  height: 0;
-  border-bottom: 86px solid $wht;
-  border-left: 680px solid transparent;
-}
-.separator {
-  width: 10px;
-  height: 10px;
-  margin: 20px auto;
-  background: $ylw;
-  position: relative;
-  display: inline-block;
-  border-radius: 50%;
-}
-.separator::before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  direction: rtl;
-  position: absolute;
-  right: 5%;
-  bottom: 4px;
-  height: 1px;
-  width: 80px;
-  background: $wht;
-  content: "";
-  display: inline-block;
-  margin-right: 20px;
-}
-.separator::after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  direction: rtl;
-  position: absolute;
-  left: 5%;
-  bottom: 4px;
-  height: 1px;
-  width: 80px;
-  background: $wht;
-  content: "";
-  display: inline-block;
-  margin-left: 20px;
 }
 </style>

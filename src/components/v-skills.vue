@@ -1,59 +1,33 @@
 <template>
-  <div class="v-skills">
-    <b-container>
-      <div class="mx-auto pt-3">
-        <h1 class="text-center text-uppercase font-weight-bolder">
-          STACK<span>skills</span>
-        </h1>
-      </div>
-      <b-container>
-        <b-row align-v="center" class="justify-content-center">
-          <b-col>
-            <div class="clip-block">
-              <div class="clip-each clip-solid"></div>
-            </div>
-            <!-- /clip-block -->
-            <div class="clip-block">
-              <a href="#" class="clip-each clip-gradient">
-                <div class="clip-caption">
-                  <i class="fa fa-database" aria-hidden="true"></i>
-                  mysql
-                </div>
-              </a>
-              <a href="#" class="clip-each clip-border">
-                <div class="clip-caption">life</div>
-              </a>
-            </div>
-            <!-- /clip-block -->
-
-            <svg class="clip-svg">
-              <defs>
-                <clipPath id="hexagon-clip" clipPathUnits="objectBoundingBox">
-                  <polygon
-                    points="0.25 0.05, 0.75 0.05, 1 0.5, 0.75 0.95, 0.25 0.95, 0 0.5"
-                  />
-                </clipPath>
-              </defs>
-            </svg>
-
-            <svg class="clip-svg">
-              <defs>
-                <clipPath id="triangle-clip" clipPathUnits="objectBoundingBox">
-                  <polygon points="1 0.03, 0.17 1, 1 1" />
-                </clipPath>
-              </defs>
-            </svg>
+  <div class="v-skills p-5">
+    <div class="">
+      <b-container fluid class="mx-auto">
+        <b-row align-v="center" class="justife-content-center">
+          <b-col class="">
+            <b-img
+              style="min-width: 300px"
+              center
+              class=""
+              fluid
+              alt="Responsive image"
+              :src="require('../assets/images/skills.png')"
+            />
           </b-col>
-          <b-col>
-            <h1>
-              We support challenges on all the latest stacks. Console, web or
-              mobile.
+          <b-col class="text-right mr-5">
+            <h1 class="mt-4 text-uppercase font-weight-bolder">
+              WELCOME TO INFOCOM
             </h1>
+
+            <p class="mt-4">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book.
+            </p>
           </b-col>
         </b-row>
       </b-container>
-    </b-container>
-
+    </div>
   </div>
 </template>
 <script>
@@ -63,178 +37,10 @@ export default {
 </script>
 <style lang="scss">
 @import "../assets/styles/base.scss";
-body {
-  font-family: "Roboto Condensed", sans-serif;
-  //   background: url("http://karenmenezes.com/shapes-polygon/bg-cubes.png");
+.v-skills {
+  background: url("../assets/images/bg_skills4.png") no-repeat center;
+  background-size: cover;
+  // width: 1440px;
+  // height: 750px;
 }
-
-p {
-  margin: 0 0 10px 0;
-}
-
-.clip-svg {
-  width: 0;
-  height: 0;
-}
-
-.clip-caption {
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  text-align: center;
-}
-
-.clip-each {
-  display: block;
-  position: relative;
-  -webkit-clip-path: polygon(
-    25% 5%,
-    75% 5%,
-    100% 50%,
-    75% 95%,
-    25% 95%,
-    0% 50%
-  );
-  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
-  -webkit-clip-path: url("#hexagon-clip");
-  clip-path: url("#hexagon-clip");
-  -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
-  margin: 0 auto;
-}
-
-a.clip-each:hover {
-  background: $rs;
-  -webkit-transition: all 0.25s ease-in;
-  transition: all 0.25s ease-in;
-}
-
-.clip-solid {
-  width: 300px;
-  height: 300px;
-  background: url("../assets/images/skills.png") no-repeat center center;
-  //   background-image: url(../assets/images/skills.jpg) cover;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: $blu;
-  //   background-color: $rs;
-  //   background-blend-mode: hard-light;
-  -webkit-transition: all 2.5s linear;
-  transition: all 2.5s linear;
-}
-
-.clip-solid:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  -webkit-clip-path: polygon(100% 3%, 17% 100%, 100% 100%);
-  clip-path: polygon(100% 3%, 17% 100%, 100% 100%);
-  -webkit-clip-path: url("#triangle-clip");
-  clip-path: url("#triangle-clip");
-  //   background: #9e566e;
-  z-index: 1;
-  width: 100%;
-  height: 155px;
-  -webkit-transition: all 0.2s linear;
-  transition: all 0.2s linear;
-  pointer-events: none;
-}
-
-.clip-solid:hover:after {
-  height: 0;
-  -webkit-transition: all 0.45s ease-in;
-  transition: all 0.45s ease-in;
-}
-
-.clip-solid:hover .social-share-block {
-  -webkit-transition: all 0.2s linear;
-  transition: all 0.2s linear;
-}
-
-.social-share-block {
-  img {
-    width: 100%;
-    background-position: top;
-    text-align: center;
-  }
-  position: absolute;
-  bottom: 20px;
-  right: 75px;
-  color: #fff;
-  font-size: 70%;
-  z-index: 2;
-}
-
-.social-each {
-  font-size: 80%;
-}
-
-.clip-gradient {
-  background: $rs;
-  width: 160px;
-  height: 160px;
-}
-
-.clip-gradient .clip-caption {
-  color: #fff;
-}
-
-.clip-border {
-  background: $ylw;
-
-  width: 160px;
-  height: 160px;
-  margin-top: 7px;
-  color: #222;
-}
-
-.clip-border::after {
-  content: "";
-  position: absolute;
-  top: 4%;
-  left: 4%;
-  right: 4%;
-  bottom: 4%;
-  margin: 0 auto;
-  background: url("http://karenmenezes.com/shapes-polygon/bg-cubes.png");
-  -webkit-transition: all 0.3s linear;
-  transition: all 0.3s linear;
-  -webkit-clip-path: polygon(
-    25% 5%,
-    75% 5%,
-    100% 50%,
-    75% 95%,
-    25% 95%,
-    0% 50%
-  );
-  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
-  -webkit-clip-path: url("#hexagon-clip");
-  clip-path: url("#hexagon-clip");
-  z-index: -1;
-}
-
-.clip-tagline {
-  display: block;
-  color: $blu;
-  text-decoration: none;
-  text-align: center;
-}
-
-@media only screen and (min-width: 550px) {
-  .clip-block {
-    display: table-cell;
-    vertical-align: middle;
-  }
-
-  .clip-border {
-    margin-top: 20px;
-  }
-}
-
-
 </style>
