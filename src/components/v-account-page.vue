@@ -1,41 +1,11 @@
 <template>
-  <div class="v-account-page w-100">
-    <!-- <router-link to="logout">
-      <div class="mr-5 ml-3">
-        <a href="#" class="btn">logout</a>
-      </div>
-    </router-link> -->
+  <div class="v-account-page w-100 ">
     <b-row align-h="center" class="w-100 m-0">
-      <b-container class="col-2 p-0 ml-0">
-        <b-nav class="w-100 h-100" vertical align="left">
-          <b-navbar-brand class="d-none d-md-block">
-            <h3 class="p-3 text-uppercase font-weight-bolder my-auto">
-              INFO<span>com</span>
-            </h3>
-          </b-navbar-brand>
-          <div
-            v-for="item in side_nav"
-            class="justify-content-center"
-            :key="item"
-            align="left"
-          >
-            <b-nav-item>
-              <b-row
-                align-v="center"
-                class="text-center justify-content-center p-0"
-              >
-                <div class="col-4 p-0 text-center">
-                  <i :class="item.icon"></i>
-                </div>
-                <div class="col text-left d-none d-md-block">
-                  <h4>{{ item.text }}</h4>
-                </div>
-              </b-row>
-            </b-nav-item>
-          </div>
-        </b-nav>
+      <b-container
+        class="w-100  col-2 p-0"
+      >
+        <side-bar-account></side-bar-account>
       </b-container>
-
       <b-container class="col p-0 ml-0">
         <b-container fluid class="p-0 ml-0">
           <b-row align-v="center" class="ml-0">
@@ -64,7 +34,7 @@
                   <span class="badgex badge-danger">6</span>
                 </div>
                 <router-link to="logout">
-                  <div class='m-5'>
+                  <div class="m-5">
                     <a
                       href="#"
                       class="btn text-uppercase w-100 mx-auto d-none d-md-block"
@@ -115,8 +85,12 @@
   </div>
 </template>
 <script>
+import SideBarAccount from "./side-bar-account.vue";
 export default {
   name: "v-account",
+  components: {
+    SideBarAccount,
+  },
   data() {
     return {
       activity: [
@@ -133,28 +107,7 @@ export default {
           Date: "14/05/2001",
         },
       ],
-      side_nav: [
-        {
-          icon: "fa fa-home home-icon",
-          text: "Home    ",
-        },
-        {
-          icon: "fa fa-folder-open projects-icon",
-          text: "Projects",
-        },
-        {
-          icon: "fa fa-credit-card card-icon",
-          text: "Purchase",
-        },
-        {
-          icon: "fa fa-cog cog-icon",
-          text: "Settings",
-        },
-        {
-          icon: "fa fa-question-circle help-icon",
-          text: "Help",
-        },
-      ],
+
       overview: [
         {
           icon: "fa fa-hourglass-half clock-icon",
@@ -232,8 +185,10 @@ export default {
 }
 .overview {
   background-color: #e7ecef;
+  height: 900px;
 }
 .overview-box {
   background-color: #ffffff;
 }
+
 </style>

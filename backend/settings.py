@@ -56,12 +56,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
-    # google
-    'allauth.socialaccount.providers.google',
-    'backend.users.apps.UserConfig',
-    # 
-
-
 
     'rest_auth.registration',
     # vk
