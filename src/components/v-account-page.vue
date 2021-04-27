@@ -63,14 +63,19 @@
                   <i class="text-center fa fa-bell bell-icon"></i>
                   <span class="badgex badge-danger">6</span>
                 </div>
-                <a
-                  href="#"
-                  class="btn text-uppercase w-50 mx-auto d-none d-md-block"
-                  >log out</a
-                >
-                <i
-                  class="fas fa-sign-out-alt out-icon m-4 d-block d-md-none"
-                ></i>
+                <router-link to="logout">
+                  <div class='m-5'>
+                    <a
+                      href="#"
+                      class="btn text-uppercase w-100 mx-auto d-none d-md-block"
+                      >log out</a
+                    >
+
+                    <i
+                      class="fas fa-sign-out-alt out-icon m-4 d-block d-md-none"
+                    ></i>
+                  </div>
+                </router-link>
               </b-row>
             </b-col>
           </b-row>
@@ -84,7 +89,7 @@
                   class="col m-4 text-center overview-box"
                   style="width: 100%; max-width: 300px; min-width: 200px"
                 >
-                  <h5 class="pt-2">{{ item.title }}</h5>
+                  <h5 class="text-left pt-2">{{ item.title }}</h5>
                   <b-row align-v="center" class="ml-0">
                     <i class="text-left m-1" :class="item.icon"></i>
                     <h3 class="text-left pl-3 m-1">{{ item.number }}</h3>
@@ -92,11 +97,17 @@
                   <p class="text-left pt-2">{{ item.link }}</p>
                 </div>
               </b-row>
-            </b-container >
+            </b-container>
             <h3 class="pt-3 text-center">Recent activity</h3>
-            <!-- <div class='m-3 pb-5'>
-              <b-table style='background-color:white' responsive striped hover :items="activity"></b-table>
-            </div> -->
+            <div class="m-3 pb-5">
+              <b-table
+                style="background-color: white"
+                responsive
+                striped
+                hover
+                :items="activity"
+              ></b-table>
+            </div>
           </b-container>
         </b-container>
       </b-container>
@@ -111,13 +122,13 @@ export default {
       activity: [
         {
           Project: "name",
-          Budjet: '1 000 000',
+          Budjet: "1 000 000",
           Status: "in progress",
           Date: "14/05/2001",
         },
         {
           Project: "name",
-          Budjet: '1 000 000',
+          Budjet: "1 000 000",
           Status: "in progress",
           Date: "14/05/2001",
         },

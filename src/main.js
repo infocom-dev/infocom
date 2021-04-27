@@ -12,9 +12,10 @@ import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Vuelidate from 'vuelidate'
-
 Vue.use(BootstrapVue,BootstrapVueIcons);
 Vue.use(Vuelidate);
+
+import '@/plugins/apexcharts';
 
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
