@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = bool(int(os.environ.get("DEBUG", default=1)))
 
 # ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
-ALLOWED_HOSTS=['127.0.0.1','localhost','45.90.216.173','backend']
+ALLOWED_HOSTS=['127.0.0.1','0.0.0.0','localhost','45.90.216.173','backend']
 
 # Application definition
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'backend.api',
     'corsheaders',
+    'drf_yasg',
 
     # email auth
     
@@ -55,13 +56,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-
-    # google
-    'allauth.socialaccount.providers.google',
-    'backend.users.apps.UserConfig',
-    # 
-
-
 
     'rest_auth.registration',
     # vk

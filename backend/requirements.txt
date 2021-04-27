@@ -2,7 +2,7 @@ django
 djangorestframework
 psycopg2-binary
 django-cors-headers
-
+drf-yasg
 # email auth
 django-rest-auth
 django-allauth
