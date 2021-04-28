@@ -43,13 +43,13 @@
               </b-row>
             </b-col>
           </b-row>
-          <b-container fluid class="w-100  overview">
+          <b-container fluid class="w-100 overview">
             <b-row align-v="center">
               <div class="anketa-box w-100 m-5">
                 <b-row>
                   <div class="col-3">
                     <b-img
-                      style="max-width:300px"
+                      style="max-width: 300px"
                       fluid
                       center
                       class=""
@@ -61,7 +61,7 @@
                       Have new idea for cool project,but don’t have profeccional
                       team to make it real.All you need is:
                     </h5>
-                    <ol class='text-left'>
+                    <ol class="text-left">
                       <li>Fill our form</li>
                       <li>Find out the total price</li>
                       <li>
@@ -70,16 +70,49 @@
                       </li>
                     </ol>
                     <div class="w-50 pt-3 mx-auto">
-                    <a
-                      href="#"
-                      class="btn text-uppercase w-100 mx-auto d-none d-md-block"
-                      >log out</a
-                    >
-                  </div>
+                      <a
+                        href="#"
+                        class="btn text-uppercase w-100 mx-auto d-none d-md-block"
+                        >log out</a
+                      >
+                    </div>
                   </div>
                 </b-row>
               </div>
             </b-row>
+            <div v-for="(item, id) in analysis_pr" :key="id">
+              <b-row>
+                <div class="w-100 ml-5 mr-5">
+                  <b-row align-v="center">
+                    <b-col class="col-4 anketa-box">
+                      <div
+                        class="name-box text-center d-flex justify-content-center m-3 mx-auto"
+                      >
+                        <h5 class="m-3">{{ item.name }}</h5>
+                      </div>
+                      <div
+                        v-if="item.status == 'in progress'"
+                        class="text-center"
+                      >
+                        <p>
+                          Наша нейронная сеть пытается обработать запрос.
+                          Пожалуйста подождите
+                        </p>
+                      </div>
+                    </b-col>
+                    <b-col class="anketa-box ml-5">
+                      <graph
+                        v-bind:options="options"
+                        v-bind:series="series"
+                        :key="componentKey"
+                      ></graph>
+                      <div @click="fillData()" ref="submitBtn">
+                      </div>
+                    </b-col>
+                  </b-row>
+                </div>
+              </b-row>
+            </div>
           </b-container>
         </b-container>
       </b-container>
@@ -89,17 +122,104 @@
 <script>
 import sideBarAccount from "./side-bar-account.vue";
 
+import Graph from "./Graph.vue";
 export default {
-  components: { sideBarAccount },
+  components: { sideBarAccount, Graph },
   name: "projects",
+
+  data() {
+    return {
+      componentKey: 0,
+      analysis_pr: [
+        {
+          name: "Infocom",
+          status: "in progress",
+          budjet: "1 000 000",
+        },
+      ],
+      options: {
+        chart: {
+          height: 350,
+          type: "area",
+        },
+        dataLabels: {
+          enabled: false,
+        },
+        stroke: {
+          curve: "smooth",
+        },
+        xaxis: {
+          categories: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ],
+        },
+        title: {
+          align: "center",
+          style: {
+            fontSize: "20px",
+          },
+        },
+        colors: ["#274C77", "#FFD334"],
+      },
+
+      series: [
+        {
+          name: "series1",
+          data: [31, 40, 28, 51, 42, 109, 100],
+        },
+        {
+          name: "series2",
+          data: [11, 32, 45, 32, 34, 52, 41],
+        },
+      ],
+    };
+  },
+  mounted() {
+    this.$refs.submitBtn[0].click();
+  },
+  methods: {
+    forceRerender() {
+      this.componentKey += 1;
+    },
+    getRandomInt() {
+      return Math.floor(Math.random() * 100) + 5;
+    },
+    fillData() {
+      for (let i = 0; i < this.series.length; i++) {
+        for (let j = 0; j < this.series[i].data.length; j++) {
+          this.series[i].data[j] = this.getRandomInt();
+        }
+      }
+      this.forceRerender();
+      console.log(this.series);
+      console.log(this.series[1].data);
+      setTimeout(() => {
+        console.log(this);
+        this.$refs.submitBtn[0].click();
+      }, 2500);
+    },
+  },
 };
 </script>
 <style lang="scss">
 .anketa-box {
   background-color: white;
   border-radius: 40px;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
+}
+.name-box {
+  background-color: #e7ecef;
+  border-radius: 40px;
+  display: inline-block;
 }
 </style>

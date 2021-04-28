@@ -11,10 +11,9 @@ import projects from '../components/projects';
 
 import Login from '../components/Login';
 import Register from '../components/Register';
-import reject from '../components/reject'
 import account from '../components/v-account-page'
 import google_auth from '../components/Google-auth.vue'
-
+import Graph from '../components/Graph'
 import store from '../store';
 
 const requireAuthenticated = (to, from, next) => {
@@ -70,9 +69,9 @@ let router = new Router({
             beforeEnter: requireUnauthenticated,
         },
         {
-            path: '/reject',
-            name: 'reject',
-            component: reject,
+            path: '/graph',
+            name: 'graph',
+            component: Graph,
             beforeEnter: requireAuthenticated,
         },
         {
