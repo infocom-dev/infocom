@@ -43,7 +43,7 @@
               </b-row>
             </b-col>
           </b-row>
-          <b-container fluid class="w-100 overview">
+          <b-container fluid class="w-100 overview pb-5">
             <b-row align-v="center">
               <div class="anketa-box w-100 m-5">
                 <b-row>
@@ -70,10 +70,8 @@
                       </li>
                     </ol>
                     <div class="w-50 pt-3 mx-auto">
-                      <a
-                        href="#"
-                        class="btn text-uppercase w-100 mx-auto d-none d-md-block"
-                        >log out</a
+                      <a href="#" class="btn text-uppercase w-100 mx-auto"
+                        >Start now</a
                       >
                     </div>
                   </div>
@@ -83,10 +81,10 @@
             <div v-for="(item, id) in analysis_pr" :key="id">
               <b-row>
                 <div class="w-100 ml-5 mr-5">
-                  <b-row align-h="center d-flex align-items-stretch  m-1">
+                  <b-row align-h="center d-flex align-items-stretch m-1 w-100">
                     <b-col class="col-4 w-100 anketa-box">
                       <div
-                        class="name-box text-center d-flex justify-content-center m-3 mx-auto"
+                        class="name-box text-center d-flex justify-content-center m-4 mx-auto"
                       >
                         <h5 class="m-3">{{ item.name }}</h5>
                       </div>
@@ -102,13 +100,11 @@
                       <div v-else class="text-center">
                         <h5>
                           Наша нейронная сеть оценала заказ в $
-                          {{ item.budjet }}.
+                          {{ item.old_budjet }}.
                         </h5>
                         <p>Вы можете изменить настройки в меня справа</p>
                         <div class="m-3" v-b-modal.modal-scrollable>
-                          <a
-                            href="#"
-                            class="btn text-uppercase w-100 mx-auto d-none d-md-block"
+                          <a href="#" class="btn text-uppercase w-100 mx-auto"
                             >View details
                           </a>
                         </div>
@@ -131,9 +127,9 @@
                     <b-col
                       class="anketa-box d-flex justify-content-center ml-5"
                     >
-                      <div v-if="item.status == 'in progress'">
+                      <div v-if="item.status == 'in progress'" class="m-3">
                         <graph
-                          class="mx-auto m-3"
+                          class="mx-auto"
                           v-bind:options="options"
                           v-bind:series="series"
                           v-bind:width="500"
@@ -141,8 +137,43 @@
                         ></graph>
                         <div @click="fillData()" ref="submitBtn"></div>
                       </div>
-                      <div v-else>
-                        <p>jffj</p>
+                      <div v-else class="w-100 m-3 justify-content-center">
+                        <div v-for="(f, index) in feature" :key="index">
+                          <b-row align-v="center" class='d-flex'>
+                            <b-col class="col-4">
+                              <div
+                                class="name-box d-flex justify-content-center text-center m-3 mx-auto"
+                              >
+                                <p class="m-1">{{ f }}</p>
+                              </div>
+                            </b-col>
+                            <b-col class="col w-100">
+                              <vue-slider
+                                v-model="answers[index]"
+                                :adsorb="true"
+                                :interval="10"
+                                :marks="true"
+                              ></vue-slider>
+                            </b-col>
+                          </b-row>
+                        </div>
+
+                        <b-row >
+                          <b-container fluid class="p-0 ml-0 ">
+                            <b-row align-v="center" >
+                              <b-col class='mx-auto'>
+                                <div class="m-3 d-flex" v-b-modal.modal-scrollable>
+                                  <a href="#" class="btn text-uppercase mx-auto"
+                                    >Submit data
+                                  </a>
+                                </div>
+                              </b-col>
+                              <b-col v-if="item.new_budjet">
+                                <h5>New budjet : {{ item.new_budjet }}</h5>
+                              </b-col>
+                            </b-row>
+                          </b-container>
+                        </b-row>
                       </div>
                     </b-col>
                   </b-row>
@@ -157,21 +188,26 @@
 </template>
 <script>
 import sideBarAccount from "./side-bar-account.vue";
-
+import VueSlider from "vue-slider-component";
+import "vue-slider-component/theme/default.css";
+import "vue-slider-component/theme/default.css";
 import Graph from "./Graph.vue";
 export default {
-  components: { sideBarAccount, Graph },
+  components: { sideBarAccount, Graph, VueSlider },
   name: "projects",
 
   data() {
     return {
       componentKey: 0,
+      feature: ["Дешево", "Качественно", "Быстро"],
+      answers: [50, 10, 20],
 
       analysis_pr: [
         {
           name: "Infocom",
           status: "finish",
-          budjet: "1 000 000",
+          old_budjet: "1 000 000",
+          new_budjet: "1 500 000",
         },
       ],
 
