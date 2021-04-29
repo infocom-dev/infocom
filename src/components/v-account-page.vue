@@ -17,7 +17,7 @@
                 <b-col class="col">
                   <i class="fa fa-user-circle user-icon"></i>
                 </b-col>
-                <b-col class="text-left d-none d-md-block">
+                <b-col class="text-left d-none d-lg-block">
                   <h5>Hello, user!</h5>
                   <b-row align-v="center" class="ml-0">
                     <i class="text-center m-1 fa fa-envelope mail-icon"></i>
@@ -37,12 +37,12 @@
                   <div class="m-5">
                     <a
                       href="#"
-                      class="btn text-uppercase w-100 mx-auto d-none d-md-block"
+                      class="btn text-uppercase w-100 mx-auto d-none d-lg-block"
                       >log out</a
                     >
 
                     <i
-                      class="fas fa-sign-out-alt out-icon m-4 d-block d-md-none"
+                      class="fas fa-sign-out-alt out-icon m-4 d-block d-lg-none"
                     ></i>
                   </div>
                 </router-link>

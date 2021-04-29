@@ -31,12 +31,12 @@
                   <div class="m-5">
                     <a
                       href="#"
-                      class="btn text-uppercase w-100 mx-auto d-none d-md-block"
+                      class="btn text-uppercase w-100 mx-auto d-none d-lg-block"
                       >log out</a
                     >
 
                     <i
-                      class="fas fa-sign-out-alt out-icon m-4 d-block d-md-none"
+                      class="fas fa-sign-out-alt out-icon m-4 d-block d-lg-none"
                     ></i>
                   </div>
                 </router-link>
@@ -45,7 +45,7 @@
           </b-row>
           <b-container fluid class="w-100 overview pb-5">
             <b-row align-v="center">
-              <div class="anketa-box w-100 m-5">
+              <div class="anketa-box w-100 mr-5 ml-5 mt-5">
                 <b-row>
                   <div class="col-3">
                     <b-img
@@ -78,11 +78,26 @@
                 </b-row>
               </div>
             </b-row>
+            <b-row
+              align-v="center"
+              class="text-center justify-content-center m-5 "
+            >
+              <div class="col-1 pl-2 text-left">
+              
+                <i class="fas fa-chart-area projects-icon"></i>
+              </div>
+              <div class="col-4 p-0 text-left">
+                <h3>Projects in analysis</h3>
+              </div>
+              <div class='col'>
+
+              </div>
+            </b-row>
             <div v-for="(item, id) in analysis_pr" :key="id">
               <b-row>
                 <div class="w-100 ml-5 mr-5">
                   <b-row align-h="center d-flex align-items-stretch m-1 w-100">
-                    <b-col class="col-4 w-100 anketa-box">
+                    <b-col class="col-lg-3 w-100 anketa-box">
                       <div
                         class="name-box text-center d-flex justify-content-center m-4 mx-auto"
                       >
@@ -125,7 +140,7 @@
                       </div>
                     </b-col>
                     <b-col
-                      class="anketa-box d-flex justify-content-center ml-5"
+                      class="anketa-box d-flex justify-content-center offset-sm-1"
                     >
                       <div v-if="item.status == 'in progress'" class="m-3">
                         <graph
@@ -139,7 +154,7 @@
                       </div>
                       <div v-else class="w-100 m-3 justify-content-center">
                         <div v-for="(f, index) in feature" :key="index">
-                          <b-row align-v="center" class='d-flex'>
+                          <b-row align-v="center" class="d-flex">
                             <b-col class="col-4">
                               <div
                                 class="name-box d-flex justify-content-center text-center m-3 mx-auto"
@@ -158,11 +173,14 @@
                           </b-row>
                         </div>
 
-                        <b-row >
-                          <b-container fluid class="p-0 ml-0 ">
-                            <b-row align-v="center" >
-                              <b-col class='mx-auto'>
-                                <div class="m-3 d-flex" v-b-modal.modal-scrollable>
+                        <b-row>
+                          <b-container fluid class="p-0 ml-0">
+                            <b-row align-v="center">
+                              <b-col class="mx-auto">
+                                <div
+                                  class="m-3 d-flex"
+                                  v-b-modal.modal-scrollable
+                                >
                                   <a href="#" class="btn text-uppercase mx-auto"
                                     >Submit data
                                   </a>

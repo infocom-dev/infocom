@@ -2,7 +2,7 @@
   <div class="side-bar-account w-100 h-100">
     <div :style='window.height' class="sticky-top">
       <b-nav class="w-100 h-100" vertical align="left ">
-        <b-navbar-brand class="d-none d-md-block">
+        <b-navbar-brand class="d-none d-lg-block">
           <h3 class="p-3 text-uppercase font-weight-bolder my-auto">
             INFO<span>com</span>
           </h3>
@@ -22,7 +22,7 @@
                 <div class="col-4 p-0 text-center">
                   <i :class="item.icon"></i>
                 </div>
-                <div class="col text-left d-none d-md-block">
+                <div class="col text-left d-none d-lg-block">
                   <h4>{{ item.text }}</h4>
                 </div>
               </b-row></router-link
