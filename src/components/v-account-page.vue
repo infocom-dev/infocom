@@ -185,7 +185,7 @@ export default {
 }
 .overview {
   background-color: #e7ecef;
-  height: 900px;
+  // height: 900px;
 }
 .overview-box {
   background-color: #ffffff;

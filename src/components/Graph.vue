@@ -1,6 +1,6 @@
 <template>
   <div>
-    <apexchart width="500" :options="options" :series="series"> </apexchart>
+    <apexchart :width="width" :options="options" :series="series"> </apexchart>
   </div>
 </template>
 <script>
@@ -15,6 +15,8 @@ export default {
       },
     },
     series: [],
+    width: Number,
+    
   },
 };
 </script>

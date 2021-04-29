@@ -14,6 +14,7 @@ import Register from '../components/Register';
 import account from '../components/v-account-page'
 import google_auth from '../components/Google-auth.vue'
 import Graph from '../components/Graph'
+import Window from '../components/window'
 import store from '../store';
 
 const requireAuthenticated = (to, from, next) => {
@@ -94,6 +95,11 @@ let router = new Router({
             path: '/account/projects',
             name: 'projects',
             component: projects,
+        },
+        {
+            path :'/account/projects/details',
+            name :'window',
+            component: Window,
         }
     ]
 })

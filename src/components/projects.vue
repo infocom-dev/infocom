@@ -83,8 +83,8 @@
             <div v-for="(item, id) in analysis_pr" :key="id">
               <b-row>
                 <div class="w-100 ml-5 mr-5">
-                  <b-row align-v="center">
-                    <b-col class="col-4 anketa-box">
+                  <b-row align-h="center d-flex align-items-stretch  m-1">
+                    <b-col class="col-4 w-100 anketa-box">
                       <div
                         class="name-box text-center d-flex justify-content-center m-3 mx-auto"
                       >
@@ -99,14 +99,50 @@
                           Пожалуйста подождите
                         </p>
                       </div>
+                      <div v-else class="text-center">
+                        <h5>
+                          Наша нейронная сеть оценала заказ в $
+                          {{ item.budjet }}.
+                        </h5>
+                        <p>Вы можете изменить настройки в меня справа</p>
+                        <div class="m-3" v-b-modal.modal-scrollable>
+                          <a
+                            href="#"
+                            class="btn text-uppercase w-100 mx-auto d-none d-md-block"
+                            >View details
+                          </a>
+                        </div>
+                        <b-modal
+                          id="modal-scrollable"
+                          scrollable
+                          centered
+                          size="lg"
+                          title="Details"
+                        >
+                          <p class="my-4" v-for="i in 20" :key="i">
+                            Cras mattis consectetur purus sit amet fermentum.
+                            Cras justo odio, dapibus ac facilisis in, egestas
+                            eget quam. Morbi leo risus, porta ac consectetur ac,
+                            vestibulum at eros.
+                          </p>
+                        </b-modal>
+                      </div>
                     </b-col>
-                    <b-col class="anketa-box ml-5">
-                      <graph
-                        v-bind:options="options"
-                        v-bind:series="series"
-                        :key="componentKey"
-                      ></graph>
-                      <div @click="fillData()" ref="submitBtn">
+                    <b-col
+                      class="anketa-box d-flex justify-content-center ml-5"
+                    >
+                      <div v-if="item.status == 'in progress'">
+                        <graph
+                          class="mx-auto m-3"
+                          v-bind:options="options"
+                          v-bind:series="series"
+                          v-bind:width="500"
+                          :key="componentKey"
+                        ></graph>
+                        <div @click="fillData()" ref="submitBtn"></div>
+                      </div>
+                      <div v-else>
+                        <p>jffj</p>
                       </div>
                     </b-col>
                   </b-row>
@@ -130,16 +166,17 @@ export default {
   data() {
     return {
       componentKey: 0,
+
       analysis_pr: [
         {
           name: "Infocom",
-          status: "in progress",
+          status: "finish",
           budjet: "1 000 000",
         },
       ],
+
       options: {
         chart: {
-          height: 350,
           type: "area",
         },
         dataLabels: {
