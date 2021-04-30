@@ -40,7 +40,7 @@ export default {
           title: "calculate",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
-          icon: "fa fa-calculator chart-icon",
+          icon: "fa fa-calculator icon",
           h: "height:300px",
         },
         {
@@ -48,7 +48,7 @@ export default {
           title: "web development",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesettinCDSSbvjdin dfbidjvidbvkf sduivsivgs  svisvbskhbbvis cvsbh industry. Lorem Ip sum has been the industry's standard dummy text ever.",
-          icon: "fa fa-laptop laptop-icon",
+          icon: "fa fa-laptop icon",
           h: "height:350px",
         },
         {
@@ -56,7 +56,7 @@ export default {
           title: "chat-bot",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
-          icon: "fa fa-comments chat-icon",
+          icon: "fa fa-comments icon",
           h: "height:300px",
         },
       ],
@@ -66,11 +66,8 @@ export default {
 </script>
 <style lang="scss">
 @import "../assets/styles/base.scss";
-.laptop-icon,
-.data-icon,
-.chart-icon,
-.chat-icon {
-  font-size: 50px;
+.icon {
+  font-size: 45px;
   color: $blu;
   &:hover {
     color: $ylw;
@@ -81,7 +78,7 @@ export default {
   // background: url("../assets/images/stat.png") center;
   background-color: #A3CEF1;
   // border-radius: 0% 40% 10% 33% / 10% 30% 0% 33% ;
-  // border-radius: 40% 23% 61% 35% / 38% 35% 43% 20%      ;
+  // border-radius: 20% 15% 10% 15% / 0% 40% 0% 40%       ;
   border-radius: 40px;
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2)  ; 
 	-webkit-box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2)  ; 

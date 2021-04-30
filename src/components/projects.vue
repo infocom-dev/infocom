@@ -13,6 +13,7 @@
                 class="text-center justify-content-center ml-5"
               >
                 <div class="col-2 p-0 text-left">
+                  
                   <i class="fa fa-folder-open projects-icon"></i>
                 </div>
                 <div class="col text-left">
@@ -175,7 +176,7 @@
 
                         <b-row>
                           <b-container fluid class="p-0 ml-0">
-                            <b-row align-v="center">
+                            <b-row align-v="center" class='' >
                               <b-col class="mx-auto">
                                 <div
                                   class="m-3 d-flex"
@@ -198,6 +199,21 @@
                 </div>
               </b-row>
             </div>
+            <b-row
+              align-v="center"
+              class="text-center justify-content-center m-5 "
+            >
+              <div class="col-1 pl-2 text-left">
+              
+                <i class="fas fa-tasks projects-icon"></i>
+              </div>
+              <div class="col-4 p-0 text-left">
+                <h3>Current projects</h3>
+              </div>
+              <div class='col'>
+
+              </div>
+            </b-row>
           </b-container>
         </b-container>
       </b-container>
