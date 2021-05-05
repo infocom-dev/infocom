@@ -12,15 +12,22 @@ export default {
         return;
       },
     },
+    top: {
+      type: Number,
+      default() {
+        return;
+      },
+    },
   },
   data: () => ({
     val: 0,
   }),
   methods: {
     onScroll() {
+      
       if (
-        this.$el.offsetTop + this.$el.offsetHeight <
-        window.scrollY + window.innerHeight
+        this.top <
+        window.scrollY && this.top != 0
       ) {
         this.removeScrollHandler();
         const interval = setInterval(() => {

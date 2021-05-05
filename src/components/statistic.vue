@@ -16,7 +16,11 @@
             <b-row align-v="center" class="justify-content-center">
               <i :class="statistic_icons[index]" class="m-1"></i>
               <h1 class="mt-2">
-                <animated-number v-bind:max="item.max"></animated-number>
+                <animated-number
+                  v-bind:max="item.max"
+                  v-bind:top="top"
+               
+                ></animated-number>
               </h1>
             </b-row>
             <b-row align-v="center" class="justify-content-center text-center">
@@ -26,7 +30,6 @@
         </div>
       </b-row>
     </b-container>
-    
   </div>
 </template>
 <script>
@@ -35,8 +38,11 @@ export default {
   components: {
     animatedNumber,
   },
+
   data() {
     return {
+      top:0,
+      
       statistic: [
         { name: "Выполненных заказов", max: 500 },
         { name: "Заказов в разработке", max: 200 },
@@ -50,6 +56,19 @@ export default {
       statistic_colors: ["#A3CEF1", "#FFD349", "#A3CEF1"],
     };
   },
+  // updated: function () {
+  //   this.top = this.$el.offsetTop - this.$el.offsetHeight;
+  // },
+  methods: {
+    onScroll() {
+      this.top = this.$el.offsetTop - this.$el.offsetHeight;
+    
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
+    this.onScroll();
+  },
 };
 </script>
 <style lang="scss">
@@ -58,6 +77,4 @@ export default {
     border-radius: 20% 15% 10% 15% / 0% 40% 0% 40%;
   }
 }
-
-
 </style>
