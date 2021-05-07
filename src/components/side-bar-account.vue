@@ -45,6 +45,11 @@ export default {
           path: "/",
         },
         {
+          icon: "fa fa-user-circle projects-icon",
+          text: "Account",
+          path: "/account",
+        },
+        {
           icon: "fa fa-folder-open projects-icon",
           text: "Projects",
           path: "/account/projects",

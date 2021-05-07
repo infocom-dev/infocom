@@ -12,9 +12,8 @@
                 align-v="center"
                 class="text-center justify-content-center ml-5"
               >
-                <div class="col-2 p-0 text-left">
-                  
-                  <i class="fa fa-folder-open projects-icon"></i>
+                <div class="col-4 p-0 text-left">
+                  <i class="fa fa-folder-open user-icon"></i>
                 </div>
                 <div class="col text-left">
                   <h3>Projects</h3>
@@ -81,18 +80,15 @@
             </b-row>
             <b-row
               align-v="center"
-              class="text-center justify-content-center m-5 "
+              class="text-center justify-content-center m-5"
             >
               <div class="col-1 pl-2 text-left">
-              
                 <i class="fas fa-chart-area projects-icon"></i>
               </div>
               <div class="col-4 p-0 text-left">
                 <h3>Projects in analysis</h3>
               </div>
-              <div class='col'>
-
-              </div>
+              <div class="col"></div>
             </b-row>
             <div v-for="(item, id) in analysis_pr" :key="id">
               <b-row>
@@ -176,7 +172,7 @@
 
                         <b-row>
                           <b-container fluid class="p-0 ml-0">
-                            <b-row align-v="center" class='' >
+                            <b-row align-v="center" class="">
                               <b-col class="mx-auto">
                                 <div
                                   class="m-3 d-flex"
@@ -201,19 +197,86 @@
             </div>
             <b-row
               align-v="center"
-              class="text-center justify-content-center m-5 "
+              class="text-center  m-5"
             >
               <div class="col-1 pl-2 text-left">
-              
                 <i class="fas fa-tasks projects-icon"></i>
               </div>
               <div class="col-4 p-0 text-left">
                 <h3>Current projects</h3>
               </div>
-              <div class='col'>
-
-              </div>
             </b-row>
+            <div class="row  ml-5 mr-5  justify-content-between">
+              <div v-for="(pr, index) in projects" :key="index">
+                <div class="col">
+                  <b-row
+                    align-v="center d-flex align-items-stretch "
+                    
+                  >
+                    <b-col class="p-0 mr-2 pr-box text-center" style="">
+                      <h5 class="name-box p-3 m-4 mx-auto">{{pr.name}}</h5>
+                      <h5>{{ pr.info }}</h5>
+                    </b-col>
+                    <b-col class="pr p-0 ml-2 text-center">
+                      <b-row class="mb-3">
+                        <h5
+                          class="name-box p-3 mx-auto"
+                          style="background-color: #fff"
+                        >
+                          {{ pr.status }}
+                        </h5>
+                      </b-row>
+                      <b-row class="mb-3">
+                        <h5
+                          class="name-box p-3 mx-auto"
+                          style="background-color: #ffd334"
+                        >
+                          ${{ pr.budjet }}
+                        </h5>
+                      </b-row>
+                      <b-row class="">
+                        <h5
+                          class="name-box p-3 mx-auto"
+                          style="background-color: #274c77"
+                        >
+                          till {{ pr.data }}
+                        </h5>
+                      </b-row>
+                    </b-col>
+                  </b-row>
+                  <b-row
+                    align-v="center d-flex align-items-stretch mt-3"
+                    class="justify-content-center"
+                  >
+                    <b-col class="p-0 pr-box text-center mr-2" style="">
+                      <h5 class="name-box p-3 m-4 mx-auto">Project manager</h5>
+                      <h3>{{ pr.manager }}</h3>
+                      <h5>
+                        Contacts: <i class="fas fa-envelope-open icon"></i>
+                      </h5>
+                      <h5>Github:<i class="fab fa-github icon"></i></h5>
+                    </b-col>
+                    <b-col class="p-0 pr-box text-center ml-2" style="">
+                      <h5 class="pt-3 mx-auto">Team</h5>
+                      <div class="text-left m-3 ">
+                        <h5 class='pb-2'>
+                          <i class="fas fa-thumbs-up icon mr-3"></i>Качество:
+                          {{ pr.t_qualty }}/10
+                        </h5>
+                        <h5 class='pb-2'>
+                          <i class="fas fa-hourglass-half icon mr-3"></i>Время:
+                          {{ pr.t_time }}
+                        </h5>
+                        <h5 >
+                          <i class="fas fa-smile icon mr-3"></i>Надежность:
+                          {{ pr.reliability }}/10
+                        </h5>
+                      </div>
+                    </b-col>
+                  </b-row>
+                </div>
+              </div>
+            </div>
           </b-container>
         </b-container>
       </b-container>
@@ -239,9 +302,35 @@ export default {
       analysis_pr: [
         {
           name: "Infocom",
-          status: "in progress",
+          status: "in pro",
           old_budjet: "1 000 000",
           new_budjet: "1 500 000",
+        },
+      ],
+      projects: [
+        {
+          name:'MyProject',
+          info: "Web site on vuejs + django",
+          budjet: "1 000 000",
+          status: "in progress",
+          data: "15.05.2022",
+          manager: "Vistor Keng",
+          contacts: [{ mail: "fhhfhf", github: "ddjd" }],
+          t_qualty: 8,
+          t_time: "7 years",
+          reliability: 10,
+        },
+        {
+          name:'MyWebsite',
+          info: "Web site on vuejs + django",
+          budjet: "1 000 000",
+          status: "in progress",
+          data: "15.05.2022",
+          manager: "Vistor Keng",
+          contacts: [{ mail: "fhhfhf", github: "ddjd" }],
+          t_qualty: 8,
+          t_time: "7 years",
+          reliability: 10,
         },
       ],
 
@@ -314,7 +403,7 @@ export default {
       setTimeout(() => {
         console.log(this);
         this.$refs.submitBtn[0].click();
-      }, 2500);
+      }, 3000);
     },
   },
 };
@@ -328,5 +417,19 @@ export default {
   background-color: #e7ecef;
   border-radius: 40px;
   display: inline-block;
+}
+.pr {
+  .name-box {
+    width: 255px;
+  }
+}
+.pr-box {
+  background-color: white;
+  border-radius: 40px;
+  height: 225px;
+  width: 225px;
+  .icon {
+    font-size: 20px;
+  }
 }
 </style>
