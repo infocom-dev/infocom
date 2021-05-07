@@ -92,4 +92,6 @@ jobs:
           sudo docker pull ${{ secrets.NGINX_IMG }}
           sudo docker-compose -f docker-compose.yml.prod up -d
           sudo docker rmi $(sudo docker images -f dangling=true -q)|| true
+          sudo cd /home/www/infocom/docker
+          sudo docker exec backend bash < backend_setup_prod.sh
           ENDSSH
