@@ -1,17 +1,19 @@
-button{
-    color:$ylw;
-    padding: 20px 30px;
-    // width:200px;
-    text-decoration:none;
-    text-align:center;
-    margin:0 auto;
-    display: block;
-    text-transform: capitalize;
-    background-color: $blu;
-    border: 3px solid $blu;
-    cursor: pointer;
-   }
-   button:hover {
-   background-position: 0 0;
-   color: $wht;
-   }
+
+
+a.btn{
+border-radius: 40px;
+color: #fff;
+display:block;
+text-align: center;
+text-decoration: none;       
+}
+a.btn {
+background-color:#2E2892;
+// border: 1px solid rgb( 33, 126, 74 );
+}
+        
+a.btn:hover {
+background-color: #274C77;
+color:white;
+}
+

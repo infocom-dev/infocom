@@ -27,3 +27,11 @@ class ProjectViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAuthenticated]
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+
+# google
+
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter
