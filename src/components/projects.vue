@@ -239,7 +239,7 @@ export default {
       analysis_pr: [
         {
           name: "Infocom",
-          status: "finish",
+          status: "in progress",
           old_budjet: "1 000 000",
           new_budjet: "1 500 000",
         },

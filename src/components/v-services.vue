@@ -10,7 +10,7 @@
         <b-row align-v="center" class="justify-content-center">
           <div v-for="service in services" :key="service">
             <div
-              class="col m-5 text-center box "
+              class="col m-5 text-center box2 "
               style="width: 350px"
               :style="service.h"
             >
@@ -74,18 +74,22 @@ export default {
   }
 }
 
-.box {
-  // background: url("../assets/images/stat.png") center;
-  background-color: #A3CEF1;
-  // border-radius: 0% 40% 10% 33% / 10% 30% 0% 33% ;
-  // border-radius: 20% 15% 10% 15% / 0% 40% 0% 40%       ;
-  border-radius: 40px;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2)  ; 
-	-webkit-box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2)  ; 
-	-moz-box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2)  ; 
-  
-  
-  justify-content: center;
-  align-items: center;
+.box2 {
+  background-color: #ccc;
+    overflow: hidden;
+    position: relative;
+    margin: 0.25em auto;
+    // max-width: 15em;
+    // min-height: 10em;
+    border-radius: 1em;
+    &:before {
+      // position: absolute;
+      margin: 8em;
+      padding: 7em;
+
+      border-radius: 50%;
+      box-shadow: 0 0 0 350px rgba(#A3CEF1, 1);
+      content: "";
+    }
 }
 </style>
