@@ -1,93 +1,93 @@
 <template>
-  <div class="statistic">
-    <b-container fluid class="w-100 justify-content-center">
+  <div class="statistic p-0">
+    <b-container fluid class="w-100 justify-content-center p-0">
       <div class="mx-auto pt-3">
         <h1 class="text-center text-uppercase font-weight-bolder">
           about company
         </h1>
       </div>
-
-      <b-row align-v="center" class="m-5 justify-content-center mx-auto">
-        <!-- <hr> -->
-        <div v-for="(item, index) in statistic" :key="index">
-          <div
-            class="col m-3 h-100 text-center box2"
-            style="width: 400px"
-            :style="{ 'background-color': statistic_colors[index] }"
-          >
-            <b-row align-v="center" class="p-3 justify-content-center">
-              <i :class="statistic_icons[index]" class="m-1"></i>
-              <h1 class="mt-2">
-                <animated-number
-                  v-bind:max="item.max"
-                  v-bind:top="top"
-                ></animated-number>
-              </h1>
-              <h4 class="">{{ item.name }}</h4>
-            </b-row>
+      <b-container fluid class="w-100  justify-content-center">
+        <b-row
+          align-v="center"
+          class="w-100 justify-content-center mx-auto"
+        >
+          <!-- <hr> -->
+          <div v-for="(item, index) in statistic" :key="index">
+            <div
+              class="col m-5 h-100 text-center box2"
+              style="width: 280px"
+              :style="{ 'background-color': statistic_colors[index] }"
+            >
+              <b-row align-h="center" class="m-1 justify-content-center">
+                <i :class="statistic_icons[index]" class="m-1"></i>
+                <h1 >
+                  <animated-number
+                    v-bind:max="item.max"
+                    v-bind:top="top"
+                  ></animated-number>
+                </h1>
+                <h4 class="">{{ item.name }}</h4>
+              </b-row>
+            </div>
           </div>
-        </div>
-      </b-row>
+        </b-row>
+      </b-container>
       <div class="mx-auto pt-3">
         <h1 class="text-center text-uppercase font-weight-bolder">
           most popular projects
         </h1>
       </div>
-      <b-container fluid class="w-100 p-0 justify-content-center">
+      <!-- <b-container fluid class="w-100 p-0 justify-content-center">
         <div class="m-5">
-          <b-row align-v="center" class="m-5 ">
-            <!-- <div class="m-5 w-100" style="background-color:blue"> -->
-              <b-col class="col-3 p-0 text-center">
-                <button
-                  v-for="(item, index) in popular"
-                  :key="index"
-                  class="box2 mb-5"
-                  style="width: 270px"
-                  @click="updateGraph(index, item.data)"
-                >
-                  <b-row class="text-center justify-content-center p-1">
-                    <h4>{{ item.stack }}</h4>
-                  </b-row>
-                  <b-row>
-                    <b-col class="col text-center">
-                      <b-row align-h="center">
-                        <b-col class="col-2 text-center">
-                          <i class="fas fa-dollar-sign icon"></i>
-                        </b-col>
-                        <b-col class="col-3">
-                          <h1 class="m-0 p-0">{{ item.orders }}</h1>
-                          <p>orders</p>
-                        </b-col>
-                      </b-row>
-                    </b-col>
-                  </b-row>
-
-                  <!-- </b-row> -->
-                </button>
-              </b-col>
-              <b-col class="mr-5">
-                <graph
-                  class=""
-                  v-bind:options="options"
-                  v-bind:series="series"
-                  :key="ind"
-                ></graph>
-              </b-col>
-            <!-- </div> -->
+          <b-row align-v="center" class="m-5">
+            <b-col class="col-3 p-0 text-center">
+              <button
+                v-for="(item, index) in popular"
+                :key="index"
+                class="box2 mb-5"
+                style="width: 270px"
+                @click="updateGraph(index, item.data)"
+              >
+                <b-row class="text-center justify-content-center p-1">
+                  <h4>{{ item.stack }}</h4>
+                </b-row>
+                <b-row>
+                  <b-col class="col text-center">
+                    <b-row align-h="center">
+                      <b-col class="col-2 text-center">
+                        <i class="fas fa-dollar-sign icon"></i>
+                      </b-col>
+                      <b-col class="col-3">
+                        <h1 class="m-0 p-0">{{ item.orders }}</h1>
+                        <p>orders</p>
+                      </b-col>
+                    </b-row>
+                  </b-col>
+                </b-row>
+              </button>
+            </b-col>
+            <b-col class="mr-5">
+              <graph
+                class=""
+                v-bind:options="options"
+                v-bind:series="series"
+                :key="ind"
+              ></graph>
+            </b-col>
           </b-row>
         </div>
-      </b-container>
+      </b-container> -->
     </b-container>
   </div>
 </template>
 <script>
 import animatedNumber from "./animated-number.vue";
 
-import Graph from "./Graph.vue";
+// import Graph from "./Graph.vue";
 export default {
   components: {
     animatedNumber,
-    Graph,
+    // Graph,
   },
 
   data() {

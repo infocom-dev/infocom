@@ -2,7 +2,7 @@
   <div class="v-skills p-5">
     <div class="">
       <b-container fluid class="mx-auto">
-        <b-row align-v="center" class="justife-content-center">
+        <b-row align-v="center" class="justife-content-center w-100">
           <b-col class="">
             <b-img
               style="min-width: 300px"

@@ -1,7 +1,7 @@
 <template>
   <div class="v-tecnology p-5">
     <b-container fluid>
-      <b-row align-v="center">
+      <b-row align-v="center" class='w-100'>
         <b-col class="">
           <b-img
            style="min-width:300px"

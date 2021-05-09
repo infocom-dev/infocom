@@ -64,6 +64,9 @@
       <section>
         <statistic></statistic>
       </section>
+      <section>
+        <v-calculation></v-calculation>
+      </section>
 
       <section class="links">
         <Footer></Footer>
@@ -75,12 +78,13 @@
 <script>
 import VSkills from "./v-skills.vue";
 import NavBar from "./NavBar.vue";
-// import vCalculation from "./v-calculation";
+import vCalculation from "./v-calculation";
 import Footer from "./Footer.vue";
 import vServicesVue from "./v-services.vue";
 import vTecnology from "./v-tecnology";
 // import VCalculation from "./v-calculation.vue";
 import Statistic from './statistic'
+import VCalculation from './v-calculation.vue';
 // import ContactUs from "./contact-us.vue";
 export default {
   name: "v-home-page",
@@ -88,12 +92,13 @@ export default {
     NavBar,
     VSkills,
     vServicesVue,
-    // vCalculation,
+    vCalculation,
 
     vTecnology,
     // VCalculation,
     Footer,
-    Statistic
+    Statistic,
+    VCalculation
     // ContactUs,
   },
   data() {

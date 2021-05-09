@@ -6,12 +6,12 @@
           our<span>services</span>
         </h1>
       </div>
-      <b-container fluid class="w-100 justify-content-center">
-        <b-row align-v="center" class="justify-content-center">
+      <b-container fluid class="p-0 w-100 justify-content-center">
+        <b-row align-v="center" class="w-100 justify-content-center">
           <div v-for="service in services" :key="service">
             <div
               class="col m-5 text-center box2 "
-              style="width: 350px"
+              style="width: 300px"
               :style="service.h"
             >
               <i class="m-3" :class="service.icon"></i>
@@ -41,7 +41,7 @@ export default {
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
           icon: "fa fa-calculator icon",
-          h: "height:300px",
+          h: "height:350px",
         },
         {
           // url: require("../assets/images/stat2.png"),
@@ -49,7 +49,7 @@ export default {
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesettinCDSSbvjdin dfbidjvidbvkf sduivsivgs  svisvbskhbbvis cvsbh industry. Lorem Ip sum has been the industry's standard dummy text ever.",
           icon: "fa fa-laptop icon",
-          h: "height:350px",
+          h: "height:450px",
         },
         {
           // url: require("../assets/images/stat1.png"),
@@ -57,7 +57,7 @@ export default {
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
           icon: "fa fa-comments icon",
-          h: "height:300px",
+          h: "height:350px",
         },
       ],
     };
@@ -75,7 +75,7 @@ export default {
 }
 
 .box2 {
-  background-color: #ccc;
+  background-color: #FFE480;
     overflow: hidden;
     position: relative;
     margin: 0.25em auto;
