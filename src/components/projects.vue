@@ -43,41 +43,10 @@
               </b-row>
             </b-col>
           </b-row>
+          
+
           <b-container fluid class="w-100 overview pb-5">
-            <b-row align-v="center">
-              <div class="anketa-box w-100 mr-5 ml-5 mt-5">
-                <b-row>
-                  <div class="col-3">
-                    <b-img
-                      style="max-width: 300px"
-                      fluid
-                      center
-                      class=""
-                      :src="require('../assets/images/idea.png')"
-                    />
-                  </div>
-                  <div class="col-8 text-center m-5">
-                    <h5>
-                      Have new idea for cool project,but don’t have profeccional
-                      team to make it real.All you need is:
-                    </h5>
-                    <ol class="text-left">
-                      <li>Fill our form</li>
-                      <li>Find out the total price</li>
-                      <li>
-                        Find out the total price Make an order to our
-                        proffecionals
-                      </li>
-                    </ol>
-                    <div class="w-50 pt-3 mx-auto">
-                      <a href="#" class="btn text-uppercase w-100 mx-auto"
-                        >Start now</a
-                      >
-                    </div>
-                  </div>
-                </b-row>
-              </div>
-            </b-row>
+            <v-form></v-form>
             <b-row
               align-v="center"
               class="text-center justify-content-center m-5"
@@ -195,10 +164,7 @@
                 </div>
               </b-row>
             </div>
-            <b-row
-              align-v="center"
-              class="text-center  m-5"
-            >
+            <b-row align-v="center" class="text-center m-5">
               <div class="col-1 pl-2 text-left">
                 <i class="fas fa-tasks projects-icon"></i>
               </div>
@@ -206,15 +172,12 @@
                 <h3>Current projects</h3>
               </div>
             </b-row>
-            <div class="row  ml-5 mr-5  justify-content-between">
+            <div class="row ml-5 mr-5 justify-content-between">
               <div v-for="(pr, index) in projects" :key="index">
                 <div class="col">
-                  <b-row
-                    align-v="center d-flex align-items-stretch "
-                    
-                  >
+                  <b-row align-v="center d-flex align-items-stretch ">
                     <b-col class="p-0 mr-2 pr-box text-center" style="">
-                      <h5 class="name-box p-3 m-4 mx-auto">{{pr.name}}</h5>
+                      <h5 class="name-box p-3 m-4 mx-auto">{{ pr.name }}</h5>
                       <h5>{{ pr.info }}</h5>
                     </b-col>
                     <b-col class="pr p-0 ml-2 text-center">
@@ -258,16 +221,16 @@
                     </b-col>
                     <b-col class="p-0 pr-box text-center ml-2" style="">
                       <h5 class="pt-3 mx-auto">Team</h5>
-                      <div class="text-left m-3 ">
-                        <h5 class='pb-2'>
+                      <div class="text-left m-3">
+                        <h5 class="pb-2">
                           <i class="fas fa-thumbs-up icon mr-3"></i>Качество:
                           {{ pr.t_qualty }}/10
                         </h5>
-                        <h5 class='pb-2'>
+                        <h5 class="pb-2">
                           <i class="fas fa-hourglass-half icon mr-3"></i>Время:
                           {{ pr.t_time }}
                         </h5>
-                        <h5 >
+                        <h5>
                           <i class="fas fa-smile icon mr-3"></i>Надежность:
                           {{ pr.reliability }}/10
                         </h5>
@@ -285,12 +248,13 @@
 </template>
 <script>
 import sideBarAccount from "./side-bar-account.vue";
-import VueSlider from "vue-slider-component";
+import VueSlider from 'vue-slider-component'
 import "vue-slider-component/theme/default.css";
 import "vue-slider-component/theme/default.css";
 import Graph from "./Graph.vue";
+import VForm from './v-form.vue';
 export default {
-  components: { sideBarAccount, Graph, VueSlider },
+  components: { sideBarAccount, Graph,VueSlider,  VForm },
   name: "projects",
 
   data() {
@@ -309,7 +273,7 @@ export default {
       ],
       projects: [
         {
-          name:'MyProject',
+          name: "MyProject",
           info: "Web site on vuejs + django",
           budjet: "1 000 000",
           status: "in progress",
@@ -321,7 +285,7 @@ export default {
           reliability: 10,
         },
         {
-          name:'MyWebsite',
+          name: "MyWebsite",
           info: "Web site on vuejs + django",
           budjet: "1 000 000",
           status: "in progress",
