@@ -216,7 +216,7 @@ SITE_ID = 1
 
 
 REST_SESSION_LOGIN = True
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'backend.api.serializer.CustomRegisterSerializer',
