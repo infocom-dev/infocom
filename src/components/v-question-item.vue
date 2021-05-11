@@ -41,25 +41,21 @@
         </div>
         
       </div>
-      <div v-if="question_data.type === 'message'">
+      <div v-if="question.type === 'message'">
         <div class="message">
-          <p class="v-question-item__text">{{ question_data.text }}</p>
+          <p class="v-question-item__text">{{ question.text }}</p>
           <input v-model="selectedAnswers" placeholder="Type here" />
         </div>
       </div>
-      <div v-if="question_data.type === 'range'">
-        <p class="v-question-item__text">{{ question_data.text }}</p>
-        <!-- <div class="set-range">
-         <input type="text" v-model="value[0]" placeholder="От" class="form-control" /><br>
-         <input type="text" v-model="value[1]" placeholder="До" class="form-control" /><br>
-        </div>
-        <br> -->
+      <div v-if="question.type === 'range'">
+        <p class="">{{ question.text }}</p>
         <vue-slider
-          :min="question_data.answers[0].value"
-          :max="question_data.answers[1].value"
+          :min="question.answers[0].value"
+          :max="question.answers[1].value"
           :interval="10"
+          :marks="true"
           v-model="value"
-          :marks="marks"
+          
           :tooltip="'none'"
           :process="process"
           :process-style="{ backgroundColor: 'red' }"
@@ -86,12 +82,12 @@
         <br />
       </div>
 
-      <div class="switch ex1" v-if="question_data.type === 'switch'">
-        <p class="v-question-item__text">{{ question_data.text }}</p>
+      <div class="switch ex1" v-if="question.type === 'switch'">
+        <p class="v-question-item__text">{{ question.text }}</p>
         <div class="labels">
           <label
             class="radio red"
-            v-for="answer in question_data.answers"
+            v-for="answer in question.answers"
             :key="answer.id"
           >
             <input
@@ -103,8 +99,8 @@
           </label>
         </div>
       </div>
-      <div v-if="question_data.type === 'datapicker'">
-        <p class="v-question-item__text">{{ question_data.text }}</p>
+      <div v-if="question.type === 'datapicker'">
+        <p class="v-question-item__text">{{ question.text }}</p>
         <date-picker
           v-model="selectedAnswers"
           value-type="format"
@@ -117,9 +113,9 @@
         </date-picker>
       </div>
 
-      <div v-if="question_data.type === 'textarea'">
+      <div v-if="question.type === 'textarea'">
         <div class="message">
-          <p class="v-question-item__text">{{ question_data.text }}</p>
+          <p class="v-question-item__text">{{ question.text }}</p>
           <textarea
             v-model="selectedAnswers"
             placeholder="Type here"
@@ -163,9 +159,9 @@ export default {
     return {
       activeStep: 0,
       value: [0, 50],
-      marks: (val) =>
+      marks: (val,index) =>
         val %
-          ((this.question_data.answers[1].value -
+          ((this.question_data[index].answers[1].value -
             this.question_data.answers[0].value) /
             10) ===
         0,

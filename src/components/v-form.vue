@@ -119,8 +119,16 @@
             </b-col>
             <b-col id="tooltip">
               <h5>Send to analysis</h5>
-              <button :disabled="Done"  class="btn mx-auto">Send to analysis</button>
-              <b-tooltip v-if="!done" variant="info" placement="bottom" target="tooltip" noninteractive>
+              <button :disabled="Done" class="btn mx-auto">
+                Send to analysis
+              </button>
+              <b-tooltip
+                v-if="!done"
+                variant="info"
+                placement="bottom"
+                target="tooltip"
+                noninteractive
+              >
                 first of all fill out the form
               </b-tooltip>
             </b-col>
@@ -193,6 +201,34 @@ export default {
             },
           ],
         },
+        {
+          id: "3",
+          text:
+            "Укажите минимальное и максимальное кол-во посетителей приложения, в котором планируется использование чат-бота (для каждого канала)?",
+          type: "range",
+          answers: [0, 250],
+        },
+        {
+          id: "4",
+          text: "Введидте ожидаемая нагрузку (кол-во обращений) на чат-бота",
+          type: "message",
+          answers: [],
+        },
+        {
+          id: "5",
+          text: "Какой формат диалога предпочтительнее?",
+          type: "checkbox",
+          answers: [
+            {
+              id: 1,
+              value: "Свободное общение",
+            },
+            {
+              id: 2,
+              value: "работа по фиксированному сценарию диалога ",
+            },
+          ],
+        },
       ],
     };
   },
@@ -228,11 +264,11 @@ export default {
       });
     },
   },
-  computed:{
-    Done(){
+  computed: {
+    Done() {
       return !this.done;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang='scss'>
