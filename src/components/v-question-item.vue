@@ -2,8 +2,9 @@
   <div class="v-question-item">
     <div v-for="(question, index) in question_data" :key="question.id">
       <div class="selected" v-if="question.type === 'selected'">
-        <p >{{ index + 1 }}.{{ question.text }}</p>
-        <div>
+        <p>{{ index + 1 }}.{{ question.text }}</p>
+
+        <div class="m-2">
           <multiselect
             v-model="selectedAnswers[index]"
             placeholder="Search"
@@ -15,6 +16,7 @@
             @tag="addTag"
           ></multiselect>
         </div>
+        
       </div>
       <div v-if="question.type === 'checkbox'">
         <p class="v-question-item__text">
@@ -36,35 +38,28 @@
           </b-form-checkbox-group>
         </b-form-group>
 
-        <div>
+        <!-- <div>
           Selected: <strong>{{ selectedAnswers }}</strong>
-        </div>
-        
+        </div> -->
       </div>
       <div v-if="question.type === 'message'">
         <div class="message">
-          <p class="v-question-item__text">{{ question.text }}</p>
-          <input v-model="selectedAnswers" placeholder="Type here" />
+          <p >{{index + 1}}. {{ question.text }}</p>
+          <input v-model="selectedAnswers[index]" placeholder="Type here" />
         </div>
       </div>
       <div v-if="question.type === 'range'">
-        <p class="">{{ question.text }}</p>
+        <p class="">{{index + 1}}. {{ question.text }}</p>
         <vue-slider
-          :min="question.answers[0].value"
-          :max="question.answers[1].value"
-          :interval="10"
-          :marks="true"
+          :min="question.answers[0]"
+          :max="question.answers[1]"
           v-model="value"
-          
-          :tooltip="'none'"
+          tooltip="none"
           :process="process"
-          :process-style="{ backgroundColor: 'red' }"
-          :tooltip-style="{ backgroundColor: 'blue', borderColor: 'blue' }"
+          :min-range="10"
+          :marks="true"
+          :interval="(question.answers[1] - question.answers[0]) / 10"
         >
-          <div :class="['custom-dot', { focus }]"></div>
-          <template v-slot:step="{ label, active }">
-            <div :class="['custom-step', { active }]"></div>
-          </template>
           <template v-slot:process="{ start, end, style, index }">
             <div class="vue-slider-process" :style="style">
               <div
@@ -79,6 +74,7 @@
             </div>
           </template>
         </vue-slider>
+
         <br />
       </div>
 
@@ -159,12 +155,8 @@ export default {
     return {
       activeStep: 0,
       value: [0, 50],
-      marks: (val,index) =>
-        val %
-          ((this.question_data[index].answers[1].value -
-            this.question_data.answers[0].value) /
-            10) ===
-        0,
+      process: (value) => [[value[0], value[1]]],
+
       selectedAnswers: [],
     };
   },
@@ -314,12 +306,9 @@ export default {
 .vue-slider {
   padding: 17px 20px;
 }
-.vue-slider-dot-tooltip-inner {
-  border-color: red;
-  background-color: red;
-}
+
 .vue-slider-marks {
-  color: red;
+  color: $blu;
 }
 .p-icon {
   align-items: center;
@@ -335,15 +324,15 @@ export default {
   margin: 0 auto;
   input,
   textarea {
-    margin: 0 0 32px 0;
+    margin: 10 0 32px 0;
+    padding: 10px;
     width: 100%;
     height: 50px;
-    border-radius: 0px;
-    box-shadow: 0 4px 16px red;
+    border-radius: 1em;
     border: none;
     font-size: 35xp;
     color: #fff;
-    background-color: $bg;
+    background-color: #A3CEF1;
     outline: none;
     cursor: pointer;
   }
@@ -445,4 +434,12 @@ export default {
     color: red;
   }
 }
+.merge-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translate(-50%, -15px);
+}
+
+
 </style>

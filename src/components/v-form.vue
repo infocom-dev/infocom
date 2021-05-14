@@ -54,6 +54,7 @@
 
               <button class="btn mx-auto" v-b-modal.modal2>View details</button>
               <b-modal
+                
                 id="modal2"
                 size="lg"
                 scrollable
@@ -277,4 +278,5 @@ export default {
     font-size: 16px;
   }
 }
+
 </style>

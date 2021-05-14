@@ -6,9 +6,9 @@
       >
         <side-bar-account></side-bar-account>
       </b-container>
-      <b-container class="col p-0 ml-0">
+      <b-container fluid class="col p-0 m-0">
         <b-container fluid class="p-0 ml-0">
-          <b-row align-v="center" class="ml-0">
+          <b-row align-v="center" class="mr-0 p-0">
             <b-col>
               <b-row
                 align-v="center"
@@ -17,7 +17,7 @@
                 <b-col class="col">
                   <i class="fa fa-user-circle user-icon"></i>
                 </b-col>
-                <b-col class="text-left d-none d-lg-block">
+                <b-col class="col-7  text-left d-none d-lg-block">
                   <h5>Hello, user!</h5>
                   <b-row align-v="center" class="ml-0">
                     <i class="text-center m-1 fa fa-envelope mail-icon"></i>
@@ -27,7 +27,7 @@
               </b-row>
             </b-col>
             <b-col class="d-none d-sm-block"></b-col>
-            <b-col>
+            <b-col class='p-0'>
               <b-row align-h="center" align-v="center" class="text-left mr-3">
                 <div class="bellhold">
                   <i class="text-center fa fa-bell bell-icon"></i>
@@ -49,27 +49,27 @@
               </b-row>
             </b-col>
           </b-row>
-          <b-container fluid class="w-100 ml-0 overview">
-            <h3 class="pt-3 text-center">Overview</h3>
-            <b-container fluid class="w-100 justify-content-center">
+          <b-container fluid class="w-100 p-0 overview">
+            <h3 class=" p-5">Overview</h3>
+            <b-container fluid class="w-100 ml-0 justify-content-center">
               <b-row align-v="center" class="justify-content-center">
                 <div
                   v-for="item in overview"
                   :key="item"
-                  class="col m-4 text-center overview-box"
+                  class="col ml-5 mr-5 text-center overview-box"
                   style="width: 100%; max-width: 300px; min-width: 200px"
                 >
-                  <h5 class="text-left pt-2">{{ item.title }}</h5>
-                  <b-row align-v="center" class="ml-0">
+                  <h5 class="text-center pt-2">{{ item.title }}</h5>
+                  <b-row align-v="center" class="justify-content-center">
                     <i class="text-left m-1" :class="item.icon"></i>
                     <h3 class="text-left pl-3 m-1">{{ item.number }}</h3>
                   </b-row>
-                  <p class="text-left pt-2">{{ item.link }}</p>
+                  <p class="text-center pt-2">{{ item.link }}</p>
                 </div>
               </b-row>
             </b-container>
-            <h3 class="pt-3 text-center">Recent activity</h3>
-            <div class="m-3 pb-5">
+            <h3 class="p-5 text-left">Recent activity</h3>
+            <div class="mr-5 ml-5 pb-5">
               <b-table
                 style="background-color: white"
                 responsive
@@ -110,19 +110,19 @@ export default {
 
       overview: [
         {
-          icon: "fa fa-hourglass-half clock-icon",
+          icon: "fa fa-hourglass-half icon",
           title: "Projects in progress",
           number: "1",
           link: "View details",
         },
         {
-          icon: "fa fa-code code-icon",
+          icon: "fa fa-code icon",
           title: "Projects in analysis",
           number: "2",
           link: "View details",
         },
         {
-          icon: "fa fa-check check-icon",
+          icon: "fa fa-check icon",
           title: "Finished projects",
           number: "0",
           link: "View details",
@@ -134,22 +134,19 @@ export default {
 </script>
 <style lang='scss'>
 @import "../assets/styles/base.scss";
-.help-icon,
-.clock-icon,
-.check-icon,
-.code-icon,
-.home-icon,
-.cog-icon,
-.projects-icon,
-.card-icon {
-  font-size: 30px;
-  color: $blu;
-  &:hover {
-    color: $ylw;
+.v-account-page{
+  .icon{
+    font-size: 30px;
+    color: $blu;
+    &:hover {
+      color: $ylw;
+    }
   }
 }
+
+
 .user-icon {
-  font-size: 100px;
+  font-size: 80px;
   color: $blu;
 }
 .mail-icon {
@@ -157,7 +154,7 @@ export default {
 }
 .bell-icon,
 .out-icon {
-  font-size: 29px;
+  font-size: 30px;
   color: $blu;
 }
 .badgex {
