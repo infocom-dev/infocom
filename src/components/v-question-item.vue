@@ -3,7 +3,6 @@
     <div v-for="(question, index) in question_data" :key="question.id">
       <div class="selected" v-if="question.type === 'selected'">
         <p>{{ index + 1 }}.{{ question.text }}</p>
-
         <div class="m-2">
           <multiselect
             v-model="selectedAnswers[index]"
@@ -16,12 +15,9 @@
             @tag="addTag"
           ></multiselect>
         </div>
-        
       </div>
       <div v-if="question.type === 'checkbox'">
-        <p class="v-question-item__text">
-          {{ index + 1 }}. {{ question.text }}
-        </p>
+        <p>{{ index + 1 }}. {{ question.text }}</p>
 
         <b-form-group v-slot="{ ariaDescribedby }">
           <b-form-checkbox-group
@@ -31,36 +27,41 @@
             name="flavour-2"
           >
             <div v-for="val in question.answers" :key="val.id">
-              <b-form-checkbox :value="val.value">{{
+              <b-form-checkbox :value="val.value"><p>{{
                 val.value
-              }}</b-form-checkbox>
+              }}</p></b-form-checkbox>
             </div>
           </b-form-checkbox-group>
         </b-form-group>
-
-        <!-- <div>
-          Selected: <strong>{{ selectedAnswers }}</strong>
-        </div> -->
       </div>
       <div v-if="question.type === 'message'">
-        <div class="message">
-          <p >{{index + 1}}. {{ question.text }}</p>
-          <input v-model="selectedAnswers[index]" placeholder="Type here" />
+        <div class="">
+          <p>{{ index + 1 }}. {{ question.text }}</p>
+
+          <b-form-input
+            id="input-live"
+            v-model="selectedAnswers[index]"
+            aria-describedby="input-live-help "
+            placeholder="Enter number"
+            @keypress="isNumber"
+          >
+          </b-form-input>
+          <b-form-text id="input-live-help">Only numbers are valid</b-form-text>
         </div>
       </div>
       <div v-if="question.type === 'range'">
-        <p class="">{{index + 1}}. {{ question.text }}</p>
+        <p class="">{{ index + 1 }}. {{ question.text }}</p>
         <vue-slider
           :min="question.answers[0]"
           :max="question.answers[1]"
-          v-model="value"
+          v-model="selectedAnswers[index]"
           tooltip="none"
-          :process="process"
           :min-range="10"
+          process="true"
           :marks="true"
           :interval="(question.answers[1] - question.answers[0]) / 10"
         >
-          <template v-slot:process="{ start, end, style, index }">
+          <template v-slot:process="{ style}">
             <div class="vue-slider-process" :style="style">
               <div
                 :class="[
@@ -69,7 +70,7 @@
                   'vue-slider-dot-tooltip-inner-top',
                 ]"
               >
-                {{ value[index] }} - {{ value[index + 1] }}
+                {{ selectedAnswers[index][0] }} - {{ selectedAnswers[index][  1] }}
               </div>
             </div>
           </template>
@@ -78,27 +79,23 @@
         <br />
       </div>
 
-      <div class="switch ex1" v-if="question.type === 'switch'">
-        <p class="v-question-item__text">{{ question.text }}</p>
-        <div class="labels">
-          <label
-            class="radio red"
-            v-for="answer in question.answers"
-            :key="answer.id"
+      <div v-if="question.type === 'switch'">
+        <b-row class="w-100 mx-auto">
+          <p class="p-0">{{ index + 1 }}. {{ question.text }}</p>
+          <b-form-checkbox
+            v-model="selectedAnswers[index]"
+            name="check-button"
+            switch
+            class="ml-2"
+            size="lg"
           >
-            <input
-              type="radio"
-              name="selectedAnswers"
-              :value="answer.value"
-              v-model="selectedAnswers"
-            /><span>{{ answer.value }}</span>
-          </label>
-        </div>
+          </b-form-checkbox>
+        </b-row>
       </div>
       <div v-if="question.type === 'datapicker'">
         <p class="v-question-item__text">{{ question.text }}</p>
         <date-picker
-          v-model="selectedAnswers"
+          v-model="selectedAnswers[index]"
           value-type="format"
           format="DD.MM.YYYY"
           range
@@ -112,12 +109,19 @@
       <div v-if="question.type === 'textarea'">
         <div class="message">
           <p class="v-question-item__text">{{ question.text }}</p>
-          <textarea
-            v-model="selectedAnswers"
-            placeholder="Type here"
-          ></textarea>
+          <b-form-textarea
+            id="textarea-state"
+            v-model="selectedAnswers[index]"
+            :state='selectedAnswers[index].length > 2'
+            placeholder="Enter at least 10 characters"
+            rows="3"
+          >
+          </b-form-textarea>
         </div>
       </div>
+    </div>
+    <div>
+      Selected: <strong>{{ selectedAnswers }}</strong>
     </div>
   </div>
 </template>
@@ -140,6 +144,7 @@ export default {
     DatePicker,
     //PrettyCheckbox
   },
+
   props: {
     question_data: {
       type: Array,
@@ -150,17 +155,41 @@ export default {
     questions_len: {
       type: Number,
     },
+    selectedAnswers2: {
+      type: Array,
+      default() {
+        return {};
+      },
+    },
   },
   data() {
     return {
       activeStep: 0,
       value: [0, 50],
-      process: (value) => [[value[0], value[1]]],
-
-      selectedAnswers: [],
+      // process: (value) => [[value[0], value[1]]],
+      selectedAnswers: this.selectedAnswers2,
     };
   },
+
+
+
+
+  
   methods: {
+    
+    isNumber(e) {
+      const regex = /[0-9]/;
+      if (!regex.test(e.key)) {
+        e.returnValue = false;
+        if (e.preventDefault) e.preventDefault();
+      }
+    },
+    // rangeSelect(index) {
+    //   (value) => [[value[0], value[1]]];
+
+    //   console.log(index);
+    //   this.selectedAnswers[index] = this.value.map((car) => car);
+    // },
     sendAnswers() {
       return this.selectedAnswers;
     },
@@ -251,58 +280,13 @@ export default {
   background: $ylw;
 }
 
-.set-range {
-  flex: 0 0 auto;
-  display: flex;
-  padding: 20px;
-  input {
-    width: 300px;
-    height: 40px;
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    text-transform: capitalize;
-    background-color: $bg;
-    font: 700 20px tahoma;
-    border: none;
-    margin: 0 10px;
-    box-shadow: 0 4px 16px red;
-    &:hover,
-    &:focus {
-      border-color: red;
-    }
-  }
-}
 .merge-tooltip {
   position: absolute;
   left: 50%;
   bottom: 100%;
   transform: translate(-50%, -15px);
 }
-.custom-step {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  box-shadow: 0 0 0 3px #ccc;
-  background-color: #fff;
-}
-.custom-step.active {
-  box-shadow: 0 0 0 3px red;
-  background-color: red;
-}
-.custom-dot {
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
-  //background-color: rgb(49, 4, 194);
-  transition: all 0.3s;
-}
-.custom-dot.focus {
-  border-radius: 25%;
-}
-.custom-step {
-  color: red;
-}
+
 .vue-slider {
   padding: 17px 20px;
 }
@@ -320,126 +304,15 @@ export default {
   background-color: $blu;
 }
 
-.message {
-  margin: 0 auto;
-  input,
-  textarea {
-    margin: 10 0 32px 0;
-    padding: 10px;
-    width: 100%;
-    height: 50px;
-    border-radius: 1em;
-    border: none;
-    font-size: 35xp;
-    color: #fff;
-    background-color: #A3CEF1;
-    outline: none;
-    cursor: pointer;
-  }
-}
-// .pretty {
-//   color: white;
-// }
-
-.switch input {
-  display: none;
-}
-.switch label {
-  display: inline;
-  justify-content: space-between;
-  display: inline-block;
-  cursor: pointer;
-  // color: white;
-}
-
-.ex1 span {
-  display: block;
-  padding: 5px 10px 5px 25px;
-  border: 2px solid white;
-  border-radius: 5px;
-  position: relative;
-  transition: all 0.25s linear;
-}
-.ex1 span:before {
-  content: "";
-  position: absolute;
-  left: 5px;
-  top: 50%;
-  -webkit-transform: translatey(-50%);
-  transform: translatey(-50%);
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background-color: #ddd;
-  transition: all 0.25s linear;
-}
-.ex1 input:checked + span {
-  background-color: #fff;
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
-}
-.ex1 .red input:checked + span {
-  color: red;
-  border-color: red;
-}
-.ex1 .red input:checked + span:before {
-  background-color: red;
-}
-.labels {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  label {
-    margin: 5% 10% 5% 10%;
-    padding: 5px 20px;
-    display: inline;
-    justify-content: space-between;
-  }
-}
 .mx-datepicker-range {
   width: 550px;
 }
-.mx-calendar-content .cell.active {
-  color: #fff;
-  background-color: red;
-}
-.mx-calendar-content .cell.in-range {
-  color: white;
-  background-color: #555;
-}
-.mx-datepicker-main {
-  color: black;
-}
-.mx-btn {
-  color: black;
-  background-color: transparent;
-  // width:320px;
-  background-image: none;
-  display: initial;
-  &:hover {
-    color: red;
-    border-color: red;
-  }
-}
-.mx-table-date .today {
-  color: red;
-}
 
-.mx-btn-text {
-  border: 0;
-  padding: 0 4px;
-  text-align: left;
-  line-height: inherit;
-  &:hover {
-    color: red;
-  }
-}
 .merge-tooltip {
   position: absolute;
   left: 50%;
   bottom: 100%;
   transform: translate(-50%, -15px);
 }
-
 
 </style>
