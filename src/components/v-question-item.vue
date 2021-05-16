@@ -27,9 +27,9 @@
             name="flavour-2"
           >
             <div v-for="val in question.answers" :key="val.id">
-              <b-form-checkbox :value="val.value"><p>{{
-                val.value
-              }}</p></b-form-checkbox>
+              <b-form-checkbox :value="val.value"
+                ><p>{{ val.value }}</p></b-form-checkbox
+              >
             </div>
           </b-form-checkbox-group>
         </b-form-group>
@@ -61,7 +61,7 @@
           :marks="true"
           :interval="(question.answers[1] - question.answers[0]) / 10"
         >
-          <template v-slot:process="{ style}">
+          <template v-slot:process="{ style }">
             <div class="vue-slider-process" :style="style">
               <div
                 :class="[
@@ -70,7 +70,8 @@
                   'vue-slider-dot-tooltip-inner-top',
                 ]"
               >
-                {{ selectedAnswers[index][0] }} - {{ selectedAnswers[index][  1] }}
+                {{ selectedAnswers[index][0] }} -
+                {{ selectedAnswers[index][1] }}
               </div>
             </div>
           </template>
@@ -112,7 +113,7 @@
           <b-form-textarea
             id="textarea-state"
             v-model="selectedAnswers[index]"
-            :state='selectedAnswers[index].length > 2'
+            :state="selectedAnswers[index].length > 2"
             placeholder="Enter at least 10 characters"
             rows="3"
           >
@@ -171,12 +172,7 @@ export default {
     };
   },
 
-
-
-
-  
   methods: {
-    
     isNumber(e) {
       const regex = /[0-9]/;
       if (!regex.test(e.key)) {
@@ -191,7 +187,45 @@ export default {
     //   this.selectedAnswers[index] = this.value.map((car) => car);
     // },
     sendAnswers() {
-      return this.selectedAnswers;
+      let v = [];
+      for (let i = 0; i < this.selectedAnswers.length; i++) {
+        if (
+          this.question_data[i].type == "selected" ||
+          this.question_data[i].type == "range" ||
+          this.question_data[i].type == "datapicker"
+        ) {
+          v[i] = {
+            id: this.question_data[i].id,
+            type: this.question_data[i].type,
+            answers: this.selectedAnswers[i],
+          };
+        } else if (this.question_data[i].type == "checkbox") {
+          v[i] = {
+            id: this.question_data[i].id,
+            type: this.question_data[i].type,
+            answers: [],
+          };
+          for (let j = 0; j < this.question_data[i].answers.length; j++) {
+            if (
+              this.question_data[i].answers[j].value ==
+              this.selectedAnswers[i]
+            ) {
+              v[i].answers.push({
+                id: this.question_data[i].answers[j].id,
+                value: this.selectedAnswers[i],
+              });
+              break;
+            }
+          }
+        } else {
+          v[i] = {
+            id: this.question_data[i].id,
+            type: this.question_data[i].type,
+            answers: [this.selectedAnswers[i]],
+          };
+        }
+      }
+      return v;
     },
     addTag(newTag) {
       const tag = {
@@ -314,5 +348,4 @@ export default {
   bottom: 100%;
   transform: translate(-50%, -15px);
 }
-
 </style>

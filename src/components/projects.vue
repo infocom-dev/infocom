@@ -215,11 +215,13 @@
                     scrollable
                     ok-only
                     title="Your answers"
+                    header-bg-variant="primary"
+                    
                   >
-                    <v-question-item
-                      :question_data="questions"
-                      :questions_len="questions.length"
-                    ></v-question-item>
+                    <v-answers
+                      :answers="item.answers"
+                      :questions="questions"
+                    ></v-answers>
                   </b-modal>
                   <b-button
                     style="background-color: #ffd037"
@@ -252,10 +254,10 @@ import "vue-slider-component/theme/default.css";
 import "vue-slider-component/theme/default.css";
 import Graph from "./Graph.vue";
 import VForm from "./v-form.vue";
-import vQuestionItem from "./v-question-item.vue";
+import vAnswers from "./v-answers.vue";
 
 export default {
-  components: { sideBarAccount, Graph, VueSlider, VForm, vQuestionItem },
+  components: { sideBarAccount, Graph, VueSlider, VForm, vAnswers },
   name: "projects",
 
   data() {
@@ -319,7 +321,7 @@ export default {
           text:
             "Укажите минимальное и максимальное кол-во посетителей приложения, в котором планируется использование чат-бота (для каждого канала)?",
           type: "range",
-          min:0,
+          min: 0,
           max: 250,
           answers: [0, 250],
         },
@@ -388,7 +390,8 @@ export default {
         },
         {
           id: "11",
-          text:"Должен ли чат-бот взаимодействовать с другими ботами, сайтами?",
+          text:
+            "Должен ли чат-бот взаимодействовать с другими ботами, сайтами?",
           type: "checkbox",
           answers: [
             {
@@ -445,7 +448,7 @@ export default {
           id: "15",
           text: "Укажите бюджет проекта (диапазон):",
           type: "range",
-          answers: [0,1000000],
+          answers: [0, 1000000],
         },
         {
           id: "16",
@@ -458,9 +461,53 @@ export default {
         {
           name: "Infocom",
           info: "Web site on vuejs + django",
-          status: "in pro",
+          status: "",
           old_budjet: "1 000 000",
           new_budjet: "1 500 000",
+          answers: [
+            {
+              id: "1",
+              type: "selected",
+              answers: [{ id: 1, value: "обработка типовых сообщений " }],
+            },
+            { id: "2", type: "checkbox", answers: [{ id: 1, value: "сайт" }] },
+            { id: "3", type: "range", answers: [100, 250] },
+            { id: "4", type: "message", answers: ["52"] },
+            {
+              id: "5",
+              type: "checkbox",
+              answers: [{ id: 1, value: "Свободное общение" }],
+            },
+            {
+              id: "6",
+              type: "selected",
+              answers: [{ id: 2, value: "Russian" }],
+            },
+            { id: "7", type: "switch", answers: [true] },
+            { id: "8", type: "switch", answers: [false] },
+            { id: "9", type: "switch", answers: [false] },
+            { id: "10", type: "switch", answers: [false] },
+            { id: "11", type: "checkbox", answers: [{ id: 1, value: "Да" }] },
+            { id: "12", type: "checkbox", answers: [{ id: 1, value: "Да" }] },
+            {
+              id: "13",
+              type: "selected",
+              answers: [
+                {
+                  id: 2,
+                  value:
+                    "азмещение интеграционного модуля на серверах Заказчика",
+                },
+              ],
+            },
+            {
+              id: "14",
+              type: "datapicker",
+              answers: ["04.05.2021", "20.05.2021"],
+            },
+            { id: "15", type: "range", answers: [600000, 1000000] },
+            { id: "16", type: "textarea", answers: ["ghjklhy"] },
+          ],
         },
       ],
       projects: [

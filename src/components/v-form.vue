@@ -129,6 +129,7 @@
           </b-row>
         </b-col>
       </b-row>
+      
     </b-container>
   </div>
 </template>
@@ -181,7 +182,7 @@ export default {
       console.log(this.answers);
       for (let i = 0; i < this.answers.length; i++) {
         console.log(this.answers[i]);
-        if (this.answers[i] == null || this.answers[i].length == 0) {
+        if (this.answers[i].answers == null || this.answers[i].answers.length == 0) {
           console.log("ok");
           this.makeToast('b-toaster-top-center');
           return;
@@ -208,7 +209,11 @@ export default {
           v[i] = "";
         } else if (this.questions[i].type == "range") {
           v[i] = [this.questions[i].answers[0], this.questions[i].answers[1]];
-        } else {
+        
+        } else if (this.questions[i].type == 'switch'){
+           v[i] = false;
+        }
+         else {
           v[i] = null;
         }
         console.log(v);
