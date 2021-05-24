@@ -33,7 +33,7 @@
                   <i class="text-center fa fa-bell bell-icon"></i>
                   <span class="badgex badge-danger">6</span>
                 </div>
-                <router-link to="logout">
+                <router-link to="/logout">
                   <div class="m-5">
                     <a
                       href="#"
