@@ -4,13 +4,13 @@
     <div id="nav-scroller">
       <section
         id="home"
-        class="home position-relative d-flex justify-content-center"
+        class="home p-5 position-relative d-flex justify-content-center"
       >
-        <b-container fluid class="">
-          <b-row align-v="center" align-content="center" class="mx-auro">
+        <b-container fluid class="p-0 ">
+          <b-row align-v="center" align-content="center" class="p-5 mx-auto">
             <b-col class="p-0">
-              <b-container fluid class="">
-                <b-row class="pt-5 m-5">
+              <b-container fluid class="p-0">
+                <b-row class="">
                   <b-col class="">
                     <div
                       data-aos="zoom-in"
@@ -44,7 +44,7 @@
               <b-img
                 style="min-width: 400px"
                 fluid
-                center
+                right
                 class=""
                 :src="require('../assets/images/bg.png')"
               />
