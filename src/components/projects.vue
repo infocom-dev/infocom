@@ -1,11 +1,11 @@
 <template>
-  <div class="projects">
-    <b-row align-h="center" class="w-100 m-0">
+  <div class="projects ">
+    <b-row align-h="center" class="w-100 m-0 ">
       <b-container class="w-100 d-flex align-items-stretch col-2 p-0">
         <side-bar-account></side-bar-account>
       </b-container>
-      <b-container class="col p-0 ml-0">
-        <b-container fluid class="p-0 ml-0">
+      <b-container class="col p-0 ml-0 ">
+        <b-container fluid class="p-0 ml-0 ">
           <b-row align-v="center" class="ml-0">
             <b-col>
               <b-row
@@ -44,7 +44,7 @@
             </b-col>
           </b-row>
 
-          <b-container fluid class="w-100 overview p-0">
+          <b-container fluid class="w-100 overview p-0 pb-5">
             <b-row align-v="center" class="text-center ml-5">
               <div class="col-1 mt-5 text-left">
                 <i class="fas fa-search icon"></i>
@@ -216,7 +216,6 @@
                     ok-only
                     title="Your answers"
                     header-bg-variant="primary"
-                    
                   >
                     <v-answers
                       :answers="item.answers"
@@ -224,23 +223,60 @@
                     ></v-answers>
                   </b-modal>
                   <b-button
+                    v-b-modal.modal4
                     style="background-color: #ffd037"
                     class="mx-auto w-100"
                     >Set options</b-button
                   >
+                  <b-modal
+                    id="modal4"
+                    size="lg"
+                    scrollable
+                    title="Set new options for this project"
+                    header-bg-variant="primary"
+                  >
+                    <div v-if="item.answers" class="text-center">
+                      <h5>
+                        Наша нейронная сеть оценала заказ в $
+                        {{ item.old_budjet }}.
+                      </h5>
+                      <p>Вы можете изменить настройки ниже</p>
+                      <div v-for="(f, index) in feature" :key="index">
+                        <b-row align-v="center" class="d-flex m-3">
+                          <b-col class="col-4">
+                            <div
+                              class="name-box d-flex justify-content-center text-center m-3 mx-auto"
+                            >
+                              <p class="m-1">{{ f }}</p>
+                            </div>
+                          </b-col>
+                          <b-col class="col w-100">
+                            <vue-slider
+                              v-model="answers[index]"
+                              :adsorb="true"
+                              :interval="10"
+                              :marks="true"
+                            ></vue-slider>
+                          </b-col>
+                        </b-row>
+                      </div>
+                    </div>
+                    <template #modal-footer="{ submit, cancel }">
+                      <a href="#" @click="submit()" class="btn text-uppercase"
+                        >Submit data
+                      </a>
+                      <!-- Emulate built in modal footer ok and cancel button actions -->
+                      <a href="#" @click="cancel()" class="btn text-uppercase"
+                        >Cancel
+                      </a>
+
+                      <!-- Button with custom close trigger value -->
+                    </template>
+                  </b-modal>
                   <b-button class="mx-auto w-100">Make order</b-button>
                 </b-col>
               </b-row>
             </div>
-
-            <b-row align-v="center" class="text-center m-5">
-              <div class="col-1 pl-2 text-left">
-                <i class="fas fa-tasks projects-icon"></i>
-              </div>
-              <div class="col-4 p-0 text-left">
-                <h3>Current projects</h3>
-              </div>
-            </b-row>
           </b-container>
         </b-container>
       </b-container>

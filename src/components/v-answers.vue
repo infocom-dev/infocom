@@ -1,7 +1,7 @@
 <template>
   <div class="v-answers">
     <div>
-      <b-table sticky-header bordered table-variant="info" hover  responsive :items="items"></b-table>
+      <b-table sticky-header bordered  hover  responsive :items="items"></b-table>
     </div>
   </div>
 </template>
@@ -41,7 +41,16 @@ export default {
             Question: this.questions[i].text,
             Answers: this.answers[i].answers[0].value,
           };
-        } else {
+        
+        } else if (this.answers[i].type == "switch"){
+          if (this.answers[i].answers[0] == true){
+             v[i] = { Question: this.questions[i].text, Answers: "Yes" };
+          }
+          else{
+             v[i] = { Question: this.questions[i].text, Answers: "No" }
+          }
+        }
+        else {
           v[i] = {
             Question: this.questions[i].text,
             Answers: this.answers[i].answers[0],
