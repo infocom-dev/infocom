@@ -10,7 +10,7 @@
         align-v="center"
         class="h-100 mr-5 ml-5 mb-5 justify-content-center"
       >
-        <div class="step mr-5 ml-5 w-100">
+        <div data-aos-duration="1500" data-aos="fade-right" class="step mr-5 ml-5 w-100">
           <div align-h="center" class="m-3 row justify-content-center">
             <b-col class="col-2">
               <svg
@@ -61,7 +61,7 @@
         align-v="center"
         class="h-100 mr-5 ml-5 mb-5 justify-content-center"
       >
-        <div class="step mr-5 ml-5 w-100">
+        <div data-aos-duration="1500" data-aos="fade-left" class="step mr-5 ml-5 w-100">
           <div align-v="center" class="m-3 row justify-content-center">
             <b-col class="col-2">
               <svg
@@ -112,7 +112,7 @@
         align-v="center"
         class="h-100 mr-5 ml-5 mb-5 justify-content-center"
       >
-        <div class="step mr-5 ml-5 w-100">
+        <div data-aos-duration="1500" data-aos="fade-right" class="step mr-5 ml-5 w-100">
           <div align-h="center" class="m-3 row justify-content-center">
             <b-col class="col-2">
               <svg

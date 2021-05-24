@@ -10,6 +10,9 @@
         <b-row align-v="center" class="w-100 justify-content-center">
           <div v-for="service in services" :key="service">
             <div
+              :data-aos-offset="service.aos"
+              data-aos="zoom-in"
+              data-aos-duration="1500"
               class="col m-5 text-center box2 "
               style="width: 300px"
               :style="service.h"
@@ -36,6 +39,7 @@ export default {
     return {
       services: [
         {
+          aos:"500",
           // url: require("../assets/images/stat1.png"),
           title: "calculate",
           text:
@@ -44,6 +48,7 @@ export default {
           h: "height:350px",
         },
         {
+          aos:"0",
           // url: require("../assets/images/stat2.png"),
           title: "web development",
           text:
@@ -52,6 +57,7 @@ export default {
           h: "height:450px",
         },
         {
+           aos:"500",
           // url: require("../assets/images/stat1.png"),
           title: "chat-bot",
           text:

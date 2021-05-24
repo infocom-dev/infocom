@@ -4,15 +4,19 @@
     <div id="nav-scroller">
       <section
         id="home"
-        class="home p-5 position-relative d-flex justify-content-center"
+        class="home position-relative d-flex justify-content-center"
       >
-        <b-container fluid class="mx-auto">
-          <b-row align-v="center" align-content="center">
-            <b-col>
-              <b-container fluid>
-                <b-row class="pt-5 mx-5">
+        <b-container fluid class="">
+          <b-row align-v="center" align-content="center" class="mx-auro">
+            <b-col class="p-0">
+              <b-container fluid class="">
+                <b-row class="pt-5 m-5">
                   <b-col class="">
-                    <div class="text-left">
+                    <div
+                      data-aos="zoom-in"
+                      data-aos-duration="1500"
+                      class="text-left"
+                    >
                       <p>Our Clients Are Our First Priority</p>
                       <h1 class="mt-4 text-uppercase font-weight-bolder">
                         WELCOME TO INFOCOM
@@ -25,13 +29,12 @@
                         when an unknown printer took a galley of type and
                         scrambled it to make a type specimen book.
                       </p>
-              
-                        <div class="w-50">
-                          <!-- <router-link to="login"> -->
-                          <a href="login" class="btn">LEARN MORE</a>
-                          <!-- </router-link> -->
-                        </div>
-                      
+
+                      <div class="w-50">
+                        <!-- <router-link to="login"> -->
+                        <a href="login" class="btn">LEARN MORE</a>
+                        <!-- </router-link> -->
+                      </div>
                     </div>
                   </b-col>
                 </b-row>
@@ -55,9 +58,6 @@
       <section id="skills" class="skills">
         <v-skills></v-skills>
       </section>
-      <!-- <section id="technology" class="technology">
-        <v-calculation></v-calculation>
-      </section> -->
       <section>
         <v-tecnology> </v-tecnology>
       </section>
@@ -76,6 +76,8 @@
 </template>
 
 <script>
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import VSkills from "./v-skills.vue";
 import NavBar from "./NavBar.vue";
 import vCalculation from "./v-calculation";
@@ -83,8 +85,8 @@ import Footer from "./Footer.vue";
 import vServicesVue from "./v-services.vue";
 import vTecnology from "./v-tecnology";
 // import VCalculation from "./v-calculation.vue";
-import Statistic from './statistic'
-import VCalculation from './v-calculation.vue';
+import Statistic from "./statistic";
+import VCalculation from "./v-calculation.vue";
 // import ContactUs from "./contact-us.vue";
 export default {
   name: "v-home-page",
@@ -98,11 +100,14 @@ export default {
     // VCalculation,
     Footer,
     Statistic,
-    VCalculation
+    VCalculation,
     // ContactUs,
   },
   data() {
     return {};
+  },
+  created() {
+    AOS.init();
   },
 };
 </script>
