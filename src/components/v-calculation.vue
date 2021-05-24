@@ -1,16 +1,16 @@
 <template>
   <div class="v-calculation w-100 p-5">
-    <b-container fluid class="mx-auto p-0 w-100 justify-content-center">
-      <div class="mx-auto pb-5">
+    <b-container fluid class="p-0 w-100 justify-content-center">
+      <div class="mx-auto">
         <h1 class="text-center text-uppercase font-weight-bolder">
           how it works?
         </h1>
       </div>
       <b-row
         align-v="center"
-        class="h-100 mr-5 ml-5 mb-5 justify-content-center"
+        class="h-100 p-5 justify-content-center"
       >
-        <div data-aos-duration="1500" data-aos="fade-right" class="step mr-5 ml-5 w-100">
+        <div data-aos-duration="1500" data-aos="fade-right" class="step w-100">
           <div align-h="center" class="m-3 row justify-content-center">
             <b-col class="col-2">
               <svg
@@ -59,9 +59,9 @@
       </b-row>
       <b-row
         align-v="center"
-        class="h-100 mr-5 ml-5 mb-5 justify-content-center"
+        class="h-100 pr-5 pl-5 justify-content-center"
       >
-        <div data-aos-duration="1500" data-aos="fade-left" class="step mr-5 ml-5 w-100">
+        <div data-aos-duration="1500" data-aos="fade-left" class="step w-100">
           <div align-v="center" class="m-3 row justify-content-center">
             <b-col class="col-2">
               <svg
@@ -110,9 +110,9 @@
       </b-row>
       <b-row
         align-v="center"
-        class="h-100 mr-5 ml-5 mb-5 justify-content-center"
+        class="h-100 p-5 justify-content-center"
       >
-        <div data-aos-duration="1500" data-aos="fade-right" class="step mr-5 ml-5 w-100">
+        <div data-aos-duration="1500" data-aos="fade-right" class="step w-100">
           <div align-h="center" class="m-3 row justify-content-center">
             <b-col class="col-2">
               <svg
