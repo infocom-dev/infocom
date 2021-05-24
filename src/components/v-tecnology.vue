@@ -6,7 +6,6 @@
           <b-img
            style="min-width:300px"
            fluid
-           
             right
             class=""
             :src="require('../assets/images/technology.png')"
