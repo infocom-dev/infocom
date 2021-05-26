@@ -6,6 +6,7 @@ drf-yasg
 # email auth
 django-rest-auth
 django-allauth
+python-dateutil
 
 # vk auth
 django-rest-framework-social-oauth2
