@@ -24,7 +24,6 @@ export default {
   }),
   methods: {
     onScroll() {
-      
       if (
         this.top <
         window.scrollY && this.top != 0

@@ -40,7 +40,6 @@ export default {
       services: [
         {
           aos:"500",
-          // url: require("../assets/images/stat1.png"),
           title: "calculate",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
@@ -49,7 +48,6 @@ export default {
         },
         {
           aos:"0",
-          // url: require("../assets/images/stat2.png"),
           title: "web development",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesettinCDSSbvjdin dfbidjvidbvkf sduivsivgs  svisvbskhbbvis cvsbh industry. Lorem Ip sum has been the industry's standard dummy text ever.",
@@ -57,8 +55,7 @@ export default {
           h: "height:450px",
         },
         {
-           aos:"500",
-          // url: require("../assets/images/stat1.png"),
+          aos:"500",
           title: "chat-bot",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
@@ -85,14 +82,10 @@ export default {
     overflow: hidden;
     position: relative;
     margin: 0.25em auto;
-    // max-width: 15em;
-    // min-height: 10em;
     border-radius: 1em;
     &:before {
-      // position: absolute;
       margin: 8em;
       padding: 7em;
-
       border-radius: 50%;
       box-shadow: 0 0 0 350px rgba(#A3CEF1, 1);
       content: "";

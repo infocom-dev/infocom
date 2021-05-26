@@ -91,5 +91,10 @@ export default {
   span {
     color: white;
   }
+  h5{
+    &:hover{
+      color:white;
+    }
+  }
 }
 </style>
