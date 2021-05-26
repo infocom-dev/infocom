@@ -10,14 +10,28 @@ urlpatterns = ([
     # Customer
     path("createCustomer/", views.CustomerViewSet.as_view({'post': 'create'})),
     path("getCustomers/", views.CustomerViewSet.as_view({'get': 'list'})),
+    path("getCustomerById/<int:pk>", views.CustomerViewSet.as_view({'get': 'retrieve'})),
 
     # Developer
     path("createDeveloper/", views.DeveloperViewSet.as_view({'post': 'create'})),
     path("getDevelopers/", views.DeveloperViewSet.as_view({'get': 'list'})),
+    path("getDeveloperById/<int:pk>", views.DeveloperViewSet.as_view({'get': 'retrieve'})),
 
     # Project
     path("createProject/", views.ProjectViewSet.as_view({'post': 'create'})),
+    path("deleteProject/<int:pk>", views.ProjectViewSet.as_view({'delete': 'destroy'})),
+    path("updateProject/<int:pk>", views.ProjectViewSet.as_view({'put': 'update'})),
     path("getProjects/", views.ProjectViewSet.as_view({'get': 'list'})),
+    path("getProjectById/<int:pk>", views.ProjectViewSet.as_view({'get': 'retrieve'})),
+
+    path("getProjectsActive/", views.ProjectActiveViewSet.as_view({'get': 'list'})),
+    path("getProjectsNoActive/", views.ProjectNoActiveViewSet.as_view({'get': 'list'})),
+
+    path("createStack/", views.StackViewSet.as_view({'post': 'create'})),
+    path("getStacks/", views.StackViewSet.as_view({'get': 'list'})),
+    path("getAvgStack<str:pk>/", views.StackAvgViewSet.as_view({'get': 'retrieve'})),
+
+    #Auth
 
     path('auth/', include('rest_auth.urls')),
 
