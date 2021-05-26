@@ -1,6 +1,30 @@
 from rest_framework import serializers
 
-from backend.api.models import AnswersOption, Question, Customer, Developer, Project
+from backend.api.models import AnswersOption, Question, Customer, Developer, Project, Stack
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = "__all__"
+
+
+class StackSerializer(serializers.ModelSerializer):
+    projects = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='id'
+    )
+
+    class Meta:
+        model = Stack
+        fields = "__all__"
+
+
+class StackPricesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Stack
+        fields = "__all__"
 
 
 class AnswerSerializer(serializers.ModelSerializer):
@@ -25,6 +49,12 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 
 class CustomerSerializer(serializers.ModelSerializer):
+    projects = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='name'
+    )
+
     class Meta:
         model = Customer
         fields = "__all__"
@@ -35,41 +65,37 @@ class CustomerSerializerEmail(serializers.ModelSerializer):
         model = Customer
         fields = "email"
 
+
 class DeveloperSerializer(serializers.ModelSerializer):
     class Meta:
         model = Developer
         fields = "__all__"
 
 
-class ProjectSerializer(serializers.ModelSerializer):
-    # customer = CustomerSerializerEmail(many=True, read_only=True)
-
-    class Meta:
-        model = Project
-        fields = "__all__"
-
 from rest_auth.registration.serializers import RegisterSerializer
 from django.db import transaction
 from backend.api.models import CustomUser
 
+
 # должны быть все поля, что и в кастомере (женя помоги написать)
 class CustomRegisterSerializer(RegisterSerializer):
     phone = serializers.CharField(max_length=16)
+
     @transaction.atomic
     def save(self, request):
         user = super().save(request)
         user.phone = self.data.get('phone')
         user.save()
         return user
+
+
 # должны быть все поля, что и в кастомере (женя помоги написать)
 class CustomUserDetailsSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = CustomUser
         fields = (
-            
+
             'email',
             'phone',
-            
+
         )
-        
