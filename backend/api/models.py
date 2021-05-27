@@ -6,7 +6,7 @@ from django.utils import timezone
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=100, unique=True)
-    username = models.CharField(max_length=765, blank=True,default="name")
+    username = models.CharField(max_length=765, blank=True, default="name")
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
@@ -32,14 +32,19 @@ class Developer(CustomUser):
     experience = models.TextField()
     respect = models.IntegerField(default=0)
 
+class Stack(models.Model):
+    name = models.CharField("Название технологии", max_length=150, default="Django", primary_key=True)
+    avg_price=models.FloatField(blank=True, null=True)
+    avg_days=models.IntegerField(blank=True,null=True)
+
 
 class Project(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-
-    # ALL PRICES IN $$$
+    name = models.CharField("Название Проекта", max_length=150, default="test project", null=True, blank=True)
+    customer = models.ForeignKey(Customer, related_name='projects', on_delete=models.CASCADE,null=True, blank=True)
+    stack = models.ForeignKey(Stack, related_name='projects', on_delete=models.CASCADE,null=True, blank=True)
+    is_active = models.BooleanField(default=True)
     predicted_price = models.IntegerField(blank=True, null=True)
     real_price = models.IntegerField(blank=True, null=True)
-
     start_date = models.DateField(blank=True, null=True)
     predict_end_date = models.DateField(blank=True, null=True)
     real_end_date = models.DateField(blank=True, null=True)
@@ -55,7 +60,7 @@ class QuestionType(models.TextChoices):
 
 
 class Question(models.Model):
-    tag = models.CharField("Тег (Суть)", max_length=100, primary_key=True,default="имя")
+    tag = models.CharField("Тег (Суть)", max_length=100, primary_key=True, default="имя")
     text = models.TextField("Текст вопроса")
     type = models.TextField(choices=QuestionType.choices)
 
@@ -71,14 +76,3 @@ class CustomerAnswer(models.Model):
 class AnswersOption(models.Model):
     value = models.TextField("Значение варианта ответа в виде текста")
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers_option')
-
-
-# x = {
-#     "customer_id": 1,
-#     "customer_answers": [{
-#         "text": "mera one luv <3",
-#         "question": {
-#             "tag": "project_name"
-#         }
-#     }]
-# }
