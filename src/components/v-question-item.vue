@@ -1,6 +1,6 @@
 <template>
   <div class="v-question-item">
-    <div v-for="(question, index) in question_data" :key="question.id">
+    <div v-for="(question, index) in question_data" :key="index">
       <div class="selected" v-if="question.type === 'selected'">
         <p>{{ index + 1 }}.{{ question.text }}</p>
         <div class="m-2">
@@ -9,7 +9,7 @@
             placeholder="Search"
             label="value"
             track-by="id"
-            :options="question.answers"
+            :options="question.answers_option"
             :multiple="true"
             :taggable="true"
             @tag="addTag"
@@ -26,7 +26,7 @@
             :aria-describedby="ariaDescribedby"
             name="flavour-2"
           >
-            <div v-for="val in question.answers" :key="val.id">
+            <div v-for="val in question.answers_option" :key="val.id">
               <b-form-checkbox :value="val.value"
                 ><p>{{ val.value }}</p></b-form-checkbox
               >
