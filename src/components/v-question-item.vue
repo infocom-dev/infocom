@@ -9,7 +9,7 @@
             placeholder="Search"
             label="value"
             track-by="id"
-            :options="question.answers_option"
+            :options="question.answers"
             :multiple="true"
             :taggable="true"
             @tag="addTag"
@@ -26,7 +26,7 @@
             :aria-describedby="ariaDescribedby"
             name="flavour-2"
           >
-            <div v-for="val in question.answers_option" :key="val.id">
+            <div v-for="val in question.answers" :key="val.id">
               <b-form-checkbox :value="val.value"
                 ><p>{{ val.value }}</p></b-form-checkbox
               >
