@@ -7,13 +7,15 @@ import vQuestion from '../components/v-question.vue'
 import vHomePage from '../components/v-home-page.vue'
 Vue.use(Router);
 
+import projects from '../components/projects';
+
 import Login from '../components/Login';
 import Register from '../components/Register';
-import reject from '../components/reject'
 import account from '../components/v-account-page'
-import google_auth from '../components/Google-auth.vue'
-
+import Graph from '../components/Graph'
+import Window from '../components/window'
 import store from '../store';
+
 const requireAuthenticated = (to, from, next) => {
     store.dispatch('auth/initialize')
         .then(() => {
@@ -67,9 +69,9 @@ let router = new Router({
             beforeEnter: requireUnauthenticated,
         },
         {
-            path: '/reject',
-            name: 'reject',
-            component: reject,
+            path: '/graph',
+            name: 'graph',
+            component: Graph,
             beforeEnter: requireAuthenticated,
         },
         {
@@ -84,9 +86,14 @@ let router = new Router({
             beforeEnter: redirectLogout,
         },
         {
-            path: '/google',
-            name:'google',
-            component: google_auth,
+            path: '/account/projects',
+            name: 'projects',
+            component: projects,
+        },
+        {
+            path :'/account/projects/details',
+            name :'window',
+            component: Window,
         }
     ]
 })

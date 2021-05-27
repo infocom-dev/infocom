@@ -2,139 +2,137 @@
   <div class="">
     <nav-bar></nav-bar>
     <section class="p-5 signup position-relative d-flex justify-content-center">
-      <b-container fluid class="mx-auto w-75 ">
+      <b-container fluid class="mx-auto w-75">
         <div class="mx-auto p-5 register-box">
-          
-            <template v-if="registrationLoading"> loading... </template>
-            <div v-else-if="!registrationCompleted">
-              <b-row align-v="center" class="justify-content-center">
-                <b-form class="col w-50" @submit.prevent="submit">
-                  <div class="error-message">
-                    <p v-show="registrationError">
-                      Ваша почта недействительна либо вы уже есть в нашей базе
-                      данных
-                    </p>
-                  </div>
-
-                  <div class="form-group required">
-                    <label class="control-label" for="phone">Почта:</label>
-                    <b-form-group
-                      id="input-group-1"
-                      label-for="input-1"
-                      description="We'll never share your email with anyone else."
-                    >
-                      <b-input
-                        type="email"
-                        name="email"
-                        id="email"
-                        required
-                        :class="{ email, error: !emailValid }"
-                        v-model="inputs.email"
-                      />
-                      <p v-show="!emailValid">
-                        Oh, please enter a valid email address.
-                      </p>
-                    </b-form-group>
-                  </div>
-                  <div class="form-group required">
-                    <label class="control-label" for="phone"
-                      >Номер телефона:</label
-                    >
-                    <b-input
-                      v-model="inputs.phone"
-                      type="text"
-                      id="phone"
-                      v-imask="phoneNumberMask"
-                      placeholder="+7(921)123-45-67"
-                      @keypress="isNumber"
-                      @accept="onAccept"
-                      @complete="onComplete"
-                      maxlength="16"
-                    />
-
-                    <p>
-                      <small>Введите номер в формате: +7(921)123-45-67</small>
-                    </p>
-                  </div>
-                  <div class="form-group required">
-                    <label class="control-label" for="password">Пароль:</label>
-                    <b-input
-                      v-model="inputs.password1"
-                      type="password"
-                      id="password"
-                      placeholder="Пароль..."
-                    ></b-input>
-                    <p>
-                      <small>Минимальная длина пароля 6 символов</small>
-                    </p>
-                  </div>
-                  <div class="form-group required">
-                    <label class="control-label" for="repeatPassword"
-                      >Повторите пароль:</label
-                    >
-                    <b-input
-                      v-model="inputs.password2"
-                      type="password"
-                      id="repeatPassword"
-                      placeholder="Повторите пароль..."
-                    />
-                  </div>
-                  <p class="text-danger" v-if="!$v.inputs.password1.minLength">
-                    Длина пароля меньше 6 символов
+          <template v-if="registrationLoading"> loading... </template>
+          <div v-else-if="!registrationCompleted">
+            <b-row align-v="center" class="justify-content-center">
+              <b-form class="col w-50" @submit.prevent="submit">
+                <div class="error-message">
+                  <p v-show="registrationError">
+                    Ваша почта недействительна либо вы уже есть в нашей базе
+                    данных
                   </p>
+                </div>
 
-                  <p
-                    class="text-danger"
-                    v-if="
-                      $v.inputs.password1.required &&
-                      $v.inputs.password2.required &&
-                      !$v.inputs.password2.sameAs
-                    "
+                <div class="form-group required">
+                  <label class="control-label" for="phone">Почта:</label>
+                  <b-form-group
+                    id="input-group-1"
+                    label-for="input-1"
+                    description="We'll never share your email with anyone else."
                   >
-                    Введённые пароли не совпадают
-                  </p>
-                  <p class="mt-2">
-                    <small>
-                      Все поля отмеченные
-                      <span class="text-danger">*</span> обязательны для
-                      заполнения.
-                    </small>
-                  </p>
-                  <div class="">
-                    <button
-                      :disabled="formValid"
-                      @click="createAccount(inputs)"
-                      class="btn"
-                    >
-                      Регистрация
-                    </button>
-                  </div>
+                    <b-input
+                      type="email"
+                      name="email"
+                      id="email"
+                      required
+                      :class="{ email, error: !emailValid }"
+                      v-model="inputs.email"
+                    />
+                    <p v-show="!emailValid">
+                      Oh, please enter a valid email address.
+                    </p>
+                  </b-form-group>
+                </div>
+                <div class="form-group required">
+                  <label class="control-label" for="phone"
+                    >Номер телефона:</label
+                  >
+                  <b-input
+                    v-model="inputs.phone"
+                    type="text"
+                    id="phone"
+                    v-imask="phoneNumberMask"
+                    placeholder="+7(921)123-45-67"
+                    @keypress="isNumber"
+                    @accept="onAccept"
+                    @complete="onComplete"
+                    maxlength="16"
+                  />
 
-                  <p class="mt-3">
-                    Уже есть аккаунт?
-                    <router-link to="/login"><h2>Вход</h2></router-link>
+                  <p>
+                    <small>Введите номер в формате: +7(921)123-45-67</small>
                   </p>
-                </b-form>
-                <div class="col mx-auto">
-                  <b-img
-                    style="min-width: 200px"
-                    fluid
-                    center
-                    class=""
-                    :src="require('../assets/images/login2.jpg')"
-                  /></div
-              ></b-row>
+                </div>
+                <div class="form-group required">
+                  <label class="control-label" for="password">Пароль:</label>
+                  <b-input
+                    v-model="inputs.password1"
+                    type="password"
+                    id="password"
+                    placeholder="Пароль..."
+                  ></b-input>
+                  <p>
+                    <small>Минимальная длина пароля 6 символов</small>
+                  </p>
+                </div>
+                <div class="form-group required">
+                  <label class="control-label" for="repeatPassword"
+                    >Повторите пароль:</label
+                  >
+                  <b-input
+                    v-model="inputs.password2"
+                    type="password"
+                    id="repeatPassword"
+                    placeholder="Повторите пароль..."
+                  />
+                </div>
+                <p class="text-danger" v-if="!$v.inputs.password1.minLength">
+                  Длина пароля меньше 6 символов
+                </p>
+
+                <p
+                  class="text-danger"
+                  v-if="
+                    $v.inputs.password1.required &&
+                    $v.inputs.password2.required &&
+                    !$v.inputs.password2.sameAs
+                  "
+                >
+                  Введённые пароли не совпадают
+                </p>
+                <p class="mt-2">
+                  <small>
+                    Все поля отмеченные
+                    <span class="text-danger">*</span> обязательны для
+                    заполнения.
+                  </small>
+                </p>
+                <div class="">
+                  <button
+                    :disabled="formValid"
+                    @click="createAccount(inputs)"
+                    class="btn"
+                  >
+                    Регистрация
+                  </button>
+                </div>
+
+                <p class="mt-3">
+                  Уже есть аккаунт?
+                  <router-link to="/login"><h2>Вход</h2></router-link>
+                </p>
+              </b-form>
+              <div class="col mx-auto">
+                <b-img
+                  style="min-width: 200px"
+                  fluid
+                  center
+                  class=""
+                  :src="require('../assets/images/login2.jpg')"
+                /></div
+            ></b-row>
+          </div>
+          <template v-else>
+            <div>
+              Registration complete. You should receive an email shortly with
+              instructions on how to activate your account.
             </div>
-            <template v-else>
-              <div>
-                Registration complete. You should receive an email shortly with
-                instructions on how to activate your account.
-              </div>
-              <div>
-                <router-link to="/login">return to login page</router-link>
-              </div>
-            </template>
-          
+            <div>
+              <router-link to="/login">return to login page</router-link>
+            </div>
+          </template>
         </div>
       </b-container>
     </section>
@@ -270,16 +268,16 @@ export default {
   span {
     color: black;
   }
-  .error-message p {
-    background: $rs;
-    color: #ffffff;
-    font-size: 1.4rem;
-    text-align: center;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    border-radius: 0.25em;
-    padding: 16px;
-  }
+}
+.error-message p {
+  background: $rs;
+  color: #ffffff;
+  font-size: 1.4rem;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border-radius: 0.25em;
+  padding: 16px;
 }
 button.btn {
   border-radius: 40px;

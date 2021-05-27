@@ -6,12 +6,15 @@
           our<span>services</span>
         </h1>
       </div>
-      <b-container fluid class="w-100 justify-content-center">
-        <b-row align-v="center" class="justify-content-center">
+      <b-container fluid class="p-0 w-100 justify-content-center">
+        <b-row align-v="center" class="w-100 justify-content-center">
           <div v-for="service in services" :key="service">
             <div
-              class="col m-5 text-center box "
-              style="width: 350px"
+              :data-aos-offset="service.aos"
+              data-aos="zoom-in"
+              data-aos-duration="1500"
+              class="col m-5 text-center box2 "
+              style="width: 300px"
               :style="service.h"
             >
               <i class="m-3" :class="service.icon"></i>
@@ -36,28 +39,28 @@ export default {
     return {
       services: [
         {
-          // url: require("../assets/images/stat1.png"),
+          aos:"500",
           title: "calculate",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
-          icon: "fa fa-calculator chart-icon",
-          h: "height:300px",
-        },
-        {
-          // url: require("../assets/images/stat2.png"),
-          title: "web development",
-          text:
-            "Lorem Ipsum is simply dummy text of the printing and typesettinCDSSbvjdin dfbidjvidbvkf sduivsivgs  svisvbskhbbvis cvsbh industry. Lorem Ip sum has been the industry's standard dummy text ever.",
-          icon: "fa fa-laptop laptop-icon",
+          icon: "fa fa-calculator icon",
           h: "height:350px",
         },
         {
-          // url: require("../assets/images/stat1.png"),
+          aos:"0",
+          title: "web development",
+          text:
+            "Lorem Ipsum is simply dummy text of the printing and typesettinCDSSbvjdin dfbidjvidbvkf sduivsivgs  svisvbskhbbvis cvsbh industry. Lorem Ip sum has been the industry's standard dummy text ever.",
+          icon: "fa fa-laptop icon",
+          h: "height:450px",
+        },
+        {
+          aos:"500",
           title: "chat-bot",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
-          icon: "fa fa-comments chat-icon",
-          h: "height:300px",
+          icon: "fa fa-comments icon",
+          h: "height:350px",
         },
       ],
     };
@@ -66,29 +69,26 @@ export default {
 </script>
 <style lang="scss">
 @import "../assets/styles/base.scss";
-.laptop-icon,
-.data-icon,
-.chart-icon,
-.chat-icon {
-  font-size: 50px;
+.icon {
+  font-size: 45px;
   color: $blu;
   &:hover {
     color: $ylw;
   }
 }
 
-.box {
-  // background: url("../assets/images/stat.png") center;
-  background-color: #A3CEF1;
-  // border-radius: 0% 40% 10% 33% / 10% 30% 0% 33% ;
-  // border-radius: 40% 23% 61% 35% / 38% 35% 43% 20%      ;
-  border-radius: 40px;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2)  ; 
-	-webkit-box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2)  ; 
-	-moz-box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2)  ; 
-  
-  
-  justify-content: center;
-  align-items: center;
+.box2 {
+  background-color: #FFE480;
+    overflow: hidden;
+    position: relative;
+    margin: 0.25em auto;
+    border-radius: 1em;
+    &:before {
+      margin: 8em;
+      padding: 7em;
+      border-radius: 50%;
+      box-shadow: 0 0 0 350px rgba(#A3CEF1, 1);
+      content: "";
+    }
 }
 </style>

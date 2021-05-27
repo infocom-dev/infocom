@@ -1,19 +1,19 @@
 <template>
   <div class="v-skills p-5">
-    <div class="">
-      <b-container fluid class="mx-auto">
-        <b-row align-v="center" class="justife-content-center">
-          <b-col class="">
+    <div class="p-5">
+      <b-container fluid class="p-0">
+        <b-row align-v="center" class="mx-auto justify-content-center">
+          <b-col class="p-0">
             <b-img
               style="min-width: 300px"
-              center
+              left
               class=""
               fluid
               alt="Responsive image"
               :src="require('../assets/images/skills.png')"
             />
           </b-col>
-          <b-col class="text-right mr-5">
+          <b-col data-aos-duration="1500" data-aos="fade-left" class="p-0 text-right">
             <h1 class="mt-4 text-uppercase font-weight-bolder">
               WELCOME TO INFOCOM
             </h1>
