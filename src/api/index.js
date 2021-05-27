@@ -4,7 +4,7 @@ import router from "../router/router";
 import store from "../store/store.js";
 
 const options = {
-  baseURL: 'http://localhost',
+  baseURL: 'http://localhost/api',
   headers: {
     "Content-Type": "application/json",
   },

@@ -12,7 +12,6 @@ import projects from '../components/projects';
 import Login from '../components/Login';
 import Register from '../components/Register';
 import account from '../components/v-account-page'
-import google_auth from '../components/Google-auth.vue'
 import Graph from '../components/Graph'
 import Window from '../components/window'
 import store from '../store';
@@ -85,11 +84,6 @@ let router = new Router({
             path: '/logout',
             name: 'logout',
             beforeEnter: redirectLogout,
-        },
-        {
-            path: '/google',
-            name: 'google',
-            component: google_auth,
         },
         {
             path: '/account/projects',

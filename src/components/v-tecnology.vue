@@ -1,18 +1,17 @@
 <template>
   <div class="v-tecnology p-5">
-    <b-container fluid>
-      <b-row align-v="center" class='w-100'>
-        <b-col class="">
+    <b-container fluid class="p-0">
+      <b-row align-v="center" class='mx-auto p-5 w-100'>
+        <b-col class="p-0">
           <b-img
            style="min-width:300px"
            fluid
-           
-            center
+            right
             class=""
             :src="require('../assets/images/technology.png')"
           />
         </b-col>
-        <b-col class="text-right mr-5">
+        <b-col data-aos="fade-right" data-aos-duration="1500" class="p-0 order-first text-left mr-5">
           <h1 class=" text-uppercase font-weight-bolder">
             WELCOME TO INFOCOM
           </h1>
@@ -23,7 +22,7 @@
             ever since the 1500s, when an unknown printer took a galley of type
             and scrambled it to make a type specimen book.
           </p>
-          <div class="w-25 ml-auto">
+          <div class="w-25 mr-auto">
                 <a href="#" class="btn">LEARN MORE</a>
               </div>
         </b-col>

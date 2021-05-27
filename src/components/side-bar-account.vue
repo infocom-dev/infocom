@@ -1,6 +1,6 @@
 <template>
   <div class="side-bar-account w-100 h-100">
-    <div :style='window.height' class="sticky-top">
+    <div :style="window.height" class="sticky-top">
       <b-nav class="w-100 h-100" vertical align="left ">
         <b-navbar-brand class="d-none d-lg-block">
           <h3 class="p-3 text-uppercase font-weight-bolder my-auto">
@@ -23,7 +23,7 @@
                   <i :class="item.icon"></i>
                 </div>
                 <div class="col text-left d-none d-lg-block">
-                  <h4>{{ item.text }}</h4>
+                  <h5>{{ item.text }}</h5>
                 </div>
               </b-row></router-link
             >
@@ -40,38 +40,38 @@ export default {
     return {
       side_nav: [
         {
-          icon: "fa fa-home home-icon",
+          icon: "fa fa-home icon",
           text: "Home    ",
           path: "/",
         },
         {
-          icon: "fa fa-user-circle projects-icon",
+          icon: "fa fa-user-circle icon",
           text: "Account",
           path: "/account",
         },
         {
-          icon: "fa fa-folder-open projects-icon",
+          icon: "fa fa-folder-open icon",
           text: "Projects",
           path: "/account/projects",
         },
         {
-          icon: "fa fa-credit-card card-icon",
+          icon: "fa fa-credit-card icon",
           text: "Purchase",
           path: "/account/purchase",
         },
         {
-          icon: "fa fa-cog cog-icon",
+          icon: "fa fa-cog icon",
           text: "Settings",
           path: "/account/settings",
         },
         {
-          icon: "fa fa-question-circle help-icon",
+          icon: "fa fa-question-circle icon",
           text: "Help",
           path: "/account/help",
         },
       ],
       window: {
-        height: '',
+        height: "",
       },
     };
   },
@@ -84,10 +84,20 @@ export default {
   },
   methods: {
     handleResize() {
-      this.window.height = 'height:' + window.innerHeight + 'px';
+      this.window.height = "height:" + window.innerHeight + "px";
     },
   },
 };
 </script>
 <style lang='scss'>
+@import "../assets/styles/base.scss";
+.side-bar-account {
+  .icon {
+    font-size: 30px;
+    color: $blu;
+    &:hover {
+      color: $ylw;
+    }
+  }
+}
 </style>

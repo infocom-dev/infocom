@@ -1,17 +1,9 @@
 <template>
   <div class="v-forrm p-0">
     <b-container fluid>
-      <b-row align-v="center" class="text-center ml-5">
-        <div class="col-1 pl-2 mt-5 text-left">
-          <i class="fas fa-search projects-icon"></i>
-        </div>
-        <div class="col mt-5 p-0 text-left">
-          <h3>Guide to start new project</h3>
-        </div>
-      </b-row>
       <b-row align-v="center" class="text-center">
-        <b-col class="w-100 m-5 anketa-box p-3">
-          <b-row>
+        <b-col class="w-100 m-5 anketa-box">
+          <b-row class="p-5">
             <b-col class="col-3">
               <svg
                 height="512"
@@ -52,35 +44,37 @@
             <b-col>
               <h5>Fill out the form</h5>
 
-              <button class="btn mx-auto" v-b-modal.modal2>View details</button>
+              <button
+                class="btn mt-3 mx-auto"
+                @click="set = !set"
+                v-b-modal.modal2
+              >
+                Open Form
+              </button>
               <b-modal
+                title="Fill out the form and find out the total price of the project"
                 id="modal2"
                 size="lg"
                 scrollable
                 @ok="handleOk"
-                title="Fill out the form and find out the total price of the project"
+                header-text-variant="light"
+                header-bg-variant="primary"
               >
-                <b-alert
-                  :show="dismissCountDown"
-                  dismissible
-                  variant="info"
-                  @dismissed="dismissCountDown = 0"
-                  @dismiss-count-down="countDownChanged"
-                >
-                  All quastions are requared.
-                </b-alert>
+                
 
                 <v-question-item
+                  :set="set"
                   :question_data="questions"
                   :questions_len="questions.length"
+                  :selectedAnswers2="selectedAnswers"
                   ref="sendAnswers"
                 ></v-question-item>
               </b-modal>
             </b-col>
           </b-row>
         </b-col>
-        <b-col class="w-100 m-5 anketa-box p-3">
-          <b-row>
+        <b-col class="w-100 m-5 anketa-box">
+          <b-row class="p-5">
             <b-col class="col-3">
               <svg
                 height="512"
@@ -119,7 +113,7 @@
             </b-col>
             <b-col id="tooltip">
               <h5>Send to analysis</h5>
-              <button :disabled="Done" class="btn mx-auto">
+              <button :disabled="Done" class="btn mt-3 mx-auto">
                 Send to analysis
               </button>
               <b-tooltip
@@ -135,6 +129,7 @@
           </b-row>
         </b-col>
       </b-row>
+      
     </b-container>
   </div>
 </template>
@@ -143,96 +138,34 @@ import vQuestionItem from "./v-question-item.vue";
 export default {
   components: { vQuestionItem },
   name: "v-form",
+  props: {
+    questions: {
+      type: Array,
+      default() {
+        return {};
+      },
+    },
+  },
   data() {
     return {
+      set: false,
       dismissSecs: 5,
       dismissCountDown: 0,
       done: false,
-
       answers: [],
-      questions: [
-        {
-          id: "1",
-          text: "Какие задачи должен решать чат-бот?",
-          type: "selected",
-          answers: [
-            {
-              id: 1,
-              value: "обработка типовых сообщений ",
-            },
-            {
-              id: 2,
-              value: "рассылка подписчикам",
-            },
-            {
-              id: 3,
-              value: "фильтрация поступающих заявок",
-            },
-            {
-              id: 4,
-              value: "мгновенная реакция на сообщения ",
-            },
-          ],
-        },
-        {
-          id: "2",
-          text: "Где  должен размещаться чат-бот?",
-          type: "checkbox",
-          answers: [
-            {
-              id: 1,
-              value: "сайт",
-            },
-            {
-              id: 2,
-              value: "мессенджеры",
-            },
-            {
-              id: 3,
-              value: "личный кабинет",
-            },
-            {
-              id: 4,
-              value: "мобильное  приложение",
-            },
-            {
-              id: 5,
-              value: "гаджет",
-            },
-          ],
-        },
-        {
-          id: "3",
-          text:
-            "Укажите минимальное и максимальное кол-во посетителей приложения, в котором планируется использование чат-бота (для каждого канала)?",
-          type: "range",
-          answers: [0, 250],
-        },
-        {
-          id: "4",
-          text: "Введидте ожидаемая нагрузку (кол-во обращений) на чат-бота",
-          type: "message",
-          answers: [],
-        },
-        {
-          id: "5",
-          text: "Какой формат диалога предпочтительнее?",
-          type: "checkbox",
-          answers: [
-            {
-              id: 1,
-              value: "Свободное общение",
-            },
-            {
-              id: 2,
-              value: "работа по фиксированному сценарию диалога ",
-            },
-          ],
-        },
-      ],
     };
   },
+
   methods: {
+    makeToast(toast,append = false) {
+      this.toastCount++;
+      this.$bvToast.toast(` All quastions are requared.`, {
+        title:'Notice',
+        autoHideDelay: 5000,
+        toaster:toast,
+        appendToast: append,
+      });
+    },
     showAlert() {
       this.dismissCountDown = this.dismissSecs;
     },
@@ -246,16 +179,17 @@ export default {
     handleSubmit() {
       // Exit when the form isn't valid
       this.answers = this.$refs.sendAnswers.sendAnswers();
-
+      console.log(this.answers);
       for (let i = 0; i < this.answers.length; i++) {
         console.log(this.answers[i]);
-        if (this.answers[i] == null || this.answers[i].length == 0) {
-          this.showAlert();
+        if (this.answers[i].answers == null || this.answers[i].answers.length == 0) {
+          console.log("ok");
+          this.makeToast('b-toaster-top-center');
           return;
         }
       }
       if (this.answers.length != this.questions.length) {
-        this.showAlert();
+        this.makeToast('b-toaster-top-center');
         return;
       }
       this.done = true;
@@ -268,6 +202,24 @@ export default {
     Done() {
       return !this.done;
     },
+    selectedAnswers() {
+      let v = [];
+      for (let i = 0; i < this.questions.length; i++) {
+        if (this.questions[i].type == "textarea") {
+          v[i] = "";
+        } else if (this.questions[i].type == "range") {
+          v[i] = [this.questions[i].answers[0], this.questions[i].answers[1]];
+        
+        } else if (this.questions[i].type == 'switch'){
+           v[i] = false;
+        }
+         else {
+          v[i] = null;
+        }
+        console.log(v);
+      }
+      return v;
+    },
   },
 };
 </script>
@@ -276,5 +228,8 @@ export default {
   a {
     font-size: 16px;
   }
+}
+.modal-title {
+  color: white;
 }
 </style>

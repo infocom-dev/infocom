@@ -10,6 +10,9 @@
         <b-row align-v="center" class="w-100 justify-content-center">
           <div v-for="service in services" :key="service">
             <div
+              :data-aos-offset="service.aos"
+              data-aos="zoom-in"
+              data-aos-duration="1500"
               class="col m-5 text-center box2 "
               style="width: 300px"
               :style="service.h"
@@ -36,7 +39,7 @@ export default {
     return {
       services: [
         {
-          // url: require("../assets/images/stat1.png"),
+          aos:"500",
           title: "calculate",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
@@ -44,7 +47,7 @@ export default {
           h: "height:350px",
         },
         {
-          // url: require("../assets/images/stat2.png"),
+          aos:"0",
           title: "web development",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesettinCDSSbvjdin dfbidjvidbvkf sduivsivgs  svisvbskhbbvis cvsbh industry. Lorem Ip sum has been the industry's standard dummy text ever.",
@@ -52,7 +55,7 @@ export default {
           h: "height:450px",
         },
         {
-          // url: require("../assets/images/stat1.png"),
+          aos:"500",
           title: "chat-bot",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ip sum has been the industry's standard dummy text ever.",
@@ -79,14 +82,10 @@ export default {
     overflow: hidden;
     position: relative;
     margin: 0.25em auto;
-    // max-width: 15em;
-    // min-height: 10em;
     border-radius: 1em;
     &:before {
-      // position: absolute;
       margin: 8em;
       padding: 7em;
-
       border-radius: 50%;
       box-shadow: 0 0 0 350px rgba(#A3CEF1, 1);
       content: "";

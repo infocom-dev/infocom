@@ -32,11 +32,11 @@
           </div>
         </b-row>
       </b-container>
-      <div class="mx-auto pt-3">
+      <!-- <div class="mx-auto pt-3">
         <h1 class="text-center text-uppercase font-weight-bolder">
           most popular projects
         </h1>
-      </div>
+      </div> -->
       <!-- <b-container fluid class="w-100 p-0 justify-content-center">
         <div class="m-5">
           <b-row align-v="center" class="m-5">
