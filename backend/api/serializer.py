@@ -96,7 +96,7 @@ class CustomUserDetailsSerializer(serializers.ModelSerializer):
         fields = (
 
             'email',
-            'phone',
             'id',
+            'username'
 
         )

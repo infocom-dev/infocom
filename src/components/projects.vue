@@ -6,28 +6,32 @@
       </b-container>
       <b-container class="col p-0 ml-0">
         <b-container fluid class="p-0 ml-0">
-          <b-row align-v="center" class="ml-0">
+          <b-row align-v="center" class="mr-0 p-0">
             <b-col>
               <b-row
                 align-v="center"
-                class="text-center my-auto justify-content-center ml-5"
+                class="text-center justify-content-center m-4"
               >
-                <div class="col-4 p-0 text-left">
-                  <i class="fa fa-folder-open pr-icon"></i>
-                </div>
-                <div class="col text-left">
-                  <h3>Projects</h3>
-                </div>
+                <b-col class="col">
+                  <i class="fa fa-user-circle user-icon"></i>
+                </b-col>
+                <b-col class="col-9  text-left d-none d-lg-block">
+                  <h5>Hello, {{user_username}}!</h5>
+                  <b-row align-v="center" class="ml-0">
+                    <i class="text-center m-1 fa fa-envelope mail-icon"></i>
+                    <p class="m-1">{{user_mail}}</p>
+                  </b-row>
+                </b-col>
               </b-row>
             </b-col>
-            <b-col class="d-none d-sm-block"></b-col>
-            <b-col>
+            <!-- <b-col class="d-none d-sm-block"></b-col> -->
+            <b-col class='p-0'>
               <b-row align-h="center" align-v="center" class="text-left mr-3">
                 <div class="bellhold">
                   <i class="text-center fa fa-bell bell-icon"></i>
                   <span class="badgex badge-danger">6</span>
                 </div>
-                <router-link to="logout">
+                <router-link to="/logout">
                   <div class="m-5">
                     <a
                       href="#"
@@ -292,6 +296,7 @@ import Graph from "./Graph.vue";
 import VForm from "./v-form.vue";
 import vAnswers from "./v-answers.vue";
 import session from '../api/session'
+import axios from 'axios'
 export default {
   components: { sideBarAccount, Graph, VueSlider, VForm, vAnswers },
   name: "projects",
@@ -299,6 +304,9 @@ export default {
   data() {
     return {
       componentKey: 0,
+      user_mail:'',
+      user_id:'',
+      user_username:'',
       feature: ["Дешево", "Качественно", "Быстро"],
       answers: [50, 10, 20],
       questions:[],
@@ -437,6 +445,19 @@ export default {
       .then((response) => {
         this.questions = response.data;
         console.log(this.questions)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    const token = localStorage.getItem('TOKEN_STORAGE_KEY');
+    // console.log(token)
+    axios
+      .get("/auth/user/", {headers: { Authorization: `Token ${token}` } })
+      .then((response) => {
+        this.user_mail = response.data['email']
+        this.user_id = response.data['id']
+        this.user_username = response.data['username']
+        console.log(this.user_mail)
       })
       .catch((err) => {
         console.log(err);
