@@ -9,14 +9,14 @@
             placeholder="Search"
             label="value"
             track-by="id"
-            :options="question.answers"
+            :options="question.answers_option"
             :multiple="true"
             :taggable="true"
             @tag="addTag"
           ></multiselect>
         </div>
       </div>
-      <div v-if="question.type === 'checkbox'">
+      <!-- <div v-if="question.type === 'checkbox'">
         <p>{{ index + 1 }}. {{ question.text }}</p>
 
         <b-form-group v-slot="{ ariaDescribedby }">
@@ -33,7 +33,7 @@
             </div>
           </b-form-checkbox-group>
         </b-form-group>
-      </div>
+      </div> -->
       <div v-if="question.type === 'message'">
         <div class="">
           <p>{{ index + 1 }}. {{ question.text }}</p>
@@ -51,15 +51,16 @@
       </div>
       <div v-if="question.type === 'range'">
         <p class="">{{ index + 1 }}. {{ question.text }}</p>
+        <p>{{question.answers_option[1].value}}</p>
         <vue-slider
-          :min="question.answers[0]"
-          :max="question.answers[1]"
+          :min="question.answers_option[0].value"
+          :max="question.answers_option[1].value"
           v-model="selectedAnswers[index]"
           tooltip="none"
           :min-range="10"
           process="true"
           :marks="true"
-          :interval="(question.answers[1] - question.answers[0]) / 10"
+          :interval="(question.answers_option[1].value - question.answers_option[0].value) / 10"
         >
           <template v-slot:process="{ style }">
             <div class="vue-slider-process" :style="style">
@@ -190,38 +191,45 @@ export default {
       let v = [];
       for (let i = 0; i < this.selectedAnswers.length; i++) {
         if (
-          this.question_data[i].type == "selected" ||
-          this.question_data[i].type == "range" ||
-          this.question_data[i].type == "datapicker"
+          this.question_data[i].type == "selected" 
         ) {
           v[i] = {
-            id: this.question_data[i].id,
+            tag: this.question_data[i].tag,
             type: this.question_data[i].type,
-            answers: this.selectedAnswers[i],
+            answers_option: this.selectedAnswers[i],
           };
-        } else if (this.question_data[i].type == "checkbox") {
+        } 
+        // else if (this.question_data[i].type == "checkbox") {
+        //   v[i] = {
+        //     tag: this.question_data[i].tag,
+        //     type: this.question_data[i].type,
+        //     answers: [],
+        //   };
+        //   for (let j = 0; j < this.question_data[i].answers.length; j++) {
+        //     if (
+        //       this.question_data[i].answers[j].value ==
+        //       this.selectedAnswers[i]
+        //     ) {
+        //       v[i].answers.push({
+        //         id: this.question_data[i].answers[j].id,
+        //         value: this.selectedAnswers[i],
+        //       });
+        //       break;
+        //     }
+        //   }
+        // }
+        else if(this.question_data[i].type == "range" || this.question_data[i].type == 'datapicker' ){
+            v[i] = {
+            tag: this.question_data[i].tag ,
+            type: this.question_data[i].type ,
+            answers_option: [{'value' : this.selectedAnswers[i][0]},{'value' : this.selectedAnswers[i][1]}],
+          };
+        }
+        else {
           v[i] = {
             id: this.question_data[i].id,
             type: this.question_data[i].type,
-            answers: [],
-          };
-          for (let j = 0; j < this.question_data[i].answers.length; j++) {
-            if (
-              this.question_data[i].answers[j].value ==
-              this.selectedAnswers[i]
-            ) {
-              v[i].answers.push({
-                id: this.question_data[i].answers[j].id,
-                value: this.selectedAnswers[i],
-              });
-              break;
-            }
-          }
-        } else {
-          v[i] = {
-            id: this.question_data[i].id,
-            type: this.question_data[i].type,
-            answers: [this.selectedAnswers[i]],
+            answers_option: [{"value":this.selectedAnswers[i]}],
           };
         }
       }
