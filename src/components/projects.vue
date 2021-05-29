@@ -4,6 +4,7 @@
       <b-container class="w-100 d-flex align-items-stretch col-2 p-0">
         <side-bar-account></side-bar-account>
       </b-container>
+
       <b-container class="col p-0 ml-0">
         <b-container fluid class="p-0 ml-0">
           <b-row align-v="center" class="mr-0 p-0">
@@ -15,17 +16,17 @@
                 <b-col class="col">
                   <i class="fa fa-user-circle user-icon"></i>
                 </b-col>
-                <b-col class="col-9  text-left d-none d-lg-block">
-                  <h5>Hello, {{user_username}}!</h5>
+                <b-col class="col-9 text-left d-none d-lg-block">
+                  <h5>Hello, {{ user_username }}!</h5>
                   <b-row align-v="center" class="ml-0">
                     <i class="text-center m-1 fa fa-envelope mail-icon"></i>
-                    <p class="m-1">{{user_mail}}</p>
+                    <p class="m-1">{{ user_mail }}</p>
                   </b-row>
                 </b-col>
               </b-row>
             </b-col>
             <!-- <b-col class="d-none d-sm-block"></b-col> -->
-            <b-col class='p-0'>
+            <b-col class="p-0">
               <b-row align-h="center" align-v="center" class="text-left mr-3">
                 <div class="bellhold">
                   <i class="text-center fa fa-bell bell-icon"></i>
@@ -47,7 +48,7 @@
               </b-row>
             </b-col>
           </b-row>
-
+          <p>{{ projects }}</p>
           <b-container fluid class="w-100 overview p-0 pb-5">
             <b-row align-v="center" class="text-center ml-5">
               <div class="col-1 mt-5 text-left">
@@ -295,8 +296,8 @@ import "vue-slider-component/theme/default.css";
 import Graph from "./Graph.vue";
 import VForm from "./v-form.vue";
 import vAnswers from "./v-answers.vue";
-import session from '../api/session'
-import axios from 'axios'
+import session from "../api/session";
+import axios from "axios";
 export default {
   components: { sideBarAccount, Graph, VueSlider, VForm, vAnswers },
   name: "projects",
@@ -304,12 +305,12 @@ export default {
   data() {
     return {
       componentKey: 0,
-      user_mail:'',
-      user_id:'',
-      user_username:'',
+      user_mail: "",
+      user_id: "",
+      user_username: "",
       feature: ["Дешево", "Качественно", "Быстро"],
       answers: [50, 10, 20],
-      questions:[],
+      questions: [],
       analysis_pr: [
         {
           name: "Infocom",
@@ -363,32 +364,33 @@ export default {
           ],
         },
       ],
-      projects: [
-        {
-          name: "MyProject",
-          info: "Web site on vuejs + django",
-          budjet: "1 000 000",
-          status: "in progress",
-          data: "15.05.2022",
-          manager: "Vistor Keng",
-          contacts: [{ mail: "fhhfhf", github: "ddjd" }],
-          t_qualty: 8,
-          t_time: "7 years",
-          reliability: 10,
-        },
-        {
-          name: "MyWebsite",
-          info: "Web site on vuejs + django",
-          budjet: "1 000 000",
-          status: "in progress",
-          data: "15.05.2022",
-          manager: "Vistor Keng",
-          contacts: [{ mail: "fhhfhf", github: "ddjd" }],
-          t_qualty: 8,
-          t_time: "7 years",
-          reliability: 10,
-        },
-      ],
+      // projects: [
+      //   {
+      //     name: "MyProject",
+      //     info: "Web site on vuejs + django",
+      //     budjet: "1 000 000",
+      //     status: "in progress",
+      //     data: "15.05.2022",
+      //     manager: "Vistor Keng",
+      //     contacts: [{ mail: "fhhfhf", github: "ddjd" }],
+      //     t_qualty: 8,
+      //     t_time: "7 years",
+      //     reliability: 10,
+      //   },
+      //   {
+      //     name: "MyWebsite",
+      //     info: "Web site on vuejs + django",
+      //     budjet: "1 000 000",
+      //     status: "in progress",
+      //     data: "15.05.2022",
+      //     manager: "Vistor Keng",
+      //     contacts: [{ mail: "fhhfhf", github: "ddjd" }],
+      //     t_qualty: 8,
+      //     t_time: "7 years",
+      //     reliability: 10,
+      //   },
+      // ],
+      projects: [],
 
       options: {
         chart: {
@@ -444,24 +446,36 @@ export default {
       .get("/getQuestions/")
       .then((response) => {
         this.questions = response.data;
-        console.log(this.questions)
+        console.log(this.questions);
       })
       .catch((err) => {
         console.log(err);
       });
-    const token = localStorage.getItem('TOKEN_STORAGE_KEY');
+    const token = localStorage.getItem("TOKEN_STORAGE_KEY");
     // console.log(token)
     axios
-      .get("/auth/user/", {headers: { Authorization: `Token ${token}` } })
+      .get("/auth/user/", { headers: { Authorization: `Token ${token}` } })
       .then((response) => {
-        this.user_mail = response.data['email']
-        this.user_id = response.data['id']
-        this.user_username = response.data['username']
-        console.log(this.user_mail)
+        this.user_mail = response.data["email"];
+        this.user_id = response.data["id"];
+        this.user_username = response.data["username"];
+        axios.get(`/getCustomerById/${this.user_id}`).then((response) => {
+          this.projects = response.data;
+        });
+        console.log(this.user_mail);
       })
       .catch((err) => {
         console.log(err);
       });
+    // axios
+    // .get(`/getCustomerById/${this.user_id}`)
+    // .then((response) => {
+    //   this.projects = response.data
+    //   console.log(this.user_mail)
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // });
   },
 
   methods: {
