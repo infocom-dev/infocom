@@ -10,7 +10,7 @@ urlpatterns = ([
     # Customer
     path("createCustomer/", views.CustomerViewSet.as_view({'post': 'create'})),
     path("getCustomers/", views.CustomerViewSet.as_view({'get': 'list'})),
-    path("getCustomerById/<int:pk>", views.CustomerViewSet.as_view({'get': 'list'})),
+    path("getCustomerById/<int:pk>", views.CustomerViewSet.as_view({'get': 'retrieve'})),
     path("deleteCustomer/<str:pk>", views.CustomerViewSet.as_view({'delete': 'destroy'})),
 
     # Developer
