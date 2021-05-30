@@ -49,10 +49,9 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 
 class CustomerSerializer(serializers.ModelSerializer):
-    projects = serializers.SlugRelatedField(
+    projects = ProjectSerializer(
         many=True,
         read_only=True,
-        slug_field='name'
     )
 
     class Meta:
