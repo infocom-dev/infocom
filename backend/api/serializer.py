@@ -93,9 +93,7 @@ class CustomUserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = (
-
             'email',
             'id',
             'username'
-
         )

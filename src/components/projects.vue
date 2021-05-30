@@ -74,7 +74,8 @@
 
             <b-row class="p-0 m-0">
               <div class="w-100 p-0">
-                <b-row class="pr-5 pl-5 m-0">
+                <b-row 
+                class="pr-5 pl-5 m-0 ">
                   <b-col class="col-lg-3 w-100 anketa-box">
                     <div
                       class="name-box text-center d-flex justify-content-center m-4 mx-auto"
@@ -104,17 +105,14 @@
                       v-if="analysis_pr[0].status == 'in progress'"
                       class="m-3"
                     >
+
                       <graph
-                        class="mx-auto"
-                        v-bind:options="options"
-                        v-bind:series="series"
-                        v-bind:width="500"
-                        :key="componentKey"
+                        class=""
+                        
                       ></graph>
-                      <div @click="fillData()" ref="submitBtn"></div>
+                      
                     </div>
                     <div v-else class="w-100 m-3 justify-content-center">
-                      
                     </div>
                   </b-col>
                 </b-row>
