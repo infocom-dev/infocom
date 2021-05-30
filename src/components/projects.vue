@@ -4,30 +4,35 @@
       <b-container class="w-100 d-flex align-items-stretch col-2 p-0">
         <side-bar-account></side-bar-account>
       </b-container>
+
       <b-container class="col p-0 ml-0">
         <b-container fluid class="p-0 ml-0">
-          <b-row align-v="center" class="ml-0">
+          <b-row align-v="center" class="mr-0 p-0">
             <b-col>
               <b-row
                 align-v="center"
-                class="text-center my-auto justify-content-center ml-5"
+                class="text-center justify-content-center m-4"
               >
-                <div class="col-4 p-0 text-left">
-                  <i class="fa fa-folder-open pr-icon"></i>
-                </div>
-                <div class="col text-left">
-                  <h3>Projects</h3>
-                </div>
+                <b-col class="col">
+                  <i class="fa fa-user-circle user-icon"></i>
+                </b-col>
+                <b-col class="col-9 text-left d-none d-lg-block">
+                  <h5>Hello, {{ user_username }}!</h5>
+                  <b-row align-v="center" class="ml-0">
+                    <i class="text-center m-1 fa fa-envelope mail-icon"></i>
+                    <p class="m-1">{{ user_mail }}</p>
+                  </b-row>
+                </b-col>
               </b-row>
             </b-col>
-            <b-col class="d-none d-sm-block"></b-col>
-            <b-col>
+            <!-- <b-col class="d-none d-sm-block"></b-col> -->
+            <b-col class="p-0">
               <b-row align-h="center" align-v="center" class="text-left mr-3">
                 <div class="bellhold">
                   <i class="text-center fa fa-bell bell-icon"></i>
                   <span class="badgex badge-danger">6</span>
                 </div>
-                <router-link to="logout">
+                <router-link to="/logout">
                   <div class="m-5">
                     <a
                       href="#"
@@ -43,7 +48,7 @@
               </b-row>
             </b-col>
           </b-row>
-
+          <p>{{ projects }}</p>
           <b-container fluid class="w-100 overview p-0 pb-5">
             <b-row align-v="center" class="text-center ml-5">
               <div class="col-1 mt-5 text-left">
@@ -69,7 +74,8 @@
 
             <b-row class="p-0 m-0">
               <div class="w-100 p-0">
-                <b-row class="pr-5 pl-5 m-0">
+                <b-row 
+                class="pr-5 pl-5 m-0 ">
                   <b-col class="col-lg-3 w-100 anketa-box">
                     <div
                       class="name-box text-center d-flex justify-content-center m-4 mx-auto"
@@ -90,26 +96,6 @@
                         Наша нейронная сеть оценала заказ в $
                         {{ analysis_pr[0].old_budjet }}.
                       </h5>
-                      <p>Вы можете изменить настройки в меня справа</p>
-                      <div class="m-3" v-b-modal.modal-scrollable>
-                        <a href="#" class="btn text-uppercase w-100 mx-auto"
-                          >View details
-                        </a>
-                      </div>
-                      <b-modal
-                        id="modal-scrollable"
-                        scrollable
-                        centered
-                        size="lg"
-                        title="Details"
-                      >
-                        <p class="my-4" v-for="i in 20" :key="i">
-                          Cras mattis consectetur purus sit amet fermentum. Cras
-                          justo odio, dapibus ac facilisis in, egestas eget
-                          quam. Morbi leo risus, porta ac consectetur ac,
-                          vestibulum at eros.
-                        </p>
-                      </b-modal>
                     </div>
                   </b-col>
                   <b-col
@@ -119,57 +105,14 @@
                       v-if="analysis_pr[0].status == 'in progress'"
                       class="m-3"
                     >
+
                       <graph
-                        class="mx-auto"
-                        v-bind:options="options"
-                        v-bind:series="series"
-                        v-bind:width="500"
-                        :key="componentKey"
+                        class=""
+                        
                       ></graph>
-                      <div @click="fillData()" ref="submitBtn"></div>
+                      
                     </div>
                     <div v-else class="w-100 m-3 justify-content-center">
-                      <div v-for="(f, index) in feature" :key="index">
-                        <b-row align-v="center" class="d-flex">
-                          <b-col class="col-4">
-                            <div
-                              class="name-box d-flex justify-content-center text-center m-3 mx-auto"
-                            >
-                              <p class="m-1">{{ f }}</p>
-                            </div>
-                          </b-col>
-                          <b-col class="col w-100">
-                            <vue-slider
-                              v-model="answers[index]"
-                              :adsorb="true"
-                              :interval="10"
-                              :marks="true"
-                            ></vue-slider>
-                          </b-col>
-                        </b-row>
-                      </div>
-
-                      <b-row>
-                        <b-container fluid class="p-0 ml-0">
-                          <b-row align-v="center" class="">
-                            <b-col class="mx-auto">
-                              <div
-                                class="m-3 d-flex"
-                                v-b-modal.modal-scrollable
-                              >
-                                <a href="#" class="btn text-uppercase mx-auto"
-                                  >Submit data
-                                </a>
-                              </div>
-                            </b-col>
-                            <b-col v-if="analysis_pr[0].new_budjet">
-                              <h5>
-                                New budjet : {{ analysis_pr[0].new_budjet }}
-                              </h5>
-                            </b-col>
-                          </b-row>
-                        </b-container>
-                      </b-row>
                     </div>
                   </b-col>
                 </b-row>
@@ -291,7 +234,8 @@ import "vue-slider-component/theme/default.css";
 import Graph from "./Graph.vue";
 import VForm from "./v-form.vue";
 import vAnswers from "./v-answers.vue";
-// import session from '../api/session';
+import session from "../api/session";
+import axios from "axios";
 export default {
   components: { sideBarAccount, Graph, VueSlider, VForm, vAnswers },
   name: "projects",
@@ -299,206 +243,17 @@ export default {
   data() {
     return {
       componentKey: 0,
+      user_mail: "",
+      user_id: "",
+      user_username: "",
       feature: ["Дешево", "Качественно", "Быстро"],
       answers: [50, 10, 20],
-      // questions:[],
-      questions: [
-        {
-          id: "1",
-          text: "Какие задачи должен решать чат-бот?",
-          type: "selected",
-          answers: [
-            {
-              id: 1,
-              value: "обработка типовых сообщений ",
-            },
-            {
-              id: 2,
-              value: "рассылка подписчикам",
-            },
-            {
-              id: 3,
-              value: "фильтрация поступающих заявок",
-            },
-            {
-              id: 4,
-              value: "мгновенная реакция на сообщения ",
-            },
-          ],
-        },
-        {
-          id: "2",
-          text: "Где  должен размещаться чат-бот?",
-          type: "checkbox",
-          answers: [
-            {
-              id: 1,
-              value: "сайт",
-            },
-            {
-              id: 2,
-              value: "мессенджеры",
-            },
-            {
-              id: 3,
-              value: "личный кабинет",
-            },
-            {
-              id: 4,
-              value: "мобильное  приложение",
-            },
-            {
-              id: 5,
-              value: "гаджет",
-            },
-          ],
-        },
-        {
-          id: "3",
-          text:
-            "Укажите минимальное и максимальное кол-во посетителей приложения, в котором планируется использование чат-бота (для каждого канала)?",
-          type: "range",
-          min: 0,
-          max: 250,
-          answers: [0, 250],
-        },
-        {
-          id: "4",
-          text: "Введидте ожидаемая нагрузку (кол-во обращений) на чат-бота",
-          type: "message",
-          answers: [],
-        },
-        {
-          id: "5",
-          text: "Какой формат диалога предпочтительнее?",
-          type: "checkbox",
-          answers: [
-            {
-              id: 1,
-              value: "Свободное общение",
-            },
-            {
-              id: 2,
-              value: "работа по фиксированному сценарию диалога ",
-            },
-          ],
-        },
-        {
-          id: "6",
-          text: "На каких языках должен вести диалог чат-бот?",
-          type: "selected",
-          answers: [
-            {
-              id: 1,
-              value: "English",
-            },
-            {
-              id: 2,
-              value: "Russian",
-            },
-          ],
-        },
-        {
-          id: "7",
-          text: "Добавить встроенную платёжную систёма",
-          type: "switch",
-          answers: [],
-        },
-        {
-          id: "8",
-          text: "Добавить безопасную сделку",
-          type: "switch",
-          answers: [],
-        },
-        {
-          id: "9",
-          text: "Добавить работу с геолокацией",
-
-          type: "switch",
-          answers: [],
-        },
-        {
-          id: "10",
-          text:
-            "Добавить переключение диалога на оператора по запросу  пользователя",
-
-          type: "switch",
-          answers: [],
-        },
-        {
-          id: "11",
-          text:
-            "Должен ли чат-бот взаимодействовать с другими ботами, сайтами?",
-          type: "checkbox",
-          answers: [
-            {
-              id: 1,
-              value: "Да",
-            },
-            {
-              id: 2,
-              value: "Нет",
-            },
-          ],
-        },
-        {
-          id: "12",
-          text: "Есть ли у этих систем API? ",
-          type: "checkbox",
-          answers: [
-            {
-              id: 1,
-              value: "Да",
-            },
-            {
-              id: 2,
-              value: "Нет",
-            },
-          ],
-        },
-        {
-          id: "13",
-          text: "Способ  поставки продукта:",
-          type: "selected",
-          answers: [
-            {
-              id: 1,
-              value: "SaaS (облачный сервис Инфоком-НН)",
-            },
-            {
-              id: 2,
-              value: "азмещение интеграционного модуля на серверах Заказчика",
-            },
-            {
-              id: 3,
-              value: "олное размещение на серверах Заказчика",
-            },
-          ],
-        },
-        {
-          id: "14",
-          text: "Сроки выполнения проекта",
-          type: "datapicker",
-          answers: [],
-        },
-        {
-          id: "15",
-          text: "Укажите бюджет проекта (диапазон):",
-          type: "range",
-          answers: [0, 1000000],
-        },
-        {
-          id: "16",
-          text: "Ваши примечания, пожелания, которые не вошли в Бриф:",
-          type: "textarea",
-          answers: [],
-        },
-      ],
+      questions: [],
       analysis_pr: [
         {
           name: "Infocom",
           info: "Web site on vuejs + django",
-          status: "",
+          status: "in progress",
           old_budjet: "1 000 000",
           new_budjet: "1 500 000",
           answers: [
@@ -547,32 +302,33 @@ export default {
           ],
         },
       ],
-      projects: [
-        {
-          name: "MyProject",
-          info: "Web site on vuejs + django",
-          budjet: "1 000 000",
-          status: "in progress",
-          data: "15.05.2022",
-          manager: "Vistor Keng",
-          contacts: [{ mail: "fhhfhf", github: "ddjd" }],
-          t_qualty: 8,
-          t_time: "7 years",
-          reliability: 10,
-        },
-        {
-          name: "MyWebsite",
-          info: "Web site on vuejs + django",
-          budjet: "1 000 000",
-          status: "in progress",
-          data: "15.05.2022",
-          manager: "Vistor Keng",
-          contacts: [{ mail: "fhhfhf", github: "ddjd" }],
-          t_qualty: 8,
-          t_time: "7 years",
-          reliability: 10,
-        },
-      ],
+      // projects: [
+      //   {
+      //     name: "MyProject",
+      //     info: "Web site on vuejs + django",
+      //     budjet: "1 000 000",
+      //     status: "in progress",
+      //     data: "15.05.2022",
+      //     manager: "Vistor Keng",
+      //     contacts: [{ mail: "fhhfhf", github: "ddjd" }],
+      //     t_qualty: 8,
+      //     t_time: "7 years",
+      //     reliability: 10,
+      //   },
+      //   {
+      //     name: "MyWebsite",
+      //     info: "Web site on vuejs + django",
+      //     budjet: "1 000 000",
+      //     status: "in progress",
+      //     data: "15.05.2022",
+      //     manager: "Vistor Keng",
+      //     contacts: [{ mail: "fhhfhf", github: "ddjd" }],
+      //     t_qualty: 8,
+      //     t_time: "7 years",
+      //     reliability: 10,
+      //   },
+      // ],
+      projects: [],
 
       options: {
         chart: {
@@ -608,7 +364,6 @@ export default {
         },
         colors: ["#274C77", "#FFD334"],
       },
-
       series: [
         {
           name: "series1",
@@ -624,18 +379,42 @@ export default {
   mounted() {
     this.$refs.submitBtn[0].click();
   },
-  // created() {
-  //   session
-  //     .get("/getQuestions/")
-  //     .then((response) => {
-        
-  //       this.questions = response.data;
-  //       console.log(this.questions)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // },
+  created() {
+    session
+      .get("/getQuestions/")
+      .then((response) => {
+        this.questions = response.data;
+        console.log(this.questions);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    const token = localStorage.getItem("TOKEN_STORAGE_KEY");
+    // console.log(token)
+    axios
+      .get("/auth/user/", { headers: { Authorization: `Token ${token}` } })
+      .then((response) => {
+        this.user_mail = response.data["email"];
+        this.user_id = response.data["id"];
+        this.user_username = response.data["username"];
+        axios.get(`/getCustomerById/${this.user_id}`).then((response) => {
+          this.projects = response.data;
+        });
+        console.log(this.user_mail);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // axios
+    // .get(`/getCustomerById/${this.user_id}`)
+    // .then((response) => {
+    //   this.projects = response.data
+    //   console.log(this.user_mail)
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // });
+  },
 
   methods: {
     forceRerender() {
