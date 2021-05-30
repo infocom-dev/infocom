@@ -95,26 +95,6 @@
                         Наша нейронная сеть оценала заказ в $
                         {{ analysis_pr[0].old_budjet }}.
                       </h5>
-                      <p>Вы можете изменить настройки в меня справа</p>
-                      <div class="m-3" v-b-modal.modal-scrollable>
-                        <a href="#" class="btn text-uppercase w-100 mx-auto"
-                          >View details
-                        </a>
-                      </div>
-                      <b-modal
-                        id="modal-scrollable"
-                        scrollable
-                        centered
-                        size="lg"
-                        title="Details"
-                      >
-                        <p class="my-4" v-for="i in 20" :key="i">
-                          Cras mattis consectetur purus sit amet fermentum. Cras
-                          justo odio, dapibus ac facilisis in, egestas eget
-                          quam. Morbi leo risus, porta ac consectetur ac,
-                          vestibulum at eros.
-                        </p>
-                      </b-modal>
                     </div>
                   </b-col>
                   <b-col
@@ -134,47 +114,7 @@
                       <div @click="fillData()" ref="submitBtn"></div>
                     </div>
                     <div v-else class="w-100 m-3 justify-content-center">
-                      <div v-for="(f, index) in feature" :key="index">
-                        <b-row align-v="center" class="d-flex">
-                          <b-col class="col-4">
-                            <div
-                              class="name-box d-flex justify-content-center text-center m-3 mx-auto"
-                            >
-                              <p class="m-1">{{ f }}</p>
-                            </div>
-                          </b-col>
-                          <b-col class="col w-100">
-                            <vue-slider
-                              v-model="answers[index]"
-                              :adsorb="true"
-                              :interval="10"
-                              :marks="true"
-                            ></vue-slider>
-                          </b-col>
-                        </b-row>
-                      </div>
-
-                      <b-row>
-                        <b-container fluid class="p-0 ml-0">
-                          <b-row align-v="center" class="">
-                            <b-col class="mx-auto">
-                              <div
-                                class="m-3 d-flex"
-                                v-b-modal.modal-scrollable
-                              >
-                                <a href="#" class="btn text-uppercase mx-auto"
-                                  >Submit data
-                                </a>
-                              </div>
-                            </b-col>
-                            <b-col v-if="analysis_pr[0].new_budjet">
-                              <h5>
-                                New budjet : {{ analysis_pr[0].new_budjet }}
-                              </h5>
-                            </b-col>
-                          </b-row>
-                        </b-container>
-                      </b-row>
+                      
                     </div>
                   </b-col>
                 </b-row>
@@ -315,7 +255,7 @@ export default {
         {
           name: "Infocom",
           info: "Web site on vuejs + django",
-          status: "",
+          status: "in progress",
           old_budjet: "1 000 000",
           new_budjet: "1 500 000",
           answers: [

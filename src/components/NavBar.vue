@@ -24,7 +24,7 @@
             v-show="this.$store.dispatch('auth/initialize') && on_site"
             class=""
           >
-            <router-link to="account">
+            <router-link to="/account/projects">
               <div class="mr-5 mx-auto ml-3">
                 <a href="#" class="btn">ACCOUNT</a>
               </div>
