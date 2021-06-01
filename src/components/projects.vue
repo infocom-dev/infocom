@@ -25,7 +25,7 @@
                 </b-col>
               </b-row>
             </b-col>
-            <p>{{projects}}</p>
+            <p>{{ projects }}</p>
             <b-col class="p-0">
               <b-row align-h="center" align-v="center" class="text-left mr-3">
                 <div class="bellhold">
@@ -101,6 +101,7 @@
                     </div>
                   </b-col>
                   <b-col
+                    style="background-color: #a3cef1"
                     class="anketa-box d-flex justify-content-center offset-sm-1"
                   >
                     <div
@@ -111,9 +112,82 @@
                     >
                       <loading></loading>
                     </div>
-                    <div v-else class="w-100 m-3 justify-content-center text-center">
-                      <h5>Почему получилась такая стоимость?</h5>
-                      <p>Средняя цена на приложение со стеком {{projects[projects.length - 1].stack}}: </p>
+                    <div v-else class="w-100 m-3 justify-content-center m-auto">
+                      <div>
+                        <h5 class="text-center forward">
+                        Почему получилась такая стоимость?
+                      </h5>
+                      <div class="graph__wrapper m-auto">
+                        <svg
+                          width="315px"
+                          height="107px"
+                          viewBox="0 0 315 107"
+                          version="1.1"
+                          style="overflow: visible"
+                        >
+
+                        
+                          <g
+                            id="Page-1"
+                            stroke="none"
+                            stroke-width="1"
+                            fill="none"
+                            fill-rule="evenodd"
+                            sketch:type="MSPage"
+                          >
+                            <path
+                              d="M2.10546875,95.75 L40.5546875,68.3476562 L55.2109375,81.1796875 L65.2148437,76.3945312 L96.1835937,86.8320312 L131.023438,19.9414062 L142.15625,23.7226562 L183.605469,2.1953125 L211.007812,22.3320312 L234.320312,71.5664062 L234.667969,83.0039062 L244.019531,83.0039062 L247.105469,88.8320312 L312.695312,104.839844"
+                              id="Path-1"
+                              stroke="white"
+                              stroke-width="4"
+                              sketch:type="MSShapeGroup"
+                              class="path"
+                            ></path>
+
+                            <polyline
+                              id="arrow"
+                              points="0,-5 10,0 0,5 1,0"
+                              fill="white"
+                            >
+                              <animateMotion
+                                rotate="auto"
+                                begin="1s"
+                                dur="15s"
+                                repeatCount="1"
+                                fill="freeze"
+                              >
+                                <mpath xlink:href="#Path-1" />
+                              </animateMotion>
+                            </polyline>
+                          </g>
+                        
+                        </svg>
+                      </div>
+                        <b-row align-v="center" class="w-100 forward">
+                          <b-col>
+                            <p class="m-auto">
+                              Средняя цена на приложение со стеком
+                              {{ projects[projects.length - 1].stack }}:
+                            </p>
+                          </b-col>
+                          <b-col class="col-3">
+                            <h3 class="m-auto">$ {{ avg_price }}</h3>
+                          </b-col>
+                        </b-row>
+
+                        <b-row align-v="center" class="forward">
+                          <b-col
+                            ><p class="m-auto">
+                              Средняя продолжительность проекта (в днях):
+                            </p></b-col
+                          >
+                          <b-col class="col-3">
+                            <h3 class="m-auto">{{ avg_days }}</h3>
+                          </b-col>
+                        </b-row>
+                      </div>
+
+                      
                     </div>
                   </b-col>
                 </b-row>
@@ -124,7 +198,11 @@
                 <no-result></no-result>
               </div>
             </b-row>
-            <b-row v-if="projects.length > 1" align-v="center" class="text-center m-5">
+            <b-row
+              v-if="projects.length > 1"
+              align-v="center"
+              class="text-center m-5"
+            >
               <div class="col-1 pl-2 text-left">
                 <i class="fas fa-tasks projects-icon icon"></i>
               </div>
@@ -138,7 +216,12 @@
                 :key="index"
                 class="w-100 p-0"
               >
-                <div v-if="item.predicted_price != null && index != (projects.length-1)" class="box2 ml-5 mr-5 mb-5">
+                <div
+                  v-if="
+                    item.predicted_price != null && index != projects.length - 1
+                  "
+                  class="box2 ml-5 mr-5 mb-5"
+                >
                   <b-row align-v="center" class="p-3 m-0">
                     <b-col class="col-4 p-2 mr-5" style="">
                       <h5 class="name-box w-100 text-center p-2 mx-auto">
@@ -199,7 +282,8 @@
 import sideBarAccount from "./side-bar-account.vue";
 import Loading from "./Loading";
 import VForm from "./v-form.vue";
-import NoResult from './no_result'
+import NoResult from "./no_result";
+
 // import vAnswers from "./v-answers.vue";
 import session from "../api/session";
 import axios from "axios";
@@ -215,11 +299,15 @@ export default {
 
   data() {
     return {
+      top: 100,
+      top2: 0,
       user_mail: "",
       user_id: "",
       user_username: "",
       questions: [],
       projects: [],
+      avg_price: 0,
+      avg_days: 0,
     };
   },
 
@@ -243,6 +331,14 @@ export default {
         this.user_username = response.data["username"];
         axios.get(`/getCustomerById/${this.user_id}`).then((response) => {
           this.projects = response.data.projects;
+          axios
+            .get(
+              `/getAvgStack${this.projects[this.projects.length - 1].stack}/`
+            )
+            .then((response) => {
+              this.avg_price = response.data.avg_price;
+              this.avg_days = response.data.avg_days;
+            });
         });
         console.log(this.user_mail);
       })
@@ -250,14 +346,12 @@ export default {
         console.log(err);
       });
   },
-
   methods: {},
 };
 </script>
 <style lang="scss">
 @import "../assets/styles/base.scss";
 .projects {
-  
   .pr-icon {
     font-size: 50px;
     color: $blu;
@@ -269,20 +363,20 @@ export default {
       color: $ylw;
     }
   }
-  .no-result{
+  .no-result {
     .box2 {
-  background-color: white;
-  margin: 0em auto;
-  border-radius: 20px;
-  &:before {
-    margin: 4em;
-    padding: 3em;
-    border-radius: 50%;
-    background: #a3cef1;
-    box-shadow: 0 0 0 350px rgba(#a3cef1, 1);
-    content: "";
-  }
-}
+      background-color: white;
+      margin: 0em auto;
+      border-radius: 20px;
+      &:before {
+        margin: 4em;
+        padding: 3em;
+        border-radius: 50%;
+        background: #a3cef1;
+        box-shadow: 0 0 0 350px rgba(#a3cef1, 1);
+        content: "";
+      }
+    }
   }
 }
 .anketa-box {
@@ -299,7 +393,6 @@ export default {
   margin: 0em auto;
   border-radius: 20px;
   &:before {
-    
     margin: 0em;
     padding: 0em;
     border-radius: 50%;
@@ -349,5 +442,45 @@ export default {
 }
 .overview-box {
   background-color: #ffffff;
+}
+.forward {
+  position: relative;
+  z-index: 7;
+}
+
+.graph__wrapper {
+  position: absolute;
+  top:0px;
+  left:10%;
+  z-index: 1;
+  // width: 400px;
+  // margin: 30px auto;
+  // position: relative;
+  svg {
+    // top:-110px;
+    height: 180px;
+    width: 100%;
+    // height: 100px;
+    // position: absolute;
+    // margin: 36px 0px 0px 15px;
+  }
+}
+.path {
+  stroke-dasharray: 428;
+  stroke-dashoffset: 428;
+  animation: dash 15s linear forwards;
+  animation-iteration-count: 1;
+  animation-delay: 1s;
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.description {
+  font-family: "Roboto";
+  color: lighten(#303030, 50%);
+  text-align: center;
+  margin: 40px 0px;
 }
 </style>
