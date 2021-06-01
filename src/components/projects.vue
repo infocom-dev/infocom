@@ -203,7 +203,7 @@
             <b-row
               v-if="projects.length > 1"
               align-v="center"
-              class="text-center m-5"
+              class="text-center mr-5 ml-5"
             >
               <b-col cols="2" md="1" class="pl-2 text-left">
                 <i class="fas fa-tasks projects-icon icon"></i>
@@ -222,14 +222,14 @@
                   v-if="
                     item.predicted_price != null && index != projects.length - 1
                   "
-                  class="ml-5 mr-5 mb-5"
+                  class="m-5"
                 >
                   <b-row align-v="stretch" class="p-0 m-0 anketa-box">
-                    <b-col class="col-4 p-4 mr-5 pr-col">
+                    <b-col cols="12" md="4" class="p-4  pr-col">
                       <h5 class="name-box w-100 text-center p-2 mx-auto">
                         {{ item.name }} on {{ item.stack }}
                       </h5>
-                      <p class="m-0 pt-4">Status</p>
+                      <p class="m-0 pt-">Status</p>
                       <div v-if="item.is_active">
                         <h1>In develop</h1>
                       </div>
@@ -244,33 +244,33 @@
                         <h1>From analysis</h1>
                       </div>
                     </b-col>
-                    <b-col class="col-2 p-4 mr-5" style="">
+                    <b-col cols="12" md="3" class=" p-4 " style="">
                       <p class="m-0">
                         <small>Predicted price</small>
                       </p>
-                      <h1>$ {{ item.predicted_price }}</h1>
+                      <h3>$ {{ item.predicted_price }}</h3>
                       <p class="m-0">Real price</p>
                       <div v-if="!item.is_active && item.real_end_date != null">
-                        <h1>$ {{ item.real_price }}</h1>
+                        <h3>$ {{ item.real_price }}</h3>
                       </div>
                       <div v-else>
-                        <h1>Soon</h1>
+                        <h3>Soon</h3>
                       </div>
                     </b-col>
-                    <b-col class="p-4" style="">
+                    <b-col cols="12" md="4"  class="p-4" style="">
                       <p class="m-0">
                         <small>Predicted date</small>
                       </p>
-                      <h1>{{ item.predict_end_date }}</h1>
+                      <h3>{{ item.predict_end_date }}</h3>
                       <p class="m-0">Real date</p>
                       <div v-if="!item.is_active && item.real_end_date != null">
-                        <h1>{{ item.real_end_date }}</h1>
+                        <h3>{{ item.real_end_date }}</h3>
                       </div>
                       <div v-else>
-                        <h1>Soon</h1>
+                        <h3>Soon</h3>
                       </div>
                     </b-col>
-                    <b-col class="pr-button col">
+                    <b-col cols="12" md="1"  class="pr-button ">
                       <div class="m-auto"><p>View answers</p></div>
                     </b-col>
                   </b-row>
@@ -375,7 +375,7 @@ export default {
   }
   .pr-col {
     background-color: #a3cef1;
-    border-radius: 20px 0 0 20px;
+    // border-radius: 20px 0 0 20px;
   }
   .no-result {
     .box2 {
@@ -394,7 +394,7 @@ export default {
   }
   .pr-button {
     background-color: #ffd037;
-    border-radius: 0 20px 20px 0;
+    // border-radius: 0 20px 20px 0;
     display: flex;
     justify-content: center;
     align-items: center;
