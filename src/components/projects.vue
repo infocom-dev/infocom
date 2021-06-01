@@ -138,7 +138,7 @@
                             <path
                               d="M2.10546875,95.75 L40.5546875,68.3476562 L55.2109375,81.1796875 L65.2148437,76.3945312 L96.1835937,86.8320312 L131.023438,19.9414062 L142.15625,23.7226562 L183.605469,2.1953125 L211.007812,22.3320312 L234.320312,71.5664062 L234.667969,83.0039062 L244.019531,83.0039062 L247.105469,88.8320312 L312.695312,104.839844"
                               id="Path-1"
-                              stroke="white"
+                              stroke="#e7ecef"
                               stroke-width="4"
                               sketch:type="MSShapeGroup"
                               class="path"
@@ -147,7 +147,7 @@
                             <polyline
                               id="arrow"
                               points="0,-5 10,0 0,5 1,0"
-                              fill="white"
+                              fill="#e7ecef"
                             >
                               <animateMotion
                                 rotate="auto"
@@ -220,10 +220,10 @@
                   v-if="
                     item.predicted_price != null && index != projects.length - 1
                   "
-                  class="box2 ml-5 mr-5 mb-5"
+                  class=" ml-5 mr-5 mb-5"
                 >
-                  <b-row align-v="center" class="p-3 m-0">
-                    <b-col class="col-4 p-2 mr-5" style="">
+                  <b-row align-v="stretch"  class="p-0 m-0 anketa-box">
+                    <b-col class="col-4 p-4 mr-5 pr-col" >
                       <h5 class="name-box w-100 text-center p-2 mx-auto">
                         {{ item.name }} on {{ item.stack }}
                       </h5>
@@ -242,7 +242,7 @@
                         <h1>From analysis</h1>
                       </div>
                     </b-col>
-                    <b-col class="col-2 p-0 mr-5" style="">
+                    <b-col class="col-2 p-4 mr-5" style="">
                       <p class="m-0">
                         <small>Predicted price</small>
                       </p>
@@ -255,7 +255,7 @@
                         <h1>Soon</h1>
                       </div>
                     </b-col>
-                    <b-col class="p-0 mr-5" style="">
+                    <b-col class="p-4 " style="">
                       <p class="m-0">
                         <small>Predicted date</small>
                       </p>
@@ -267,6 +267,11 @@
                       <div v-else>
                         <h1>Soon</h1>
                       </div>
+                    </b-col>
+                    <b-col  class="pr-button col ">
+                      
+                      <div class="m-auto" ><p>View answers</p></div>
+                      
                     </b-col>
                   </b-row>
                 </div>
@@ -363,6 +368,10 @@ export default {
       color: $ylw;
     }
   }
+  .pr-col{
+    background-color: #a3cef1;
+    border-radius: 20px 0 0 20px;
+  }
   .no-result {
     .box2 {
       background-color: white;
@@ -378,6 +387,16 @@ export default {
       }
     }
   }
+  .pr-button{
+    background-color:#FFD037;
+    border-radius: 0 20px 20px 0;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    p{color:white;}
+    
+    text-align: center;
+  }
 }
 .anketa-box {
   background-color: white;
@@ -388,18 +407,19 @@ export default {
   border-radius: 20px;
   display: inline-block;
 }
-.box2 {
-  background-color: white;
-  margin: 0em auto;
-  border-radius: 20px;
-  &:before {
-    margin: 0em;
-    padding: 0em;
-    border-radius: 50%;
-    box-shadow: 0 0 0 350px rgba(#a3cef1, 1);
-    content: "";
-  }
-}
+// .box2 {
+//   background-color: white;
+//   margin: 0em auto;
+//   border-radius: 20px;
+//   &:before {
+//     margin: 0em;
+//     padding: 0em;
+//     border-radius: 50%;
+//     box-shadow: 0 0 0 350px rgba(#a3cef1, 1);
+//     content: "";
+//   }
+  
+// }
 
 .user-icon {
   font-size: 80px;
