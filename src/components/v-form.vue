@@ -43,7 +43,6 @@
             </b-col>
             <b-col>
               <h5>Fill out the form</h5>
-
               <button
                 class="btn mt-3 mx-auto"
                 @click="set = !set"

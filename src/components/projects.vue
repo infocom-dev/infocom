@@ -25,7 +25,7 @@
                 </b-col>
               </b-row>
             </b-col>
-            <!-- <b-col class="d-none d-sm-block"></b-col> -->
+
             <b-col class="p-0">
               <b-row align-h="center" align-v="center" class="text-left mr-3">
                 <div class="bellhold">
@@ -48,7 +48,7 @@
               </b-row>
             </b-col>
           </b-row>
-          <p>{{ projects }}</p>
+          <!-- <p>{{ projects }}</p> -->
           <b-container fluid class="w-100 overview p-0 pb-5">
             <b-row align-v="center" class="text-center ml-5">
               <div class="col-1 mt-5 text-left">
@@ -71,30 +71,32 @@
               </div>
               <div class="col"></div>
             </b-row>
-
-            <b-row class="p-0 m-0">
+            <b-row v-if="projects.length" class="p-0 m-0">
               <div class="w-100 p-0">
-                <b-row 
-                class="pr-5 pl-5 m-0 ">
+                <b-row class="pr-5 pl-5 m-0">
                   <b-col class="col-lg-3 w-100 anketa-box">
                     <div
                       class="name-box text-center d-flex justify-content-center m-4 mx-auto"
                     >
-                      <h5 class="m-3">{{ analysis_pr[0].name }}</h5>
+                      <h5 class="m-3">
+                        {{ projects[projects.length - 1].name }}
+                      </h5>
                     </div>
                     <div
-                      v-if="analysis_pr[0].status == 'in progress'"
+                      v-if="
+                        projects[projects.length - 1].predicted_price == null
+                      "
                       class="text-center"
                     >
                       <p>
                         Наша нейронная сеть пытается обработать запрос.
-                        Пожалуйста подождите
+                        Пожалуйста, обновите страницу
                       </p>
                     </div>
-                    <div v-else class="text-center">
+                    <div v-else class="text-center mb-4">
                       <h5>
                         Наша нейронная сеть оценала заказ в $
-                        {{ analysis_pr[0].old_budjet }}.
+                        {{ projects[projects.length - 1].predicted_price }}.
                       </h5>
                     </div>
                   </b-col>
@@ -102,123 +104,87 @@
                     class="anketa-box d-flex justify-content-center offset-sm-1"
                   >
                     <div
-                      v-if="analysis_pr[0].status == 'in progress'"
-                      class="m-3"
+                      v-if="
+                        projects[projects.length - 1].predicted_price == null
+                      "
+                      class="m-3 justify-content-center d-flex align-item-center"
                     >
-
-                      <graph
-                        class=""
-                        
-                      ></graph>
-                      
+                      <loading></loading>
                     </div>
-                    <div v-else class="w-100 m-3 justify-content-center">
-                    </div>
+                    <div v-else class="w-100 m-3 justify-content-center"></div>
                   </b-col>
                 </b-row>
               </div>
             </b-row>
-            <b-row align-v="center" class="text-center m-5">
+            <b-row align-v="center" v-else class="p-0 m-0 no-result">
+              <div class="mr-5 ml-5 w-100 box2">
+                <no-result></no-result>
+              </div>
+            </b-row>
+            <b-row v-if="projects.length > 1" align-v="center" class="text-center m-5">
               <div class="col-1 pl-2 text-left">
-                <i class="fas fa-tasks projects-icon"></i>
+                <i class="fas fa-tasks projects-icon icon"></i>
               </div>
               <div class="col p-0 text-left">
                 <h3>ALL PROJECTS FINISHED ANALYSIS</h3>
               </div>
             </b-row>
-            <div v-for="(item, id) in analysis_pr" :key="id" class="w-100 p-0">
-              <b-row class="pr-5 pl-5 m-0">
-                <b-col class="p-0 mr-5 pr-box text-center" style="">
-                  <h5 class="name-box p-3 m-4 mx-auto">Project info</h5>
-                  <h5 class="pb-3 pl-3 pr-3 mx-auto">{{ item.info }}</h5>
-                </b-col>
-                <b-col class="p-0 mr-5 pr-box text-center" style="">
-                  <h5 class="name-box p-3 m-4 mx-auto">Budjet</h5>
-                  <h5>$ {{ item.old_budjet }}</h5>
-                </b-col>
-                <b-col
-                  style="
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    background-color: transparent;
-                  "
-                  class="p-0 mr-5 text-center"
-                >
-                  <b-button
-                    style="background-color: #ccc"
-                    class="mx-auto w-100"
-                    v-b-modal.modal3
-                  >
-                    View details
-                  </b-button>
-                  <b-modal
-                    id="modal3"
-                    size="lg"
-                    scrollable
-                    ok-only
-                    title="Your answers"
-                    header-bg-variant="primary"
-                  >
-                    <v-answers
-                      :answers="item.answers"
-                      :questions="questions"
-                    ></v-answers>
-                  </b-modal>
-                  <b-button
-                    v-b-modal.modal4
-                    style="background-color: #ffd037"
-                    class="mx-auto w-100"
-                    >Set options</b-button
-                  >
-                  <b-modal
-                    id="modal4"
-                    size="lg"
-                    scrollable
-                    title="Set new options for this project"
-                    header-bg-variant="primary"
-                  >
-                    <div v-if="item.answers" class="text-center">
-                      <h5>
-                        Наша нейронная сеть оценала заказ в $
-                        {{ item.old_budjet }}.
+            <div v-if="projects.length > 1">
+              <div
+                v-for="(item, index) in projects"
+                :key="index"
+                class="w-100 p-0"
+              >
+                <div v-if="item.predicted_price != null && index != (projects.length-1)" class="box2 ml-5 mr-5">
+                  <b-row align-v="center" class="p-3 m-0">
+                    <b-col class="col-4 p-2 mr-5" style="">
+                      <h5 class="name-box w-100 text-center p-2 mx-auto">
+                        {{ item.name }} on {{ item.stack }}
                       </h5>
-                      <p>Вы можете изменить настройки ниже</p>
-                      <div v-for="(f, index) in feature" :key="index">
-                        <b-row align-v="center" class="d-flex m-3">
-                          <b-col class="col-4">
-                            <div
-                              class="name-box d-flex justify-content-center text-center m-3 mx-auto"
-                            >
-                              <p class="m-1">{{ f }}</p>
-                            </div>
-                          </b-col>
-                          <b-col class="col w-100">
-                            <vue-slider
-                              v-model="answers[index]"
-                              :adsorb="true"
-                              :interval="10"
-                              :marks="true"
-                            ></vue-slider>
-                          </b-col>
-                        </b-row>
+                      <p class="m-0 pt-4">Status</p>
+                      <div v-if="item.is_active">
+                        <h1>In develop</h1>
                       </div>
-                    </div>
-                    <template #modal-footer="{ submit, cancel }">
-                      <a href="#" @click="submit()" class="btn text-uppercase"
-                        >Submit data
-                      </a>
-                      <!-- Emulate built in modal footer ok and cancel button actions -->
-                      <a href="#" @click="cancel()" class="btn text-uppercase"
-                        >Cancel
-                      </a>
-
-                      <!-- Button with custom close trigger value -->
-                    </template>
-                  </b-modal>
-                  <b-button class="mx-auto w-100">Make order</b-button>
-                </b-col>
-              </b-row>
+                      <div
+                        v-else-if="
+                          !item.is_active && item.real_end_date != null
+                        "
+                      >
+                        <h1>Finnished</h1>
+                      </div>
+                      <div v-else>
+                        <h1>From analysis</h1>
+                      </div>
+                    </b-col>
+                    <b-col class="col-2 p-0 mr-5" style="">
+                      <p class="m-0">
+                        <small>Predicted price</small>
+                      </p>
+                      <h1>$ {{ item.predicted_price }}</h1>
+                      <p class="m-0">Real price</p>
+                      <div v-if="!item.is_active && item.real_end_date != null">
+                        <h1>$ {{ item.real_price }}</h1>
+                      </div>
+                      <div v-else>
+                        <h1>Soon</h1>
+                      </div>
+                    </b-col>
+                    <b-col class="p-0 mr-5" style="">
+                      <p class="m-0">
+                        <small>Predicted date</small>
+                      </p>
+                      <h1>{{ item.predict_end_date }}</h1>
+                      <p class="m-0">Real date</p>
+                      <div v-if="!item.is_active && item.real_end_date != null">
+                        <h1>{{ item.real_end_date }}</h1>
+                      </div>
+                      <div v-else>
+                        <h1>Soon</h1>
+                      </div>
+                    </b-col>
+                  </b-row>
+                </div>
+              </div>
             </div>
           </b-container>
         </b-container>
@@ -228,157 +194,32 @@
 </template>
 <script>
 import sideBarAccount from "./side-bar-account.vue";
-import VueSlider from "vue-slider-component";
-import "vue-slider-component/theme/default.css";
-import "vue-slider-component/theme/default.css";
-import Graph from "./Graph.vue";
+import Loading from "./Loading";
 import VForm from "./v-form.vue";
-import vAnswers from "./v-answers.vue";
+import NoResult from './no_result'
+// import vAnswers from "./v-answers.vue";
 import session from "../api/session";
 import axios from "axios";
 export default {
-  components: { sideBarAccount, Graph, VueSlider, VForm, vAnswers },
+  components: {
+    sideBarAccount,
+    Loading,
+    VForm,
+    NoResult,
+    //  vAnswers
+  },
   name: "projects",
 
   data() {
     return {
-      componentKey: 0,
       user_mail: "",
       user_id: "",
       user_username: "",
-      feature: ["Дешево", "Качественно", "Быстро"],
-      answers: [50, 10, 20],
       questions: [],
-      analysis_pr: [
-        {
-          name: "Infocom",
-          info: "Web site on vuejs + django",
-          status: "in progress",
-          old_budjet: "1 000 000",
-          new_budjet: "1 500 000",
-          answers: [
-            {
-              id: "1",
-              type: "selected",
-              answers: [{ id: 1, value: "обработка типовых сообщений " }],
-            },
-            { id: "2", type: "checkbox", answers: [{ id: 1, value: "сайт" }] },
-            { id: "3", type: "range", answers: [100, 250] },
-            { id: "4", type: "message", answers: ["52"] },
-            {
-              id: "5",
-              type: "checkbox",
-              answers: [{ id: 1, value: "Свободное общение" }],
-            },
-            {
-              id: "6",
-              type: "selected",
-              answers: [{ id: 2, value: "Russian" }],
-            },
-            { id: "7", type: "switch", answers: [true] },
-            { id: "8", type: "switch", answers: [false] },
-            { id: "9", type: "switch", answers: [false] },
-            { id: "10", type: "switch", answers: [false] },
-            { id: "11", type: "checkbox", answers: [{ id: 1, value: "Да" }] },
-            { id: "12", type: "checkbox", answers: [{ id: 1, value: "Да" }] },
-            {
-              id: "13",
-              type: "selected",
-              answers: [
-                {
-                  id: 2,
-                  value:
-                    "азмещение интеграционного модуля на серверах Заказчика",
-                },
-              ],
-            },
-            {
-              id: "14",
-              type: "datapicker",
-              answers: ["04.05.2021", "20.05.2021"],
-            },
-            { id: "15", type: "range", answers: [600000, 1000000] },
-            { id: "16", type: "textarea", answers: ["ghjklhy"] },
-          ],
-        },
-      ],
-      // projects: [
-      //   {
-      //     name: "MyProject",
-      //     info: "Web site on vuejs + django",
-      //     budjet: "1 000 000",
-      //     status: "in progress",
-      //     data: "15.05.2022",
-      //     manager: "Vistor Keng",
-      //     contacts: [{ mail: "fhhfhf", github: "ddjd" }],
-      //     t_qualty: 8,
-      //     t_time: "7 years",
-      //     reliability: 10,
-      //   },
-      //   {
-      //     name: "MyWebsite",
-      //     info: "Web site on vuejs + django",
-      //     budjet: "1 000 000",
-      //     status: "in progress",
-      //     data: "15.05.2022",
-      //     manager: "Vistor Keng",
-      //     contacts: [{ mail: "fhhfhf", github: "ddjd" }],
-      //     t_qualty: 8,
-      //     t_time: "7 years",
-      //     reliability: 10,
-      //   },
-      // ],
       projects: [],
-
-      options: {
-        chart: {
-          type: "area",
-        },
-        dataLabels: {
-          enabled: false,
-        },
-        stroke: {
-          curve: "smooth",
-        },
-        xaxis: {
-          categories: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-        },
-        title: {
-          align: "center",
-          style: {
-            fontSize: "20px",
-          },
-        },
-        colors: ["#274C77", "#FFD334"],
-      },
-      series: [
-        {
-          name: "series1",
-          data: [31, 40, 28, 51, 42, 109, 100],
-        },
-        {
-          name: "series2",
-          data: [11, 32, 45, 32, 34, 52, 41],
-        },
-      ],
     };
   },
-  mounted() {
-    this.$refs.submitBtn[0].click();
-  },
+
   created() {
     session
       .get("/getQuestions/")
@@ -398,51 +239,22 @@ export default {
         this.user_id = response.data["id"];
         this.user_username = response.data["username"];
         axios.get(`/getCustomerById/${this.user_id}`).then((response) => {
-          this.projects = response.data;
+          this.projects = response.data.projects;
         });
         console.log(this.user_mail);
       })
       .catch((err) => {
         console.log(err);
       });
-    // axios
-    // .get(`/getCustomerById/${this.user_id}`)
-    // .then((response) => {
-    //   this.projects = response.data
-    //   console.log(this.user_mail)
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // });
   },
 
-  methods: {
-    forceRerender() {
-      this.componentKey += 1;
-    },
-    getRandomInt() {
-      return Math.floor(Math.random() * 100) + 5;
-    },
-    fillData() {
-      for (let i = 0; i < this.series.length; i++) {
-        for (let j = 0; j < this.series[i].data.length; j++) {
-          this.series[i].data[j] = this.getRandomInt();
-        }
-      }
-      this.forceRerender();
-      console.log(this.series);
-      console.log(this.series[1].data);
-      setTimeout(() => {
-        console.log(this);
-        this.$refs.submitBtn[0].click();
-      }, 3000);
-    },
-  },
+  methods: {},
 };
 </script>
 <style lang="scss">
 @import "../assets/styles/base.scss";
 .projects {
+  
   .pr-icon {
     font-size: 50px;
     color: $blu;
@@ -454,28 +266,85 @@ export default {
       color: $ylw;
     }
   }
+  .no-result{
+    .box2 {
+  background-color: white;
+  margin: 0em auto;
+  border-radius: 20px;
+  &:before {
+    margin: 4em;
+    padding: 3em;
+    border-radius: 50%;
+    background: #a3cef1;
+    box-shadow: 0 0 0 350px rgba(#a3cef1, 1);
+    content: "";
+  }
+}
+  }
 }
 .anketa-box {
   background-color: white;
-  border-radius: 40px;
+  border-radius: 20px;
 }
 .name-box {
   background-color: #e7ecef;
-  border-radius: 40px;
+  border-radius: 20px;
   display: inline-block;
 }
-.pr {
-  .name-box {
-    width: 255px;
+.box2 {
+  background-color: white;
+  margin: 0em auto;
+  border-radius: 20px;
+  &:before {
+    
+    margin: 0em;
+    padding: 0em;
+    border-radius: 50%;
+    box-shadow: 0 0 0 350px rgba(#a3cef1, 1);
+    content: "";
   }
 }
-.pr-box {
-  background-color: white;
-  border-radius: 40px;
-  // height: 150px;
-  width: 150px;
-  .icon {
-    font-size: 20px;
-  }
+
+.user-icon {
+  font-size: 80px;
+  color: $blu;
+}
+.mail-icon {
+  color: $blu;
+}
+.bell-icon,
+.out-icon {
+  font-size: 30px;
+  color: $blu;
+}
+.badgex {
+  padding: 0px 5px 1px;
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  display: inline-block;
+  min-width: 10px;
+  font-size: 18px;
+  box-sizing: border-box;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 50%;
+}
+.badge-danger {
+  background-color: #db5565;
+}
+.bellhold {
+  position: relative;
+  cursor: pointer;
+}
+.overview {
+  background-color: #e7ecef;
+  // height: 900px;
+}
+.overview-box {
+  background-color: #ffffff;
 }
 </style>

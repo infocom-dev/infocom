@@ -3,10 +3,10 @@
     <nav-bar></nav-bar>
     <section class="p-5 signup position-relative d-flex justify-content-center">
       <b-container fluid class="mx-auto w-75">
-        <div class="mx-auto p-5 register-box">
-          <template v-if="registrationLoading"> loading... </template>
+        <div class="">
+          <loading v-if="registrationLoading"></loading> 
           <div v-else-if="!registrationCompleted">
-            <b-row align-v="center" class="justify-content-center">
+            <b-row align-v="center" class="mx-auto p-5 register-box justify-content-center">
               <b-form class="col w-50" @submit.prevent="submit">
                 <div class="error-message">
                   <p v-show="registrationError">
@@ -108,7 +108,6 @@
                     Регистрация
                   </button>
                 </div>
-
                 <p class="mt-3">
                   Уже есть аккаунт?
                   <router-link to="/login"><h2>Вход</h2></router-link>
@@ -124,19 +123,9 @@
                 /></div
             ></b-row>
           </div>
-          <template v-else>
-            <div>
-              Registration complete. You should receive an email shortly with
-              instructions on how to activate your account.
-            </div>
-            <div>
-              <router-link to="/login">return to login page</router-link>
-            </div>
-          </template>
         </div>
       </b-container>
     </section>
-
     <Footer></Footer>
   </div>
 </template>
@@ -144,14 +133,15 @@
 <script>
 import { required, minLength, sameAs } from "vuelidate/lib/validators";
 import { IMaskDirective } from "vue-imask";
-
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import { mapActions, mapState } from "vuex";
+import Loading from './Loading.vue';
 export default {
   components: {
     NavBar,
     Footer,
+    Loading,
   },
   validations: {
     inputs: {
@@ -221,7 +211,6 @@ export default {
     // check for valid email adress
     isEmail: function (value) {
       var emailRegExp = /^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-
       return emailRegExp.test(value);
     },
     ...mapActions("signup", ["createAccount", "clearRegistrationStatus"]),
@@ -253,7 +242,7 @@ export default {
   background-size: cover;
   // position: relative;
   flex-direction: column;
-  height: 1100px;
+  height: 1000px;
   font-size: 1rem;
 }
 .text {

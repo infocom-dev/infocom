@@ -10,7 +10,7 @@
 </template>
 <script>
 export default {
-  name: "Graph",
+  name: "Loading",
   data: () => ({}),
   props: {
     options: {

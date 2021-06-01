@@ -3,7 +3,6 @@ import session from './session';
 
 export default {
   login(email, password) {
-    console.log(email)
     return session.post("/auth/login/", { email, password});
   },
   logout() {
