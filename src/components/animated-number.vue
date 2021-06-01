@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <div>{{ val }}</div>
   </div>
 </template>
