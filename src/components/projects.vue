@@ -48,7 +48,7 @@
               </b-row>
             </b-col>
           </b-row>
-          <p>{{ projects }}</p>
+          <!-- <p>{{ projects }}</p> -->
           <b-container fluid class="w-100 overview p-0 pb-5">
             <b-row align-v="center" class="text-center ml-5">
               <div class="col-1 mt-5 text-left">
@@ -71,7 +71,7 @@
               </div>
               <div class="col"></div>
             </b-row>
-            <b-row class="p-0 m-0">
+            <b-row v-if="projects.length" class="p-0 m-0">
               <div class="w-100 p-0">
                 <b-row class="pr-5 pl-5 m-0">
                   <b-col class="col-lg-3 w-100 anketa-box">
@@ -109,77 +109,83 @@
                       "
                       class="m-3 justify-content-center d-flex align-item-center"
                     >
-                      <graph class=""></graph>
+                      <loading></loading>
                     </div>
                     <div v-else class="w-100 m-3 justify-content-center"></div>
                   </b-col>
                 </b-row>
               </div>
             </b-row>
-            <b-row align-v="center" class="text-center m-5">
+            <b-row align-v="center" v-else class="p-0 m-0 no-result">
+              <div class="mr-5 ml-5 w-100 box2">
+                <no-result></no-result>
+              </div>
+            </b-row>
+            <b-row v-if="projects.length > 1" align-v="center" class="text-center m-5">
               <div class="col-1 pl-2 text-left">
-                <i class="fas fa-tasks projects-icon"></i>
+                <i class="fas fa-tasks projects-icon icon"></i>
               </div>
               <div class="col p-0 text-left">
                 <h3>ALL PROJECTS FINISHED ANALYSIS</h3>
               </div>
             </b-row>
-            <div
-              v-for="(item, index) in projects"
-              :key="index"
-              class="w-100 p-0"
-            >
-              <div v-if="item.predicted_price != null" class="box2 ml-5 mr-5">
-                <b-row align-v="center" class="p-3 m-0">
-                  <b-col class="col-4 p-2 mr-5" style="">
-                    <h5 class="name-box w-100 text-center p-2 mx-auto">
-                      {{ item.name }}
-                    </h5>
-                    <p class="m-0 pt-4">Status</p>
-                    <div v-if="item.is_active">
-                      <h1>In develop</h1>
-                    </div>
-                    <div
-                      v-else-if="!item.is_active && item.real_end_date != null"
-                    >
-                      <h1>Finnished</h1>
-                    </div>
-                    <div v-else>
-                      <h1>From analysis</h1>
-                    </div>
-                  </b-col>
-                  <b-col class="col-2 p-0 mr-5" style="">
-                    <p class="m-0">
-                      <small>Predicted price</small>
-                    </p>
-                    <h1>$ {{ item.predicted_price }}</h1>
-                    <p class="m-0">Real price</p>
-                    <div v-if="!item.is_active && item.real_end_date != null">
-                      
-                      <h1>$ {{ item.real_price }}</h1>
-                    </div>
-                    <div v-else>
-                      <h1>Soon</h1>
-                    </div>
-                  </b-col>
-                  <b-col class="p-0 mr-5" style="">
-                    <p class="m-0">
-                      <small>Predicted date</small>
-                    </p>
-                    <h1>{{ item.predict_end_date }}</h1>
-                    <p class="m-0">Real date</p>
-                    <div v-if="!item.is_active && item.real_end_date != null">
-                      
-                      <h1>{{ item.real_end_date }}</h1>
-                    </div>
-                    <div v-else>
-                      <h1>Soon</h1>
-                    </div>
-                  </b-col>
-                </b-row>
-              </div>
+            <div v-if="projects.length > 1">
+              <div
+                v-for="(item, index) in projects"
+                :key="index"
+                class="w-100 p-0"
+              >
+                <div v-if="item.predicted_price != null && index != (projects.length-1)" class="box2 ml-5 mr-5">
+                  <b-row align-v="center" class="p-3 m-0">
+                    <b-col class="col-4 p-2 mr-5" style="">
+                      <h5 class="name-box w-100 text-center p-2 mx-auto">
+                        {{ item.name }} on {{ item.stack }}
+                      </h5>
+                      <p class="m-0 pt-4">Status</p>
+                      <div v-if="item.is_active">
+                        <h1>In develop</h1>
+                      </div>
+                      <div
+                        v-else-if="
+                          !item.is_active && item.real_end_date != null
+                        "
+                      >
+                        <h1>Finnished</h1>
+                      </div>
+                      <div v-else>
+                        <h1>From analysis</h1>
+                      </div>
+                    </b-col>
+                    <b-col class="col-2 p-0 mr-5" style="">
+                      <p class="m-0">
+                        <small>Predicted price</small>
+                      </p>
+                      <h1>$ {{ item.predicted_price }}</h1>
+                      <p class="m-0">Real price</p>
+                      <div v-if="!item.is_active && item.real_end_date != null">
+                        <h1>$ {{ item.real_price }}</h1>
+                      </div>
+                      <div v-else>
+                        <h1>Soon</h1>
+                      </div>
+                    </b-col>
+                    <b-col class="p-0 mr-5" style="">
+                      <p class="m-0">
+                        <small>Predicted date</small>
+                      </p>
+                      <h1>{{ item.predict_end_date }}</h1>
+                      <p class="m-0">Real date</p>
+                      <div v-if="!item.is_active && item.real_end_date != null">
+                        <h1>{{ item.real_end_date }}</h1>
+                      </div>
+                      <div v-else>
+                        <h1>Soon</h1>
+                      </div>
+                    </b-col>
+                  </b-row>
+                </div>
 
-              <!-- <b-col
+                <!-- <b-col
                   style="
                     display: flex;
                     flex-direction: column;
@@ -211,6 +217,7 @@
                  
                   <b-button class="mx-auto w-100">Make order</b-button>
                 </b-col> -->
+              </div>
             </div>
           </b-container>
         </b-container>
@@ -220,17 +227,18 @@
 </template>
 <script>
 import sideBarAccount from "./side-bar-account.vue";
-
-import Graph from "./Graph.vue";
+import Loading from "./Loading";
 import VForm from "./v-form.vue";
+import NoResult from './no_result'
 // import vAnswers from "./v-answers.vue";
 import session from "../api/session";
 import axios from "axios";
 export default {
   components: {
     sideBarAccount,
-    Graph,
+    Loading,
     VForm,
+    NoResult,
     //  vAnswers
   },
   name: "projects",
@@ -241,7 +249,7 @@ export default {
       user_mail: "",
       user_id: "",
       user_username: "",
-      feature: ["Дешево", "Качественно", "Быстро"],
+      
       answers: [50, 10, 20],
       questions: [],
       // analysis_pr: [
@@ -324,56 +332,9 @@ export default {
       //   },
       // ],
       projects: [],
-
-      options: {
-        chart: {
-          type: "area",
-        },
-        dataLabels: {
-          enabled: false,
-        },
-        stroke: {
-          curve: "smooth",
-        },
-        xaxis: {
-          categories: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-        },
-        title: {
-          align: "center",
-          style: {
-            fontSize: "20px",
-          },
-        },
-        colors: ["#274C77", "#FFD334"],
-      },
-      series: [
-        {
-          name: "series1",
-          data: [31, 40, 28, 51, 42, 109, 100],
-        },
-        {
-          name: "series2",
-          data: [11, 32, 45, 32, 34, 52, 41],
-        },
-      ],
     };
   },
-  mounted() {
-    this.$refs.submitBtn[0].click();
-  },
+
   created() {
     session
       .get("/getQuestions/")
@@ -400,44 +361,15 @@ export default {
       .catch((err) => {
         console.log(err);
       });
-    // axios
-    // .get(`/getCustomerById/${this.user_id}`)
-    // .then((response) => {
-    //   this.projects = response.data
-    //   console.log(this.user_mail)
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // });
   },
 
-  methods: {
-    forceRerender() {
-      this.componentKey += 1;
-    },
-    getRandomInt() {
-      return Math.floor(Math.random() * 100) + 5;
-    },
-    fillData() {
-      for (let i = 0; i < this.series.length; i++) {
-        for (let j = 0; j < this.series[i].data.length; j++) {
-          this.series[i].data[j] = this.getRandomInt();
-        }
-      }
-      this.forceRerender();
-      console.log(this.series);
-      console.log(this.series[1].data);
-      setTimeout(() => {
-        console.log(this);
-        this.$refs.submitBtn[0].click();
-      }, 3000);
-    },
-  },
+  methods: {},
 };
 </script>
 <style lang="scss">
 @import "../assets/styles/base.scss";
 .projects {
+  
   .pr-icon {
     font-size: 50px;
     color: $blu;
@@ -448,6 +380,21 @@ export default {
     &:hover {
       color: $ylw;
     }
+  }
+  .no-result{
+    .box2 {
+  background-color: white;
+  margin: 0em auto;
+  border-radius: 20px;
+  &:before {
+    margin: 4em;
+    padding: 3em;
+    border-radius: 50%;
+    background: #a3cef1;
+    box-shadow: 0 0 0 350px rgba(#a3cef1, 1);
+    content: "";
+  }
+}
   }
 }
 .anketa-box {
@@ -464,6 +411,7 @@ export default {
   margin: 0em auto;
   border-radius: 20px;
   &:before {
+    
     margin: 0em;
     padding: 0em;
     border-radius: 50%;
@@ -471,18 +419,47 @@ export default {
     content: "";
   }
 }
-.pr {
-  .name-box {
-    width: 255px;
-  }
+
+.user-icon {
+  font-size: 80px;
+  color: $blu;
 }
-.pr-box {
-  background-color: white;
-  border-radius: 20px;
-  // height: 150px;
-  // width: 150px;
-  .icon {
-    font-size: 20px;
-  }
+.mail-icon {
+  color: $blu;
+}
+.bell-icon,
+.out-icon {
+  font-size: 30px;
+  color: $blu;
+}
+.badgex {
+  padding: 0px 5px 1px;
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  display: inline-block;
+  min-width: 10px;
+  font-size: 18px;
+  box-sizing: border-box;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 50%;
+}
+.badge-danger {
+  background-color: #db5565;
+}
+.bellhold {
+  position: relative;
+  cursor: pointer;
+}
+.overview {
+  background-color: #e7ecef;
+  // height: 900px;
+}
+.overview-box {
+  background-color: #ffffff;
 }
 </style>

@@ -11,8 +11,7 @@ import projects from '../components/projects';
 
 import Login from '../components/Login';
 import Register from '../components/Register';
-import account from '../components/v-account-page'
-import Graph from '../components/Graph'
+import Loading from '../components/Loading'
 import Window from '../components/window'
 import store from '../store';
 
@@ -69,17 +68,12 @@ let router = new Router({
             beforeEnter: requireUnauthenticated,
         },
         {
-            path: '/graph',
-            name: 'graph',
-            component: Graph,
+            path: '/loading',
+            name: 'loading',
+            component: Loading,
             beforeEnter: requireAuthenticated,
         },
-        {
-            path: '/account',
-            name: 'account',
-            component: account,
 
-        },
         {
             path: '/logout',
             name: 'logout',
@@ -89,6 +83,7 @@ let router = new Router({
             path: '/account/projects',
             name: 'projects',
             component: projects,
+            beforeEnter: requireAuthenticated
         },
         {
             path :'/account/projects/details',
