@@ -25,7 +25,7 @@
                 </b-col>
               </b-row>
             </b-col>
-
+            <p>{{projects}}</p>
             <b-col class="p-0">
               <b-row align-h="center" align-v="center" class="text-left mr-3">
                 <div class="bellhold">
@@ -111,7 +111,10 @@
                     >
                       <loading></loading>
                     </div>
-                    <div v-else class="w-100 m-3 justify-content-center"></div>
+                    <div v-else class="w-100 m-3 justify-content-center text-center">
+                      <h5>Почему получилась такая стоимость?</h5>
+                      <p>Средняя цена на приложение со стеком {{projects[projects.length - 1].stack}}: <h5></h5></p>
+                    </div>
                   </b-col>
                 </b-row>
               </div>
@@ -135,7 +138,7 @@
                 :key="index"
                 class="w-100 p-0"
               >
-                <div v-if="item.predicted_price != null && index != (projects.length-1)" class="box2 ml-5 mr-5">
+                <div v-if="item.predicted_price != null && index != (projects.length-1)" class="box2 ml-5 mr-5 mb-5">
                   <b-row align-v="center" class="p-3 m-0">
                     <b-col class="col-4 p-2 mr-5" style="">
                       <h5 class="name-box w-100 text-center p-2 mx-auto">
