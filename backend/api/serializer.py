@@ -91,10 +91,9 @@ class CustomRegisterSerializer(RegisterSerializer):
 # должны быть все поля, что и в кастомере (женя помоги написать)
 class CustomUserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CustomUser
+        model = Customer
         fields = (
-
             'email',
-            'phone',
-
+            'id',
+            'username'
         )

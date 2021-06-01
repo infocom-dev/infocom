@@ -43,7 +43,6 @@
             </b-col>
             <b-col>
               <h5>Fill out the form</h5>
-
               <button
                 class="btn mt-3 mx-auto"
                 @click="set = !set"
@@ -51,6 +50,7 @@
               >
                 Open Form
               </button>
+              
               <b-modal
                 title="Fill out the form and find out the total price of the project"
                 id="modal2"
@@ -60,8 +60,7 @@
                 header-text-variant="light"
                 header-bg-variant="primary"
               >
-                
-
+          
                 <v-question-item
                   :set="set"
                   :question_data="questions"
@@ -128,8 +127,7 @@
             </b-col>
           </b-row>
         </b-col>
-      </b-row>
-      
+      </b-row>      
     </b-container>
   </div>
 </template>
@@ -179,9 +177,7 @@ export default {
     handleSubmit() {
       // Exit when the form isn't valid
       this.answers = this.$refs.sendAnswers.sendAnswers();
-      console.log(this.answers);
       for (let i = 0; i < this.answers.length; i++) {
-        console.log(this.answers[i]);
         if (this.answers[i].answers == null || this.answers[i].answers.length == 0) {
           console.log("ok");
           this.makeToast('b-toaster-top-center');
@@ -208,7 +204,7 @@ export default {
         if (this.questions[i].type == "textarea") {
           v[i] = "";
         } else if (this.questions[i].type == "range") {
-          v[i] = [this.questions[i].answers[0], this.questions[i].answers[1]];
+          v[i] = [this.questions[i].answers_option[0].value, this.questions[i].answers_option[1].value];
         
         } else if (this.questions[i].type == 'switch'){
            v[i] = false;

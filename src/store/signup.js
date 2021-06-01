@@ -1,5 +1,5 @@
 import auth from '../api/auth';
-
+import router from '../router/router'
 import {
   REGISTRATION_BEGIN,
   REGISTRATION_CLEAR,
@@ -44,6 +44,7 @@ export default {
       state.registrationCompleted = true;
       state.registrationError = false;
       state.registrationLoading = false;
+      router.push("/login");
     },
   },
 };
