@@ -1,3 +1,4 @@
+from datetime import datetime
 from dateutil import relativedelta
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -52,7 +53,7 @@ class StackAvgViewSet(viewsets.ReadOnlyModelViewSet):
             if project.real_price!=None:
                 avg_price += project.real_price
             if project.real_end_date!=None:
-                avg_time += (relativedelta.relativedelta(project.real_end_date, project.start_date)).days
+                avg_time += ((project.real_end_date - project.start_date).days)
         avg_time = int(avg_time / projects.count())
         avg_price = avg_price / projects.count()
         instance.avg_price = avg_price
