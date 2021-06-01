@@ -25,7 +25,7 @@
                 </b-col>
               </b-row>
             </b-col>
-            <p>{{projects}}</p>
+            
             <b-col class="p-0">
               <b-row align-h="center" align-v="center" class="text-left mr-3">
                 <div class="bellhold">
