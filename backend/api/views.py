@@ -49,8 +49,10 @@ class StackAvgViewSet(viewsets.ReadOnlyModelViewSet):
         instance = self.get_object()
         projects = instance.projects.all()
         for project in projects:
-            avg_price += project.real_price
-            avg_time += (relativedelta.relativedelta(project.real_end_date, project.start_date)).days
+            if project.real_price!=None:
+                avg_price += project.real_price
+            if project.real_end_date!=None:
+                avg_time += (relativedelta.relativedelta(project.real_end_date, project.start_date)).days
         avg_time = int(avg_time / projects.count())
         avg_price = avg_price / projects.count()
         instance.avg_price = avg_price
