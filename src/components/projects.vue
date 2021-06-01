@@ -93,7 +93,7 @@
                         Пожалуйста, обновите страницу
                       </p>
                     </div>
-                    <div v-else class="text-center">
+                    <div v-else class="text-center mb-4">
                       <h5>
                         Наша нейронная сеть оценала заказ в $
                         {{ projects[projects.length - 1].predicted_price }}.
