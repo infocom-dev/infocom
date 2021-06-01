@@ -184,39 +184,6 @@
                     </b-col>
                   </b-row>
                 </div>
-
-                <!-- <b-col
-                  style="
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    background-color: transparent;
-                  "
-                  class="p-0 mr-5 text-center"
-                >
-                  <b-button
-                    style="background-color: #ccc"
-                    class="mx-auto w-100"
-                    v-b-modal.modal3
-                  >
-                    View details
-                  </b-button>
-                  <b-modal
-                    id="modal3"
-                    size="lg"
-                    scrollable
-                    ok-only
-                    title="Your answers"
-                    header-bg-variant="primary"
-                  >
-                    <v-answers
-                      :answers="item.answers"
-                      :questions="questions"
-                    ></v-answers>
-                  </b-modal>
-                 
-                  <b-button class="mx-auto w-100">Make order</b-button>
-                </b-col> -->
               </div>
             </div>
           </b-container>
@@ -245,92 +212,10 @@ export default {
 
   data() {
     return {
-      componentKey: 0,
       user_mail: "",
       user_id: "",
       user_username: "",
-      
-      answers: [50, 10, 20],
       questions: [],
-      // analysis_pr: [
-      //   {
-      //     name: "Infocom",
-      //     info: "Web site on vuejs + django",
-      //     status: "in progress",
-      //     old_budjet: "1 000 000",
-      //     new_budjet: "1 500 000",
-      //     answers: [
-      //       {
-      //         id: "1",
-      //         type: "selected",
-      //         answers: [{ id: 1, value: "обработка типовых сообщений " }],
-      //       },
-      //       { id: "2", type: "checkbox", answers: [{ id: 1, value: "сайт" }] },
-      //       { id: "3", type: "range", answers: [100, 250] },
-      //       { id: "4", type: "message", answers: ["52"] },
-      //       {
-      //         id: "5",
-      //         type: "checkbox",
-      //         answers: [{ id: 1, value: "Свободное общение" }],
-      //       },
-      //       {
-      //         id: "6",
-      //         type: "selected",
-      //         answers: [{ id: 2, value: "Russian" }],
-      //       },
-      //       { id: "7", type: "switch", answers: [true] },
-      //       { id: "8", type: "switch", answers: [false] },
-      //       { id: "9", type: "switch", answers: [false] },
-      //       { id: "10", type: "switch", answers: [false] },
-      //       { id: "11", type: "checkbox", answers: [{ id: 1, value: "Да" }] },
-      //       { id: "12", type: "checkbox", answers: [{ id: 1, value: "Да" }] },
-      //       {
-      //         id: "13",
-      //         type: "selected",
-      //         answers: [
-      //           {
-      //             id: 2,
-      //             value:
-      //               "азмещение интеграционного модуля на серверах Заказчика",
-      //           },
-      //         ],
-      //       },
-      //       {
-      //         id: "14",
-      //         type: "datapicker",
-      //         answers: ["04.05.2021", "20.05.2021"],
-      //       },
-      //       { id: "15", type: "range", answers: [600000, 1000000] },
-      //       { id: "16", type: "textarea", answers: ["ghjklhy"] },
-      //     ],
-      //   },
-      // ],
-      // projects: [
-      //   {
-      //     name: "MyProject",
-      //     info: "Web site on vuejs + django",
-      //     budjet: "1 000 000",
-      //     status: "in progress",
-      //     data: "15.05.2022",
-      //     manager: "Vistor Keng",
-      //     contacts: [{ mail: "fhhfhf", github: "ddjd" }],
-      //     t_qualty: 8,
-      //     t_time: "7 years",
-      //     reliability: 10,
-      //   },
-      //   {
-      //     name: "MyWebsite",
-      //     info: "Web site on vuejs + django",
-      //     budjet: "1 000 000",
-      //     status: "in progress",
-      //     data: "15.05.2022",
-      //     manager: "Vistor Keng",
-      //     contacts: [{ mail: "fhhfhf", github: "ddjd" }],
-      //     t_qualty: 8,
-      //     t_time: "7 years",
-      //     reliability: 10,
-      //   },
-      // ],
       projects: [],
     };
   },

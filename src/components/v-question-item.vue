@@ -1,5 +1,5 @@
 <template>
-  <div class="v-question-item">
+  <div class="v-question-item pr-4 pl-4">
     <div v-for="(question, index) in question_data" :key="index">
       <div class="selected" v-if="question.type === 'selected'">
         <p>{{ index + 1 }}.{{ question.text }}</p>
@@ -35,9 +35,8 @@
         </b-form-group>
       </div> -->
       <div v-if="question.type === 'message'">
-        <div class="">
-          <p>{{ index + 1 }}. {{ question.text }}</p>
-
+        <p>{{ index + 1 }}. {{ question.text }}</p>
+        <div class="m-2">
           <b-form-input
             id="input-live"
             v-model="selectedAnswers[index]"
@@ -51,8 +50,8 @@
       </div>
       <div v-if="question.type === 'range'">
         <p class="">{{ index + 1 }}. {{ question.text }}</p>
-        <p>{{question.answers_option[1].value}}</p>
         <vue-slider
+          class="pl-2 pr-2"
           :min="question.answers_option[0].value"
           :max="question.answers_option[1].value"
           v-model="selectedAnswers[index]"
@@ -60,7 +59,11 @@
           :min-range="10"
           process="true"
           :marks="true"
-          :interval="(question.answers_option[1].value - question.answers_option[0].value) / 10"
+          :interval="
+            (question.answers_option[1].value -
+              question.answers_option[0].value) /
+            10
+          "
         >
           <template v-slot:process="{ style }">
             <div class="vue-slider-process" :style="style">
@@ -95,30 +98,34 @@
         </b-row>
       </div>
       <div v-if="question.type === 'datapicker'">
-        <p class="v-question-item__text">{{ question.text }}</p>
-        <date-picker
-          v-model="selectedAnswers[index]"
-          value-type="format"
-          format="DD.MM.YYYY"
-          range
-          placeholder="tip range"
-          confirm
-          range-separator=" - "
-        >
-        </date-picker>
+        <p class="p-0">{{ index + 1 }}. {{ question.text }}</p>
+        <div class="m-2">
+          <date-picker
+            v-model="selectedAnswers[index]"
+            value-type="format"
+            format="DD.MM.YYYY"
+            range
+            placeholder="tip range"
+            confirm
+            range-separator=" - "
+          >
+          </date-picker>
+        </div>
       </div>
 
       <div v-if="question.type === 'textarea'">
         <div class="message">
-          <p class="v-question-item__text">{{ question.text }}</p>
-          <b-form-textarea
-            id="textarea-state"
-            v-model="selectedAnswers[index]"
-            :state="selectedAnswers[index].length > 2"
-            placeholder="Enter at least 10 characters"
-            rows="3"
-          >
-          </b-form-textarea>
+          <p class="p-0">{{ index + 1 }}. {{ question.text }}</p>
+          <div class="m-2">
+            <b-form-textarea
+              id="textarea-state"
+              v-model="selectedAnswers[index]"
+              :state="selectedAnswers[index].length > 2"
+              placeholder="Enter at least 10 characters"
+              rows="3"
+            >
+            </b-form-textarea>
+          </div>
         </div>
       </div>
     </div>
@@ -190,15 +197,13 @@ export default {
     sendAnswers() {
       let v = [];
       for (let i = 0; i < this.selectedAnswers.length; i++) {
-        if (
-          this.question_data[i].type == "selected" 
-        ) {
+        if (this.question_data[i].type == "selected") {
           v[i] = {
             tag: this.question_data[i].tag,
             type: this.question_data[i].type,
             answers_option: this.selectedAnswers[i],
           };
-        } 
+        }
         // else if (this.question_data[i].type == "checkbox") {
         //   v[i] = {
         //     tag: this.question_data[i].tag,
@@ -218,18 +223,23 @@ export default {
         //     }
         //   }
         // }
-        else if(this.question_data[i].type == "range" || this.question_data[i].type == 'datapicker' ){
-            v[i] = {
-            tag: this.question_data[i].tag ,
-            type: this.question_data[i].type ,
-            answers_option: [{'value' : this.selectedAnswers[i][0]},{'value' : this.selectedAnswers[i][1]}],
+        else if (
+          this.question_data[i].type == "range" ||
+          this.question_data[i].type == "datapicker"
+        ) {
+          v[i] = {
+            tag: this.question_data[i].tag,
+            type: this.question_data[i].type,
+            answers_option: [
+              { value: this.selectedAnswers[i][0] },
+              { value: this.selectedAnswers[i][1] },
+            ],
           };
-        }
-        else {
+        } else {
           v[i] = {
             id: this.question_data[i].id,
             type: this.question_data[i].type,
-            answers_option: [{"value":this.selectedAnswers[i]}],
+            answers_option: [{ value: this.selectedAnswers[i] }],
           };
         }
       }
