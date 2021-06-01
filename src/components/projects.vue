@@ -63,16 +63,16 @@
               align-v="center"
               class="text-center justify-content-center mr-5 ml-5"
             >
-              <b-col cols="2" md="1" class=" pl-2 text-left">
+              <b-col cols="2" md="1" class="pl-2 text-left">
                 <i class="fas fa-chart-area icon"></i>
               </b-col>
-              <b-col cols="10" md="11" class=" p-0 text-left">
+              <b-col cols="10" md="11" class="p-0 text-left">
                 <h3>Last project in analysis</h3>
               </b-col>
               <div class="col"></div>
             </b-row>
             <b-container v-if="projects.length" class="p-0" fluid>
-              <b-row  class="p-0 m-0">
+              <b-row class="p-0 m-0">
                 <div class="w-100 p-0">
                   <b-row align-h="center" class="p-0 m-0">
                     <b-col cols="9" md="3" class="m-5 anketa-box">
@@ -115,12 +115,13 @@
                       </div>
                       <div
                         v-else
-                        class="w-100 m-3 justify-content-center m-auto"
+                        class="w-100 m-3 p-4 justify-content-center m-auto"
                       >
                         <div>
                           <h5 class="text-center forward">
                             Почему получилась такая стоимость?
                           </h5>
+                          <hr class="forward" />
                           <div class="graph__wrapper m-auto">
                             <svg
                               width="315px"
@@ -165,24 +166,24 @@
                             </svg>
                           </div>
                           <b-row align-v="center" class="w-100 forward">
-                            <b-col>
+                            <b-col cols="9" md="10">
                               <p class="m-auto">
                                 Средняя цена на приложение со стеком
                                 {{ projects[projects.length - 1].stack }}:
                               </p>
                             </b-col>
-                            <b-col class="col-3">
-                              <h3 class="m-auto">$ {{ avg_price }}</h3>
+                            <b-col cols="3" md="2">
+                              <h3 class="m-auto">${{ avg_price }}</h3>
                             </b-col>
                           </b-row>
 
-                          <b-row align-v="center" class="forward">
-                            <b-col
+                          <b-row align-v="center" class="forward pt-3">
+                            <b-col cols="9" md="10"
                               ><p class="m-auto">
                                 Средняя продолжительность проекта (в днях):
                               </p></b-col
                             >
-                            <b-col class="col-3">
+                            <b-col cols="3" md="2">
                               <h3 class="m-auto">{{ avg_days }}</h3>
                             </b-col>
                           </b-row>
@@ -367,6 +368,11 @@ export default {
       color: $ylw;
     }
   }
+  hr {
+    background-color: $rs;
+    height: 5px;
+    border: 0;
+  }
   .pr-col {
     background-color: #a3cef1;
     border-radius: 20px 0 0 20px;
@@ -408,19 +414,6 @@ export default {
   border-radius: 20px;
   display: inline-block;
 }
-// .box2 {
-//   background-color: white;
-//   margin: 0em auto;
-//   border-radius: 20px;
-//   &:before {
-//     margin: 0em;
-//     padding: 0em;
-//     border-radius: 50%;
-//     box-shadow: 0 0 0 350px rgba(#a3cef1, 1);
-//     content: "";
-//   }
-
-// }
 
 .user-icon {
   font-size: 80px;
