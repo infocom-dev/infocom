@@ -113,7 +113,7 @@
                     </div>
                     <div v-else class="w-100 m-3 justify-content-center text-center">
                       <h5>Почему получилась такая стоимость?</h5>
-                      <p>Средняя цена на приложение со стеком {{projects[projects.length - 1].stack}}: <h5></h5></p>
+                      <p>Средняя цена на приложение со стеком {{projects[projects.length - 1].stack}}: </p>
                     </div>
                   </b-col>
                 </b-row>
