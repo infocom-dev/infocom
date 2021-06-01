@@ -25,7 +25,7 @@
                 </b-col>
               </b-row>
             </b-col>
-            <p>{{ projects }}</p>
+            <!-- <p>{{ projects }}</p> -->
             <b-col class="p-0">
               <b-row align-h="center" align-v="center" class="text-left mr-3">
                 <div class="bellhold">
@@ -51,9 +51,9 @@
           <!-- <p>{{ projects }}</p> -->
           <b-container fluid class="w-100 overview p-0 pb-5">
             <b-row align-v="center" class="text-center ml-5">
-              <div class="col-1 mt-5 text-left">
+              <b-col cols="2" md="1" class="mt-5 text-left">
                 <i class="fas fa-search icon"></i>
-              </div>
+              </b-col>
               <div class="col mt-5 p-0 text-left">
                 <h3>Guide to start new project</h3>
               </div>
@@ -61,138 +61,139 @@
             <v-form :questions="questions"></v-form>
             <b-row
               align-v="center"
-              class="text-center justify-content-center mr-5 ml-5 mb-5"
+              class="text-center justify-content-center mr-5 ml-5"
             >
-              <div class="col-1 pl-2 text-left">
+              <b-col cols="2" md="1" class=" pl-2 text-left">
                 <i class="fas fa-chart-area icon"></i>
-              </div>
-              <div class="col-4 p-0 text-left">
+              </b-col>
+              <b-col cols="10" md="11" class=" p-0 text-left">
                 <h3>Last project in analysis</h3>
-              </div>
+              </b-col>
               <div class="col"></div>
             </b-row>
-            <b-row v-if="projects.length" class="p-0 m-0">
-              <div class="w-100 p-0">
-                <b-row class="pr-5 pl-5 m-0">
-                  <b-col class="col-lg-3 w-100 anketa-box">
-                    <div
-                      class="name-box text-center d-flex justify-content-center m-4 mx-auto"
+            <b-container v-if="projects.length" class="p-0" fluid>
+              <b-row  class="p-0 m-0">
+                <div class="w-100 p-0">
+                  <b-row align-h="center" class="p-0 m-0">
+                    <b-col cols="9" md="3" class="m-5 anketa-box">
+                      <div
+                        class="name-box text-center d-flex justify-content-center m-4 mx-auto"
+                      >
+                        <h5 class="m-3">
+                          {{ projects[projects.length - 1].name }}
+                        </h5>
+                      </div>
+                      <div
+                        v-if="
+                          projects[projects.length - 1].predicted_price == null
+                        "
+                        class="text-center"
+                      >
+                        <p>
+                          Наша нейронная сеть пытается обработать запрос.
+                          Пожалуйста, обновите страницу
+                        </p>
+                      </div>
+                      <div v-else class="text-center mb-4">
+                        <h5>
+                          Наша нейронная сеть оценала заказ в $
+                          {{ projects[projects.length - 1].predicted_price }}.
+                        </h5>
+                      </div>
+                    </b-col>
+                    <b-col
+                      style="background-color: #a3cef1"
+                      class="anketa-box m-5 d-flex justify-content-center offset-sm-1"
                     >
-                      <h5 class="m-3">
-                        {{ projects[projects.length - 1].name }}
-                      </h5>
-                    </div>
-                    <div
-                      v-if="
-                        projects[projects.length - 1].predicted_price == null
-                      "
-                      class="text-center"
-                    >
-                      <p>
-                        Наша нейронная сеть пытается обработать запрос.
-                        Пожалуйста, обновите страницу
-                      </p>
-                    </div>
-                    <div v-else class="text-center mb-4">
-                      <h5>
-                        Наша нейронная сеть оценала заказ в $
-                        {{ projects[projects.length - 1].predicted_price }}.
-                      </h5>
-                    </div>
-                  </b-col>
-                  <b-col
-                    style="background-color: #a3cef1"
-                    class="anketa-box d-flex justify-content-center offset-sm-1"
-                  >
-                    <div
-                      v-if="
-                        projects[projects.length - 1].predicted_price == null
-                      "
-                      class="m-3 justify-content-center d-flex align-item-center"
-                    >
-                      <loading></loading>
-                    </div>
-                    <div v-else class="w-100 m-3 justify-content-center m-auto">
-                      <div>
-                        <h5 class="text-center forward">
-                        Почему получилась такая стоимость?
-                      </h5>
-                      <div class="graph__wrapper m-auto">
-                        <svg
-                          width="315px"
-                          height="107px"
-                          viewBox="0 0 315 107"
-                          version="1.1"
-                          style="overflow: visible"
-                        >
-
-                        
-                          <g
-                            id="Page-1"
-                            stroke="none"
-                            stroke-width="1"
-                            fill="none"
-                            fill-rule="evenodd"
-                            sketch:type="MSPage"
-                          >
-                            <path
-                              d="M2.10546875,95.75 L40.5546875,68.3476562 L55.2109375,81.1796875 L65.2148437,76.3945312 L96.1835937,86.8320312 L131.023438,19.9414062 L142.15625,23.7226562 L183.605469,2.1953125 L211.007812,22.3320312 L234.320312,71.5664062 L234.667969,83.0039062 L244.019531,83.0039062 L247.105469,88.8320312 L312.695312,104.839844"
-                              id="Path-1"
-                              stroke="#e7ecef"
-                              stroke-width="4"
-                              sketch:type="MSShapeGroup"
-                              class="path"
-                            ></path>
-
-                            <polyline
-                              id="arrow"
-                              points="0,-5 10,0 0,5 1,0"
-                              fill="#e7ecef"
+                      <div
+                        v-if="
+                          projects[projects.length - 1].predicted_price == null
+                        "
+                        class="m-3 justify-content-center d-flex align-item-center"
+                      >
+                        <loading></loading>
+                      </div>
+                      <div
+                        v-else
+                        class="w-100 m-3 justify-content-center m-auto"
+                      >
+                        <div>
+                          <h5 class="text-center forward">
+                            Почему получилась такая стоимость?
+                          </h5>
+                          <div class="graph__wrapper m-auto">
+                            <svg
+                              width="315px"
+                              height="107px"
+                              viewBox="0 0 315 107"
+                              version="1.1"
+                              style="overflow: visible"
                             >
-                              <animateMotion
-                                rotate="auto"
-                                begin="1s"
-                                dur="15s"
-                                repeatCount="1"
-                                fill="freeze"
+                              <g
+                                id="Page-1"
+                                stroke="none"
+                                stroke-width="1"
+                                fill="none"
+                                fill-rule="evenodd"
+                                sketch:type="MSPage"
                               >
-                                <mpath xlink:href="#Path-1" />
-                              </animateMotion>
-                            </polyline>
-                          </g>
-                        
-                        </svg>
-                      </div>
-                        <b-row align-v="center" class="w-100 forward">
-                          <b-col>
-                            <p class="m-auto">
-                              Средняя цена на приложение со стеком
-                              {{ projects[projects.length - 1].stack }}:
-                            </p>
-                          </b-col>
-                          <b-col class="col-3">
-                            <h3 class="m-auto">$ {{ avg_price }}</h3>
-                          </b-col>
-                        </b-row>
+                                <path
+                                  d="M2.10546875,95.75 L40.5546875,68.3476562 L55.2109375,81.1796875 L65.2148437,76.3945312 L96.1835937,86.8320312 L131.023438,19.9414062 L142.15625,23.7226562 L183.605469,2.1953125 L211.007812,22.3320312 L234.320312,71.5664062 L234.667969,83.0039062 L244.019531,83.0039062 L247.105469,88.8320312 L312.695312,104.839844"
+                                  id="Path-1"
+                                  stroke="#e7ecef"
+                                  stroke-width="4"
+                                  sketch:type="MSShapeGroup"
+                                  class="path"
+                                ></path>
 
-                        <b-row align-v="center" class="forward">
-                          <b-col
-                            ><p class="m-auto">
-                              Средняя продолжительность проекта (в днях):
-                            </p></b-col
-                          >
-                          <b-col class="col-3">
-                            <h3 class="m-auto">{{ avg_days }}</h3>
-                          </b-col>
-                        </b-row>
-                      </div>
+                                <polyline
+                                  id="arrow"
+                                  points="0,-5 10,0 0,5 1,0"
+                                  fill="#e7ecef"
+                                >
+                                  <animateMotion
+                                    rotate="auto"
+                                    begin="1s"
+                                    dur="15s"
+                                    repeatCount="1"
+                                    fill="freeze"
+                                  >
+                                    <mpath xlink:href="#Path-1" />
+                                  </animateMotion>
+                                </polyline>
+                              </g>
+                            </svg>
+                          </div>
+                          <b-row align-v="center" class="w-100 forward">
+                            <b-col>
+                              <p class="m-auto">
+                                Средняя цена на приложение со стеком
+                                {{ projects[projects.length - 1].stack }}:
+                              </p>
+                            </b-col>
+                            <b-col class="col-3">
+                              <h3 class="m-auto">$ {{ avg_price }}</h3>
+                            </b-col>
+                          </b-row>
 
-                      
-                    </div>
-                  </b-col>
-                </b-row>
-              </div>
-            </b-row>
+                          <b-row align-v="center" class="forward">
+                            <b-col
+                              ><p class="m-auto">
+                                Средняя продолжительность проекта (в днях):
+                              </p></b-col
+                            >
+                            <b-col class="col-3">
+                              <h3 class="m-auto">{{ avg_days }}</h3>
+                            </b-col>
+                          </b-row>
+                        </div>
+                      </div>
+                    </b-col>
+                  </b-row>
+                </div>
+              </b-row>
+            </b-container>
+
             <b-row align-v="center" v-else class="p-0 m-0 no-result">
               <div class="mr-5 ml-5 w-100 box2">
                 <no-result></no-result>
@@ -203,9 +204,9 @@
               align-v="center"
               class="text-center m-5"
             >
-              <div class="col-1 pl-2 text-left">
+              <b-col cols="2" md="1" class="pl-2 text-left">
                 <i class="fas fa-tasks projects-icon icon"></i>
-              </div>
+              </b-col>
               <div class="col p-0 text-left">
                 <h3>ALL PROJECTS FINISHED ANALYSIS</h3>
               </div>
@@ -220,10 +221,10 @@
                   v-if="
                     item.predicted_price != null && index != projects.length - 1
                   "
-                  class=" ml-5 mr-5 mb-5"
+                  class="ml-5 mr-5 mb-5"
                 >
-                  <b-row align-v="stretch"  class="p-0 m-0 anketa-box">
-                    <b-col class="col-4 p-4 mr-5 pr-col" >
+                  <b-row align-v="stretch" class="p-0 m-0 anketa-box">
+                    <b-col class="col-4 p-4 mr-5 pr-col">
                       <h5 class="name-box w-100 text-center p-2 mx-auto">
                         {{ item.name }} on {{ item.stack }}
                       </h5>
@@ -255,7 +256,7 @@
                         <h1>Soon</h1>
                       </div>
                     </b-col>
-                    <b-col class="p-4 " style="">
+                    <b-col class="p-4" style="">
                       <p class="m-0">
                         <small>Predicted date</small>
                       </p>
@@ -268,10 +269,8 @@
                         <h1>Soon</h1>
                       </div>
                     </b-col>
-                    <b-col  class="pr-button col ">
-                      
-                      <div class="m-auto" ><p>View answers</p></div>
-                      
+                    <b-col class="pr-button col">
+                      <div class="m-auto"><p>View answers</p></div>
                     </b-col>
                   </b-row>
                 </div>
@@ -368,7 +367,7 @@ export default {
       color: $ylw;
     }
   }
-  .pr-col{
+  .pr-col {
     background-color: #a3cef1;
     border-radius: 20px 0 0 20px;
   }
@@ -387,14 +386,16 @@ export default {
       }
     }
   }
-  .pr-button{
-    background-color:#FFD037;
+  .pr-button {
+    background-color: #ffd037;
     border-radius: 0 20px 20px 0;
-     display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    p{color:white;}
-    
+    p {
+      color: white;
+    }
+
     text-align: center;
   }
 }
@@ -418,7 +419,7 @@ export default {
 //     box-shadow: 0 0 0 350px rgba(#a3cef1, 1);
 //     content: "";
 //   }
-  
+
 // }
 
 .user-icon {
@@ -470,8 +471,8 @@ export default {
 
 .graph__wrapper {
   position: absolute;
-  top:0px;
-  left:10%;
+  top: 0px;
+  left: 10%;
   z-index: 1;
   // width: 400px;
   // margin: 30px auto;
