@@ -1,22 +1,22 @@
 <template>
   <div class="projects">
-    <b-row align-h="center" class="w-100 m-0">
+    <b-row align-h="center" class="w-100 m-0 ">
       <b-container class="w-100 d-flex align-items-stretch col-2 p-0">
         <side-bar-account></side-bar-account>
       </b-container>
 
-      <b-container class="col p-0 ml-0">
+      <b-container class="col p-0 ml-0 ">
         <b-container fluid class="p-0 ml-0">
-          <b-row align-v="center" class="mr-0 p-0">
-            <b-col>
+          <b-row align-v="center" class="mr-5 ml-5 pt-4 pb-4 justify-content-between">
+            <b-col class="col p-0">
               <b-row
                 align-v="center"
-                class="text-center justify-content-center m-4"
+                class="text-left "
               >
                 <b-col class="col">
                   <i class="fa fa-user-circle user-icon"></i>
                 </b-col>
-                <b-col class="col-9 text-left d-none d-lg-block">
+                <b-col class="col-9 p-0 text-left d-none d-lg-block">
                   <h5>Hello, {{ user_username }}!</h5>
                   <b-row align-v="center" class="ml-0">
                     <i class="text-center m-1 fa fa-envelope mail-icon"></i>
@@ -26,14 +26,14 @@
               </b-row>
             </b-col>
             <!-- <p>{{ projects }}</p> -->
-            <b-col class="p-0">
-              <b-row align-h="center" align-v="center" class="text-left mr-3">
-                <div class="bellhold">
+            <b-col class="p-0 col-4">
+              <b-row align-v="center"  class="text-center m-0">
+                <div class="bellhold ml-auto">
                   <i class="text-center fa fa-bell bell-icon"></i>
                   <span class="badgex badge-danger">6</span>
                 </div>
                 <router-link to="/logout">
-                  <div class="m-5">
+                  <div class="ml-5">
                     <a
                       href="#"
                       class="btn text-uppercase w-100 mx-auto d-none d-lg-block"
@@ -196,7 +196,7 @@
             </b-container>
 
             <b-row align-v="center" v-else class="p-0 m-0 no-result">
-              <div class="mr-5 ml-5 w-100 box2">
+              <div class="mr-5 ml-5 mt-5 w-100 box2">
                 <no-result></no-result>
               </div>
             </b-row>
