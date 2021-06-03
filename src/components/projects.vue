@@ -48,7 +48,7 @@
               </b-row>
             </b-col>
           </b-row>
-          <!-- <p>{{ projects }}</p> -->
+          <!-- <p>{{ user_id }}</p> -->
           <b-container fluid class="w-100 overview p-0 pb-5">
             <b-row align-v="center" class="text-center ml-5">
               <b-col cols="2" md="1" class="mt-5 text-left">
