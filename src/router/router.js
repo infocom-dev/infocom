@@ -9,7 +9,6 @@ import projects from '../components/projects';
 import Login from '../components/Login';
 import Register from '../components/Register';
 import Loading from '../components/Loading'
-import Window from '../components/window'
 import store from '../store';
 
 const requireAuthenticated = (to, from, next) => {
@@ -76,11 +75,6 @@ let router = new Router({
             component: projects,
             beforeEnter: requireAuthenticated
         },
-        {
-            path :'/account/projects/details',
-            name :'window',
-            component: Window,
-        }
     ]
 })
 
