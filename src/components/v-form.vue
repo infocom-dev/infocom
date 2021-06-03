@@ -60,7 +60,6 @@
                 header-text-variant="light"
                 header-bg-variant="primary"
               >
-          
                 <v-question-item
                   :set="set"
                   :question_data="questions"

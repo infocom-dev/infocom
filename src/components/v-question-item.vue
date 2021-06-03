@@ -129,10 +129,10 @@
         </div>
       </div>
     </div>
-    <div>
+    <!-- <div>
       Selected: <strong>{{ selectedAnswers2 }}</strong>
       <p>{{question_data}}</p>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -192,7 +192,6 @@ export default {
     },
     sendAnswers() {
       let v = [];
-      
       for (let i = 0; i < this.selectedAnswers.length; i++) {
         if (this.question_data[i].type == "selected") {
           v[i] = {
@@ -220,8 +219,6 @@ export default {
           };
         }
       }
-      console.log(v)
-      this.debug = v;
       return v;
     },
     addTag(newTag) {
