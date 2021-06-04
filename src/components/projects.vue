@@ -356,7 +356,7 @@ export default {
         console.log(err);
       });
     const token = localStorage.getItem("TOKEN_STORAGE_KEY");
-    // console.log(token)
+  
     axios
       .get("/auth/user/", { headers: { Authorization: `Token ${token}` } })
       .then((response) => {

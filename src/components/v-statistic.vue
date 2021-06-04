@@ -81,6 +81,7 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 import animatedNumber from "./animated-number.vue";
 export default {
   components: {
@@ -112,9 +113,9 @@ export default {
       ],
 
       statistic: [
-        { name: "Выполненных заказов", max: 500 },
-        { name: "Заказов в разработке", max: 200 },
-        { name: "Сотрудников в компании", max: 3 },
+        // { name: "Выполненных заказов", max: 500 },
+        // { name: "Заказов в разработке", max: 200 },
+        // { name: "Developers in the company", max: 0 },
       ],
       statistic_icons: [
         "fas fa-check-circle icon",
@@ -141,6 +142,32 @@ export default {
     window.addEventListener("scroll", this.onScroll);
     this.onScroll();
   },
+
+  created() {
+    let req = [{text : "Developers in the company", r:"/getDevelopers/"},
+           {r:"/getCustomers/",text:"Users on our site"},
+           {r:'/getProjects/',text:"Completed orders"}]
+    for(let i = 0;i < req.length;i++){
+      axios.get(req[i].r)
+      .then((response) => {
+        this.statistic.push({"name": req[i].text ,"max": response.data.length});
+        console.log(this.statistic);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+    // axios.get("/getDevelopers/")
+    //   .then((response) => {
+    //     this.statistic[2].max = response.data.length;
+    //     console.log(this.statistic.max[2]);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+      
+  }
 };
 </script>
 <style lang="scss">
