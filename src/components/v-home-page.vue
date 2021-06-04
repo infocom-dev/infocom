@@ -20,7 +20,6 @@
       <section>
         <v-calculation></v-calculation>
       </section>
-
       <section class="links">
         <Footer></Footer>
       </section>

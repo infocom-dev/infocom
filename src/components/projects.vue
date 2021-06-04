@@ -1,18 +1,18 @@
 <template>
   <div class="projects">
-    <b-row align-h="center" class="w-100 m-0 ">
+    <b-row align-h="center" class="w-100 m-0">
       <b-container class="w-100 d-flex align-items-stretch col-2 p-0">
         <side-bar-account></side-bar-account>
       </b-container>
 
-      <b-container class="col p-0 ml-0 ">
+      <b-container class="col p-0 ml-0">
         <b-container fluid class="p-0 ml-0">
-          <b-row align-v="center" class="mr-5 ml-5 pt-4 pb-4 justify-content-between">
+          <b-row
+            align-v="center"
+            class="mr-5 ml-5 pt-4 pb-4 justify-content-between"
+          >
             <b-col class="col p-0">
-              <b-row
-                align-v="center"
-                class="text-left "
-              >
+              <b-row align-v="center" class="text-left">
                 <b-col class="col">
                   <i class="fa fa-user-circle user-icon"></i>
                 </b-col>
@@ -27,7 +27,7 @@
             </b-col>
             <!-- <p>{{ projects }}</p> -->
             <b-col class="p-0 col-4">
-              <b-row align-v="center"  class="text-center m-0">
+              <b-row align-v="center" class="text-center m-0">
                 <div class="bellhold ml-auto">
                   <i class="text-center fa fa-bell bell-icon"></i>
                   <span class="badgex badge-danger">6</span>
@@ -95,10 +95,17 @@
                         </p>
                       </div>
                       <div v-else class="text-center mb-4">
-                        <h5>
-                          Наша нейронная сеть оценала заказ в $
-                          {{ projects[projects.length - 1].predicted_price }}.
-                        </h5>
+                        <p>Our neural network estimated the order at</p>
+                        <h3>
+                          <strong
+                            >₽
+                            {{
+                              projects[projects.length - 1].predicted_price
+                            }}</strong
+                          >
+                        </h3>
+                        <p>Approximate execution time</p>
+                        <h3><strong>{{projects[projects.length - 1].start_date}}</strong> to <strong>{{projects[projects.length - 1].predict_end_date}}</strong></h3>
                       </div>
                     </b-col>
                     <b-col
@@ -119,7 +126,7 @@
                       >
                         <div>
                           <h5 class="text-center forward">
-                            Почему получилась такая стоимость?
+                            Why did you get such a price?
                           </h5>
                           <hr class="forward" />
                           <div class="graph__wrapper m-auto">
@@ -165,28 +172,50 @@
                               </g>
                             </svg>
                           </div>
-                          <b-row align-v="center" class="w-100 forward">
-                            <b-col cols="9" md="10">
-                              <p class="m-auto">
-                                Средняя цена на приложение со стеком
-                                {{ projects[projects.length - 1].stack }}:
-                              </p>
-                            </b-col>
-                            <b-col cols="3" md="2">
-                              <h3 class="m-auto">${{ avg_price }}</h3>
-                            </b-col>
-                          </b-row>
+                          
+                          <ol><b-col>
+                            <li class="forward">
+                              <b-row align-v="center" class=" forward justify-content-between">
+                                <b-col cols="7"  md="8">
+                                  <p class="m-auto">
+                                    Average price per app with a stack
+                                    
 
-                          <b-row align-v="center" class="forward pt-3">
-                            <b-col cols="9" md="10"
-                              ><p class="m-auto">
-                                Средняя продолжительность проекта (в днях):
-                              </p></b-col
-                            >
-                            <b-col cols="3" md="2">
-                              <h3 class="m-auto">{{ avg_days }}</h3>
-                            </b-col>
-                          </b-row>
+                                    {{ projects[projects.length - 1].stack }}:
+                                  </p>
+                                </b-col>
+                                <b-col cols="5" md="4">
+                                  <h3 class="text-right">₽ 
+                                    <!-- {{ avg_price }} -->
+                                    25000
+                                    </h3>
+                                </b-col>
+                              </b-row>
+                            </li>
+                            <li>
+                              <b-row align-v="center" class="forward pt-3">
+                                <b-col cols="6" md="8" 
+                                  ><p class="m-auto">
+                                    Average project duration (in days):
+                                  </p></b-col
+                                >
+                                <b-col cols="6" md="4">
+                                  <h3 class="text-right">{{ avg_days }}</h3>
+                                </b-col>
+                              </b-row>
+                            </li>
+                            <li>
+                              <b-row align-v="center" class="forward pt-3">
+                                <b-col cols="9" md="10"
+                                  ><p class="m-auto">
+                                    This stack takes the
+                                    <strong>3</strong> place in popularity on
+                                    our site
+                                  </p>
+                                </b-col>
+                              </b-row>
+                            </li>
+                          </b-col></ol>
                         </div>
                       </div>
                     </b-col>
@@ -201,7 +230,7 @@
               </div>
             </b-row>
             <b-row
-              v-if="projects.length > 1"
+              v-if="projects.length"
               align-v="center"
               class="text-center mr-5 ml-5"
             >
@@ -212,20 +241,15 @@
                 <h3>ALL PROJECTS FINISHED ANALYSIS</h3>
               </div>
             </b-row>
-            <div v-if="projects.length > 1">
+            <div v-if="projects.length">
               <div
                 v-for="(item, index) in projects"
                 :key="index"
                 class="w-100 p-0"
               >
-                <div
-                  v-if="
-                    item.predicted_price != null && index != projects.length - 1
-                  "
-                  class="m-5"
-                >
+                <div v-if="item.predicted_price != null" class="m-5">
                   <b-row align-v="stretch" class="p-0 m-0 anketa-box">
-                    <b-col cols="12" md="4" class="p-4  pr-col">
+                    <b-col cols="12" md="4" class="p-4 pr-col">
                       <h5 class="name-box w-100 text-center p-2 mx-auto">
                         {{ item.name }} on {{ item.stack }}
                       </h5>
@@ -235,7 +259,7 @@
                       </div>
                       <div
                         v-else-if="
-                          !item.is_active && item.real_end_date != null
+                          !item.is_active && item.real_price != null
                         "
                       >
                         <h1>Finnished</h1>
@@ -244,33 +268,38 @@
                         <h1>From analysis</h1>
                       </div>
                     </b-col>
-                    <b-col cols="12" md="3" class=" p-4 " style="">
+                    <b-col cols="12" md="3" class="p-4" style="">
                       <p class="m-0">
                         <small>Predicted price</small>
                       </p>
                       <h3>$ {{ item.predicted_price }}</h3>
                       <p class="m-0">Real price</p>
-                      <div v-if="!item.is_active && item.real_end_date != null">
+                      <div v-if="!item.is_active && item.real_price != null">
+
+                        
                         <h3>$ {{ item.real_price }}</h3>
+
+
+
                       </div>
                       <div v-else>
                         <h3>Soon</h3>
                       </div>
                     </b-col>
-                    <b-col cols="12" md="4"  class="p-4" style="">
+                    <b-col cols="12" md="4" class="p-4" style="">
                       <p class="m-0">
                         <small>Predicted date</small>
                       </p>
                       <h3>{{ item.predict_end_date }}</h3>
                       <p class="m-0">Real date</p>
-                      <div v-if="!item.is_active && item.real_end_date != null">
-                        <h3>{{ item.real_end_date }}</h3>
+                      <div v-if="!item.is_active && item.real_price != null">
+                        <h3>{{item.real_end_date}}</h3>
                       </div>
                       <div v-else>
                         <h3>Soon</h3>
                       </div>
                     </b-col>
-                    <b-col cols="12" md="1"  class="pr-button ">
+                    <b-col cols="12" md="1" class="pr-button">
                       <div class="m-auto"><p>View answers</p></div>
                     </b-col>
                   </b-row>
@@ -351,7 +380,9 @@ export default {
         console.log(err);
       });
   },
-  methods: {},
+  methods: {
+    viewAnswers(){}
+  },
 };
 </script>
 <style lang="scss">
@@ -368,14 +399,40 @@ export default {
       color: $ylw;
     }
   }
+  // hr {
+  //   background-color: $rs;
+  //   height: 2px;
+  //   border: 0;
+  // }
+
   hr {
-    background-color: $rs;
-    height: 5px;
     border: 0;
+    height: 4px;
+    margin: 30px 0;
+    background-image: linear-gradient(
+      to right,
+      $rs 50%,
+      $blu 70%,
+      #a3cef1 100%
+    );
   }
+  li {
+    color: $rs;
+    font-weight: bold;
+
+    p {
+      font-style: normal;
+      font-weight: lighter;
+    }
+    h3 {
+      font-style: normal;
+      font-weight: bold;
+    }
+  }
+
   .pr-col {
     background-color: #a3cef1;
-    // border-radius: 20px 0 0 20px;
+    border-radius: 20px 0 0 20px;
   }
   .no-result {
     .box2 {
@@ -394,7 +451,7 @@ export default {
   }
   .pr-button {
     background-color: #ffd037;
-    // border-radius: 0 20px 20px 0;
+    border-radius: 0 20px 20px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -464,7 +521,7 @@ export default {
 
 .graph__wrapper {
   position: absolute;
-  top: 0px;
+  top: 70px;
   left: 10%;
   z-index: 1;
   // width: 400px;
