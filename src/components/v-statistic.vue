@@ -1,5 +1,5 @@
 <template>
-  <div class="statistic p-0">
+  <div class="v-statistic p-0">
     <b-container fluid class="w-100 justify-content-center p-0">
       <div class="mx-auto pt-3">
         <h1 class="text-center text-uppercase font-weight-bolder">
@@ -82,57 +82,14 @@
 </template>
 <script>
 import animatedNumber from "./animated-number.vue";
-
-// import Graph from "./Graph.vue";
 export default {
   components: {
     animatedNumber,
-    // Graph,
   },
 
   data() {
     return {
-      options: {
-        chart: {
-          type: "area",
-        },
-        dataLabels: {
-          enabled: false,
-        },
-        stroke: {
-          curve: "smooth",
-        },
-        xaxis: {
-          categories: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-        },
-        title: {
-          align: "center",
-          style: {
-            fontSize: "20px",
-          },
-        },
-        colors: ["#FFD334"],
-      },
-
-      series: [
-        {
-          name: "series1",
-          data: [31, 40, 28, 51, 42, 109, 100],
-        },
-      ],
+      
       top: 0,
       s: "",
       ind: 0,
@@ -187,7 +144,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.statistic {
+.v-statistic {
   .box2 {
     overflow: hidden;
     position: relative;

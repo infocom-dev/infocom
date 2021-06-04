@@ -15,7 +15,7 @@
         <v-tecnology> </v-tecnology>
       </section>
       <section id="statistic">
-        <statistic></statistic>
+        <v-statistic></v-statistic>
       </section>
       <section>
         <v-calculation></v-calculation>
@@ -38,7 +38,7 @@ import Footer from "./Footer.vue";
 import vServicesVue from "./v-services.vue";
 import vTecnology from "./v-tecnology";
 // import VCalculation from "./v-calculation.vue";
-import Statistic from "./statistic";
+import VStatistic from "./v-statistic";
 import VCalculation from "./v-calculation.vue";
 // import ContactUs from "./contact-us.vue";
 export default {
@@ -51,11 +51,10 @@ export default {
     VHome,
 
     vTecnology,
-    // VCalculation,
+
     Footer,
-    Statistic,
+    VStatistic,
     VCalculation,
-    // ContactUs,
   },
   data() {
     return {};
