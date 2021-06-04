@@ -18,7 +18,7 @@
         <v-statistic></v-statistic>
       </section>
       <section>
-        <v-calculation></v-calculation>
+        <v-steps></v-steps>
       </section>
       <section class="links">
         <Footer></Footer>
@@ -33,28 +33,22 @@ import "aos/dist/aos.css";
 import VHome from "./v-home";
 import VStack from "./v-stack.vue";
 import NavBar from "./NavBar.vue";
-import vCalculation from "./v-calculation";
 import Footer from "./Footer.vue";
 import vServicesVue from "./v-services.vue";
 import vTecnology from "./v-tecnology";
-// import VCalculation from "./v-calculation.vue";
 import VStatistic from "./v-statistic";
-import VCalculation from "./v-calculation.vue";
-// import ContactUs from "./contact-us.vue";
+import VSteps from "./v-steps.vue";
 export default {
   name: "v-home-page",
   components: {
     NavBar,
     VStack,
     vServicesVue,
-    vCalculation,
+    VSteps,
     VHome,
-
     vTecnology,
-
     Footer,
     VStatistic,
-    VCalculation,
   },
   data() {
     return {};
