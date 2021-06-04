@@ -1,5 +1,5 @@
 <template>
-  <div class="v-skills p-5">
+  <div class="v-stack p-5">
     <div class="p-5">
       <b-container fluid class="p-0">
         <b-row align-v="center" class="mx-auto justify-content-center">
@@ -32,15 +32,14 @@
 </template>
 <script>
 export default {
-  name: "v-skills",
+  name: "v-stack",
 };
 </script>
 <style lang="scss">
 @import "../assets/styles/base.scss";
-.v-skills {
-  background: url("../assets/images/bg_skills4.png") no-repeat center;
+.v-stack {
+  background: url("../assets/images/bg_stack.png") no-repeat center;
   background-size: cover;
-  // width: 1440px;
-  // height: 750px;
+
 }
 </style>

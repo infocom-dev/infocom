@@ -8,8 +8,8 @@
       <section id="services" class="service">
         <v-services-vue></v-services-vue>
       </section>
-      <section id="skills" class="skills">
-        <v-skills></v-skills>
+      <section id="stack" class="stack">
+        <v-stack></v-stack>
       </section>
       <section>
         <v-tecnology> </v-tecnology>
@@ -31,7 +31,7 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import VHome from "./v-home";
-import VSkills from "./v-skills.vue";
+import VStack from "./v-stack.vue";
 import NavBar from "./NavBar.vue";
 import vCalculation from "./v-calculation";
 import Footer from "./Footer.vue";
@@ -45,7 +45,7 @@ export default {
   name: "v-home-page",
   components: {
     NavBar,
-    VSkills,
+    VStack,
     vServicesVue,
     vCalculation,
     VHome,
