@@ -1,6 +1,7 @@
 from rest_framework import serializers
-
-from backend.api.models import AnswersOption, Question, Customer, Developer, Project, Stack
+from rest_auth.registration.serializers import RegisterSerializer
+from django.db import transaction
+from backend.api.models import AnswersOption, Question, Customer, Project, Stack
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -65,18 +66,6 @@ class CustomerSerializerEmail(serializers.ModelSerializer):
         fields = "email"
 
 
-class DeveloperSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Developer
-        fields = "__all__"
-
-
-from rest_auth.registration.serializers import RegisterSerializer
-from django.db import transaction
-from backend.api.models import CustomUser
-
-
-# должны быть все поля, что и в кастомере (женя помоги написать)
 class CustomRegisterSerializer(RegisterSerializer):
     phone = serializers.CharField(max_length=16)
 
@@ -88,7 +77,6 @@ class CustomRegisterSerializer(RegisterSerializer):
         return user
 
 
-# должны быть все поля, что и в кастомере (женя помоги написать)
 class CustomUserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer

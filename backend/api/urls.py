@@ -7,17 +7,14 @@ urlpatterns = ([
     # Questions
     path("getQuestions/", views.QuestionViewSet.as_view({'get': 'list'})),
     path("createQuestion/", views.QuestionViewSet.as_view({'post': 'create'})),
+    path("getQuestionById/<int:pk>", views.QuestionViewSet.as_view({'get': 'retrieve'})),
+    path("deleteQuestion/<int:pk>", views.QuestionViewSet.as_view({'delete': 'destroy'})),
     # Customer
     path("createCustomer/", views.CustomerViewSet.as_view({'post': 'create'})),
     path("getCustomers/", views.CustomerViewSet.as_view({'get': 'list'})),
+    path("updateCustomer<int:pk>", views.CustomerViewSet.as_view({'put': 'update'})),
     path("getCustomerById/<int:pk>", views.CustomerViewSet.as_view({'get': 'retrieve'})),
-    path("deleteCustomer/<str:pk>", views.CustomerViewSet.as_view({'delete': 'destroy'})),
-
-    # Developer
-    path("createDeveloper/", views.DeveloperViewSet.as_view({'post': 'create'})),
-    path("getDevelopers/", views.DeveloperViewSet.as_view({'get': 'list'})),
-    path("getDeveloperById/<int:pk>", views.DeveloperViewSet.as_view({'get': 'retrieve'})),
-    path("deleteDeveloper/<int:pk>", views.DeveloperViewSet.as_view({'delete': 'destroy'})),
+    path("deleteCustomer/<int:pk>", views.CustomerViewSet.as_view({'delete': 'destroy'})),
 
     # Project
     path("createProject/", views.ProjectViewSet.as_view({'post': 'create'})),
