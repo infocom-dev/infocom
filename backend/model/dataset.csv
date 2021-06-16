@@ -1,0 +1,75 @@
+id,type,purpose,stack,predicted_count_users,payment_system,geolocation,budget,design,adaptability,product_delivery,integration_systems,integration_systems_API,required_DB,languages,final_price,development_time,
+1,site,shop,Django,1200,yes,yes,100-1000,exist,adaptive,full_deployment,yes,yes,yes,"en, ru",1000,160,73550
+2,chat-bot,shop,Python,10,yes,no,20-400,template,fixed,full_deployment,no,no,yes,ru,400,80,29420
+3,site,landing_page,Django,5000,yes,yes,1000-8000,individual,adaptive,full_deployment,yes,yes,yes,"ru, en",4500,414,330975
+4,site,web_application,Flask,2000,no,yes,500-3000,template,adaptive,integration,no,no,yes,ru,860,80,63253
+5,site,landing_page,Tilda,150,no,no,100-300,template,fixed,integration,no,no,no,en ,290,60,"21329,5"
+6,chat-bot,sales_funnel,Python,1000,yes,no,1000-4000,individual,fixed,Saas,yes,yes,yes,"ru, en",3000,350,220650
+7,chat-bot,quiz,PHP,200,yes,no,220-300,exist,fixed,Saas,yes,no,yes,ru,390,100,"28684,5"
+8,chat-bot,quiz,Python,90,no,yes,100-500,template,fixed,integration,yes,no,yes,ru,450,120,"33097,5"
+9,site,shop,PHP,600,yes,yes,1000-2000,individual,adaptive,integration,yes,no,yes,"ru, en",1942,129,"142834,1"
+10,chat-bot,other,Python,50,no,no,300-350,template,fixed,Saas,yes,no,no,ru,250,16,"18387,5"
+11,site,shop,PHP,5000,yes,no,1000-10000,individual,adaptive,Saas,yes,yes,yes,ru,4500,408,330975
+12,site,quiz,WordPress,200,no,no,100-200,individual,fixed,full_deployment,yes,yes,yes,ru,270,29,"19858,5"
+13,chat-bot,web_application,Python,50,no,no,4000-6000,template,adaptive,full_deployment,no,no,yes,"ru, en, fr",5000,590,367750
+14,chat-bot,poll,Python,120,no,no,0-150,template,fixed,integration,no,no,no,ru,230,12,"16916,5"
+15,site,blog,Tilda,100,no,yes,500-2000,template,adaptive,Saas,no,no,yes,ru,800,31,58840
+16,site,other,Django,400,yes,no,1000-5000,individual,adaptive,integration,no,yes,yes,ru,1432,83,"105323,6"
+17,chat-bot,sales_funnel,Laravel,3000,yes,no,2000-2100,template,adaptive,full_deployment,yes,no,no,en,1800,89,132390
+18,site,landing_page,WordPress,700,no,no,500-510,tamplate,adaptive,Saas,no,no,no,en,500,22,36775
+19,site,blog,Tilda,500,no,no,300-600,tamplate,adaptive,Saas,no,no,yes,ru,430,18,"31626,5"
+20,site,blog,Flask,50,yes,no,100-1000,exist,adaptive,full_deployment,no,no,yes,ru,800,60,58840
+21,chat-bot,poll,Python,10,no,yes,100-1000,template,fixed,integration,yes,yes,no,ru,200,50,14710
+22,site,web_application,Django,200,no,no,1000-2000,template,fixed,full_deployment,yes,yes,yes,ru,1500,110,110325
+23,site,quiz,Tilda,20,no,yes,100-500,template,adaptive,Saas,yes,yes,no,ru,400,40,29420
+24,chat-bot,shop,Python,100,yes,no,100-1000,exist,adaptive,Saas,yes,yes,yes,"ru, en, de, fr",1500,170,110325
+25,site,shop,WordPress,500,yes,yes,100-1000,template,adaptive,Saas,yes,yes,yes,"ru, en",1000,40,73550
+26,chat-bot,sales_funnel,Python,14000,yes,yes,500-5000,individual,fixed,full_deployment,yes,yes,yes,"en, ru",2122,90,"156073,1"
+27,chat-bot,sales_funnel,Tilda,1500,yes,no,0-2000,template,fixed,Saas,no,no,no,"ru, en",631,31,"46410,05"
+28,site,other,C#,300,no,no,200-800,exist,fixed,Saas,yes,no,no,en,590,24,"43394,5"
+29,chat-bot,poll,Other,200,no,no,100-370,exist,fixed,Saas,yes,no,no,"en, ru",420,18,30891
+30,chat-bot,other,Python,100,no,yes,700-3200,individual,adaptive,full_deployment,yes,yes,yes,ru,2900,227,213295
+31,chat-bot,web_application,C/C++,500,no,no,1270-3770,individual,fixed,full_deployment,no,no,yes,ru,3100,160,228005
+32,chat-bot,web_application,C/C++,500,no,no,1270-3770,individual,adaptive,full_deployment,no,no,yes,ru,3400,170,250070
+33,chat-bot,web_application,C/C++,500,no,no,1270-3770,individual,fixed,integration,yes,yes,yes,ru,2800,140,205940
+34,site,blog,Tilda,1100,no,yes,500-700,tamplate,adaptive,Saas,yes,no,yes,ru,584,27,"42953,2"
+35,site,blog,JS,100,yes,no,0-1000,exist,adaptive,full_deployment,no,no,yes,ru,780,44,57369
+36,site,shop,PHP,600,yes,no,1000-1200,template,adaptive,integration,no,no,yes,"ru, en",1589,209,"116870,95"
+37,chat-bot,other,Python,200,no,no,100-400,template,fixed,Saas,no,no,yes,"ru, en",240,15,17652
+38,site,shop,PHP,5000,yes,no,1000-8000,individual,adaptive,integration,yes,yes,yes,"ru, en",4230,580,"311116,5"
+39,chat-bot,other,Python,300,yes,yes,700-2000,exist,adaptive,Saas,yes,yes,yes,"ru, en",2755,214,"202630,25"
+40,chat-bot,sales_funnel,Python,1000,yes,yes,0-2000,individual,adaptive,Saas,yes,no,no,"ru, en",890,39,"65459,5"
+41,site,other,C#,300,no,no,200-800,exist,fixed,Saas,yes,no,no,en,590,24,"43394,5"
+42,chat-bot,poll,Python,150,no,no,0-500,template,fixed,Saas,yes,no,no,"en, ru",392,16,"28831,6"
+43,chat-bot,other,Python,50,no,no,300-350,template,fixed,Saas,yes,no,no,ru,250,16,"18387,5"
+44,chat-bot,other,Python,50,no,no,300-350,individual,fixed,Saas,yes,no,no,ru,400,30,29420
+45,chat-bot,other,Python,50,no,no,300-350,exist,fixed,Saas,yes,no,no,ru,200,14,14710
+46,chat-bot,other,Python,50,no,no,300-350,template,fixed,full_deployment,yes,no,no,ru,290,25,"21329,5"
+47,chat-bot,other,Python,50,no,no,300-350,template,fixed,Saas,yes,yes,no,ru,200,16,14710
+48,site,web_application,Django,200,no,no,1000-2000,template,fixed,full_deployment,yes,yes,yes,ru,1500,100,110325
+49,site,web_application,Django,200,no,no,1000-2000,template,adaptive,full_deployment,yes,yes,yes,ru,2500,150,183875
+50,site,web_application,Django,200,no,no,1000-2000,template,fixed,integration,yes,yes,yes,ru,1500,90,110325
+51,site,web_application,Django,200,no,no,1000-2000,template,fixed,full_deployment,yes,no,yes,ru,2000,100,147100
+52,site,web_application,Django,200,no,no,1000-2000,template,fixed,full_deployment,yes,yes,yes,"ru, en, de",1700,100,125035
+53,site,landing_page,Tilda,150,no,no,100-300,template,fixed,integration,no,no,no,en ,290,60,"21329,5"
+54,chat-bot,sales_funnel,Python,1000,yes,no,1000-4000,individual,fixed,Saas,yes,yes,yes,"ru, en",3000,350,220650
+55,site,landing_page,WordPress,2000,no,yes,100-2000,individual,adaptive,Saas,yes,no,no,"ru, en",1515,121,"111428,25"
+56,site,landing_page,WordPress,1000,no,yes,100-500,tamplate,fixed,Saas,yes,no,no,en,540,29,39717
+57,site,landing_page,WordPress,1000,no,yes,400-800,tamplate,adaptive,Saas,yes,no,yes,ru,600,33,44130
+58,site,landing_page,WordPress,2000,yes,yes,500-1000,tamplate,adaptive,Saas,yes,no,yes,ru,800,56,58840
+59,site,landing_page,WordPress,2000,yes,yes,500-1000,individual,adaptive,Saas,yes,no,yes,ru,1194,68,"87818,7"
+60,site,landing_page,WordPress,1800,yes,yes,0-1000,individual,adaptive,full_deployment,yes,no,yes,ru,1280,79,94144
+61,site,landing_page,WordPress,1900,yes,yes,500-1500,exist,adaptive,Saas,yes,no,yes,ru,980,59,72079
+62,site,landing_page,WordPress,1900,no,yes,0-1000,template,adaptive,Saas,yes,no,yes,ru,720,45,52956
+63,site,landing_page,Tilda,1000,no,yes,100-1000,template,adaptive,Saas,no,no,no,"ru, en",528,47,"38834,4"
+64,site,landing_page,Tilda,1000,yes,yes,100-1000,template,adaptive,Saas,no,no,yes,"ru, en",650,61,"47807,5"
+65,site,landing_page,Tilda,1000,yes,yes,100-1000,template,adaptive,Saas,yes,no,no,"ru, en",740,68,54427
+66,site,landing_page,Tilda,1000,yes,yes,100-1000,individual,adaptive,Saas,yes,no,no,"ru, en",1045,81,"76859,75"
+67,site,landing_page,Tilda,1000,no,yes,100-1000,exist,adaptive,Saas,no,no,no,"ru, en",480,23,35304
+68,site,landing_page,Tilda,1000,no,yes,100-1000,exist,adaptive,Saas,yes,no,no,"ru, en",590,38,"43394,5"
+69,site,blog,Tilda,500,no,yes,100-1000,template,adaptive,Saas,no,no,yes,"ru, en",610,23,"44865,5"
+70,site,blog,JS,100,yes,no,0-1000,exist,adaptive,full_deployment,no,no,yes,ru,780,44,57369
+71,site,blog,Tilda,800,no,yes,500-100,individual,adaptive,full_deployment,yes,no,yes,ru,862,90,"63400,1"
+72,site,landing_page,WordPress,500,no,yes,100-2000,individual,adaptive,full_deployment,yes,yes,no,ru,1900,142,139745
+73,site,shop,Django,1500,yes,yes,1000-2000,individual,adaptive,integration,yes,no,yes,"ru, en",1360,106,100028
+73,site,shop,WordPress,200,yes,yes,1000-2000,template,adaptive,integration,yes,no,yes,"ru, en",1506,129,"110766,3"
