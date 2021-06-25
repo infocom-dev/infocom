@@ -84,12 +84,3 @@ class StackAvgViewSet(viewsets.ReadOnlyModelViewSet):
         instance.save()
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
-
-
-
-from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
-from rest_auth.registration.views import SocialLoginView
-
-
-class GoogleLogin(SocialLoginView):
-    adapter_class = GoogleOAuth2Adapter
