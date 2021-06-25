@@ -248,7 +248,7 @@ export default {
         } else if (this.questions[i].type == 'switch'){
            v[i] = false;
         }
-        else if (this.questions[i].type == 'selected'){
+        else if (this.questions[i].type == 'selected' || this.questions[i].type == 'checkbox' ){
            v[i] = [];
         }
          else {

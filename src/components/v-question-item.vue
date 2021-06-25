@@ -15,24 +15,24 @@
           ></multiselect>
         </div>
       </div>
-      <!-- <div v-if="question.type === 'checkbox'">
+      <div v-if="question.type === 'checkbox'">
         <p>{{ index + 1 }}. {{ question.text }}</p>
 
-        <b-form-group v-slot="{ ariaDescribedby }">
+        <b-form-group class='ml-3' v-slot="{ ariaDescribedby }">
           <b-form-checkbox-group
             id="checkbox-group-2"
             v-model="selectedAnswers[index]"
             :aria-describedby="ariaDescribedby"
             name="flavour-2"
           >
-            <div v-for="val in question.answers" :key="val.id">
-              <b-form-checkbox :value="val.value"
-                ><p>{{ val.value }}</p></b-form-checkbox
-              >
-            </div>
-          </b-form-checkbox-group>
+           <b-row><div v-for="val in question.answers_option" :key="val.id">
+              <b-form-checkbox :value="val.value">
+                <p>{{ val.value }}</p></b-form-checkbox
+              ></div>
+          </b-row> 
+            </b-form-checkbox-group>
         </b-form-group>
-      </div> -->
+      </div> 
       <div v-if="question.type === 'message'">
         <p>{{ index + 1 }}. {{ question.text }}</p>
         <div class="m-2">
@@ -198,6 +198,7 @@ export default {
               custom_answer: this.selectedAnswers[i],
             };
           }
+          
           else if (this.question_data[i].type == "message" || this.question_data[i].type == "textarea"){
             v[i] = {
               text: this.selectedAnswers[i]
@@ -216,7 +217,26 @@ export default {
             v[i] = {
               date: this.selectedAnswers[i][0] + "-" + this.selectedAnswers[i][1]
             }
-          } else {
+          } 
+          else if (this.question_data[i].type == "checkbox" ) {
+            v[i] = {custom_answer:[]}
+            for (let j = 0;j < this.selectedAnswers[i].length;j++){
+              v[i].custom_answer.push({value: this.selectedAnswers[i][j]})
+            }
+          }
+          else if (this.question_data[i].type == "switch"){
+            if (this.selectedAnswers[i]){
+              v[i] = {
+                custom_answer: [{ value: "yes" }],
+              };
+            }
+            else{
+              v[i] = {
+                custom_answer: [{ value: "no" }],
+              };
+            }
+          }
+          else {
             v[i] = {
               custom_answer: [{ value: this.selectedAnswers[i] }],
             };
