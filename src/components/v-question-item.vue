@@ -198,9 +198,11 @@ export default {
               custom_answer: this.selectedAnswers[i],
             };
           }
-          // else if (this.question_data[i].type == "ckeckbox"){
-            
-          // }
+          else if (this.question_data[i].type == "message" || this.question_data[i].type == "textarea"){
+            v[i] = {
+              text: this.selectedAnswers[i]
+            }
+          }
           else if (
             this.question_data[i].type == "range" 
           ) {
@@ -212,7 +214,6 @@ export default {
             this.question_data[i].type == "datapicker" 
           ) {
             v[i] = {
-
               date: this.selectedAnswers[i][0] + "-" + this.selectedAnswers[i][1]
             }
           } else {

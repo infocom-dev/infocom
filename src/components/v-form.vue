@@ -2,6 +2,7 @@
   <div class="v-forrm p-0">
     <b-container fluid>
     <p> {{answers}}</p>
+    <p>{{projectWithCustomerAnswer}}</p>
     
       <b-row align-v="center" class="text-center">
         <b-col class="w-100 m-5 anketa-box">
@@ -134,10 +135,14 @@
 </template>
 <script>
 import vQuestionItem from "./v-question-item.vue";
+import axios from "axios";
 export default {
   components: { vQuestionItem },
   name: "v-form",
   props: {
+    id:{
+      type:String
+    },
     questions: {
       type: Array,
       default() {
@@ -152,13 +157,11 @@ export default {
       dismissCountDown: 0,
       done: false,
       answers: [],
+      projectWithCustomerAnswer:{}
     };
   },
 
   methods: {
-    sendToAnalysis(){
-
-    },
     makeToast(toast,append = false) {
       this.toastCount++;
       this.$bvToast.toast(` All quastions are requared.`, {
@@ -194,11 +197,41 @@ export default {
         this.makeToast('b-toaster-top-center');
         return;
       }
+      this.makeCorrectJSON()
       this.done = true;
       this.$nextTick(() => {
         this.$bvModal.hide("modal2");
       });
     },
+    sendToAnalysis(){
+      axios.post("/createProjectWithCustomerAnswer/", this.projectWithCustomerAnswer );
+    },
+    makeCorrectJSON(){
+      this.projectWithCustomerAnswer.customer = `${this.id}`
+      let customer_answers = []
+      for (let i = 0;i < this.questions.length;i++){
+        
+        if ( this.questions[i].type == "datapicker" ){
+          customer_answers.push({"question" : this.questions[i].tag, "date" :  this.answers[i].date})
+        }
+        else if (this.questions[i].type == "range" || this.questions[i].type == "textarea" || this.questions[i].type == "message") {
+          customer_answers.push({"question" : this.questions[i].tag, "text" :  this.answers[i].text})
+        }
+        else {
+          customer_answers.push({"question" : this.questions[i].tag, "custom_answer" :  this.answers[i].custom_answer})
+        }
+        if ( this.questions[i].tag == "stack"){
+          this.projectWithCustomerAnswer.stack = this.answers[i].custom_answer[0].value
+        }
+        if ( this.questions[i].tag == "projectName"){
+          this.projectWithCustomerAnswer.name = this.answers[i].text
+        }
+
+      }
+      this.projectWithCustomerAnswer.name = "site"
+      this.projectWithCustomerAnswer.stack = "vue"
+      this.projectWithCustomerAnswer.customer_answers = customer_answers
+    }
   },
   computed: {
     Done() {
