@@ -1,3 +1,4 @@
+import pandas
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from backend.api.serializer import *
@@ -18,23 +19,22 @@ class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
+
 class ProjectWithCustomerAnswerViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectWithCustomerAnswerSerializer
+
     def create(self, request, *args, **kwargs):
         try:
-            print(request.data.get('customer_answers'),flush=True)
             data=convert(request.data.get('customer_answers'))
-            print(data,flush=True)
-            data=magic_cost_time_estimator.cook_data(data)
-            print(data,flush=True)
-            cost,date=magic_cost_time_estimator.predict(data)
-            date=convert_hours_to_date(date)
+            data = magic_cost_time_estimator.cook_data(data)
+            cost, date = magic_cost_time_estimator.predict(data)
+            date = convert_hours_to_date(date)
         except Exception as e:
             print(e, flush=True)
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        request.data['predicted_price']=cost
-        request.data['predict_end_date']=date
+        request.data['predicted_price'] = int(cost)
+        request.data['predict_end_date'] = date
         try:
             request.data.get('customer_answers')[0].pop("custom_answer")
         except:
@@ -44,12 +44,10 @@ class ProjectWithCustomerAnswerViewSet(viewsets.ModelViewSet):
         try:
             self.perform_create(serializer)
         except Exception as e:
-            print(e,flush=True)
+            print(e, flush=True)
             return Response(status=status.HTTP_400_BAD_REQUEST)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
-
 
 
 class ProjectActiveViewSet(viewsets.ReadOnlyModelViewSet):
@@ -77,9 +75,9 @@ class StackAvgViewSet(viewsets.ReadOnlyModelViewSet):
         instance = self.get_object()
         projects = instance.projects.all()
         for project in projects:
-            if project.real_price!=None:
+            if project.real_price != None:
                 avg_price += project.real_price
-            if project.real_end_date!=None:
+            if project.real_end_date != None:
                 avg_time += ((project.real_end_date - project.start_date).days)
         avg_time = int(avg_time / projects.count())
         avg_price = avg_price / projects.count()

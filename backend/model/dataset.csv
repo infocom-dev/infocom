@@ -16,8 +16,8 @@ id,type,purpose,stack,predicted_count_users,payment_system,geolocation,budget,de
 15,site,blog,Tilda,100,no,yes,500-2000,template,adaptive,Saas,no,no,yes,ru,800,31,58840
 16,site,other,Django,400,yes,no,1000-5000,individual,adaptive,integration,no,yes,yes,ru,1432,83,"105323,6"
 17,chat-bot,sales_funnel,Laravel,3000,yes,no,2000-2100,template,adaptive,full_deployment,yes,no,no,en,1800,89,132390
-18,site,landing_page,WordPress,700,no,no,500-510,tamplate,adaptive,Saas,no,no,no,en,500,22,36775
-19,site,blog,Tilda,500,no,no,300-600,tamplate,adaptive,Saas,no,no,yes,ru,430,18,"31626,5"
+18,site,landing_page,WordPress,700,no,no,500-510,template,adaptive,Saas,no,no,no,en,500,22,36775
+19,site,blog,Tilda,500,no,no,300-600,template,adaptive,Saas,no,no,yes,ru,430,18,"31626,5"
 20,site,blog,Flask,50,yes,no,100-1000,exist,adaptive,full_deployment,no,no,yes,ru,800,60,58840
 21,chat-bot,poll,Python,10,no,yes,100-1000,template,fixed,integration,yes,yes,no,ru,200,50,14710
 22,site,web_application,Django,200,no,no,1000-2000,template,fixed,full_deployment,yes,yes,yes,ru,1500,110,110325
@@ -32,7 +32,7 @@ id,type,purpose,stack,predicted_count_users,payment_system,geolocation,budget,de
 31,chat-bot,web_application,C/C++,500,no,no,1270-3770,individual,fixed,full_deployment,no,no,yes,ru,3100,160,228005
 32,chat-bot,web_application,C/C++,500,no,no,1270-3770,individual,adaptive,full_deployment,no,no,yes,ru,3400,170,250070
 33,chat-bot,web_application,C/C++,500,no,no,1270-3770,individual,fixed,integration,yes,yes,yes,ru,2800,140,205940
-34,site,blog,Tilda,1100,no,yes,500-700,tamplate,adaptive,Saas,yes,no,yes,ru,584,27,"42953,2"
+34,site,blog,Tilda,1100,no,yes,500-700,template,adaptive,Saas,yes,no,yes,ru,584,27,"42953,2"
 35,site,blog,JS,100,yes,no,0-1000,exist,adaptive,full_deployment,no,no,yes,ru,780,44,57369
 36,site,shop,PHP,600,yes,no,1000-1200,template,adaptive,integration,no,no,yes,"ru, en",1589,209,"116870,95"
 37,chat-bot,other,Python,200,no,no,100-400,template,fixed,Saas,no,no,yes,"ru, en",240,15,17652
@@ -54,9 +54,9 @@ id,type,purpose,stack,predicted_count_users,payment_system,geolocation,budget,de
 53,site,landing_page,Tilda,150,no,no,100-300,template,fixed,integration,no,no,no,en ,290,60,"21329,5"
 54,chat-bot,sales_funnel,Python,1000,yes,no,1000-4000,individual,fixed,Saas,yes,yes,yes,"ru, en",3000,350,220650
 55,site,landing_page,WordPress,2000,no,yes,100-2000,individual,adaptive,Saas,yes,no,no,"ru, en",1515,121,"111428,25"
-56,site,landing_page,WordPress,1000,no,yes,100-500,tamplate,fixed,Saas,yes,no,no,en,540,29,39717
-57,site,landing_page,WordPress,1000,no,yes,400-800,tamplate,adaptive,Saas,yes,no,yes,ru,600,33,44130
-58,site,landing_page,WordPress,2000,yes,yes,500-1000,tamplate,adaptive,Saas,yes,no,yes,ru,800,56,58840
+56,site,landing_page,WordPress,1000,no,yes,100-500,template,fixed,Saas,yes,no,no,en,540,29,39717
+57,site,landing_page,WordPress,1000,no,yes,400-800,template,adaptive,Saas,yes,no,yes,ru,600,33,44130
+58,site,landing_page,WordPress,2000,yes,yes,500-1000,template,adaptive,Saas,yes,no,yes,ru,800,56,58840
 59,site,landing_page,WordPress,2000,yes,yes,500-1000,individual,adaptive,Saas,yes,no,yes,ru,1194,68,"87818,7"
 60,site,landing_page,WordPress,1800,yes,yes,0-1000,individual,adaptive,full_deployment,yes,no,yes,ru,1280,79,94144
 61,site,landing_page,WordPress,1900,yes,yes,500-1500,exist,adaptive,Saas,yes,no,yes,ru,980,59,72079
