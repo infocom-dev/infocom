@@ -203,13 +203,15 @@ export default {
         this.$bvModal.hide("modal2");
       });
     },
-    sendToAnalysis(){
-      axios.post("/createProjectWithCustomerAnswer/", this.projectWithCustomerAnswer );
+    async sendToAnalysis(){
+      await axios.post("/createProjectWithCustomerAnswer/", this.projectWithCustomerAnswer );
+      
       let projects = []
       
-      axios.get(`/getCustomerById/${this.id}`).then((response) => {
+      await axios.get(`/getCustomerById/${this.id}`).then((response) => {
           projects = response.data.projects;
       })
+      console.log(projects)
       this .$emit('update', projects)
     },
     makeCorrectJSON(){
@@ -238,7 +240,8 @@ export default {
       }
       customer_answers.splice(pointer,1)
       // customer_answers.splice(0,1)
-      
+      var currentdate = new Date();
+      this.projectWithCustomerAnswer.start_date = currentdate.getFullYear() + "-"+currentdate.getMonth() + "-" + currentdate.getDay()
       this.projectWithCustomerAnswer.customer_answers = customer_answers
     }
   },
