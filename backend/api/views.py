@@ -1,6 +1,7 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.response import Response
 from backend.api.serializer import *
+from backend.model import *
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
@@ -20,6 +21,32 @@ class ProjectViewSet(viewsets.ModelViewSet):
 class ProjectWithCustomerAnswerViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectWithCustomerAnswerSerializer
+    def create(self, request, *args, **kwargs):
+        try:
+            data=convert(request.data.get('customer_answers'))
+            cost,date=magic_cost_time_estimator.predict(magic_cost_time_estimator.cook_data(data))
+            date=convert_hours_to_date(date)
+        except Exception as e:
+            print(e, flush=True)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        request.data['predicted_price']=cost
+        request.data['predict_end_date']=date
+        try:
+            request.data.get('customer_answers')[0].pop("custom_answer")
+        except:
+            pass
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        try:
+            self.perform_create(serializer)
+        except Exception as e:
+            print(e,flush=True)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+
 
 class ProjectActiveViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Project.objects.filter(is_active=True)
@@ -57,6 +84,4 @@ class StackAvgViewSet(viewsets.ReadOnlyModelViewSet):
         instance.save()
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
-
-
 

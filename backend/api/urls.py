@@ -44,6 +44,4 @@ urlpatterns = ([
     # vk
     path('auth/', include('rest_framework_social_oauth2.urls')),
 
-
-
 ])
