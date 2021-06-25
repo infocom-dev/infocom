@@ -44,8 +44,4 @@ urlpatterns = ([
     # vk
     path('auth/', include('rest_framework_social_oauth2.urls')),
 
-    # google
-
-    path('google/', views.GoogleLogin.as_view(), name='google_login')
-
 ])

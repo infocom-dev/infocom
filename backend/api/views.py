@@ -23,14 +23,18 @@ class ProjectWithCustomerAnswerViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectWithCustomerAnswerSerializer
     def create(self, request, *args, **kwargs):
         try:
-            data=convert(request.data.pop('customer_answers'))
-            a,b=magic_cost_time_estimator.predict(magic_cost_time_estimator.cook_data(data))
-            print(a,b,flush=True)
+            data=convert(request.data.get('customer_answers'))
+            cost,date=magic_cost_time_estimator.predict(magic_cost_time_estimator.cook_data(data))
+            date=convert_hours_to_date(date)
         except Exception as e:
             print(e, flush=True)
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        request.data['predicted_price']=a
-        request.data['predict_end_date']=b
+        request.data['predicted_price']=cost
+        request.data['predict_end_date']=date
+        try:
+            request.data.get('customer_answers')[0].pop("custom_answer")
+        except:
+            pass
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         try:
@@ -80,12 +84,3 @@ class StackAvgViewSet(viewsets.ReadOnlyModelViewSet):
         instance.save()
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
-
-
-
-from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
-from rest_auth.registration.views import SocialLoginView
-
-
-class GoogleLogin(SocialLoginView):
-    adapter_class = GoogleOAuth2Adapter
