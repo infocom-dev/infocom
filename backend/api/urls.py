@@ -9,6 +9,7 @@ urlpatterns = ([
     path("createQuestion/", views.QuestionViewSet.as_view({'post': 'create'})),
     path("getQuestionById/<int:pk>", views.QuestionViewSet.as_view({'get': 'retrieve'})),
     path("deleteQuestion/<int:pk>", views.QuestionViewSet.as_view({'delete': 'destroy'})),
+
     # Customer
     path("createCustomer/", views.CustomerViewSet.as_view({'post': 'create'})),
     path("getCustomers/", views.CustomerViewSet.as_view({'get': 'list'})),
@@ -18,6 +19,7 @@ urlpatterns = ([
 
     # Project
     path("createProject/", views.ProjectViewSet.as_view({'post': 'create'})),
+    path("createProjectWithCustomerAnswer/", views.ProjectWithCustomerAnswerViewSet.as_view({'post': 'create'})),
     path("deleteProject/<int:pk>", views.ProjectViewSet.as_view({'delete': 'destroy'})),
     path("updateProject/<int:pk>", views.ProjectViewSet.as_view({'put': 'update'})),
     path("getProjects/", views.ProjectViewSet.as_view({'get': 'list'})),

@@ -17,8 +17,11 @@ class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
+class ProjectWithCustomerAnswerViewSet(viewsets.ModelViewSet):
+    queryset = Project.objects.all()
+    serializer_class = ProjectWithCustomerAnswerSerializer
 
-class ProjectActiveViewSet(viewsets.ModelViewSet):
+class ProjectActiveViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Project.objects.filter(is_active=True)
     serializer_class = ProjectSerializer
 

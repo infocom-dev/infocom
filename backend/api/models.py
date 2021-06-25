@@ -52,6 +52,7 @@ class QuestionType(models.TextChoices):
     MESSAGE = 'message'
     DATAPICKER = 'datapicker'
     SWITCH = 'switch'
+    CHECKBOX = 'checkbox'
 
 
 class Question(models.Model):
@@ -63,7 +64,7 @@ class Question(models.Model):
 class CustomerAnswer(models.Model):
     date = models.DateField(blank=True, null=True)
     text = models.TextField(blank=True, null=True)
-    custom_answer = models.ManyToManyField("AnswersOption", related_name="selected_answers_option")
+    custom_answer = models.ManyToManyField("AnswersOption", related_name="selected_answers_option",blank=True,null=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="answers")
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="customer_answers")
 
