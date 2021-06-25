@@ -136,6 +136,7 @@
 <script>
 import vQuestionItem from "./v-question-item.vue";
 import axios from "axios";
+import session from "../api/session";
 export default {
   components: { vQuestionItem },
   name: "v-form",
@@ -204,7 +205,7 @@ export default {
       });
     },
     async sendToAnalysis(){
-      await axios.post("/createProjectWithCustomerAnswer/", this.projectWithCustomerAnswer );
+      await session.post("/createProjectWithCustomerAnswer/", this.projectWithCustomerAnswer );
       
       let projects = []
       
