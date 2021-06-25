@@ -56,7 +56,7 @@ class QuestionType(models.TextChoices):
 
 
 class Question(models.Model):
-    tag = models.CharField("Тег (Суть)", max_length=100, primary_key=True, default="имя")
+    tag = models.CharField("Тег (Суть)", max_length=100, primary_key=True)
     text = models.TextField("Текст вопроса")
     type = models.TextField(choices=QuestionType.choices)
 

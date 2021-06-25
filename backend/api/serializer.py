@@ -4,18 +4,26 @@ from django.db import transaction
 from backend.api.models import AnswersOption, Question, Customer, Project, Stack, CustomerAnswer
 
 
+class AnswersOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AnswersOption
+        fields = ('id', 'value')
+
+
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = "__all__"
 
+
 class CustomerAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomerAnswer
-        fields = ('date','text','question','custom_answer')
+        fields = ('date', 'text', 'question', 'custom_answer')
+
 
 class ProjectWithCustomerAnswerSerializer(serializers.ModelSerializer):
-    customer_answers=CustomerAnswerSerializer(
+    customer_answers = CustomerAnswerSerializer(
         many=True
     )
 
@@ -29,7 +37,6 @@ class ProjectWithCustomerAnswerSerializer(serializers.ModelSerializer):
         for customer_answers_d in customer_answers_data:
             CustomerAnswer.objects.create(project=project, **customer_answers_d)
         return project
-
 
 
 class StackSerializer(serializers.ModelSerializer):

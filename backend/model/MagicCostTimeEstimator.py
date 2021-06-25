@@ -3,10 +3,11 @@ import pandas as pd
 
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.preprocessing import MultiLabelBinarizer, StandardScaler
+from typing import List
 
 
 class MagicCostTimeEstimator:
-    def __init__(self, dataset_path="dataset.csv"):
+    def __init__(self, dataset_path="backend/model/dataset.csv"):
         self.price_model = KNeighborsRegressor(algorithm='ball_tree', leaf_size=41, n_neighbors=3)
         self.time_model = KNeighborsRegressor(algorithm='kd_tree', leaf_size=6, metric='euclidean', n_neighbors=4)
         self.ss = StandardScaler()
@@ -72,7 +73,7 @@ class MagicCostTimeEstimator:
             return data.drop(feature, axis=1)
 
     @staticmethod
-    def get_new_range_features(features: list[str]) -> list[str]:
+    def get_new_range_features(features: List[str]):
         features_list = []
         for feature in features:
             features_list += [f'start_{feature}', f'end_{feature}']
