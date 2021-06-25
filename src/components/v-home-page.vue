@@ -8,19 +8,18 @@
       <section id="services" class="service">
         <v-services-vue></v-services-vue>
       </section>
-      <section id="skills" class="skills">
-        <v-skills></v-skills>
+      <section id="stack" class="stack">
+        <v-stack></v-stack>
       </section>
       <section>
         <v-tecnology> </v-tecnology>
       </section>
       <section id="statistic">
-        <statistic></statistic>
+        <v-statistic></v-statistic>
       </section>
       <section>
-        <v-calculation></v-calculation>
+        <v-steps></v-steps>
       </section>
-
       <section class="links">
         <Footer></Footer>
       </section>
@@ -32,31 +31,24 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import VHome from "./v-home";
-import VSkills from "./v-skills.vue";
+import VStack from "./v-stack.vue";
 import NavBar from "./NavBar.vue";
-import vCalculation from "./v-calculation";
 import Footer from "./Footer.vue";
 import vServicesVue from "./v-services.vue";
 import vTecnology from "./v-tecnology";
-// import VCalculation from "./v-calculation.vue";
-import Statistic from "./statistic";
-import VCalculation from "./v-calculation.vue";
-// import ContactUs from "./contact-us.vue";
+import VStatistic from "./v-statistic";
+import VSteps from "./v-steps.vue";
 export default {
   name: "v-home-page",
   components: {
     NavBar,
-    VSkills,
+    VStack,
     vServicesVue,
-    vCalculation,
+    VSteps,
     VHome,
-
     vTecnology,
-    // VCalculation,
     Footer,
-    Statistic,
-    VCalculation,
-    // ContactUs,
+    VStatistic,
   },
   data() {
     return {};

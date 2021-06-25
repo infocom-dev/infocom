@@ -55,11 +55,11 @@ export default {
           href: "/#services",
         },
         {
-          id: "Skills",
-          href: "/#skills",
+          id: "Stack",
+          href: "/#stack",
         },
         {
-          id: "abot us",
+          id: "about us",
           href: "/#statistic",
         },
       ],

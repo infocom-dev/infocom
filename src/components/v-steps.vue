@@ -1,5 +1,5 @@
 <template>
-  <div class="v-calculation w-100 p-5">
+  <div class="v-steps w-100 p-5">
     <b-container fluid class="p-0 w-100 justify-content-center">
       <div class="mx-auto">
         <h1 class="text-center text-uppercase font-weight-bolder">
@@ -51,7 +51,7 @@
             </b-col>
             <b-col class="my-auto">
               <h5>
-                Расскажи нам о своем проекте, заполнив анкету в личном кабенете
+                Tell us about your project by filling out the form in your personal cabenet.
               </h5>
             </b-col>
           </div>
@@ -101,8 +101,8 @@
             </b-col>
             <b-col class="order-first my-auto">
               <h5>
-                Отправь данные на обработку нашей нейронной сети, что б узнать
-                реальную стоимость проекта
+                Send the data to our neural network for processing, to find
+out the real cost of the project.
               </h5>
             </b-col>
           </div>
@@ -152,8 +152,8 @@
             </b-col>
             <b-col class="my-auto">
               <h5>
-                Сделай заказ у наших специалистов и получи качественный
-                результат
+                Make an order with our specialists and get a high-quality
+result.
               </h5>
             </b-col>
           </div>
@@ -171,7 +171,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.v-calculation {
+.v-steps {
   background: url("../assets/images/step.jpg") no-repeat center;
   background-size: cover;
   .step {

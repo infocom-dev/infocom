@@ -1,13 +1,35 @@
 from rest_framework import serializers
 from rest_auth.registration.serializers import RegisterSerializer
 from django.db import transaction
-from backend.api.models import AnswersOption, Question, Customer, Project, Stack
+from backend.api.models import AnswersOption, Question, Customer, Project, Stack, CustomerAnswer
 
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = "__all__"
+
+class CustomerAnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomerAnswer
+        fields = ('date','text','question','custom_answer')
+
+class ProjectWithCustomerAnswerSerializer(serializers.ModelSerializer):
+    customer_answers=CustomerAnswerSerializer(
+        many=True
+    )
+
+    class Meta:
+        model = Project
+        fields = "__all__"
+
+    def create(self, validated_data):
+        customer_answers_data = validated_data.pop('customer_answers')
+        project = Project.objects.create(**validated_data)
+        for customer_answers_d in customer_answers_data:
+            CustomerAnswer.objects.create(project=project, **customer_answers_d)
+        return project
+
 
 
 class StackSerializer(serializers.ModelSerializer):
