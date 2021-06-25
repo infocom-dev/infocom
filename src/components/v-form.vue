@@ -1,6 +1,8 @@
 <template>
   <div class="v-forrm p-0">
     <b-container fluid>
+    <p> {{answers}}</p>
+    
       <b-row align-v="center" class="text-center">
         <b-col class="w-100 m-5 anketa-box">
           <b-row class="p-5">
@@ -179,7 +181,7 @@ export default {
       console.log(this.answers)
       for (let i = 0; i < this.answers.length; i++) {
 
-        if (this.answers[i].answers_option == null || this.answers[i].answers_option.length == 0) {
+        if (!(this.answers[i] != null && this.answers[i].length != 0 )) {
           console.log(i);
           this.makeToast('b-toaster-top-center');
           return;
@@ -209,6 +211,9 @@ export default {
         
         } else if (this.questions[i].type == 'switch'){
            v[i] = false;
+        }
+        else if (this.questions[i].type == 'selected'){
+           v[i] = [];
         }
          else {
           v[i] = null;

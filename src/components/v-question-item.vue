@@ -11,7 +11,6 @@
             track-by="id"
             :options="question.answers_option"
             :multiple="true"
-            :taggable="true"
             @tag="addTag"
           ></multiselect>
         </div>
@@ -129,10 +128,9 @@
         </div>
       </div>
     </div>
-    <!-- <div>
+    <div>
       Selected: <strong>{{ selectedAnswers2 }}</strong>
-      <p>{{question_data}}</p>
-    </div> -->
+    </div> 
   </div>
 </template>
 
@@ -183,6 +181,7 @@ export default {
   },
 
   methods: {
+
     isNumber(e) {
       const regex = /[0-9]/;
       if (!regex.test(e.key)) {
@@ -193,30 +192,36 @@ export default {
     sendAnswers() {
       let v = [];
       for (let i = 0; i < this.selectedAnswers.length; i++) {
-        if (this.question_data[i].type == "selected") {
-          v[i] = {
-            tag: this.question_data[i].tag,
-            type: this.question_data[i].type,
-            answers_option: this.selectedAnswers[i],
-          };
-        }
-        else if (
-          this.question_data[i].type == "range" 
-        ) {
-          v[i] = {
-            tag: this.question_data[i].tag,
-            type: this.question_data[i].type,
-            answers_option: [
-              { value: this.selectedAnswers[i][0] },
-              { value: this.selectedAnswers[i][1] },
-            ],
-          };
-        } else {
-          v[i] = {
-            tag: this.question_data[i].tag,
-            type: this.question_data[i].type,
-            answers_option: [{ value: this.selectedAnswers[i] }],
-          };
+        if(this.selectedAnswers[i] && this.selectedAnswers[i].length != 0){
+          if (this.question_data[i].type == "selected") {
+            v[i] = {
+              custom_answer: this.selectedAnswers[i],
+            };
+          }
+          // else if (this.question_data[i].type == "ckeckbox"){
+            
+          // }
+          else if (
+            this.question_data[i].type == "range" 
+          ) {
+            v[i] = {
+              text: this.selectedAnswers[i][0] + "-" + this.selectedAnswers[i][1]
+            }
+          }
+          else if (
+            this.question_data[i].type == "datapicker" 
+          ) {
+            v[i] = {
+
+              date: this.selectedAnswers[i][0] + "-" + this.selectedAnswers[i][1]
+            }
+          } else {
+            v[i] = {
+              custom_answer: [{ value: this.selectedAnswers[i] }],
+            };
+          }
+          
+          
         }
       }
       return v;
