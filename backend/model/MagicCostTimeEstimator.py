@@ -93,14 +93,19 @@ class MagicCostTimeEstimator:
         return pd.concat([data, pd.DataFrame(0, index=np.arange(len(data)), columns=columns)], axis=1)
 
 
+magic_cost_time_estimator = MagicCostTimeEstimator()
+
+
 if __name__ == "__main__":
     from time import time
+
     mcte = MagicCostTimeEstimator()
-    df = pd.DataFrame([["site", "web_application", "Tilda", "1000", "yes", "yes", "1000-5000", "individual", "adaptive", "Saas",
-                        "yes", "no", "yes", "fr"]],
-                      columns=["type", "purpose", "stack", "predicted_count_users", "payment_system", "geolocation",
-                               "budget", "design", "adaptability", "product_delivery", "integration_systems",
-                               "integration_systems_API", "required_DB", "languages"])
+    df = pd.DataFrame(
+        [["site", "web_application", "Tilda", "1000", "yes", "yes", "1000-5000", "individual", "adaptive", "Saas",
+          "yes", "no", "yes", "fr"]],
+        columns=["type", "purpose", "stack", "predicted_count_users", "payment_system", "geolocation",
+                 "budget", "design", "adaptability", "product_delivery", "integration_systems",
+                 "integration_systems_API", "required_DB", "languages"])
     st = time()
     df = mcte.cook_data(df)
     print(mcte.predict(df))
