@@ -25,16 +25,16 @@ class ProjectWithCustomerAnswerViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectWithCustomerAnswerSerializer
 
     def create(self, request, *args, **kwargs):
-        # try:
-        #     data=convert(request.data.get('customer_answers'))
-        #     data = magic_cost_time_estimator.cook_data(data)
-        #     cost, date = magic_cost_time_estimator.predict(data)
-        #     date = convert_hours_to_date(date)
-        # except Exception as e:
-        #     print(e, flush=True)
-        #     return Response(status=status.HTTP_400_BAD_REQUEST)
-        # request.data['predicted_price'] = int(cost)
-        # request.data['predict_end_date'] = date
+        try:
+            data=convert(request.data.get('customer_answers'))
+            data = magic_cost_time_estimator.cook_data(data)
+            cost, date = magic_cost_time_estimator.predict(data)
+            date = convert_hours_to_date(date)
+        except Exception as e:
+            print(e, flush=True)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        request.data['predicted_price'] = int(cost)
+        request.data['predict_end_date'] = date
         try:
             for element in range(len(request.data.get('customer_answers'))):
                 request.data.get('customer_answers')[element].pop("custom_answer")
