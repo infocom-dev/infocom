@@ -1,7 +1,5 @@
-from typing import List
-
 import pandas as pd
-
+import datetime
 
 def convert(customer_answers):
     columns = ["type", "purpose", "stack", "predicted_count_users", "payment_system", "geolocation",
@@ -20,3 +18,5 @@ def convert(customer_answers):
     return pd.DataFrame([res.values()], columns=res.keys())
 
 
+def convert_hours_to_date(hours):
+    return datetime.datetime.now() + datetime.timedelta(hours=hours)
