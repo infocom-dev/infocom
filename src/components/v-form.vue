@@ -209,6 +209,7 @@ export default {
     makeCorrectJSON(){
       this.projectWithCustomerAnswer.customer = `${this.id}`
       let customer_answers = []
+      let pointer = 0
       for (let i = 0;i < this.questions.length;i++){
         
         if ( this.questions[i].type == "datapicker" ){
@@ -217,6 +218,7 @@ export default {
         else if (this.questions[i].type == "range" || this.questions[i].type == "textarea" || this.questions[i].type == "message") {
           customer_answers.push({"question" : this.questions[i].tag, "text" :  this.answers[i].text})
         }
+        
         else {
           customer_answers.push({"question" : this.questions[i].tag, "custom_answer" :  this.answers[i].custom_answer})
         }
@@ -225,11 +227,10 @@ export default {
         }
         if ( this.questions[i].tag == "projectName"){
           this.projectWithCustomerAnswer.name = this.answers[i].text
+          pointer = i
         }
-
       }
-      this.projectWithCustomerAnswer.name = "site"
-      this.projectWithCustomerAnswer.stack = "vue"
+      customer_answers.splice(pointer,1)
       this.projectWithCustomerAnswer.customer_answers = customer_answers
     }
   },
