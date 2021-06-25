@@ -14,6 +14,6 @@ class QuestionAdmin(admin.ModelAdmin):
     ]
 
 
-@admin.register(CustomerAnswer, Project, Customer, Stack, CustomUser)
+@admin.register(CustomerAnswer, Project, Customer, Stack, CustomUser,AnswersOption)
 class AdminModels(admin.ModelAdmin):
     pass
