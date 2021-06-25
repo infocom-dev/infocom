@@ -27,11 +27,6 @@ class Customer(CustomUser):
     business_name = models.CharField(max_length=100)
 
 
-class Developer(CustomUser):
-    stack = models.ManyToManyField("AnswersOption")
-    experience = models.TextField()
-    respect = models.IntegerField(default=0)
-
 class Stack(models.Model):
     name = models.CharField("Название технологии", max_length=150, default="Django", primary_key=True)
     avg_price=models.FloatField(blank=True, null=True)

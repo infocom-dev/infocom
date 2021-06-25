@@ -29,6 +29,7 @@
             <b-col class="p-0 col-4">
               <b-row align-v="center" class="text-center m-0">
                 <div class="bellhold ml-auto">
+
                   <i class="text-center fa fa-bell bell-icon"></i>
                   <span class="badgex badge-danger">6</span>
                 </div>
@@ -514,6 +515,7 @@ export default {
 .overview-box {
   background-color: #ffffff;
 }
+
 .forward {
   position: relative;
   z-index: 7;
@@ -555,3 +557,4 @@ export default {
   margin: 40px 0px;
 }
 </style>
+

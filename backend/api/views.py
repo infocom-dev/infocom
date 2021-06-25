@@ -1,5 +1,3 @@
-from datetime import datetime
-from dateutil import relativedelta
 from rest_framework import viewsets
 from rest_framework.response import Response
 from backend.api.serializer import *
@@ -13,11 +11,6 @@ class QuestionViewSet(viewsets.ModelViewSet):
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
-
-
-class DeveloperViewSet(viewsets.ModelViewSet):
-    queryset = Developer.objects.all()
-    serializer_class = DeveloperSerializer
 
 
 class ProjectViewSet(viewsets.ModelViewSet):
@@ -63,7 +56,6 @@ class StackAvgViewSet(viewsets.ReadOnlyModelViewSet):
         return Response(serializer.data)
 
 
-# google
 
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView
