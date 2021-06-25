@@ -59,7 +59,7 @@ export default {
           href: "/#stack",
         },
         {
-          id: "abot us",
+          id: "about us",
           href: "/#statistic",
         },
       ],
