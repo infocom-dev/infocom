@@ -23,8 +23,12 @@ class ProjectWithCustomerAnswerViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectWithCustomerAnswerSerializer
     def create(self, request, *args, **kwargs):
         try:
+            print(request.data.get('customer_answers'),flush=True)
             data=convert(request.data.get('customer_answers'))
-            cost,date=magic_cost_time_estimator.predict(magic_cost_time_estimator.cook_data(data))
+            print(data,flush=True)
+            data=magic_cost_time_estimator.cook_data(data)
+            print(data,flush=True)
+            cost,date=magic_cost_time_estimator.predict(data)
             date=convert_hours_to_date(date)
         except Exception as e:
             print(e, flush=True)
