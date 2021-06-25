@@ -129,9 +129,10 @@
         </div>
       </div>
     </div>
-    <div>
-      Selected: <strong>{{ selectedAnswers }}</strong>
-    </div>
+    <!-- <div>
+      Selected: <strong>{{ selectedAnswers2 }}</strong>
+      <p>{{question_data}}</p>
+    </div> -->
   </div>
 </template>
 
@@ -177,6 +178,7 @@ export default {
       value: [0, 50],
       // process: (value) => [[value[0], value[1]]],
       selectedAnswers: this.selectedAnswers2,
+      debug:[],
     };
   },
 
@@ -188,12 +190,6 @@ export default {
         if (e.preventDefault) e.preventDefault();
       }
     },
-    // rangeSelect(index) {
-    //   (value) => [[value[0], value[1]]];
-
-    //   console.log(index);
-    //   this.selectedAnswers[index] = this.value.map((car) => car);
-    // },
     sendAnswers() {
       let v = [];
       for (let i = 0; i < this.selectedAnswers.length; i++) {
@@ -204,28 +200,8 @@ export default {
             answers_option: this.selectedAnswers[i],
           };
         }
-        // else if (this.question_data[i].type == "checkbox") {
-        //   v[i] = {
-        //     tag: this.question_data[i].tag,
-        //     type: this.question_data[i].type,
-        //     answers: [],
-        //   };
-        //   for (let j = 0; j < this.question_data[i].answers.length; j++) {
-        //     if (
-        //       this.question_data[i].answers[j].value ==
-        //       this.selectedAnswers[i]
-        //     ) {
-        //       v[i].answers.push({
-        //         id: this.question_data[i].answers[j].id,
-        //         value: this.selectedAnswers[i],
-        //       });
-        //       break;
-        //     }
-        //   }
-        // }
         else if (
-          this.question_data[i].type == "range" ||
-          this.question_data[i].type == "datapicker"
+          this.question_data[i].type == "range" 
         ) {
           v[i] = {
             tag: this.question_data[i].tag,
@@ -237,7 +213,7 @@ export default {
           };
         } else {
           v[i] = {
-            id: this.question_data[i].id,
+            tag: this.question_data[i].tag,
             type: this.question_data[i].type,
             answers_option: [{ value: this.selectedAnswers[i] }],
           };

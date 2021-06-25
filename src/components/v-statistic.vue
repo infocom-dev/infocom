@@ -1,5 +1,5 @@
 <template>
-  <div class="statistic p-0">
+  <div class="v-statistic p-0">
     <b-container fluid class="w-100 justify-content-center p-0">
       <div class="mx-auto pt-3">
         <h1 class="text-center text-uppercase font-weight-bolder">
@@ -81,58 +81,16 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 import animatedNumber from "./animated-number.vue";
-
-// import Graph from "./Graph.vue";
 export default {
   components: {
     animatedNumber,
-    // Graph,
   },
 
   data() {
     return {
-      options: {
-        chart: {
-          type: "area",
-        },
-        dataLabels: {
-          enabled: false,
-        },
-        stroke: {
-          curve: "smooth",
-        },
-        xaxis: {
-          categories: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ],
-        },
-        title: {
-          align: "center",
-          style: {
-            fontSize: "20px",
-          },
-        },
-        colors: ["#FFD334"],
-      },
-
-      series: [
-        {
-          name: "series1",
-          data: [31, 40, 28, 51, 42, 109, 100],
-        },
-      ],
+      
       top: 0,
       s: "",
       ind: 0,
@@ -155,9 +113,9 @@ export default {
       ],
 
       statistic: [
-        { name: "Выполненных заказов", max: 500 },
-        { name: "Заказов в разработке", max: 200 },
-        { name: "Сотрудников в компании", max: 3 },
+        // { name: "Выполненных заказов", max: 500 },
+        // { name: "Заказов в разработке", max: 200 },
+        // { name: "Developers in the company", max: 0 },
       ],
       statistic_icons: [
         "fas fa-check-circle icon",
@@ -184,10 +142,36 @@ export default {
     window.addEventListener("scroll", this.onScroll);
     this.onScroll();
   },
+
+  created() {
+    let req = [{text : "Projects active", r:"/getProjectsActive/"},
+           {r:"/getCustomers/",text:"Users on our site"},
+           {r:'/getProjects/',text:"Completed orders"}]
+    for(let i = 0;i < req.length;i++){
+      axios.get(req[i].r)
+      .then((response) => {
+        this.statistic.push({"name": req[i].text ,"max": response.data.length});
+        console.log(this.statistic);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+    // axios.get("/getDevelopers/")
+    //   .then((response) => {
+    //     this.statistic[2].max = response.data.length;
+    //     console.log(this.statistic.max[2]);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+      
+  }
 };
 </script>
 <style lang="scss">
-.statistic {
+.v-statistic {
   .box2 {
     overflow: hidden;
     position: relative;

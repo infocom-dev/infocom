@@ -60,7 +60,6 @@
                 header-text-variant="light"
                 header-bg-variant="primary"
               >
-          
                 <v-question-item
                   :set="set"
                   :question_data="questions"
@@ -177,9 +176,11 @@ export default {
     handleSubmit() {
       // Exit when the form isn't valid
       this.answers = this.$refs.sendAnswers.sendAnswers();
+      console.log(this.answers)
       for (let i = 0; i < this.answers.length; i++) {
-        if (this.answers[i].answers == null || this.answers[i].answers.length == 0) {
-          console.log("ok");
+
+        if (this.answers[i].answers_option == null || this.answers[i].answers_option.length == 0) {
+          console.log(i);
           this.makeToast('b-toaster-top-center');
           return;
         }
