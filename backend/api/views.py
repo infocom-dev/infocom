@@ -26,7 +26,7 @@ class ProjectWithCustomerAnswerViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         try:
-            data=convert(request.data.get('customer_answers'))
+            data = convert(request.data.get('customer_answers'))
             data = magic_cost_time_estimator.cook_data(data)
             cost, date = magic_cost_time_estimator.predict(data)
             date = convert_hours_to_date(date)
@@ -37,7 +37,9 @@ class ProjectWithCustomerAnswerViewSet(viewsets.ModelViewSet):
         request.data['predict_end_date'] = date
         try:
             for element in range(len(request.data.get('customer_answers'))):
-                request.data.get('customer_answers')[element].pop("custom_answer")
+                if request.data.get('customer_answers')[element].get("custom_answer"):
+                    request.data.get('customer_answers')[element].pop("custom_answer")
+
         except:
             pass
         serializer = self.get_serializer(data=request.data)
