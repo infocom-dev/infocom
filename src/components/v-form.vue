@@ -205,6 +205,12 @@ export default {
     },
     sendToAnalysis(){
       axios.post("/createProjectWithCustomerAnswer/", this.projectWithCustomerAnswer );
+      let projects = []
+      
+      axios.get(`/getCustomerById/${this.id}`).then((response) => {
+          projects = response.data.projects;
+      })
+      this .$emit('update', projects)
     },
     makeCorrectJSON(){
       this.projectWithCustomerAnswer.customer = `${this.id}`
@@ -231,6 +237,8 @@ export default {
         }
       }
       customer_answers.splice(pointer,1)
+      // customer_answers.splice(0,1)
+      
       this.projectWithCustomerAnswer.customer_answers = customer_answers
     }
   },

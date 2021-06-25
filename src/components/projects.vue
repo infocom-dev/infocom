@@ -59,7 +59,7 @@
                 <h3>Guide to start new project</h3>
               </div>
             </b-row>
-            <v-form :questions="questions" :id="user_id"></v-form>
+            <v-form v-on:update="updateProjects($event)" :questions="questions" :id="user_id"></v-form>
             <b-row
               align-v="center"
               class="text-center justify-content-center mr-5 ml-5"
@@ -382,7 +382,9 @@ export default {
       });
   },
   methods: {
-    viewAnswers(){}
+    updateProjects(x){
+      this.projects = x
+    }
   },
 };
 </script>

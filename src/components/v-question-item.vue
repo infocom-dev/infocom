@@ -215,7 +215,7 @@ export default {
             this.question_data[i].type == "datapicker" 
           ) {
             v[i] = {
-              date: this.selectedAnswers[i][0] + "-" + this.selectedAnswers[i][1]
+              date:  this.selectedAnswers[i][1]
             }
           } 
           else if (this.question_data[i].type == "checkbox" ) {
