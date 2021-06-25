@@ -19,4 +19,4 @@ def convert(customer_answers):
 
 
 def convert_hours_to_date(hours):
-    return (datetime.datetime.now() + datetime.timedelta(hours=hours)).strftime('%Y-%m-%d')
+    return (datetime.datetime.now() + datetime.timedelta(hours=hours*3)).strftime('%Y-%m-%d')
