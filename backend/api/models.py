@@ -1,3 +1,7 @@
+from datetime import datetime
+from django.utils.timezone import now
+
+
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, UserManager
 from django.contrib.auth.models import PermissionsMixin
@@ -40,7 +44,7 @@ class Project(models.Model):
     is_active = models.BooleanField(default=True)
     predicted_price = models.IntegerField(blank=True, null=True)
     real_price = models.IntegerField(blank=True, null=True)
-    start_date = models.DateField(blank=True, null=True)
+    start_date = models.DateField(default=now,blank=True, null=True)
     predict_end_date = models.DateField(blank=True, null=True)
     real_end_date = models.DateField(blank=True, null=True)
 
