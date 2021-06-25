@@ -144,7 +144,7 @@ export default {
   },
 
   created() {
-    let req = [{text : "Developers in the company", r:"/getDevelopers/"},
+    let req = [{text : "Projects active", r:"/getProjectsActive/"},
            {r:"/getCustomers/",text:"Users on our site"},
            {r:'/getProjects/',text:"Completed orders"}]
     for(let i = 0;i < req.length;i++){
