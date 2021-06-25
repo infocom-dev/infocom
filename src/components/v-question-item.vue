@@ -192,7 +192,7 @@ export default {
     sendAnswers() {
       let v = [];
       for (let i = 0; i < this.selectedAnswers.length; i++) {
-        if(this.selectedAnswers[i] && this.selectedAnswers[i].length != 0){
+        if(this.selectedAnswers[i] != null && this.selectedAnswers[i].length != 0){
           if (this.question_data[i].type == "selected") {
             v[i] = {
               custom_answer: this.selectedAnswers[i],

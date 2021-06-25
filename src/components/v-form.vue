@@ -113,7 +113,7 @@
             </b-col>
             <b-col id="tooltip">
               <h5>Send to analysis</h5>
-              <button :disabled="Done" class="btn mt-3 mx-auto">
+              <button :disabled="Done" @click="sendToAnalysis" class="btn mt-3 mx-auto">
                 Send to analysis
               </button>
               <b-tooltip
@@ -156,6 +156,9 @@ export default {
   },
 
   methods: {
+    sendToAnalysis(){
+
+    },
     makeToast(toast,append = false) {
       this.toastCount++;
       this.$bvToast.toast(` All quastions are requared.`, {
