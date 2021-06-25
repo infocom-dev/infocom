@@ -35,6 +35,8 @@ class ProjectWithCustomerAnswerViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         request.data['predicted_price'] = int(cost)
         request.data['predict_end_date'] = date
+        request.data['real_price'] = int(cost)
+        request.data['real_end_date'] = date
         try:
             for element in range(len(request.data.get('customer_answers'))):
                 if request.data.get('customer_answers')[element].get("custom_answer"):
