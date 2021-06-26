@@ -52,17 +52,17 @@ export default {
         {
           icon: "fa fa-credit-card icon",
           text: "Purchase",
-          path: "/account/purchase",
+          path: "/account/projects",
         },
         {
           icon: "fa fa-cog icon",
           text: "Settings",
-          path: "/account/settings",
+          path: "/account/projects",
         },
         {
           icon: "fa fa-question-circle icon",
           text: "Help",
-          path: "/account/help",
+          path: "/account/projects",
         },
       ],
       window: {

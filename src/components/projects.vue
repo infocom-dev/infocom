@@ -187,8 +187,8 @@
                                 </b-col>
                                 <b-col cols="5" md="4">
                                   <h3 class="text-right">₽ 
-                                    <!-- {{ avg_price }} -->
-                                    25000
+                                     {{ avg_price }} 
+                                    
                                     </h3>
                                 </b-col>
                               </b-row>
@@ -301,7 +301,7 @@
                       </div>
                     </b-col>
                     <b-col cols="12" md="1" class="pr-button">
-                      <div class="m-auto"><p>View answers</p></div>
+                      <div class="m-auto"><p></p></div>
                     </b-col>
                   </b-row>
                 </div>

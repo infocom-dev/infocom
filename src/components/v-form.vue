@@ -1,9 +1,6 @@
 <template>
   <div class="v-forrm p-0">
-    <b-container fluid>
-    <p> {{answers}}</p>
-    <p>{{projectWithCustomerAnswer}}</p>
-    
+    <b-container fluid>    
       <b-row align-v="center" class="text-center">
         <b-col class="w-100 m-5 anketa-box">
           <b-row class="p-5">
