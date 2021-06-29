@@ -384,6 +384,15 @@ export default {
   methods: {
     updateProjects(x){
       this.projects = x
+      session
+
+            .get(
+              `/getAvgStack${this.projects[this.projects.length - 1].stack}/`
+            )
+            .then((response) => {
+              this.avg_price = response.data.avg_price;
+              this.avg_days = response.data.avg_days;
+            });
     }
   },
 };
