@@ -128,9 +128,7 @@
         </div>
       </div>
     </div>
-    <div>
-      Selected: <strong>{{ selectedAnswers2 }}</strong>
-    </div> 
+    
   </div>
 </template>
 
